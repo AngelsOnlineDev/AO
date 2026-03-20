@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+	<class id="0" name="Novice" adv_name="Novice"/>
+	<class id="1" name="Priest" adv_name="Priest" help="Class: Priest \n\n Description: \n      This class has the most potent /c$9 healing spells /c*, /c$9 defensive spells, as well as assistance spells /c* and can wear cloth armor to improve defence."/>
+	<class id="2" name="Summoner" adv_name="Summoner" help="Class: Summoner \n\n Description: \n      This class has the most potent /c$9 curse spells /c* and /c$9 summoning spells /c* and can wear cloth armor to improve defence."/>
+	<class id="3" name="Wizard" adv_name="Wizard" help="Class: Wizard \n\n Description: \n      Committed to studying /c$9 chaos spells /c*. Good at using /c$9 destructive spells /c*. They can wear cloth armor."/>
+	<class id="4" name="Magician" adv_name="Magician" help="Class: Magician \n\n Description: \n      Committed to studying /c$9 earth spells /c* that contain /c$9 temptation and transforming magic /c*. Possessing relatively strong /c$9 melee combat abilities /c* too. They can wear cloth armor."/>
+	<class id="5" name="Protector" adv_name="Protector" help="Class: Protector \n\n Description: \n      Good at /c$9 defending themselves with a shield /c*. The best /c$9 tank /c* in battle. They can wear heavy armor."/>
+	<class id="6" name="Warrior" adv_name="Warrior" help="Class: Warrior \n\n Description: \n      Good at using an /c$9 axe /c* to create /c$9 an excellent amount of damage /c*. They can wear heavy armor."/>
+	<class id="7" name="Swordsman" adv_name="Swordsman" help="Class: Swordsman \n\n Description: \n      Good at /c$9 sword skills /c* and able to give immense damage in /c$9 a short period of time /c*. This class can wear heavy armor."/>
+	<class id="8" name="Spearman" adv_name="Spearman" help="Class: Spearman \n\n Description: \n      Good at /c$9 spear skills /c* and able to give an /c$9 immense piercing damage /c*. This class can wear heavey armor."/>
+	<class id="9" name="Archer" adv_name="Archer" help="Class: Archer \n\n Description: \n     Good at /c$9 long bow skills /c* and /c$9 long ranged attacks /c*. This class can wear light armor."/>
+	<class id="10" name="Weaponsmith" adv_name="Weaponsmith" help="Class: Weaponsmith \n\n Description: \n      Good at forging /c$9 metal weapons /c*, digging ore, lumbering and controlling robots. This class can wear light armor."/>
+	<class id="11" name="Armorsmith" adv_name="Armorsmith" help="Class: Armorsmith \n\n Description: \n They are famous for making /c$9 heavy and light armor /c*, collecting, lumbering and controlling robots. This class can wear light armor."/>
+	<class id="12" name="Tailor" adv_name="Tailor" help="Class: Tailor \n\n Description: \n      Good at making /c$9 cloth armor and backpacks /c*, collecting, fishing, and controlling robots. This class can wear light armor."/>
+	<class id="13" name="Technician" adv_name="Technician" help="Class: Technician \n\n Description: \n      Good at making /c$9 robot accessories, ornaments and staves /c*. This class is also adept at collecting, lumbering, and controlling robots. This class can wear leather armor."/>
+	<class id="14" name="Alchemist" adv_name="Alchemist" help="Deleted"/>
+	<class id="15" name="Chef" adv_name="Chef" help="Class: Chef \n\n Description: \n      Good at cooking /c$9 nutritious food which can improve abilities /c*. This class is also adept at collecting, fishing, and controlling robots. This class can wear light armor."/>
+	<class id="16" name="Wizard Jr." adv_name="Wizard Jr." help="Chef description"/>
+	<class id="17" name="M.Soldier" adv_name="M.Soldier" help="Blacksmith description"/>
+	<class id="18" name="MagicBowman" adv_name="MagicBowman" help="Artisan description"/>
+	<class id="19" name="Miner" adv_name="Miner" help="Alchemist description"/>
+	<class id="20" name="Producer" adv_name="Producer" help="Tailor description"/>
+</root>

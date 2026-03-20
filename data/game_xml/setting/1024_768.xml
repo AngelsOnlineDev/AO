@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+	<window name="WND_CAPTCHA" x="808" y="548">
+		<custom name="CAPTCHA_STYLE" value="0"/>
+	</window>
+	<window name="WND_BANK" x="210" y="218"/>
+	<window name="WND_BANKBAGS1" x="0" y="260"/>
+	<window name="WND_BANKBAGS2" x="0" y="427"/>
+	<window name="WND_BANKBAGS3" x="0" y="594"/>
+	<window name="WND_BANKBAGS4" x="202" y="0"/>
+	<window name="WND_BANKBAGS5" x="202" y="167"/>
+	<window name="WND_BANKBAGS6" x="202" y="334"/>
+	<window name="WND_CHAR_INFO" x="0" y="0">
+		<custom name="SWITCH_CHARINFO" value="1"/>
+		<custom name="SWITCH_SKILLEXP" value="1"/>
+		<custom name="SYSTEM_CHANNEL_SIZE" value="3"/>
+		<custom name="SYSTEM_CUR_CHANNEL" value="0"/>
+		<custom name="WND_COMMAND_HIDE" value="0"/>
+	</window>
+	<window name="WND_EMOTION" x="670" y="0"/>
+	<window name="WND_EQUIP" x="250" y="190"/>
+	<window name="WND_FRIEND" x="749" y="207"/>
+	<window name="WND_GROUP" x="412" y="399"/>
+	<window name="WND_GUILD" x="340" y="200"/>
+	<window name="WND_ITEM" x="413" y="221"/>
+	<window name="WND_MALL" x="134" y="159"/>
+	<window name="WND_MESSAGE" x="574" y="618"/>
+	<window name="WND_MINIMAP" x="860" y="0"/>
+	<window name="WND_NPCINFO" x="341" y="70"/>
+	<window name="WND_NPCSALE" x="120" y="100">
+		<custom name="NPCSALE_LEARN_SCROLL_ONLY" value="0"/>
+	</window>
+	<window name="WND_PACKAGE" x="314" y="190"/>
+	<window name="WND_PARTNER" x="959" y="125"/>
+	<window name="WND_PARTNER_CMD" x="973" y="177"/>
+	<window name="WND_PET_INFO" x="147" y="80"/>
+	<window name="WND_QUEST" x="335" y="249"/>
+	<window name="WND_QUEST_SHORTCUT" x="814" y="124"/>
+	<window name="WND_QUICK_COMMAND" x="231" y="0">
+		<custom name="QUICK_COMMAND_TYPE" value="1"/>
+		<custom name="QUICK_COMMAND_X1" value="13"/>
+		<custom name="QUICK_COMMAND_X2" value="210"/>
+		<custom name="QUICK_COMMAND_Y1" value="94"/>
+		<custom name="QUICK_COMMAND_Y2" value="0"/>
+	</window>
+	<window name="WND_REPAIR" x="253" y="184"/>
+	<window name="WND_SALE" x="615" y="221"/>
+	<window name="WND_SKILLS" x="386" y="157"/>
+	<window name="WND_SKILLS_CHANGE" x="747" y="183"/>
+	<window name="WND_STAGEMAP" x="0" y="0"/>
+	<window name="WND_SYSTEM" x="385" y="154"/>
+	<window name="WND_TUTIONWINDOW" x="346" y="724"/>
+	<window name="WND_PET_RESURRECT" x="253" y="184"/>
+</root>

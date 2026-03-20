@@ -1,0 +1,812 @@
+#include color.obd
+
+[SYSTEM]
+ShapeDir = shape
+SoundDir = sound
+SpriteDir = shape
+BgPath = 
+BgColor = 0xffff
+DelayUnit = 60
+UseDefault = 2
+UseDefine = 2
+MinSize = 131072
+MaxSize = 10485760
+
+
+[DEFINE]
+#define SP_NUMBER_MAX				0x7fffffff
+
+#define SP_EVENT_ACT_WAIT                       0x00000001	//SP_EVENT_ACT_WAIT
+
+#define SP_CLASS_BASE                           0x00000001	//SP_CLASS_BASE
+#define SP_CLASS_MAPOBJ                         0x00000002	//SP_CLASS_MAPOBJ
+#define SP_CLASS_CHAROBJ                        0x00000102	//SP_CLASS_CHAROBJ
+#define SP_CLASS_HOUSEIN                        0x00000202	//SP_CLASS_HOUSEIN
+#define SP_CLASS_HOUSEOUT                       0x00000402	//SP_CLASS_HOUSEOUT
+#define SP_CLASS_PLAYER                         0x00001102	//SP_CLASS_PLAYER
+#define SP_CLASS_MAPOBJ_PLANT                   0x00010002	//天然植物
+#define SP_CLASS_MAPOBJ_CRUDE                   0x00020002	//天然雜物
+#define SP_CLASS_MAPOBJ_ARTIFICIAL              0x00030002	//人工雜物
+#define SP_CLASS_MAPOBJ_WALL                    0x00040002	//牆壁邊條
+#define SP_CLASS_MAPOBJ_DYNAMICAL               0x00050002	//動態物件
+
+#define SP_ATTRIB_DISTURB                       0x00020000	//SP_ATTRIB_DISTURB
+#define SP_ATTRIB_ZBUFFER1                      0x00040000	//SP_ATTRIB_ZBUFFER1
+#define SP_ATTRIB_ZBUFFER2                      0x00080000	//SP_ATTRIB_ZBUFFER2
+#define SP_ATTRIB_STATIC                        0x00100000	//SP_ATTRIB_STATIC
+#define SP_ATTRIB_HITTEST                       0x00200000	//SP_ATTRIB_HITTEST
+#define SP_ATTRIB_SHADOW                        0x00400000	//SP_ATTRIB_SHADOW
+
+#define SP_ATTRIB_ALPHA                         0x00000001	//Alpha
+#define SP_ATTRIB_MIXER                         0x00000002	//混色
+#define SP_ATTRIB_WHITELIGHT                    0x00000004	//加色
+#define SP_ATTRIB_DARKLIGHT                     0x00000008	//減色
+#define SP_ATTRIB_OUTLINE                       0x00000010	//外框
+#define SP_ATTRIB_FLASH                         0x00000020	//Flash效果
+#define SP_ATTRIB_SMOKE                         0x00000040	//Smoke效果
+#define SP_ATTRIB_WATER                         0x00000080	//Water效果
+#define SP_ATTRIB_SINGLE                        0x00000100	//單色
+#define SP_ATTRIB_GLASS                         0x00000200	//玻璃色
+#define SP_ATTRIB_GRAY                          0x00000400	//灰階
+#define SP_ATTRIB_TABLE                         0x00001000	//表格
+#define SP_ATTRIB_BIAS                          0x00002000	//換色
+
+
+[SP_CLASS]
+Name = SP_CLASS_BASE
+Value = 0x00000001
+Comment = SP_CLASS_BASE
+
+[SP_CLASS]
+Name = SP_CLASS_CHAROBJ
+Value = 0x00000102
+Comment = SP_CLASS_CHAROBJ
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEIN
+Value = 0x00000202
+Comment = SP_CLASS_HOUSEIN
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEOUT
+Value = 0x00000402
+Comment = SP_CLASS_HOUSEOUT
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ
+Value = 0x00000002
+Comment = SP_CLASS_MAPOBJ
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_ARTIFICIAL
+Value = 0x00030002
+Comment = 人工雜物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_CRUDE
+Value = 0x00020002
+Comment = 天然雜物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_DYNAMICAL
+Value = 0x00050002
+Comment = 動態物件
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_PLANT
+Value = 0x00010002
+Comment = 天然植物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_WALL
+Value = 0x00040002
+Comment = 牆壁邊條
+
+[SP_CLASS]
+Name = SP_CLASS_PLAYER
+Value = 0x00001102
+Comment = SP_CLASS_PLAYER
+
+
+
+[SP_EVENT]
+Name = SP_EVENT_ACT_WAIT
+Value = 0x00000001
+Comment = SP_EVENT_ACT_WAIT
+
+
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_DISTURB
+Value = 0x00020000
+Comment = SP_ATTRIB_DISTURB
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_HITTEST
+Value = 0x00200000
+Comment = SP_ATTRIB_HITTEST
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_SHADOW
+Value = 0x00400000
+Comment = SP_ATTRIB_SHADOW
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_STATIC
+Value = 0x00100000
+Comment = SP_ATTRIB_STATIC
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_ZBUFFER1
+Value = 0x00040000
+Comment = SP_ATTRIB_ZBUFFER1
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_ZBUFFER2
+Value = 0x00080000
+Comment = SP_ATTRIB_ZBUFFER2
+
+
+
+[OBJECT]
+Name = 皮膚1
+Sequence = 1
+BaseBias = 0xf30402, 0xfe53, 130
+Directory = \chr\p001b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 皮膚2
+Sequence = 2
+BaseBias = 0x20505, 0xfe53, 130
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\p001b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 皮膚3
+Sequence = 3
+BaseBias = 0xfe0805, 0xfe53, 130
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\p001b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 皮膚4
+Sequence = 4
+BaseBias = 0xf70e06, 0xfe53, 130
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\p001b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 皮膚5
+Sequence = 5
+BaseBias = 0x20406, 0xfe53, 130
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\p001b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 皮膚6
+Sequence = 6
+BaseBias = 0xfb0405, 0xfe53, 130
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\p001b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 皮膚7
+Sequence = 7
+BaseBias = 0xf60405, 0xfe53, 130
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\p001b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 皮膚8
+Sequence = 8
+BaseBias = 0xf30905, 0xfe53, 130
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\p001b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 皮膚9
+Sequence = 9
+BaseBias = 0x10103, 0xfe53, 130
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\p001b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 皮膚10
+Sequence = 10
+BaseBias = 0xfc0403, 0xfe53, 130
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\p001b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 皮膚11
+Sequence = 11
+BaseBias = 0xf80403, 0xfe53, 130
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\p001b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 皮膚12
+Sequence = 12
+BaseBias = 0xf30402, 0xfe53, 130
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\p001b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 皮膚13
+Sequence = 13
+BaseBias = 0xfd07, 0xfe53, 130
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\p001b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 皮膚14
+Sequence = 14
+BaseBias = 0xfafd07, 0xfe53, 130
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\p001b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 皮膚15
+Sequence = 15
+BaseBias = 0xf5fb06, 0xfe53, 130
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\p001b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 皮膚16
+Sequence = 16
+BaseBias = 0xf0fd06, 0xfe53, 130
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\p001b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 皮膚17
+Sequence = 17
+BaseBias = 0x900, 0xfe53, 130
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\p001b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 皮膚18
+Sequence = 18
+BaseBias = 0xf90900, 0xfe53, 130
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\p001b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 皮膚19
+Sequence = 19
+BaseBias = 0x20609, 0xfe53, 130
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\p001b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 皮膚20
+Sequence = 20
+BaseBias = 0x22008, 0xfe53, 130
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\p001b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 皮膚21
+Sequence = 21
+BaseBias = 0xff0210, 0xfe53, 130
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\p001b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 皮膚22
+Sequence = 22
+BaseBias = 0xf90614, 0xfe53, 130
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\p001b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 皮膚23
+Sequence = 23
+BaseBias = 0x224, 0xfe53, 130
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\p001b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 皮膚24
+Sequence = 24
+BaseBias = 0xfd0924, 0xfe53, 130
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\p001b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 皮膚25
+Sequence = 25
+BaseBias = 0x10130, 0xfe53, 130
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\p001b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 皮膚26
+Sequence = 26
+BaseBias = 0xf90130, 0xfe53, 130
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\p001b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮1
+Sequence = 1001
+BaseBias = 0xf60425, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮2
+Sequence = 1002
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮3
+Sequence = 1003
+BaseBias = 0x6f82d, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮4
+Sequence = 1004
+BaseBias = 0x10925, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮5
+Sequence = 1005
+BaseBias = 0xff1225, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮6
+Sequence = 1006
+BaseBias = 0x70d27, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮7
+Sequence = 1007
+BaseBias = 0xb0624, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮8
+Sequence = 1008
+BaseBias = 0x91522, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮9
+Sequence = 1009
+BaseBias = 0xfb0b25, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮10
+Sequence = 1010
+BaseBias = 0xfb071f, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮11
+Sequence = 1011
+BaseBias = 0xfb0f1d, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮12
+Sequence = 1012
+BaseBias = 0xff0e1d, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮13
+Sequence = 1013
+BaseBias = 0x9090f, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮14
+Sequence = 1014
+BaseBias = 0x9101c, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮15
+Sequence = 1015
+BaseBias = 0x9093c, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮16
+Sequence = 1016
+BaseBias = 0x50a34, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮17
+Sequence = 1017
+BaseBias = 0xfd0c02, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮18
+Sequence = 1018
+BaseBias = 0x31104, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮19
+Sequence = 1019
+BaseBias = 0xfc0d0f, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮20
+Sequence = 1020
+BaseBias = 0x1061f, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮21
+Sequence = 1021
+BaseBias = 0x9081f, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮22
+Sequence = 1022
+BaseBias = 0xa052f, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮23
+Sequence = 1023
+BaseBias = 0xa0f02, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮24
+Sequence = 1024
+BaseBias = 0xff0f3d, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮25
+Sequence = 1025
+BaseBias = 0x20c06, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮26
+Sequence = 1026
+BaseBias = 0x90706, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮27
+Sequence = 1027
+BaseBias = 0x81007, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮28
+Sequence = 1028
+BaseBias = 0xb0d07, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮29
+Sequence = 1029
+BaseBias = 0xb1a06, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮30
+Sequence = 1030
+BaseBias = 0x61504, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮31
+Sequence = 1031
+BaseBias = 0x7103e, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮32
+Sequence = 1032
+BaseBias = 0x1183d, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮33
+Sequence = 1033
+BaseBias = 0x8163f, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮34
+Sequence = 1034
+BaseBias = 0x91703, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮35
+Sequence = 1035
+BaseBias = 0x91c09, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮36
+Sequence = 1036
+BaseBias = 0x9120a, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮37
+Sequence = 1037
+BaseBias = 0x3201e, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮38
+Sequence = 1038
+BaseBias = 0x7201f, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮39
+Sequence = 1039
+BaseBias = 0x71127, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮40
+Sequence = 1040
+BaseBias = 0x80b2b, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮41
+Sequence = 1041
+BaseBias = 0x71c39, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮42
+Sequence = 1042
+BaseBias = 0x61535, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮43
+Sequence = 1043
+BaseBias = 0x60c2f, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮44
+Sequence = 1044
+BaseBias = 0xfa0825, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮45
+Sequence = 1045
+BaseBias = 0xfd2001, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮46
+Sequence = 1046
+BaseBias = 0x2008, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮47
+Sequence = 1047
+BaseBias = 0xfd201f, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+
+
+[OBJECT]
+Name = 頭髮48
+Sequence = 1048
+BaseBias = 0x9ef06, 0x9492, 160
+Flags = SP_ATTRIB_BIAS
+Directory = \chr\i102b\
+Sprite = Wait, fw013*, SCROVER
+

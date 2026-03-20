@@ -1,0 +1,2717 @@
+#include npc.obd
+
+[SYSTEM]
+ShapeDir = shape_src
+SoundDir = sound
+SpriteDir = shape
+BgPath = 
+BgColor = 0x0
+DelayUnit = 60
+UseDefault = 2
+UseDefine = 2
+MinSize = 131072
+MaxSize = 10485760
+Mirror = 1
+
+
+[DEFINE]
+#define SP_NUMBER_MAX				0x7fffffff
+
+#define SP_EVENT_ACT_WAIT                       0x00000001	//SP_EVENT_ACT_WAIT
+#define SP_EVENT_ACT_FADEOUT                    0x00000002	//SP_EVENT_ACT_FADEOUT
+#define SP_EVENT_ACT_REMOVE                     0x00000003	//SP_EVENT_ACT_REMOVE
+#define SP_EVENT_ACT_NO_SHADOW                  0x00000004	//SP_EVENT_ACT_NO_SHADOW
+
+#define SERV_CLASS_BASE                         0x80000001	//伺服器一般物件
+#define SERV_CLASS_CHAROBJ                      0x80000002	//伺服器角色物件
+#define SERV_CLASS_ITEMOBJ                      0x80000003	//伺服器道具物件
+#define SERV_CLASS_STATIC                       0x80000004	//伺服器靜態物件
+#define SERV_CLASS_GEN                          0x80000005	//伺服器怪物產生器
+#define SERV_CLASS_NPCOBJ                       0x80000202	//伺服器NPC物件
+#define SP_CLASS_BASE                           0x00000001	//SP_CLASS_BASE
+#define SP_CLASS_MAPOBJ                         0x00000002	//SP_CLASS_MAPOBJ
+#define SP_CLASS_CHAROBJ                        0x00000102	//SP_CLASS_CHAROBJ
+#define SP_CLASS_HOUSEIN                        0x00000202	//SP_CLASS_HOUSEIN
+#define SP_CLASS_HOUSEOUT                       0x00000402	//SP_CLASS_HOUSEOUT
+#define SP_CLASS_PLAYER                         0x00001102	//SP_CLASS_PLAYER
+
+#define SP_ATTRIB_DISTURB                       0x00020000	//SP_ATTRIB_DISTURB
+#define SP_ATTRIB_ZBUFFER1                      0x00040000	//SP_ATTRIB_ZBUFFER1
+#define SP_ATTRIB_ZBUFFER2                      0x00080000	//SP_ATTRIB_ZBUFFER2
+#define SP_ATTRIB_STATIC                        0x00100000	//SP_ATTRIB_STATIC
+#define SP_ATTRIB_HITTEST                       0x00200000	//SP_ATTRIB_HITTEST
+#define SP_ATTRIB_SHADOW                        0x00400000	//SP_ATTRIB_SHADOW
+
+#define SP_ATTRIB_ALPHA                         0x00000001	//Alpha
+#define SP_ATTRIB_MIXER                         0x00000002	//混色
+#define SP_ATTRIB_WHITELIGHT                    0x00000004	//加色
+#define SP_ATTRIB_DARKLIGHT                     0x00000008	//減色
+#define SP_ATTRIB_OUTLINE                       0x00000010	//外框
+#define SP_ATTRIB_FLASH                         0x00000020	//Flash效果
+#define SP_ATTRIB_SMOKE                         0x00000040	//Smoke效果
+#define SP_ATTRIB_WATER                         0x00000080	//Water效果
+#define SP_ATTRIB_SINGLE                        0x00000100	//單色
+#define SP_ATTRIB_GLASS                         0x00000200	//玻璃色
+#define SP_ATTRIB_GRAY                          0x00000400	//灰階
+#define SP_ATTRIB_TABLE                         0x00001000	//表格
+#define SP_ATTRIB_BIAS                          0x00002000	//換色
+
+
+[SP_CLASS]
+Name = SERV_CLASS_BASE
+Value = 0x80000001
+Comment = 伺服器一般物件
+
+[SP_CLASS]
+Name = SERV_CLASS_CHAROBJ
+Value = 0x80000002
+Comment = 伺服器角色物件
+
+[SP_CLASS]
+Name = SERV_CLASS_GEN
+Value = 0x80000005
+Comment = 伺服器怪物產生器
+Label = 物件
+Label = 時間
+Label = 數量
+Label = 位置
+Label = 事件
+Label = 路徑
+
+[SP_CLASS]
+Name = SERV_CLASS_ITEMOBJ
+Value = 0x80000003
+Comment = 伺服器道具物件
+
+[SP_CLASS]
+Name = SERV_CLASS_NPCOBJ
+Value = 0x80000202
+Comment = 伺服器NPC物件
+Label = 路徑
+
+[SP_CLASS]
+Name = SERV_CLASS_STATIC
+Value = 0x80000004
+Comment = 伺服器靜態物件
+
+[SP_CLASS]
+Name = SP_CLASS_BASE
+Value = 0x00000001
+Comment = SP_CLASS_BASE
+
+[SP_CLASS]
+Name = SP_CLASS_CHAROBJ
+Value = 0x00000102
+Comment = SP_CLASS_CHAROBJ
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEIN
+Value = 0x00000202
+Comment = SP_CLASS_HOUSEIN
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEOUT
+Value = 0x00000402
+Comment = SP_CLASS_HOUSEOUT
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ
+Value = 0x00000002
+Comment = SP_CLASS_MAPOBJ
+
+[SP_CLASS]
+Name = SP_CLASS_PLAYER
+Value = 0x00001102
+Comment = SP_CLASS_PLAYER
+
+
+
+[SP_EVENT]
+Name = SP_EVENT_ACT_FADEOUT
+Value = 0x00000002
+Comment = SP_EVENT_ACT_FADEOUT
+
+[SP_EVENT]
+Name = SP_EVENT_ACT_NO_SHADOW
+Value = 0x00000004
+Comment = SP_EVENT_ACT_NO_SHADOW
+
+[SP_EVENT]
+Name = SP_EVENT_ACT_REMOVE
+Value = 0x00000003
+Comment = SP_EVENT_ACT_REMOVE
+
+[SP_EVENT]
+Name = SP_EVENT_ACT_WAIT
+Value = 0x00000001
+Comment = SP_EVENT_ACT_WAIT
+
+
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_DISTURB
+Value = 0x00020000
+Comment = SP_ATTRIB_DISTURB
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_HITTEST
+Value = 0x00200000
+Comment = SP_ATTRIB_HITTEST
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_SHADOW
+Value = 0x00400000
+Comment = SP_ATTRIB_SHADOW
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_STATIC
+Value = 0x00100000
+Comment = SP_ATTRIB_STATIC
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_ZBUFFER1
+Value = 0x00040000
+Comment = SP_ATTRIB_ZBUFFER1
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_ZBUFFER2
+Value = 0x00080000
+Comment = SP_ATTRIB_ZBUFFER2
+
+
+
+[OBJECT]
+Name = NPC001
+Sequence = 40001
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n001\
+Sprite = Wait, w013*, #12, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+SpriteFile = Wait, 40001_Wait.spr
+
+
+[OBJECT]
+Name = NPC002
+Sequence = 40002
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n002\
+Sprite = Wait, w013*, #15, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+SpriteFile = Wait, 40002_Wait.spr
+
+
+[OBJECT]
+Name = NPC003
+Sequence = 40003
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n003\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+SpriteFile = Wait, 40003_Wait.spr
+
+
+[OBJECT]
+Name = NPC004
+Sequence = 40004
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n004\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+SpriteFile = Wait, 40004_Wait.spr
+
+
+[OBJECT]
+Name = NPC005
+Sequence = 40005
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n005\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40005_Wait.spr
+SpriteFile = Run, 40005_Run.spr
+SpriteFile = Att, 40005_Att.spr
+SpriteFile = Hurt, 40005_Hurt.spr
+SpriteFile = Dead, 40005_Dead.spr
+
+
+[OBJECT]
+Name = NPC006
+Sequence = 40006
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n006\
+Sprite = Wait, w013*, #15, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+SpriteFile = Wait, 40006_Wait.spr
+
+
+[OBJECT]
+Name = NPC007
+Sequence = 40007
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n007\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40007_Wait.spr
+SpriteFile = Run, 40007_Run.spr
+SpriteFile = Att, 40007_Att.spr
+SpriteFile = Hurt, 40007_Hurt.spr
+SpriteFile = Dead, 40007_Dead.spr
+
+
+[OBJECT]
+Name = NPC008
+Sequence = 40008
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n008\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40008_Wait.spr
+SpriteFile = Run, 40008_Run.spr
+SpriteFile = Att, 40008_Att.spr
+SpriteFile = Hurt, 40008_Hurt.spr
+SpriteFile = Dead, 40008_Dead.spr
+
+
+[OBJECT]
+Name = NPC009
+Sequence = 40009
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n009\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40009_Wait.spr
+SpriteFile = Run, 40009_Run.spr
+SpriteFile = Att, 40009_Att.spr
+SpriteFile = Hurt, 40009_Hurt.spr
+SpriteFile = Dead, 40009_Dead.spr
+
+
+[OBJECT]
+Name = NPC010
+Sequence = 40010
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n010\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40010_Wait.spr
+SpriteFile = Run, 40010_Run.spr
+SpriteFile = Att, 40010_Att.spr
+SpriteFile = Hurt, 40010_Hurt.spr
+SpriteFile = Dead, 40010_Dead.spr
+
+
+[OBJECT]
+Name = NPC011
+Sequence = 40011
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n011\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40011_Wait.spr
+SpriteFile = Run, 40011_Run.spr
+SpriteFile = Att, 40011_Att.spr
+SpriteFile = Hurt, 40011_Hurt.spr
+SpriteFile = Dead, 40011_Dead.spr
+
+
+[OBJECT]
+Name = NPC012
+Sequence = 40012
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n012\
+Sprite = Wait, w013*, #12, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40012_Wait.spr
+SpriteFile = Run, 40012_Run.spr
+SpriteFile = Att, 40012_Att.spr
+SpriteFile = Hurt, 40012_Hurt.spr
+SpriteFile = Dead, 40012_Dead.spr
+
+
+[OBJECT]
+Name = NPC013
+Sequence = 40013
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n013\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40013_Wait.spr
+SpriteFile = Run, 40013_Run.spr
+SpriteFile = Att, 40013_Att.spr
+SpriteFile = Hurt, 40013_Hurt.spr
+SpriteFile = Dead, 40013_Dead.spr
+
+
+[OBJECT]
+Name = NPC014
+Sequence = 40014
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n014\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40014_Wait.spr
+SpriteFile = Run, 40014_Run.spr
+SpriteFile = Att, 40014_Att.spr
+SpriteFile = Hurt, 40014_Hurt.spr
+SpriteFile = Dead, 40014_Dead.spr
+
+
+[OBJECT]
+Name = NPC015
+Sequence = 40015
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n015\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40015_Wait.spr
+SpriteFile = Run, 40015_Run.spr
+SpriteFile = Att, 40015_Att.spr
+SpriteFile = Hurt, 40015_Hurt.spr
+SpriteFile = Dead, 40015_Dead.spr
+
+
+[OBJECT]
+Name = NPC016
+Sequence = 40016
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n016\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40016_Wait.spr
+SpriteFile = Run, 40016_Run.spr
+SpriteFile = Att, 40016_Att.spr
+SpriteFile = Hurt, 40016_Hurt.spr
+SpriteFile = Dead, 40016_Dead.spr
+
+
+[OBJECT]
+Name = NPC017
+Sequence = 40017
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n017\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40017_Wait.spr
+SpriteFile = Run, 40017_Run.spr
+SpriteFile = Att, 40017_Att.spr
+SpriteFile = Hurt, 40017_Hurt.spr
+SpriteFile = Dead, 40017_Dead.spr
+
+
+[OBJECT]
+Name = NPC018
+Sequence = 40018
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n018\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40018_Wait.spr
+SpriteFile = Run, 40018_Run.spr
+SpriteFile = Att, 40018_Att.spr
+SpriteFile = Hurt, 40018_Hurt.spr
+SpriteFile = Dead, 40018_Dead.spr
+
+
+[OBJECT]
+Name = NPC019
+Sequence = 40019
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n019\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40019_Wait.spr
+SpriteFile = Run, 40019_Run.spr
+SpriteFile = Att, 40019_Att.spr
+SpriteFile = Hurt, 40019_Hurt.spr
+SpriteFile = Dead, 40019_Dead.spr
+
+
+[OBJECT]
+Name = NPC020
+Sequence = 40020
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n020\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40020_Wait.spr
+SpriteFile = Run, 40020_Run.spr
+SpriteFile = Att, 40020_Att.spr
+SpriteFile = Hurt, 40020_Hurt.spr
+SpriteFile = Dead, 40020_Dead.spr
+
+
+[OBJECT]
+Name = NPC021
+Sequence = 40021
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n021\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40021_Wait.spr
+SpriteFile = Run, 40021_Run.spr
+SpriteFile = Att, 40021_Att.spr
+SpriteFile = Hurt, 40021_Hurt.spr
+SpriteFile = Dead, 40021_Dead.spr
+
+
+[OBJECT]
+Name = NPC022
+Sequence = 40022
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n022\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40022_Wait.spr
+SpriteFile = Run, 40022_Run.spr
+SpriteFile = Att, 40022_Att.spr
+SpriteFile = Hurt, 40022_Hurt.spr
+SpriteFile = Dead, 40022_Dead.spr
+
+
+[OBJECT]
+Name = NPC023
+Sequence = 40023
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n023\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40023_Wait.spr
+SpriteFile = Run, 40023_Run.spr
+SpriteFile = Att, 40023_Att.spr
+SpriteFile = Hurt, 40023_Hurt.spr
+SpriteFile = Dead, 40023_Dead.spr
+
+
+[OBJECT]
+Name = NPC024
+Sequence = 40024
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n024\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40024_Wait.spr
+SpriteFile = Run, 40024_Run.spr
+SpriteFile = Att, 40024_Att.spr
+SpriteFile = Hurt, 40024_Hurt.spr
+SpriteFile = Dead, 40024_Dead.spr
+
+
+[OBJECT]
+Name = NPC025
+Sequence = 40025
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n025\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40025_Wait.spr
+SpriteFile = Run, 40025_Run.spr
+SpriteFile = Att, 40025_Att.spr
+SpriteFile = Hurt, 40025_Hurt.spr
+SpriteFile = Dead, 40025_Dead.spr
+
+
+[OBJECT]
+Name = NPC026
+Sequence = 40026
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n026\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40026_Wait.spr
+SpriteFile = Run, 40026_Run.spr
+SpriteFile = Att, 40026_Att.spr
+SpriteFile = Hurt, 40026_Hurt.spr
+SpriteFile = Dead, 40026_Dead.spr
+
+
+[OBJECT]
+Name = NPC027
+Sequence = 40027
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n027\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40027_Wait.spr
+SpriteFile = Run, 40027_Run.spr
+SpriteFile = Att, 40027_Att.spr
+SpriteFile = Hurt, 40027_Hurt.spr
+SpriteFile = Dead, 40027_Dead.spr
+
+
+[OBJECT]
+Name = NPC028
+Sequence = 40028
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n028\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40028_Wait.spr
+SpriteFile = Run, 40028_Run.spr
+SpriteFile = Att, 40028_Att.spr
+SpriteFile = Hurt, 40028_Hurt.spr
+SpriteFile = Dead, 40028_Dead.spr
+
+
+[OBJECT]
+Name = NPC029
+Sequence = 40029
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n029\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40029_Wait.spr
+SpriteFile = Run, 40029_Run.spr
+SpriteFile = Att, 40029_Att.spr
+SpriteFile = Hurt, 40029_Hurt.spr
+SpriteFile = Dead, 40029_Dead.spr
+
+
+[OBJECT]
+Name = NPC030
+Sequence = 40030
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n030\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40030_Wait.spr
+SpriteFile = Run, 40030_Run.spr
+SpriteFile = Att, 40030_Att.spr
+SpriteFile = Hurt, 40030_Hurt.spr
+SpriteFile = Dead, 40030_Dead.spr
+
+
+[OBJECT]
+Name = NPC031
+Sequence = 40031
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n031\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40031_Wait.spr
+SpriteFile = Run, 40031_Run.spr
+SpriteFile = Att, 40031_Att.spr
+SpriteFile = Hurt, 40031_Hurt.spr
+SpriteFile = Dead, 40031_Dead.spr
+
+
+[OBJECT]
+Name = NPC032
+Sequence = 40032
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n032\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40032_Wait.spr
+SpriteFile = Run, 40032_Run.spr
+SpriteFile = Att, 40032_Att.spr
+SpriteFile = Hurt, 40032_Hurt.spr
+SpriteFile = Dead, 40032_Dead.spr
+
+
+[OBJECT]
+Name = NPC033
+Sequence = 40033
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n033\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40033_Wait.spr
+SpriteFile = Run, 40033_Run.spr
+SpriteFile = Att, 40033_Att.spr
+SpriteFile = Hurt, 40033_Hurt.spr
+SpriteFile = Dead, 40033_Dead.spr
+
+
+[OBJECT]
+Name = NPC034
+Sequence = 40034
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n034\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40034_Wait.spr
+SpriteFile = Run, 40034_Run.spr
+SpriteFile = Att, 40034_Att.spr
+SpriteFile = Hurt, 40034_Hurt.spr
+SpriteFile = Dead, 40034_Dead.spr
+
+
+[OBJECT]
+Name = NPC035
+Sequence = 40035
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n035\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40035_Wait.spr
+SpriteFile = Run, 40035_Run.spr
+SpriteFile = Att, 40035_Att.spr
+SpriteFile = Hurt, 40035_Hurt.spr
+SpriteFile = Dead, 40035_Dead.spr
+
+
+[OBJECT]
+Name = NPC036
+Sequence = 40036
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n036\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40036_Wait.spr
+SpriteFile = Run, 40036_Run.spr
+SpriteFile = Att, 40036_Att.spr
+SpriteFile = Hurt, 40036_Hurt.spr
+SpriteFile = Dead, 40036_Dead.spr
+
+
+[OBJECT]
+Name = NPC037
+Sequence = 40037
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n037\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40037_Wait.spr
+SpriteFile = Run, 40037_Run.spr
+SpriteFile = Att, 40037_Att.spr
+SpriteFile = Hurt, 40037_Hurt.spr
+SpriteFile = Dead, 40037_Dead.spr
+
+
+[OBJECT]
+Name = NPC038
+Sequence = 40038
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n038\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40038_Wait.spr
+SpriteFile = Run, 40038_Run.spr
+SpriteFile = Att, 40038_Att.spr
+SpriteFile = Hurt, 40038_Hurt.spr
+SpriteFile = Dead, 40038_Dead.spr
+
+
+[OBJECT]
+Name = NPC039
+Sequence = 40039
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n039\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40039_Wait.spr
+SpriteFile = Run, 40039_Run.spr
+SpriteFile = Att, 40039_Att.spr
+SpriteFile = Hurt, 40039_Hurt.spr
+SpriteFile = Dead, 40039_Dead.spr
+
+
+[OBJECT]
+Name = NPC040
+Sequence = 40040
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n040\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40040_Wait.spr
+SpriteFile = Run, 40040_Run.spr
+SpriteFile = Att, 40040_Att.spr
+SpriteFile = Hurt, 40040_Hurt.spr
+SpriteFile = Dead, 40040_Dead.spr
+
+
+[OBJECT]
+Name = NPC004-01
+Sequence = 40041
+Space = 25, 80, 0
+MaskBias = 0xfdfe15, 0xfd2d, 160
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n004\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+SpriteFile = Wait, 40004_Wait.spr
+
+
+[OBJECT]
+Name = NPC003-01
+Sequence = 40042
+Space = 25, 80, 0
+BaseBias = 0x520, 0xdfdf, 20
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n003\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+SpriteFile = Wait, 40003_Wait.spr
+
+
+[OBJECT]
+Name = NPC003-02
+Sequence = 40043
+Space = 25, 80, 0
+BaseBias = 0xfe0632, 0xb6bd, 15
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n003\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+SpriteFile = Wait, 40003_Wait.spr
+
+
+[OBJECT]
+Name = NPC003-03
+Sequence = 40044
+Space = 25, 80, 0
+BaseBias = 0x12, 0xae7c, 20
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n003\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+SpriteFile = Wait, 40003_Wait.spr
+
+
+[OBJECT]
+Name = NPC003-04
+Sequence = 40045
+Space = 25, 80, 0
+BaseBias = 0x1082a, 0xc6fe, 20
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n003\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+SpriteFile = Wait, 40003_Wait.spr
+
+
+[OBJECT]
+Name = NPC003-05
+Sequence = 40046
+Space = 25, 80, 0
+BaseBias = 0xf63e, 0xb6bd, 20
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n003\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+SpriteFile = Wait, 40003_Wait.spr
+
+
+[OBJECT]
+Name = NPC003-06
+Sequence = 40047
+Space = 25, 80, 0
+BaseBias = 0xfd0704, 0x32ad, 20
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n003\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+SpriteFile = Wait, 40003_Wait.spr
+
+
+[OBJECT]
+Name = NPC002-01
+Sequence = 40048
+Space = 25, 80, 0
+BaseBias = 0x524, 0xbf1a, 13
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n002\
+Sprite = Wait, w013*, #15, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+SpriteFile = Wait, 40002_Wait.spr
+
+
+[OBJECT]
+Name = NPC005-01
+Sequence = 40049
+Space = 25, 80, 0
+MaskBias = 0xfe0e01, 0xcd4f, 160
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n005\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 40005_Wait.spr
+SpriteFile = Run, 40005_Run.spr
+SpriteFile = Att, 40005_Att.spr
+SpriteFile = Hurt, 40005_Hurt.spr
+SpriteFile = Dead, 40005_Dead.spr
+
+
+[OBJECT]
+Name = NPC-母雞
+Sequence = 40050
+Space = 25, 80, 0
+BaseBias = 0x30004, 0x89e4, 5
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n050
+Sprite = Wait, 27-038-2U1, #10, 27-038-2U2, 27-038-2U3, 27-038-2U3, #30, 27-038-2U1, #10, 27-038-2U2
+SpriteFile = Wait, 40050_Wait.spr
+
+
+[OBJECT]
+Name = NPC004-02
+Sequence = 40051
+Space = 25, 80, 0
+MaskBias = 0xfb0000, 0xfd6e, 160
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_NPCOBJ
+Directory = \npc\n004\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+SpriteFile = Wait, 40004_Wait.spr
+
+
+[OBJECT]
+Name = M001
+Sequence = 42001
+Space = 25, 80, 0
+MiscAttrib = 1
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m001\
+Sprite = Wait, w013*, #12, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42001_Wait.spr
+SpriteFile = Run, 42001_Run.spr
+SpriteFile = Att, 42001_Att.spr
+SpriteFile = Hurt, 42001_Hurt.spr
+SpriteFile = Dead, 42001_Dead.spr
+
+
+[OBJECT]
+Name = M002
+Sequence = 42002
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m002\
+Sprite = Wait, w013*, #13, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42002_Wait.spr
+SpriteFile = Run, 42002_Run.spr
+SpriteFile = Att, 42002_Att.spr
+SpriteFile = Hurt, 42002_Hurt.spr
+SpriteFile = Dead, 42002_Dead.spr
+
+
+[OBJECT]
+Name = M003
+Sequence = 42003
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m003\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42003_Wait.spr
+SpriteFile = Run, 42003_Run.spr
+SpriteFile = Att, 42003_Att.spr
+SpriteFile = Hurt, 42003_Hurt.spr
+SpriteFile = Dead, 42003_Dead.spr
+
+
+[OBJECT]
+Name = M004
+Sequence = 42004
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m004\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42004_Wait.spr
+SpriteFile = Run, 42004_Run.spr
+SpriteFile = Att, 42004_Att.spr
+SpriteFile = Hurt, 42004_Hurt.spr
+SpriteFile = Dead, 42004_Dead.spr
+
+
+[OBJECT]
+Name = M005
+Sequence = 42005
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m005\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, !shoot001, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42005_Wait.spr
+SpriteFile = Run, 42005_Run.spr
+SpriteFile = Att, 42005_Att.spr
+SpriteFile = Hurt, 42005_Hurt.spr
+SpriteFile = Dead, 42005_Dead.spr
+
+
+[OBJECT]
+Name = M006
+Sequence = 42006
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m006\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42006_Wait.spr
+SpriteFile = Run, 42006_Run.spr
+SpriteFile = Att, 42006_Att.spr
+SpriteFile = Hurt, 42006_Hurt.spr
+SpriteFile = Dead, 42006_Dead.spr
+
+
+[OBJECT]
+Name = M007
+Sequence = 42007
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m007\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, !shoot002, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42007_Wait.spr
+SpriteFile = Run, 42007_Run.spr
+SpriteFile = Att, 42007_Att.spr
+SpriteFile = Hurt, 42007_Hurt.spr
+SpriteFile = Dead, 42007_Dead.spr
+
+
+[OBJECT]
+Name = M008
+Sequence = 42008
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m008\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42008_Wait.spr
+SpriteFile = Run, 42008_Run.spr
+SpriteFile = Att, 42008_Att.spr
+SpriteFile = Hurt, 42008_Hurt.spr
+SpriteFile = Dead, 42008_Dead.spr
+
+
+[OBJECT]
+Name = M009
+Sequence = 42009
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m009\
+Sprite = Wait, w013*, #12, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42009_Wait.spr
+SpriteFile = Run, 42009_Run.spr
+SpriteFile = Att, 42009_Att.spr
+SpriteFile = Hurt, 42009_Hurt.spr
+SpriteFile = Dead, 42009_Dead.spr
+
+
+[OBJECT]
+Name = M010
+Sequence = 42010
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m010\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42010_Wait.spr
+SpriteFile = Run, 42010_Run.spr
+SpriteFile = Att, 42010_Att.spr
+SpriteFile = Hurt, 42010_Hurt.spr
+SpriteFile = Dead, 42010_Dead.spr
+
+
+[OBJECT]
+Name = M011
+Sequence = 42011
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m011\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42011_Wait.spr
+SpriteFile = Run, 42011_Run.spr
+SpriteFile = Att, 42011_Att.spr
+SpriteFile = Hurt, 42011_Hurt.spr
+SpriteFile = Dead, 42011_Dead.spr
+
+
+[OBJECT]
+Name = M012
+Sequence = 42012
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m012\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42012_Wait.spr
+SpriteFile = Run, 42012_Run.spr
+SpriteFile = Att, 42012_Att.spr
+SpriteFile = Hurt, 42012_Hurt.spr
+SpriteFile = Dead, 42012_Dead.spr
+
+
+[OBJECT]
+Name = M013
+Sequence = 42013
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m013\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42013_Wait.spr
+SpriteFile = Run, 42013_Run.spr
+SpriteFile = Att, 42013_Att.spr
+SpriteFile = Hurt, 42013_Hurt.spr
+SpriteFile = Dead, 42013_Dead.spr
+
+
+[OBJECT]
+Name = M014
+Sequence = 42014
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m014\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42014_Wait.spr
+SpriteFile = Run, 42014_Run.spr
+SpriteFile = Att, 42014_Att.spr
+SpriteFile = Hurt, 42014_Hurt.spr
+SpriteFile = Dead, 42014_Dead.spr
+
+
+[OBJECT]
+Name = M015
+Sequence = 42015
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m015\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42015_Wait.spr
+SpriteFile = Run, 42015_Run.spr
+SpriteFile = Att, 42015_Att.spr
+SpriteFile = Hurt, 42015_Hurt.spr
+SpriteFile = Dead, 42015_Dead.spr
+
+
+[OBJECT]
+Name = M016
+Sequence = 42016
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m016\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42016_Wait.spr
+SpriteFile = Run, 42016_Run.spr
+SpriteFile = Att, 42016_Att.spr
+SpriteFile = Hurt, 42016_Hurt.spr
+SpriteFile = Dead, 42016_Dead.spr
+
+
+[OBJECT]
+Name = M017
+Sequence = 42017
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m017\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42017_Wait.spr
+SpriteFile = Run, 42017_Run.spr
+SpriteFile = Att, 42017_Att.spr
+SpriteFile = Hurt, 42017_Hurt.spr
+SpriteFile = Dead, 42017_Dead.spr
+
+
+[OBJECT]
+Name = M018
+Sequence = 42018
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m018\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42018_Wait.spr
+SpriteFile = Run, 42018_Run.spr
+SpriteFile = Att, 42018_Att.spr
+SpriteFile = Hurt, 42018_Hurt.spr
+SpriteFile = Dead, 42018_Dead.spr
+
+
+[OBJECT]
+Name = M019
+Sequence = 42019
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m019\
+Sprite = Wait, w013*, #13, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42019_Wait.spr
+SpriteFile = Run, 42019_Run.spr
+SpriteFile = Att, 42019_Att.spr
+SpriteFile = Hurt, 42019_Hurt.spr
+SpriteFile = Dead, 42019_Dead.spr
+
+
+[OBJECT]
+Name = M020
+Sequence = 42020
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m020\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42020_Wait.spr
+SpriteFile = Run, 42020_Run.spr
+SpriteFile = Att, 42020_Att.spr
+SpriteFile = Hurt, 42020_Hurt.spr
+SpriteFile = Dead, 42020_Dead.spr
+
+
+[OBJECT]
+Name = M021
+Sequence = 42021
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m021\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42021_Wait.spr
+SpriteFile = Run, 42021_Run.spr
+SpriteFile = Att, 42021_Att.spr
+SpriteFile = Hurt, 42021_Hurt.spr
+SpriteFile = Dead, 42021_Dead.spr
+
+
+[OBJECT]
+Name = M022
+Sequence = 42022
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m022\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42022_Wait.spr
+SpriteFile = Run, 42022_Run.spr
+SpriteFile = Att, 42022_Att.spr
+SpriteFile = Hurt, 42022_Hurt.spr
+SpriteFile = Dead, 42022_Dead.spr
+
+
+[OBJECT]
+Name = M023
+Sequence = 42023
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m023\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42023_Wait.spr
+SpriteFile = Run, 42023_Run.spr
+SpriteFile = Att, 42023_Att.spr
+SpriteFile = Hurt, 42023_Hurt.spr
+SpriteFile = Dead, 42023_Dead.spr
+
+
+[OBJECT]
+Name = M024
+Sequence = 42024
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m024\
+Sprite = Wait, w013*, #12, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42024_Wait.spr
+SpriteFile = Run, 42024_Run.spr
+SpriteFile = Att, 42024_Att.spr
+SpriteFile = Hurt, 42024_Hurt.spr
+SpriteFile = Dead, 42024_Dead.spr
+
+
+[OBJECT]
+Name = M025
+Sequence = 42025
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m025\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42025_Wait.spr
+SpriteFile = Run, 42025_Run.spr
+SpriteFile = Att, 42025_Att.spr
+SpriteFile = Hurt, 42025_Hurt.spr
+SpriteFile = Dead, 42025_Dead.spr
+
+
+[OBJECT]
+Name = M026
+Sequence = 42026
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m026\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42026_Wait.spr
+SpriteFile = Run, 42026_Run.spr
+SpriteFile = Att, 42026_Att.spr
+SpriteFile = Hurt, 42026_Hurt.spr
+SpriteFile = Dead, 42026_Dead.spr
+
+
+[OBJECT]
+Name = M027
+Sequence = 42027
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m027\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42027_Wait.spr
+SpriteFile = Run, 42027_Run.spr
+SpriteFile = Att, 42027_Att.spr
+SpriteFile = Hurt, 42027_Hurt.spr
+SpriteFile = Dead, 42027_Dead.spr
+
+
+[OBJECT]
+Name = M028
+Sequence = 42028
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m028\
+Sprite = Wait, w013*, #14, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42028_Wait.spr
+SpriteFile = Run, 42028_Run.spr
+SpriteFile = Att, 42028_Att.spr
+SpriteFile = Hurt, 42028_Hurt.spr
+SpriteFile = Dead, 42028_Dead.spr
+
+
+[OBJECT]
+Name = M029
+Sequence = 42029
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m029\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42029_Wait.spr
+SpriteFile = Run, 42029_Run.spr
+SpriteFile = Att, 42029_Att.spr
+SpriteFile = Hurt, 42029_Hurt.spr
+SpriteFile = Dead, 42029_Dead.spr
+
+
+[OBJECT]
+Name = M030
+Sequence = 42030
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m030\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42030_Wait.spr
+SpriteFile = Run, 42030_Run.spr
+SpriteFile = Att, 42030_Att.spr
+SpriteFile = Hurt, 42030_Hurt.spr
+SpriteFile = Dead, 42030_Dead.spr
+
+
+[OBJECT]
+Name = M031
+Sequence = 42031
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m031\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42031_Wait.spr
+SpriteFile = Run, 42031_Run.spr
+SpriteFile = Att, 42031_Att.spr
+SpriteFile = Hurt, 42031_Hurt.spr
+SpriteFile = Dead, 42031_Dead.spr
+
+
+[OBJECT]
+Name = M032
+Sequence = 42032
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m032\
+Sprite = Wait, w013*, #12, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42032_Wait.spr
+SpriteFile = Run, 42032_Run.spr
+SpriteFile = Att, 42032_Att.spr
+SpriteFile = Hurt, 42032_Hurt.spr
+SpriteFile = Dead, 42032_Dead.spr
+
+
+[OBJECT]
+Name = M033
+Sequence = 42033
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m033\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42033_Wait.spr
+SpriteFile = Run, 42033_Run.spr
+SpriteFile = Att, 42033_Att.spr
+SpriteFile = Hurt, 42033_Hurt.spr
+SpriteFile = Dead, 42033_Dead.spr
+
+
+[OBJECT]
+Name = M034
+Sequence = 42034
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m034\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42034_Wait.spr
+SpriteFile = Run, 42034_Run.spr
+SpriteFile = Att, 42034_Att.spr
+SpriteFile = Hurt, 42034_Hurt.spr
+SpriteFile = Dead, 42034_Dead.spr
+
+
+[OBJECT]
+Name = M035
+Sequence = 42035
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m035\
+Sprite = Wait, w013*, #12, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42035_Wait.spr
+SpriteFile = Run, 42035_Run.spr
+SpriteFile = Att, 42035_Att.spr
+SpriteFile = Hurt, 42035_Hurt.spr
+SpriteFile = Dead, 42035_Dead.spr
+
+
+[OBJECT]
+Name = M036
+Sequence = 42036
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m036\
+Sprite = Wait, w013*, #12, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42036_Wait.spr
+SpriteFile = Run, 42036_Run.spr
+SpriteFile = Att, 42036_Att.spr
+SpriteFile = Hurt, 42036_Hurt.spr
+SpriteFile = Dead, 42036_Dead.spr
+
+
+[OBJECT]
+Name = M037
+Sequence = 42037
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m037\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42037_Wait.spr
+SpriteFile = Run, 42037_Run.spr
+SpriteFile = Att, 42037_Att.spr
+SpriteFile = Hurt, 42037_Hurt.spr
+SpriteFile = Dead, 42037_Dead.spr
+
+
+[OBJECT]
+Name = M038
+Sequence = 42038
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m038\
+Sprite = Wait, w013*, #12, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42038_Wait.spr
+SpriteFile = Run, 42038_Run.spr
+SpriteFile = Att, 42038_Att.spr
+SpriteFile = Hurt, 42038_Hurt.spr
+SpriteFile = Dead, 42038_Dead.spr
+
+
+[OBJECT]
+Name = M039
+Sequence = 42039
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m039\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42039_Wait.spr
+SpriteFile = Run, 42039_Run.spr
+SpriteFile = Att, 42039_Att.spr
+SpriteFile = Hurt, 42039_Hurt.spr
+SpriteFile = Dead, 42039_Dead.spr
+
+
+[OBJECT]
+Name = M040
+Sequence = 42040
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m040\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42040_Wait.spr
+SpriteFile = Run, 42040_Run.spr
+SpriteFile = Att, 42040_Att.spr
+SpriteFile = Hurt, 42040_Hurt.spr
+SpriteFile = Dead, 42040_Dead.spr
+
+
+[OBJECT]
+Name = M041
+Sequence = 42041
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m041\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42041_Wait.spr
+SpriteFile = Att, 42041_Att.spr
+SpriteFile = Hurt, 42041_Hurt.spr
+SpriteFile = Dead, 42041_Dead.spr
+
+
+[OBJECT]
+Name = M042
+Sequence = 42042
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m042\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42042_Wait.spr
+SpriteFile = Run, 42042_Run.spr
+SpriteFile = Att, 42042_Att.spr
+SpriteFile = Hurt, 42042_Hurt.spr
+SpriteFile = Dead, 42042_Dead.spr
+
+
+[OBJECT]
+Name = M043
+Sequence = 42043
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m043\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42043_Wait.spr
+SpriteFile = Run, 42043_Run.spr
+SpriteFile = Att, 42043_Att.spr
+SpriteFile = Hurt, 42043_Hurt.spr
+SpriteFile = Dead, 42043_Dead.spr
+
+
+[OBJECT]
+Name = M044
+Sequence = 42044
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m044\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42044_Wait.spr
+SpriteFile = Run, 42044_Run.spr
+SpriteFile = Att, 42044_Att.spr
+SpriteFile = Hurt, 42044_Hurt.spr
+SpriteFile = Dead, 42044_Dead.spr
+
+
+[OBJECT]
+Name = M045
+Sequence = 42045
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m045\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42045_Wait.spr
+SpriteFile = Run, 42045_Run.spr
+SpriteFile = Att, 42045_Att.spr
+SpriteFile = Hurt, 42045_Hurt.spr
+SpriteFile = Dead, 42045_Dead.spr
+
+
+[OBJECT]
+Name = M046
+Sequence = 42046
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m046\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42046_Wait.spr
+SpriteFile = Run, 42046_Run.spr
+SpriteFile = Att, 42046_Att.spr
+SpriteFile = Hurt, 42046_Hurt.spr
+SpriteFile = Dead, 42046_Dead.spr
+
+
+[OBJECT]
+Name = M047
+Sequence = 42047
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m047\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42047_Wait.spr
+SpriteFile = Run, 42047_Run.spr
+SpriteFile = Att, 42047_Att.spr
+SpriteFile = Hurt, 42047_Hurt.spr
+SpriteFile = Dead, 42047_Dead.spr
+
+
+[OBJECT]
+Name = M048
+Sequence = 42048
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m048\
+Sprite = Wait, w013*, #12, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42048_Wait.spr
+SpriteFile = Run, 42048_Run.spr
+SpriteFile = Att, 42048_Att.spr
+SpriteFile = Hurt, 42048_Hurt.spr
+SpriteFile = Dead, 42048_Dead.spr
+
+
+[OBJECT]
+Name = M049
+Sequence = 42049
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m049\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42049_Wait.spr
+SpriteFile = Run, 42049_Run.spr
+SpriteFile = Att, 42049_Att.spr
+SpriteFile = Hurt, 42049_Hurt.spr
+SpriteFile = Dead, 42049_Dead.spr
+
+
+[OBJECT]
+Name = M050
+Sequence = 42050
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m050\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42050_Wait.spr
+SpriteFile = Run, 42050_Run.spr
+SpriteFile = Att, 42050_Att.spr
+SpriteFile = Hurt, 42050_Hurt.spr
+SpriteFile = Dead, 42050_Dead.spr
+
+
+[OBJECT]
+Name = M051
+Sequence = 42051
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m051\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42051_Wait.spr
+SpriteFile = Run, 42051_Run.spr
+SpriteFile = Att, 42051_Att.spr
+SpriteFile = Hurt, 42051_Hurt.spr
+SpriteFile = Dead, 42051_Dead.spr
+
+
+[OBJECT]
+Name = M052
+Sequence = 42052
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m052\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42052_Wait.spr
+SpriteFile = Run, 42052_Run.spr
+SpriteFile = Att, 42052_Att.spr
+SpriteFile = Hurt, 42052_Hurt.spr
+SpriteFile = Dead, 42052_Dead.spr
+
+
+[OBJECT]
+Name = M053
+Sequence = 42053
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m053\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+
+
+[OBJECT]
+Name = M054
+Sequence = 42054
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m054\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+
+
+[OBJECT]
+Name = M055
+Sequence = 42055
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m055\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, @SP_EVENT_ACT_NO_SHADOW, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42055_Wait.spr
+SpriteFile = Run, 42055_Run.spr
+SpriteFile = Att, 42055_Att.spr
+SpriteFile = Hurt, 42055_Hurt.spr
+SpriteFile = Dead, 42055_Dead.spr
+
+
+[OBJECT]
+Name = M056
+Sequence = 42056
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m056\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, @SP_EVENT_ACT_NO_SHADOW, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42056_Wait.spr
+SpriteFile = Run, 42056_Run.spr
+SpriteFile = Att, 42056_Att.spr
+SpriteFile = Hurt, 42056_Hurt.spr
+SpriteFile = Dead, 42056_Dead.spr
+
+
+[OBJECT]
+Name = M057
+Sequence = 42057
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m057\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, @SP_EVENT_ACT_NO_SHADOW, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42057_Wait.spr
+SpriteFile = Run, 42057_Run.spr
+SpriteFile = Att, 42057_Att.spr
+SpriteFile = Hurt, 42057_Hurt.spr
+SpriteFile = Dead, 42057_Dead.spr
+
+
+[OBJECT]
+Name = M058
+Sequence = 42058
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m058\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, @SP_EVENT_ACT_NO_SHADOW, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42058_Wait.spr
+SpriteFile = Run, 42058_Run.spr
+SpriteFile = Att, 42058_Att.spr
+SpriteFile = Hurt, 42058_Hurt.spr
+SpriteFile = Dead, 42058_Dead.spr
+
+
+[OBJECT]
+Name = M059
+Sequence = 42059
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m059\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42059_Wait.spr
+SpriteFile = Run, 42059_Run.spr
+SpriteFile = Att, 42059_Att.spr
+SpriteFile = Hurt, 42059_Hurt.spr
+SpriteFile = Dead, 42059_Dead.spr
+
+
+[OBJECT]
+Name = M060
+Sequence = 42060
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m060\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42060_Wait.spr
+SpriteFile = Run, 42060_Run.spr
+SpriteFile = Att, 42060_Att.spr
+SpriteFile = Hurt, 42060_Hurt.spr
+SpriteFile = Dead, 42060_Dead.spr
+
+
+[OBJECT]
+Name = M061
+Sequence = 42061
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m061\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42061_Wait.spr
+SpriteFile = Run, 42061_Run.spr
+SpriteFile = Att, 42061_Att.spr
+SpriteFile = Hurt, 42061_Hurt.spr
+SpriteFile = Dead, 42061_Dead.spr
+
+
+[OBJECT]
+Name = M062
+Sequence = 42062
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m062\
+Sprite = Wait, w013*, #16, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42062_Wait.spr
+SpriteFile = Run, 42062_Run.spr
+SpriteFile = Att, 42062_Att.spr
+SpriteFile = Hurt, 42062_Hurt.spr
+SpriteFile = Dead, 42062_Dead.spr
+
+
+[OBJECT]
+Name = M063
+Sequence = 42063
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m063\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42063_Wait.spr
+SpriteFile = Run, 42063_Run.spr
+SpriteFile = Att, 42063_Att.spr
+SpriteFile = Hurt, 42063_Hurt.spr
+SpriteFile = Dead, 42063_Dead.spr
+
+
+[OBJECT]
+Name = M064
+Sequence = 42064
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m064\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42064_Wait.spr
+SpriteFile = Run, 42064_Run.spr
+SpriteFile = Att, 42064_Att.spr
+SpriteFile = Hurt, 42064_Hurt.spr
+SpriteFile = Dead, 42064_Dead.spr
+
+
+[OBJECT]
+Name = M065
+Sequence = 42065
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m065\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42065_Wait.spr
+SpriteFile = Run, 42065_Run.spr
+SpriteFile = Att, 42065_Att.spr
+SpriteFile = Hurt, 42065_Hurt.spr
+SpriteFile = Dead, 42065_Dead.spr
+
+
+[OBJECT]
+Name = M066
+Sequence = 42066
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m066\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42066_Wait.spr
+SpriteFile = Run, 42066_Run.spr
+SpriteFile = Att, 42066_Att.spr
+SpriteFile = Hurt, 42066_Hurt.spr
+SpriteFile = Dead, 42066_Dead.spr
+
+
+[OBJECT]
+Name = M067
+Sequence = 42067
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m067\
+Sprite = Wait, w013*, #10, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42067_Wait.spr
+SpriteFile = Run, 42067_Run.spr
+SpriteFile = Att, 42067_Att.spr
+SpriteFile = Hurt, 42067_Hurt.spr
+SpriteFile = Dead, 42067_Dead.spr
+
+
+[OBJECT]
+Name = M068
+Sequence = 42068
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m068\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42068_Wait.spr
+SpriteFile = Run, 42068_Run.spr
+SpriteFile = Att, 42068_Att.spr
+SpriteFile = Hurt, 42068_Hurt.spr
+SpriteFile = Dead, 42068_Dead.spr
+
+
+[OBJECT]
+Name = M069
+Sequence = 42069
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m069\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42069_Wait.spr
+SpriteFile = Run, 42069_Run.spr
+SpriteFile = Att, 42069_Att.spr
+SpriteFile = Hurt, 42069_Hurt.spr
+SpriteFile = Dead, 42069_Dead.spr
+
+
+[OBJECT]
+Name = M070
+Sequence = 42070
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m070\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42070_Wait.spr
+SpriteFile = Run, 42070_Run.spr
+SpriteFile = Att, 42070_Att.spr
+SpriteFile = Hurt, 42070_Hurt.spr
+SpriteFile = Dead, 42070_Dead.spr
+
+
+[OBJECT]
+Name = M071
+Sequence = 42071
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m071\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42071_Wait.spr
+SpriteFile = Run, 42071_Run.spr
+SpriteFile = Att, 42071_Att.spr
+SpriteFile = Hurt, 42071_Hurt.spr
+SpriteFile = Dead, 42071_Dead.spr
+
+
+[OBJECT]
+Name = M072
+Sequence = 42072
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m072\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42072_Wait.spr
+SpriteFile = Run, 42072_Run.spr
+SpriteFile = Att, 42072_Att.spr
+SpriteFile = Hurt, 42072_Hurt.spr
+SpriteFile = Dead, 42072_Dead.spr
+
+
+[OBJECT]
+Name = M073
+Sequence = 42073
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m073\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42073_Wait.spr
+SpriteFile = Run, 42073_Run.spr
+SpriteFile = Att, 42073_Att.spr
+SpriteFile = Hurt, 42073_Hurt.spr
+SpriteFile = Dead, 42073_Dead.spr
+
+
+[OBJECT]
+Name = M074
+Sequence = 42074
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m074\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42074_Wait.spr
+SpriteFile = Run, 42074_Run.spr
+SpriteFile = Att, 42074_Att.spr
+SpriteFile = Hurt, 42074_Hurt.spr
+SpriteFile = Dead, 42074_Dead.spr
+
+
+[OBJECT]
+Name = M075
+Sequence = 42075
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m075\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42075_Wait.spr
+SpriteFile = Run, 42075_Run.spr
+SpriteFile = Att, 42075_Att.spr
+SpriteFile = Hurt, 42075_Hurt.spr
+SpriteFile = Dead, 42075_Dead.spr
+
+
+[OBJECT]
+Name = M076
+Sequence = 42076
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m076\
+Sprite = Wait, w013*, #8, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42076_Wait.spr
+SpriteFile = Run, 42076_Run.spr
+SpriteFile = Att, 42076_Att.spr
+SpriteFile = Hurt, 42076_Hurt.spr
+SpriteFile = Dead, 42076_Dead.spr
+
+
+[OBJECT]
+Name = M077
+Sequence = 42077
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m077\
+Sprite = Wait, w013*, #10, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42077_Wait.spr
+SpriteFile = Run, 42077_Run.spr
+SpriteFile = Att, 42077_Att.spr
+SpriteFile = Hurt, 42077_Hurt.spr
+SpriteFile = Dead, 42077_Dead.spr
+
+
+[OBJECT]
+Name = M078
+Sequence = 42078
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m078\
+Sprite = Wait, w013*, #12, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42078_Wait.spr
+SpriteFile = Run, 42078_Run.spr
+SpriteFile = Att, 42078_Att.spr
+SpriteFile = Hurt, 42078_Hurt.spr
+SpriteFile = Dead, 42078_Dead.spr
+
+
+[OBJECT]
+Name = M079
+Sequence = 42079
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m079\
+Sprite = Wait, w013*, #12, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42079_Wait.spr
+SpriteFile = Run, 42079_Run.spr
+SpriteFile = Att, 42079_Att.spr
+SpriteFile = Hurt, 42079_Hurt.spr
+SpriteFile = Dead, 42079_Dead.spr
+
+
+[OBJECT]
+Name = M080
+Sequence = 42080
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m080\
+Sprite = Wait, w013*, #12, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42080_Wait.spr
+SpriteFile = Run, 42080_Run.spr
+SpriteFile = Att, 42080_Att.spr
+SpriteFile = Hurt, 42080_Hurt.spr
+SpriteFile = Dead, 42080_Dead.spr
+
+
+[OBJECT]
+Name = M081
+Sequence = 42081
+Space = 25, 80, 0
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Directory = \mon\m081\
+Sprite = Wait, w013*, #12, w023*, w033*, w023*
+Sprite = Run, r013*, #7, r023*, r033*, r043*, r053*, r063*
+Sprite = Att, a013*, #6, a023*, a033*, a043*, a043*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Cast, m013*, #6, m023*, m033*, m043*, m043*
+Sprite = Hurt, h013*, #4, h023*, h023*, @SP_EVENT_ACT_WAIT, SCROVER
+Sprite = Dead, d013*, #6, d023*, d033*, d043*, d053*, d063*, SCROVER
+SpriteFile = Wait, 42081_Wait.spr
+SpriteFile = Run, 42081_Run.spr
+SpriteFile = Att, 42081_Att.spr
+SpriteFile = Hurt, 42081_Hurt.spr
+SpriteFile = Dead, 42081_Dead.spr
+
+
+[OBJECT]
+Name = Montest
+Sequence = 42082
+Space = 25, 80, 0
+ZoomX = 0.5
+ZoomY = 0.5
+MiscAttrib = 1
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_NPCOBJ
+Sprite = Wait, boss
+Sprite = Run, boss
+Sprite = Att, boss
+Sprite = Cast, boss
+Sprite = Hurt, boss
+Sprite = Dead, boss

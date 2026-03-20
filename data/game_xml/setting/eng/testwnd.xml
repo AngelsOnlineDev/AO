@@ -1,0 +1,786 @@
+<?xml version="1.0"?>
+<root>
+
+	<INCLUDE file="setting\wnddef.xml"/>
+	<script file="script\test.l"/>
+
+	<window class="WND_CLASS_DLG_1" range="8,16,140,160" id="1" puzzle1="1" puzzle2="2" puzzle3="3" puzzle4="4" puzzle5="5" puzzle6="6" puzzle7="7" puzzle8="8" puzzle9="9" fcolor="1" title="角色造型" font="1">
+		<style wsVisible="" wsPuzzle="" wsPuzzlex="" wsMoveable=""/>
+		<child>2</child>
+		<child>3</child>
+		<child>4</child>		
+		<child>5</child>
+		<child>6</child>
+		<child>7</child>
+		<child>8</child>
+		<OnLock>Test_OnLock</OnLock>
+		<OnHelp>Test_OnHelp</OnHelp>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="1,1,130,16" id="2" fcolor="3" bcolor="2" font="1" title="男">
+		<style wsVisible="" bsHCenter="" bsVCenter=""/>
+	</window>
+	<icon id="1" dir="\wnd01\" normal="dlg01" focus="normal" down="normal" disable="normal"/>
+	<icon id="2" dir="\wnd01\" normal="dlg02" focus="normal" down="normal" disable="normal"/>
+	<icon id="3" dir="\wnd01\" normal="dlg03" focus="normal" down="normal" disable="normal"/>
+	<icon id="4" dir="\wnd01\" normal="dlg04" focus="normal" down="normal" disable="normal"/>
+	<icon id="5" dir="\wnd01\" normal="dlg05" focus="normal" down="normal" disable="normal"/>
+	<icon id="6" dir="\wnd01\" normal="dlg06" focus="normal" down="normal" disable="normal"/>
+	<icon id="7" dir="\wnd01\" normal="dlg07" focus="normal" down="normal" disable="normal"/>
+	<icon id="8" dir="\wnd01\" normal="dlg08" focus="normal" down="normal" disable="normal"/>
+	<icon id="9" dir="\wnd01\" normal="dlg09" focus="normal" down="normal" disable="normal"/>
+	<icon id="10" dir="\wnd01\" normal="dlg10" focus="normal" down="normal" disable="normal"/>
+	<color id="1" normal="255,255,255" focus="255,255,255" down="255,255,255" disable="255,255,255"/>
+	<color id="2" normal="195,195,195" focus="160,160,160" down="128,128,128" disable="195,195,195"/>
+	<color id="3" normal="0,0,0" focus="0,0,0" down="0,0,0" disable="128,128,128"/>
+	<color id="4" normal="160,160,160" focus="160,160,160" down="160,160,160" disable="160,160,160"/>
+	<color id="5" normal="255,0,0" focus="255,0,0" down="255,0,0" disable="255,0,0"/><!-- 過重 錢不夠 -->
+	<window class="WND_CLASS_BUTTON" range="1,19,130,16" id="3" fcolor="3" bcolor="2" font="1" title="女">
+
+		<style wsVisible="" bsHCenter="" bsVCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="1,37,130,16" id="4" fcolor="3" bcolor="2" font="1" title="髮型">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>	
+	<window class="WND_CLASS_BUTTON" range="1,55,130,16" id="5" fcolor="3" bcolor="2" font="1" title="髮色">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="1,73,130,16" id="6" fcolor="3" bcolor="2" font="1" title="膚色">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="1,91,130,16" id="7" fcolor="3" bcolor="2" font="1" title="身高">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="1,109,130,16" id="8" fcolor="3" bcolor="2" font="1" title="座騎">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_DLG_1" range="8,400,170,60" id="20" puzzle1="1" puzzle2="2" puzzle3="3" puzzle4="4" puzzle5="5" puzzle6="6" puzzle7="7" puzzle8="8" puzzle9="9" fcolor="1" title="動作" font="1">
+		<style wsVisible="" wsPuzzle="" wsPuzzlex="" wsMoveable=""/>
+		<child>22</child>
+		<child>23</child>
+		<child>24</child>
+		<child>25</child>
+		<child>21</child>
+		<child>26</child>
+		<child>27</child>
+		<child>28</child>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="1,19,80,16" id="21" fcolor="3" bcolor="2" font="1" title="單手攻擊">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="1,1,80,16" id="22" fcolor="3" bcolor="2" font="1" title="移動速度">
+
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="83,1,16,16" id="23" fcolor="3" bcolor="2" font="1" title="←">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="146,1,16,16" id="24" fcolor="3" bcolor="2" font="1" title="→">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="101,1,49,16" id="25" fcolor="3" bcolor="2" font="1" title="">
+
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="83,19,16,16" id="26" fcolor="3" bcolor="2" font="1" title="←">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="146,19,16,16" id="27" fcolor="3" bcolor="2" font="1" title="→">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="101,19,49,16" id="28" fcolor="3" bcolor="2" font="1" title="">
+
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_DLG_1" range="8,190,164,200" id="30" puzzle1="1" puzzle2="2" puzzle3="3" puzzle4="4" puzzle5="5" puzzle6="6" puzzle7="7" puzzle8="8" puzzle9="9" fcolor="1" title="裝備" font="1">
+		<style wsVisible="" wsPuzzle="" wsPuzzlex="" wsMoveable=""/>
+		<child>31</child>
+		<child>32</child>
+		<child>33</child>
+		<child>34</child>
+		<child>83</child>
+		<child>35</child>
+		<child>36</child>
+		<child>37</child>
+		<child>38</child>
+		<child>39</child>
+		<child>40</child>
+		<child>41</child>
+		<child>42</child>
+		<child>43</child>
+		<child>44</child>
+		<child>45</child>
+		<child>46</child>
+		<child>82</child>
+		<child>47</child>
+		<child>48</child>
+		<child>49</child>
+		<child>50</child>
+		<child>51</child>
+		<child>52</child>
+		<child>53</child>
+		<child>54</child>
+		<child>84</child>
+		<child>55</child>
+		<child>56</child>
+		<child>57</child>
+		<child>58</child>
+		<child>91</child>
+		<child>92</child>
+		<child>59</child>
+		<child>93</child>
+		<child>94</child>
+	</window>
+	<window class="WND_CLASS_STATIC" range="4,1,24,16" id="31" fcolor="3" bcolor="2" font="1" title="頭部">
+
+		<style wsVisible="" ssVCenter=""/>
+	</window>
+	<window class="WND_CLASS_EDIT" range="36,1,64,16" workrange="2,0,60,16" id="32" fcolor="3" bcolor="4" font="1">
+
+		<style wsVisible="" esVCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="105,1,16,16" id="33" fcolor="3" bcolor="2" font="1" title="←">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="122,1,16,16" id="34" fcolor="3" bcolor="2" font="1" title="→">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="139,1,16,16" id="83" fcolor="3" bcolor="2" font="1" title="●">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>		
+	<window class="WND_CLASS_STATIC" range="4,19,24,16" id="35" fcolor="3" bcolor="2" font="1" title="右手">
+
+		<style wsVisible="" ssVCenter=""/>
+	</window>
+	<window class="WND_CLASS_EDIT" range="36,19,32,16" workrange="2,0,30,16" id="36" fcolor="3" bcolor="4" font="1">
+
+		<style wsVisible="" esVCenter=""/>
+	</window>
+	<window class="WND_CLASS_EDIT" range="70,19,32,16" workrange="2,0,30,16" id="93" fcolor="3" bcolor="4" font="1">
+
+		<style wsVisible="" esVCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="105,19,16,16" id="37" fcolor="3" bcolor="2" font="1" title="←">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="122,19,16,16" id="38" fcolor="3" bcolor="2" font="1" title="→">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="4,37,24,16" id="39" fcolor="3" bcolor="2" font="1" title="左手">
+
+		<style wsVisible="" ssVCenter=""/>
+	</window>
+	<window class="WND_CLASS_EDIT" range="36,37,32,16" workrange="2,0,30,16" id="40" fcolor="3" bcolor="4" font="1">
+
+		<style wsVisible="" esVCenter=""/>
+	</window>
+	<window class="WND_CLASS_EDIT" range="70,37,32,16" workrange="2,0,30,16" id="94" fcolor="3" bcolor="4" font="1">
+
+		<style wsVisible="" esVCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="105,37,16,16" id="41" fcolor="3" bcolor="2" font="1" title="←">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="122,37,16,16" id="42" fcolor="3" bcolor="2" font="1" title="→">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="4,55,24,16" id="43" fcolor="3" bcolor="2" font="1" title="身體">
+
+		<style wsVisible="" ssVCenter=""/>
+	</window>
+	<window class="WND_CLASS_EDIT" range="36,55,64,16" workrange="2,0,60,16" id="44" fcolor="3" bcolor="4" font="1">
+
+		<style wsVisible="" esVCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="105,55,16,16" id="45" fcolor="3" bcolor="2" font="1" title="←">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="122,55,16,16" id="46" fcolor="3" bcolor="2" font="1" title="→">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="139,55,16,16" id="82" fcolor="3" bcolor="2" font="1" title="○">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="4,73,24,16" id="47" fcolor="3" bcolor="2" font="1" title="腳部">
+
+		<style wsVisible="" ssVCenter=""/>
+	</window>
+	<window class="WND_CLASS_EDIT" range="36,73,64,16" workrange="2,0,60,16" id="48" fcolor="3" bcolor="4" font="1">
+
+		<style wsVisible="" esVCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="105,73,16,16" id="49" fcolor="3" bcolor="2" font="1" title="←">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="122,73,16,16" id="50" fcolor="3" bcolor="2" font="1" title="→">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="4,91,24,16" id="51" fcolor="3" bcolor="2" font="1" title="背部">
+
+		<style wsVisible="" ssVCenter=""/>
+	</window>
+	<window class="WND_CLASS_EDIT" range="36,91,64,16" workrange="2,0,60,16" id="52" fcolor="3" bcolor="4" font="1">
+
+		<style wsVisible="" esVCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="105,91,16,16" id="53" fcolor="3" bcolor="2" font="1" title="←">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="122,91,16,16" id="54" fcolor="3" bcolor="2" font="1" title="→">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="139,91,16,16" id="84" fcolor="3" bcolor="2" font="1" title="○">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="4,109,24,16" id="55" fcolor="3" bcolor="2" font="1" title="手部">
+
+		<style wsVisible="" ssVCenter=""/>
+	</window>
+	<window class="WND_CLASS_EDIT" range="36,109,64,16" workrange="2,0,60,16" id="56" fcolor="3" bcolor="4" font="1">
+
+		<style wsVisible="" esVCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="105,109,16,16" id="57" fcolor="3" bcolor="2" font="1" title="←">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="122,109,16,16" id="58" fcolor="3" bcolor="2" font="1" title="→">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="4,127,24,16" id="91" fcolor="3" bcolor="2" font="1" title="座騎">
+
+		<style wsVisible="" ssVCenter=""/>
+	</window>
+	<window class="WND_CLASS_EDIT" range="36,127,64,16" workrange="2,0,60,16" id="92" fcolor="3" bcolor="4" font="1">
+
+		<style wsVisible="" esVCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="98,151,40,16" id="59" fcolor="3" bcolor="2" font="1" title="更新">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+
+	<window class="WND_CLASS_BASE" range="0,572,286,24" id="61" icon="61">
+		<style wsVisible=""/>
+		<child>62</child>
+	</window>
+	<icon id="61" dir="\wnd01\" normal="cmdline" focus="normal" down="normal" disable="normal"/>
+	<window class="WND_CLASS_EDIT" range="29,2,256,20" id="62" fcolor="3" font="1" limit="40">
+
+		<style wsVisible="" esVCenter=""/>
+	</window>
+
+	<window class="WND_CLASS_DLG_1" range="190,16,148,276" id="60" fcolor="1" title="測試" font="1" bcolor="10001">
+		<style wsVisible="" wsMoveable=""/>
+	</window>	
+
+	<window class="WND_CLASS_DLG_1" range="8,190,184,80" id="77" puzzle1="1" puzzle2="2" puzzle3="3" puzzle4="4" puzzle5="5" puzzle6="6" puzzle7="7" puzzle8="8" puzzle9="9" fcolor="1" title="建立角色" font="1">
+		<style wsVisible="" wsPuzzle="" wsPuzzlex="" wsPopup="" wsMoveable="" gsNoClose="" gsNoHelp=""/>
+		<child>78</child>
+		<child>79</child>
+		<child>80</child>
+		<child>81</child>
+	</window>
+
+	<window class="WND_CLASS_STATIC" range="4,1,24,16" id="78" fcolor="3" bcolor="2" font="1" title="名字">
+
+		<style wsVisible="" ssVCenter=""/>
+	</window>
+	<window class="WND_CLASS_EDIT" range="36,1,134,16" workrange="2,0,130,16" id="79" fcolor="3" bcolor="4" font="1" limit="12">
+
+		<style wsVisible="" esVCenter="" wsTabstop=""/>
+	</window>
+
+	<window class="WND_CLASS_BUTTON" id="80" range="4,19,170,16" fcolor="3" bcolor="2" font="1" title="確定">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+
+	<window class="WND_CLASS_BUTTON" id="81" range="4,38,170,16" fcolor="3" bcolor="2" font="1" title="取消">
+
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+
+	<window class="WND_CLASS_DLG_1" range="100,100,320,200" id="85" fcolor="1" title="小遊戲" font="1">
+		<style wsVisible="" wsPuzzle="" wsPuzzlex="" wsMoveable=""/>
+		<child>86</child>
+		<OnClose>TestMiniGame_OnClose</OnClose>
+	</window>
+
+	<window class="WND_CLASS_CUSTOM" range="0,0,320,200" id="86">
+		<style wsVisible=""/>
+	</window>
+
+	<window class="WND_CLASS_TREE" range="100,200,170,152" id="87" fcolor="3" bcolor="2" font="1" rows="8" expand="88" collapse="89">
+		<style wsVisible="" trsCheck="" trsSCheck=""/>
+		<child>88</child>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" range="170,0,9,152" id="88" uicon="131" dicon="132" ticon="133" urange="0,0,9,10" drange="0,142,9,10" trange="0,10,9,132" thumbmin="8">
+		<style wsVisible="" csVScroll="" csSimple=""/>
+	</window>
+
+	<icon id="87" dir="\" normal="ttree" focus="normal" down="normal" disable="normal"/> 
+	<icon id="88" dir="\" normal="t0" focus="normal" down="normal" disable="normal"/> 
+	<icon id="89" dir="\" normal="t1" focus="normal" down="normal" disable="normal"/> 
+
+	<!-- 物件ID視窗 -->
+	<window class="WND_CLASS_BUTTON" id="90" range="100,80,117,18" icon="90" fcolor="103" font="1">
+		<style wsVisible="" bsHCenter="" bsVCenter=""/>
+		<OnCommand>OnClickNetID</OnCommand>
+	</window>
+	<icon id="90" dir="\wnd01\" normal="w036_11" focus="normal" down="normal" disable="normal" />
+
+	<window class="WND_CLASS_DLG_1" range="0,0,262,254" id="20001" puzzle9="1001" fcolor="1" title="變色工具" font="1">
+		<style wsVisible="" wsPuzzle="" wsMoveable=""/>
+		<child>20040</child>
+		<child>20002</child>
+		<child>20003</child>
+		<child>20004</child>
+		<child>20005</child>
+		<child>20006</child>
+		<child>20007</child>
+		<child>20008</child>
+		<child>20009</child>
+		<child>20010</child>
+		<child>20011</child>
+		<child>20012</child>
+		<child>20013</child>
+		<child>20014</child>
+		<child>20015</child>
+		<child>20016</child>
+		<child>20017</child>
+		<child>20018</child>
+		<child>20019</child>
+		<child>20020</child>
+		<child>20021</child>
+		<child>20022</child>
+		<child>20023</child>
+		<child>20024</child>
+		<child>20025</child>
+		<child>20026</child>
+		<child>20027</child>
+		<child>20028</child>
+		<child>20029</child>
+		<child>20030</child>
+		<child>20031</child>
+		<child>20032</child>
+		<child>20033</child>
+		<child>20034</child>
+		<child>20035</child>
+		<child>20036</child>
+		<child>20037</child>
+		<child>20038</child>
+		<child>20039</child>
+		<child>20041</child>
+		<child>20042</child>
+		<child>20043</child>
+		<child>20044</child>
+		<child>20045</child>
+	</window>
+	<window class="WND_CLASS_STATIC" id="20002" fcolor="103" range="10,10,1,1" font="1" title="物品編號">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_EDIT" id="20003" range="80,9,50,14" icon="3048" fcolor="105" font="1" tpos="1, 1" limit="7" appdata="20004">
+		<style wsVisible="" esNumber="" esHCenter=""/>
+		<OnEditChange>Test_OnBiasEditIcon</OnEditChange>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="20004" range="64,9,1,1" uicon="3618" dicon="3620" urange="0,0,14,14" drange="68,0,14,14" appdata="20003">
+		<style wsVisible="" csHScroll="" csSimple=""/>
+		<OnScroll>Test_OnBiasScrollIcon</OnScroll>
+	</window>
+
+
+	<window class="WND_CLASS_BASE" id="20005" range="10,32,56,56" bcolor="20005">
+		<style wsVisible=""/>
+	</window>
+	<color id="20005" normal="0,0,0" focus="normal" down="normal" disable="normal"/>
+
+
+	<window class="WND_CLASS_STATIC" id="20006" fcolor="103" range="10,120,1,1" font="1" title="色相">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_EDIT" id="20007" range="56,119,50,14" icon="3048" fcolor="105" font="1" tpos="1, 1" limit="7" appdata="20008">
+		<style wsVisible="" esNumber="" esHCenter=""/>
+		<OnEditChange>Test_OnBaseEdit</OnEditChange>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="20008" range="40,119,1,1" uicon="3618" dicon="3620" urange="0,0,14,14" drange="68,0,14,14" appdata="20007">
+		<style wsVisible="" csHScroll="" csSimple=""/>
+		<OnScroll>Test_OnBaseScroll</OnScroll>
+	</window>
+
+	<window class="WND_CLASS_STATIC" id="20009" fcolor="103" range="10,142,1,1" font="1" title="飽和">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_EDIT" id="20010" range="56,141,50,14" icon="3048" fcolor="105" font="1" tpos="1, 1" limit="7" appdata="20011">
+		<style wsVisible="" esNumber="" esHCenter=""/>
+		<OnEditChange>Test_OnBaseEdit</OnEditChange>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="20011" range="40,141,1,1" uicon="3618" dicon="3620" urange="0,0,14,14" drange="68,0,14,14" appdata="20010">
+		<style wsVisible="" csHScroll="" csSimple=""/>
+		<OnScroll>Test_OnBaseScroll</OnScroll>
+	</window>
+
+	<window class="WND_CLASS_STATIC" id="20012" fcolor="103" range="10,164,1,1" font="1" title="明亮">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_EDIT" id="20013" range="56,163,50,14" icon="3048" fcolor="105" font="1" tpos="1, 1" limit="7" appdata="20014">
+		<style wsVisible="" esNumber="" esHCenter=""/>
+		<OnEditChange>Test_OnBaseEdit</OnEditChange>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="20014" range="40,163,1,1" uicon="3618" dicon="3620" urange="0,0,14,14" drange="68,0,14,14" appdata="20013">
+		<style wsVisible="" csHScroll="" csSimple=""/>
+		<OnScroll>Test_OnBaseScroll</OnScroll>
+	</window>
+
+	<window class="WND_CLASS_STATIC" id="20015" fcolor="103" range="10,186,1,1" font="1" title="範圍">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_EDIT" id="20016" range="56,185,50,14" icon="3048" fcolor="105" font="1" tpos="1, 1" limit="7" appdata="20017">
+		<style wsVisible="" esNumber="" esHCenter=""/>
+		<OnEditChange>Test_OnBaseEdit</OnEditChange>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="20017" range="40,185,1,1" uicon="3618" dicon="3620" urange="0,0,14,14" drange="68,0,14,14" appdata="20016">
+		<style wsVisible="" csHScroll="" csSimple=""/>
+		<OnScroll>Test_OnBaseScroll</OnScroll>
+	</window>
+
+	<window class="WND_CLASS_STATIC" id="20018" fcolor="103" range="132,120,1,1" font="1" title="色相">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_EDIT" id="20019" range="178,119,50,14" icon="3048" fcolor="105" font="1" tpos="1, 1" limit="7" appdata="20020">
+		<style wsVisible="" esNumber="" esHCenter=""/>
+		<OnEditChange>Test_OnMaskEdit</OnEditChange>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="20020" range="162,119,1,1" uicon="3618" dicon="3620" urange="0,0,14,14" drange="68,0,14,14" appdata="20019">
+		<style wsVisible="" csHScroll="" csSimple=""/>
+		<OnScroll>Test_OnMaskScroll</OnScroll>
+	</window>
+
+	<window class="WND_CLASS_STATIC" id="20021" fcolor="103" range="132,142,1,1" font="1" title="飽和">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_EDIT" id="20022" range="178,141,50,14" icon="3048" fcolor="105" font="1" tpos="1, 1" limit="7" appdata="20023">
+		<style wsVisible="" esNumber="" esHCenter=""/>
+		<OnEditChange>Test_OnMaskEdit</OnEditChange>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="20023" range="162,141,1,1" uicon="3618" dicon="3620" urange="0,0,14,14" drange="68,0,14,14" appdata="20022">
+		<style wsVisible="" csHScroll="" csSimple=""/>
+		<OnScroll>Test_OnMaskScroll</OnScroll>
+	</window>
+
+	<window class="WND_CLASS_STATIC" id="20024" fcolor="103" range="132,164,1,1" font="1" title="明亮">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_EDIT" id="20025" range="178,163,50,14" icon="3048" fcolor="105" font="1" tpos="1, 1" limit="7" appdata="20026">
+		<style wsVisible="" esNumber="" esHCenter=""/>
+		<OnEditChange>Test_OnMaskEdit</OnEditChange>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="20026" range="162,163,1,1" uicon="3618" dicon="3620" urange="0,0,14,14" drange="68,0,14,14" appdata="20025">
+		<style wsVisible="" csHScroll="" csSimple=""/>
+		<OnScroll>Test_OnMaskScroll</OnScroll>
+	</window>
+
+	<window class="WND_CLASS_STATIC" id="20027" fcolor="103" range="132,186,1,1" font="1" title="範圍">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_EDIT" id="20028" range="178,185,50,14" icon="3048" fcolor="105" font="1" tpos="1, 1" limit="7" appdata="20029">
+		<style wsVisible="" esNumber="" esHCenter=""/>
+		<OnEditChange>Test_OnMaskEdit</OnEditChange>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="20029" range="162,185,1,1" uicon="3618" dicon="3620" urange="0,0,14,14" drange="68,0,14,14" appdata="20028">
+		<style wsVisible="" csHScroll="" csSimple=""/>
+		<OnScroll>Test_OnMaskScroll</OnScroll>
+	</window>
+
+	<window class="WND_CLASS_STATIC" id="20030" fcolor="103" range="10,98,1,1" font="1" title="底圖：">
+		<style wsVisible=""/>
+	</window>
+
+	<window class="WND_CLASS_STATIC" id="20031" fcolor="103" range="132,98,1,1" font="1" title="遮罩：">
+		<style wsVisible=""/>
+	</window>
+
+	<window class="WND_CLASS_STATIC" id="20032" fcolor="103" range="76,32,1,1" font="1" title="底圖變色：">
+		<style wsVisible=""/>
+	</window>
+
+	<window class="WND_CLASS_STATIC" id="20033" fcolor="103" range="76,46,1,1" font="1" title="0x0, 0x0, 0">
+		<style wsVisible=""/>
+	</window>
+
+	<window class="WND_CLASS_STATIC" id="20034" fcolor="103" range="76,62,1,1" font="1" title="遮罩變色：">
+		<style wsVisible=""/>
+	</window>
+
+	<window class="WND_CLASS_STATIC" id="20035" fcolor="103" range="76,76,1,1" font="1" title="0x0, 0x0, 0">
+		<style wsVisible=""/>
+	</window>
+
+	<window class="WND_CLASS_STATIC" id="20036" fcolor="103" range="10,208,1,1" font="1" title="上色">
+		<style wsVisible=""/>
+	</window>
+
+	<window class="WND_CLASS_BUTTON" id="20037" fcolor="103" range="64,205,32,18" font="1" title="吸色" icon="2821" check="20037">
+		<style wsVisible=""  bsHCenter="" bsVCenter="" bsCheck=""/>
+		<OnCommand>Test_OnBaseDrawColor</OnCommand>
+	</window>
+	<icon id="20037" dir="\wnd01\" normal="btn142_d" focus="normal" down="normal" disable="normal"/>
+
+	<window class="WND_CLASS_BUTTON" id="20038" range="40,207,14,14" bcolor="20038" icon="0" check="2383">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>Test_OnBaseUpColor</OnCommand>
+	</window>
+	<color id="20038" normal="255,255,255" focus="255,255,255" down="255,255,255" disable="255,255,255"/>
+
+	<window class="WND_CLASS_BASE" id="20039" range="102,207,20,14" bcolor="20005">
+		<style wsVisible=""/>
+	</window>
+
+
+	<window class="WND_CLASS_BASE" id="20040" range="20,42,36,36">
+		<style wsVisible=""/>
+	</window>
+
+
+	<window class="WND_CLASS_STATIC" id="20041" fcolor="103" range="132,208,1,1" font="1" title="上色">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="20042" fcolor="103" range="186,205,32,18" font="1" title="吸色" icon="2821" check="20037">
+		<style wsVisible=""  bsHCenter="" bsVCenter="" bsCheck=""/>
+		<OnCommand>Test_OnMaskDrawColor</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="20043" range="162,207,14,14" bcolor="20038" icon="0" check="2383">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>Test_OnMaskUpColor</OnCommand>
+	</window>
+	<window class="WND_CLASS_BASE" id="20044" range="224,207,20,14" bcolor="20005">
+		<style wsVisible=""/>
+	</window>
+
+	<window class="WND_CLASS_BUTTON" id="20045" fcolor="103" range="212,7,32,18" font="1" title="複製" icon="2821">
+		<style wsVisible=""  bsHCenter="" bsVCenter=""/>
+		<OnCommand>Test_OnCopyValues</OnCommand>
+	</window>		
+
+	<icon id="20040" dir="\stage\23\" normal="23-018-1U0" focus="normal" down="normal" disable="normal"/> 
+
+	<window class="WND_CLASS_BASE" id="20046" range="350,450,450,150">
+		<style wsVisible=""/>
+		<child>20047</child>
+		<child>20048</child>
+	</window>
+
+	<window class="WND_CLASS_MSTATIC" id="20047" icon="245" range="22,20,278,116" font="1" fcolor="103" lines="6" words="48">
+		<style wsVisible=""/>
+	</window>
+
+	<window class="WND_CLASS_BASE" id="20048" range="0,0,450,150" icon="14001" style="wsVisible"/>
+
+	<window class="WND_CLASS_DLG_1" range="8,16,340,154" id="20049" puzzle1="1" puzzle2="2" puzzle3="3" puzzle4="4" puzzle5="5" puzzle6="6" puzzle7="7" puzzle8="8" puzzle9="9" fcolor="1" title="Check message" font="1">
+		<style wsVisible="" wsPuzzle="" wsPuzzlex="" wsMoveable=""/>
+		<child>20050</child>
+		<child>20051</child>
+		<child>20052</child>
+		<child>20053</child>
+		<child>20054</child>
+	</window>
+	<window class="WND_CLASS_STATIC" range="4,1,24,16" id="20050" fcolor="3" bcolor="2" font="1" title="Msg">
+		<style wsVisible="" ssVCenter=""/>
+	</window>
+	<window class="WND_CLASS_MEDIT" range="36,1,292,100" workrange="2,2,288,96" id="20051" fcolor="3" bcolor="4" font="1" lines="8" words="48">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="278,108,50,16" id="20052" fcolor="3" bcolor="2" font="1" title="Test">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="224,108,50,16" id="20053" fcolor="3" bcolor="2" font="1" title="Clear">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="170,108,50,16" id="20054" fcolor="3" bcolor="2" font="1" title="Copy">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_DLG_1" range="8,16,340,154" id="20055" puzzle1="1" puzzle2="2" puzzle3="3" puzzle4="4" puzzle5="5" puzzle6="6" puzzle7="7" puzzle8="8" puzzle9="9" fcolor="1" title="Check message" font="1">
+		<style wsVisible="" wsPuzzle="" wsPuzzlex="" wsMoveable=""/>
+	</window>	
+
+	<window class="WND_CLASS_DLG_1" range="8,16,400,200" id="20056" puzzle9="1001" fcolor="1" title="變色和猜數字" font="1">
+		<style wsVisible="" wsPuzzle="" wsMoveable=""/>
+		<child>20057</child>
+		<child>20058</child>
+		<child>20059</child>
+		<child>20060</child>
+		<child>20061</child>
+		<child>20062</child>
+		<child>20063</child>
+		<child>20064</child>
+		<child>20065</child>
+		<child>20066</child>
+		<child>20071</child>
+		<child>20072</child>
+		<child>20073</child>
+		<child>20074</child>
+		<child>20075</child>
+		<child>20076</child>
+		<child>20080</child>
+		<child>20081</child>
+		<child>20082</child>
+		<child>20083</child>
+		<child>20084</child>
+		<child>20085</child>
+		<child>20086</child>
+		<child>20088</child>
+
+		
+	</window>
+
+	<!-- 顯示次數用的icon 6組-->
+	<template class="WND_CLASS_BASE" id="20071" icon="">  <!-- range="270,100,12,12"-->
+		<style wsVisible=""/>
+
+	</template>
+	<window id="20071" derive="20071"/>	
+	<window id="20072" derive="20071"/>
+	<window id="20073" derive="20071"/>
+	<window id="20074" derive="20071"/>
+	<window id="20075" derive="20071"/>
+	<window id="20076" derive="20071"/>
+	
+	<icon id="20071" dir="\wnd01\" normal="w026_11" focus="normal" down="normal" disable="normal"/>
+	<icon id="20072" dir="\wnd01\" normal="w026_12" focus="normal" down="normal" disable="normal"/>
+	<icon id="20073" dir="\wnd01\" normal="w026_13" focus="normal" down="normal" disable="normal"/>
+	
+	<!--結果訊息-->
+	<window class="WND_CLASS_STATIC" id="20083" range="100,10,1,15" fcolor="103" font="2" title="猜數字!">
+		<style wsVisible=""/>
+	</window>
+	
+	<!-- 測試新的顯示猜過紀錄-->
+	<window class="WND_CLASS_MSTATIC" id="20080" range="100,30,100,140" font="2" fcolor="103" lines="7" words="48" title="◇猜過的紀錄">
+		<style wsVisible=""/>
+	</window>			
+
+	<!-- 填數字的edit -->
+	<window class="WND_CLASS_EDIT" range="10,100,35,15" id="20081" fcolor="1" bcolor="4" font="1" tooltip="10043" tooltext="填四位數">
+		<style wsVisible="" esVCenter="" esHCenter=""/>
+		<OnEditChange>Test_OnNumberEdit</OnEditChange>
+	</window>
+  
+	<window class="WND_CLASS_BUTTON" range="10,120,35,15" id="20057" fcolor="3" bcolor="2" font="1" title="送出">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+		<OnCommand>Test_OnSubmitNumber</OnCommand>
+	</window>
+	
+	<!--重新遊戲-->
+	<window class="WND_CLASS_BUTTON" range="10,140,35,15" id="20082" fcolor="3" bcolor="2" font="1" title="重新">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+		<OnCommand>Test_OnResetButton</OnCommand>
+	</window>
+	
+	<!--重設顏色-->
+	<window class="WND_CLASS_BUTTON" range="10,70,75,15" id="20084" fcolor="3" bcolor="2" font="1" title="重設顏色">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+		<OnCommand>Test_InitButton</OnCommand>
+	</window>
+
+	<window class="WND_CLASS_EDIT" range="30,10,35,15"  id="20058" fcolor="1" bcolor="4" font="1"  title = "0" appdata="20061"  tooltip="10043" tooltext="紅色">
+		<style wsVisible="" esVCenter="" esHCenter=""/>
+		<OnEditChange>Test_OnColorEdit</OnEditChange>
+	</window>
+
+	<window class="WND_CLASS_SCROLLBAR" id="20061" range="10,10,1,1" uicon="3618" dicon="3620" urange="0,0,14,14" drange="60,0,14,14" appdata="20058">
+		<style wsVisible="" csHScroll="" csSimple=""/>
+		<OnScroll>Test_OnColorScroll</OnScroll>
+	</window>
+
+	<window class="WND_CLASS_EDIT" range="30,30,35,15" id="20059" fcolor="1" bcolor="4" font="1" title = "0" appdata="20062"  tooltip="10043" tooltext="綠色">
+		<style wsVisible="" esVCenter="" esHCenter=""/>
+		<OnEditChange>Test_OnColorEdit</OnEditChange>
+	</window>
+
+	<window class="WND_CLASS_SCROLLBAR" id="20062" range="10,30,1,1" uicon="3618" dicon="3620" urange="0,0,14,14" drange="60,0,14,14" appdata="20059">
+		<style wsVisible="" csHScroll="" csSimple=""/>
+		<OnScroll>Test_OnColorScroll</OnScroll>
+	</window>
+
+	<window class="WND_CLASS_EDIT" range="30,50,35,15" id="20060" fcolor="1" bcolor="4" font="1" title = "0" appdata="20063" tooltip="10043" tooltext="藍色">
+		<style wsVisible="" esVCenter="" esHCenter=""/>
+		<OnEditChange>Test_OnColorEdit</OnEditChange>
+	</window>
+
+	<window class="WND_CLASS_SCROLLBAR" id="20063" range="10,50,1,1" uicon="3618" dicon="3620" urange="0,0,14,14" drange="60,0,14,14" appdata="20060">
+		<style wsVisible="" csHScroll="" csSimple=""/>
+		<OnScroll>Test_OnColorScroll</OnScroll>
+	</window>	
+  		
+	<!-- 職業ICON -->
+	<window class="WND_CLASS_BASE" id="20064" range="270,10,64,64" icon="20067">
+		<style wsVisible=""/>
+	</window>
+	<icon id="20067" dir="\wnd01\" normal="job01" focus="normal" down="normal" disable="normal"/>
+	<icon id="20068" dir="\wnd01\" normal="job02" focus="normal" down="normal" disable="normal"/>
+	<icon id="20069" dir="\wnd01\" normal="job03" focus="normal" down="normal" disable="normal"/>
+	<icon id="20070" dir="\wnd01\" normal="job04" focus="normal" down="normal" disable="normal"/>
+
+
+	<!-- 向上選擇ICON -->  
+	<window class="WND_CLASS_BUTTON" range="340,10,17,14" id="20065" icon="20065" tooltip="10043" tooltext="上一個">
+		<style wsVisible=""/>
+		<OnCommand>Test_OnChangeIconUp</OnCommand>
+	</window>	
+	<icon id="20065" dir="\wnd01\" normal="btn027_n" focus="btn027_f" down="btn027_d" disable="normal"/>
+	
+	<!-- 向下選擇ICON -->
+	<window class="WND_CLASS_BUTTON" range="340,60,17,14" id="20066" icon="20066" tooltip="10043" tooltext="下一個">
+		<style wsVisible=""/>
+		<OnCommand>Test_OnChangeIconDown</OnCommand>
+	</window>
+	<icon id="20066" dir="\wnd01\" normal="btn028_n" focus="btn028_f" down="btn028_d" disable="normal"/>
+	
+	<!-- 下拉列表 -->
+	<window class="WND_CLASS_BUTTON" id="20085" range="371,155,14,14" icon="2314">
+		<style wsVisible=""/>
+		<OnCommand>Test_OnStatusChange</OnCommand>
+	</window>
+	
+	<window class="WND_CLASS_BASE" id="20086" range="319,169,66,137" puzzle1="1081" puzzle2="1082" puzzle3="1083" puzzle4="1084" puzzle5="1085" puzzle6="1086" puzzle7="1087" puzzle8="1088"  puzzle9="1089">
+		<style wsVisible="" wsPuzzle="" wsAutoClose="" wsPopup=""/>
+		<child>20087</child>
+	</window>
+	
+	<window class="WND_CLASS_LIST" id="20087" range="3,4,60,130" cols="1" rows="10" gapx="0" gapy="1" tpos="-1,0" fcolor="2331" font="1">
+		<style wsVisible="" lsVScroll=""/>
+		<OnCommand>Test_OnStatusSelect</OnCommand>
+	</window>
+	
+	<window class="WND_CLASS_STATIC" id="20088" range="321,156,1,1" title="" fcolor="105" font="1">
+		<style wsVisible=""/>
+	</window>
+
+  
+	
+</root>

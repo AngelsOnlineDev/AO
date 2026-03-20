@@ -1,0 +1,579 @@
+<?xml version="1.0"?>
+<root>
+	<觸發方式>
+		<觸發方式>無, 0</觸發方式>
+		<觸發方式>踏入, 1</觸發方式>
+		<觸發方式>按下, 2</觸發方式>
+		<觸發方式>碰撞, 3</觸發方式>
+		<觸發方式>死亡(隊伍), 4</觸發方式>
+		<觸發方式>定時, 5</觸發方式>
+		<觸發方式>靈魂按下, 6</觸發方式>
+		<觸發方式>查看, 7</觸發方式>
+		<觸發方式>靈魂踏入, 8</觸發方式>
+		<觸發方式>靈魂碰撞, 9</觸發方式>
+		<觸發方式>物件建立後, 10</觸發方式>
+		<觸發方式>死亡(個人), 11</觸發方式>
+		<觸發方式>採集(個人), 12</觸發方式>
+		<觸發方式>採集(隊伍), 13</觸發方式>
+	</觸發方式>
+	<游標>
+		<游標>正常, 0</游標>
+		<游標>製造, 2</游標>
+		<游標>傳送, 3</游標>
+		<游標>金錢, 4</游標>
+		<游標>交易, 5</游標>
+		<游標>不可走, 11</游標>
+		<游標>交談, 12</游標>
+		<游標>撿, 13</游標>
+		<游標>攻擊, 14</游標>
+		<游標>伐木, 15</游標>
+		<游標>挖礦, 16</游標>
+		<游標>採集, 17</游標>
+		<游標>釣魚, 18</游標>
+		<游標>走路, 19</游標>
+		<游標>調查, 20</游標>
+	</游標>
+	<事件種類 Name="全部" Low="1" High="9999999"/>
+	<事件種類 Name="一般地圖事件" Low="1" High="9999"/>
+	<事件種類 Name="任務地圖事件" Low="10001" High="999999"/>
+
+	<選擇比較>
+		<項目>等於</項目>
+		<數值>COMPARE_E</數值>
+		<項目>小於</項目>
+		<數值>COMPARE_L</數值>
+		<項目>大於</項目>
+		<數值>COMPARE_G</數值>
+		<項目>小於等於</項目>
+		<數值>COMPARE_LE</數值>
+		<項目>大於等於</項目>
+		<數值>COMPARE_GE</數值>
+		<項目>不等於</項目>
+		<數值>COMPARE_NE</數值>
+	</選擇比較>
+	<選擇是否>
+		<項目>否</項目>
+		<數值>0</數值>
+		<項目>是</項目>
+		<數值>1</數值>
+	</選擇是否>
+	<選擇性別>
+		<項目>女</項目>
+		<數值>0</數值>
+		<項目>男</項目>
+		<數值>1</數值>
+	</選擇性別>
+	<選擇陣營>
+		<項目>聖光</項目>
+		<數值>1</數值>
+		<項目>暗影</項目>
+		<數值>4</數值>
+		<項目>鋼鐵</項目>
+		<數值>3</數值>
+		<項目>大地</項目>
+		<數值>2</數值>
+		<項目>天國</項目>
+		<數值>5</數值>
+	</選擇陣營>
+	<選擇對話參數>
+		<項目>玩家姓名</項目>
+		<數值>0</數值>
+		<!--
+		<項目>暫時(程式指定)</項目>
+		<數值>1</數值>
+		-->
+	</選擇對話參數>
+	<選擇地圖>
+		<項目>地圖995</項目>
+		<數值>995</數值>
+		<項目>地圖996</項目>
+		<數值>996</數值>
+	</選擇地圖>
+	<選擇技能>
+		<項目>生命</項目>
+		<數值>1</數值>
+		<項目>死靈</項目>
+		<數值>2</數值>
+		<項目>混亂</項目>
+		<數值>3</數值>
+		<項目>大地</項目>
+		<數值>4</數值>
+		<項目>吟咒</項目>
+		<數值>5</數值>
+		<項目>冥想</項目>
+		<數值>6</數值>
+		<項目>魔導</項目>
+		<數值>7</數值>
+		<項目>法杖</項目>
+		<數值>8</數值>
+		<項目>劍術</項目>
+		<數值>9</數值>
+		<項目>斧錘</項目>
+		<數值>10</數值>
+		<項目>槍術</項目>
+		<數值>11</數值>
+		<項目>強身</項目>
+		<數值>12</數值>
+		<項目>格鬥</項目>
+		<數值>13</數值>
+		<項目>盾防</項目>
+		<數值>14</數值>
+		<項目>蓄勁</項目>
+		<數值>15</數值>
+		<項目>巧手</項目>
+		<數值>16</數值>
+		<項目>弓箭</項目>
+		<數值>17</數值>
+		<項目>狙擊</項目>
+		<數值>18</數值>
+		<項目>鷹眼</項目>
+		<數值>19</數值>
+		<項目>採藥</項目>
+		<數值>20</數值>
+		<項目>釣魚</項目>
+		<數值>21</數值>
+		<項目>挖礦</項目>
+		<數值>22</數值>
+		<項目>伐木</項目>
+		<數值>23</數值>
+		<項目>機械</項目>
+		<數值>24</數值>
+		<項目>駕駛</項目>
+		<數值>25</數值>
+		<項目>武器</項目>
+		<數值>26</數值>
+		<項目>防具</項目>
+		<數值>27</數值>
+		<項目>裁縫</項目>
+		<數值>28</數值>
+		<項目>工藝</項目>
+		<數值>29</數值>
+		<項目>烹飪</項目>
+		<數值>31</數值>
+		<項目>輕裝</項目>
+		<數值>32</數值>
+		<項目>重裝</項目>
+		<數值>33</數值>
+		<項目>法袍</項目>
+		<數值>34</數值>
+	</選擇技能>
+	<選擇增加屬性>
+		<項目>HP(生命)</項目>
+		<數值>0</數值>
+		<項目>MP(法力)</項目>
+		<數值>2</數值>
+		<項目>SP(集氣值)</項目>
+		<數值>4</數值>
+		<項目>等級</項目>
+		<數值>29</數值>
+		<項目>經驗值</項目>
+		<數值>32</數值>
+		<項目>位階</項目>
+		<數值>51</數值>
+		<項目>功勳</項目>
+		<數值>49</數值>
+	</選擇增加屬性>
+	<選擇設定屬性>
+		<項目>HP(生命)</項目>
+		<數值>0</數值>
+		<項目>MP(法力)</項目>
+		<數值>2</數值>
+		<項目>SP(集氣值)</項目>
+		<數值>4</數值>
+		<項目>等級</項目>
+		<數值>29</數值>
+		<項目>髮型</項目>
+		<數值>36</數值>
+		<項目>髮色</項目>
+		<數值>37</數值>
+		<項目>膚色</項目>
+		<數值>38</數值>
+	</選擇設定屬性>
+	<選擇條件屬性>
+		<項目>等級</項目>
+		<數值>29</數值>
+		<項目>位階</項目>
+		<數值>51</數值>
+	</選擇條件屬性>
+	<選擇復活方式>
+		<項目>原地</項目>
+		<數值>1</數值>
+		<項目>回復活點</項目>
+		<數值>2</數值>
+	</選擇復活方式>
+	<選擇製作種類>
+		<項目>全部</項目>
+		<數值>0</數值>
+		<項目>製作防具</項目>
+		<數值>1</數值>
+		<項目>裁縫</項目>
+		<數值>2</數值>
+		<項目>工藝</項目>
+		<數值>3</數值>
+		<項目>煉金</項目>
+		<數值>4</數值>
+		<項目>烹飪</項目>
+		<數值>5</數值>
+		<項目>製作武器</項目>
+		<數值>6</數值>
+	</選擇製作種類>
+	<選擇製作種類二>
+		<項目>武器</項目>
+		<數值>1</數值>
+		<項目>防具</項目>
+		<數值>2</數值>
+		<項目>裁縫</項目>
+		<數值>3</數值>
+		<項目>工藝</項目>
+		<數值>4</數值>
+		<項目>烹飪</項目>
+		<數值>5</數值>
+	</選擇製作種類二>
+	<選擇保險箱類型>
+		<項目>個人</項目>
+		<數值>0</數值>
+		<項目>公會</項目>
+		<數值>1</數值>
+	</選擇保險箱類型>
+	<選擇修理費用>
+		<項目>一般</項目>
+		<數值>0</數值>
+		<項目>免費</項目>
+		<數值>1</數值>
+	</選擇修理費用>
+	<選擇產生位置>
+		<項目>依照產生器設定的的位置</項目>
+		<數值>0</數值>
+		<項目>依照被觸發物件的位置</項目>
+		<數值>1</數值>
+	</選擇產生位置>
+	<選擇開關>
+		<項目>關</項目>
+		<數值>0</數值>
+		<項目>開</項目>
+		<數值>1</數值>
+	</選擇開關>
+	<選擇步驟>
+		<項目>申請</項目>
+		<數值>0</數值>
+		<項目>配對</項目>
+		<數值>1</數值>
+		<項目>光棍節</項目>
+		<數值>2</數值>
+	</選擇步驟>
+	<選擇目標>
+		<項目>觸發者/無</項目>
+		<數值>0</數值>
+		<項目>觸發者隊伍</項目>
+		<數值>1</數值>
+		<項目>施法者</項目>
+		<數值>2</數值>
+	</選擇目標>
+	<選擇頻道>
+		<項目>公告頻道</項目>
+		<數值>0</數值>
+		<項目>GM頻道</項目>
+		<數值>1</數值>
+		<項目>公頻</項目>
+		<數值>2</數值>
+		<項目>一般頻道</項目>
+		<數值>7</數值>
+		<項目>特殊廣播器(觸發玩家發出)</項目>
+		<數值>11</數值>
+		<項目>地圖廣播</項目>
+		<數值>12</數值>
+	</選擇頻道>
+	<選擇地圖變數>
+		<項目>變數01</項目>
+		<數值>0</數值>
+		<項目>變數02</項目>
+		<數值>1</數值>
+		<項目>變數03</項目>
+		<數值>2</數值>
+		<項目>變數04</項目>
+		<數值>3</數值>
+		<項目>變數05</項目>
+		<數值>4</數值>
+		<項目>變數06</項目>
+		<數值>5</數值>
+		<項目>變數07</項目>
+		<數值>6</數值>
+		<項目>變數08</項目>
+		<數值>7</數值>
+		<項目>變數09</項目>
+		<數值>8</數值>
+		<項目>變數10</項目>
+		<數值>9</數值>
+	</選擇地圖變數>
+	<選擇結婚>
+		<項目>高級婚禮</項目>
+		<數值>0</數值>
+		<項目>一般婚禮</項目>
+		<數值>1</數值>
+		<項目>給予結婚任務道具</項目>
+		<數值>2</數值>
+		<項目>離婚</項目>
+		<數值>3</數值>
+	</選擇結婚>
+	<選擇社團權限>
+		<項目>團長</項目>
+		<數值>0</數值>
+		<項目>副團長</項目>
+		<數值>1</數值>
+		<項目>正式團員</項目>
+		<數值>2</數值>
+		<項目>見習團員</項目>
+		<數值>3</數值>
+	</選擇社團權限>
+	<活動名稱>
+		<項目>波塞頓福袋</項目>
+		<數值>1</數值>
+	</活動名稱>
+	<選擇隊伍條件>
+		<項目>隊伍人數</項目>
+		<數值>0</數值>
+		<項目>隊伍男生人數</項目>
+		<數值>1</數值>
+		<項目>隊伍女生人數</項目>
+		<數值>2</數值>
+	</選擇隊伍條件>
+
+	<條件 Sequence="EVENT_COND_SEX" Name="判斷性別" ParmName1="條件" ParmType1="COMBOBOX" ParmItem1="ComboEqual" ParmName2="性別" ParmType2="COMBOBOX" ParmItem2="ComboSex"/>
+	<條件 Sequence="EVENT_COND_QUEST_STEP" Name="判斷目前步驟" ParmName1="任務編號" ParmType1="EDIT_INT" ParmName2="步驟編號" ParmType2="EDIT_INT"/>
+	<條件 Sequence="EVENT_COND_PROPERTY" Name="判斷角色屬性" ParmName1="屬性項目" ParmType1="COMBOBOX" ParmItem1="ComboCondProperty" ParmName2="條件" ParmType2="COMBOBOX" ParmItem2="ComboEqual" ParmName3="數值" ParmType3="EDIT_INT"/>
+	<條件 Sequence="EVENT_COND_SKILL_LEVEL" Name="判斷技能等級" ParmName1="技能項目" ParmType1="COMBOBOX" ParmItem1="ComboSkill" ParmName2="條件" ParmType2="COMBOBOX" ParmItem2="ComboEqual" ParmName3="等級" ParmType3="EDIT_INT"/>
+	<條件 Sequence="EVENT_COND_EQUIPITEM" Name="判斷裝備道具" ParmName1="道具編號" ParmType1="EDIT_INT" ParmName2="條件" ParmType2="COMBOBOX" ParmItem2="ComboEqual" ParmName3="數量" ParmType3="EDIT_INT"/>
+	<條件 Sequence="EVENT_COND_BAGITEM" Name="判斷背包道具" ParmName1="道具編號" ParmType1="EDIT_INT" ParmName2="條件" ParmType2="COMBOBOX" ParmItem2="ComboEqual" ParmName3="數量" ParmType3="EDIT_INT"/>
+	<條件 Sequence="EVENT_COND_QUESTITEM" Name="判斷隱藏道具" ParmName1="道具編號" ParmType1="EDIT_INT" ParmName2="條件" ParmType2="COMBOBOX" ParmItem2="ComboEqual" ParmName3="數量" ParmType3="EDIT_INT"/>
+	<條件 Sequence="EVENT_COND_EMPTYSLOT_COUNT" Name="判斷背包空間" ParmName1="條件" ParmType1="COMBOBOX" ParmItem1="ComboEqual" ParmName2="空格數量" ParmType2="EDIT_INT"/>
+	<條件 Sequence="EVENT_COND_HAVE_LEARN_SKILL" Name="判斷是否學完技能"/>
+	<條件 Sequence="EVENT_COND_PROB100" Name="判斷機率(100)" ParmName1="成功機率" ParmType1="EDIT_INT"/>
+	<條件 Sequence="EVENT_COND_QUEST_FINISH" Name="判斷任務完成" ParmName1="任務編號" ParmType1="EDIT_INT"/>
+	<條件 Sequence="EVENT_COND_ALIGNMENT" Name="判斷陣營" ParmName1="陣營" ParmType1="COMBOBOX" ParmItem1="ComboAlignment"/>
+	<條件 Sequence="EVENT_COND_QUEST_RUNNING" Name="判斷任務正在進行" ParmName1="任務編號" ParmType1="EDIT_INT"/>
+	<條件 Sequence="EVENT_COND_GENERATOR_ALIVE" Name="判斷產生器的怪物存在數量" ParmName1="產生器TAG" ParmType1="EDIT_INT" ParmName2="條件" ParmType2="COMBOBOX" ParmItem2="ComboEqual" ParmName3="數量" ParmType3="EDIT_INT"/>
+	<條件 Sequence="EVENT_COND_GENERATOR_ENABLE" Name="判斷產生器的開關狀態" ParmName1="產生器TAG" ParmType1="EDIT_INT" ParmName2="條件" ParmType2="COMBOBOX" ParmItem2="ComboEqual" ParmName3="狀態" ParmType3="COMBOBOX" ParmItem3="ComboEnable"/>
+	<條件 Sequence="EVENT_COND_TREASURE_OWNER" Name="判斷寶箱觸發點擁有者"/>
+	<條件 Sequence="EVENT_COND_MONEY" Name="判斷金錢" ParmName1="條件" ParmType1="COMBOBOX" ParmItem1="ComboEqual" ParmName2="金額" ParmType2="EDIT_INT"/>
+	<條件 Sequence="EVENT_COND_JAIL" Name="判斷是否還在監禁期間"/>
+	<條件 Sequence="EVENT_COND_TIMEOBJ" Name="判斷時間物件的時間" ParmName1="物件原型編號" ParmType1="EDIT_INT" ParmName2="條件" ParmType2="COMBOBOX" ParmItem2="ComboEqual" ParmName3="時間(秒)" ParmType3="EDIT_INT"/>
+	<條件 Sequence="EVENT_COND_GM" Name="判斷是否是GM角色"/>
+	<條件 Sequence="EVENT_COND_HAVE_GUILD" Name="判斷是否有參加社團"/>
+	<條件 Sequence="EVENT_COND_PARA_ENTER" Name="判斷是否可以進入動態平行空間" ParmName1="地圖編號" ParmType1="EDIT_INT"/>
+	<條件 Sequence="EVENT_COND_ALIGNMENT_RATIO" Name="判斷陣營比例" ParmName1="陣營" ParmType1="COMBOBOX" ParmItem1="ComboAlignment" ParmName2="條件" ParmType2="COMBOBOX" ParmItem2="ComboEqual" ParmName3="比例" ParmType3="EDIT_INT"/>
+	<條件 Sequence="EVENT_COND_POPULATION" Name="判斷陣營人口比例是否低於現在陣營" ParmName1="陣營" ParmType1="COMBOBOX" ParmItem1="ComboAlignment"/>
+	<條件 Sequence="EVENT_COND_TOTEM_REBORN" Name="判斷是否可以從該圖騰復活"/>
+	<條件 Sequence="EVENT_COND_MAP_OWN_ALIGNMENT" Name="判斷和目前地圖所屬陣營是否相同"/>
+	<條件 Sequence="EVENT_COND_MAP_OWN_GUILD" Name="判斷和目前地圖所屬社團是否相同"/>
+	<條件 Sequence="EVENT_COND_HAVE_GUILD_REGION" Name="判斷目前社團是否有領地"/>
+	<條件 Sequence="EVENT_COND_MAPVAR" Name="判斷地圖變數" ParmName1="地圖編號" ParmType1="EDIT_INT" ParmName2="變數編號" ParmType2="COMBOBOX" ParmItem2="ComboMapVar" ParmName3="條件" ParmType3="COMBOBOX" ParmItem3="ComboEqual" ParmName4="數值" ParmType4="EDIT_INT"/>
+	<條件 Sequence="EVENT_COND_TIMER_ENABLE" Name="判斷計時器的開關狀態" ParmName1="計時器TAG" ParmType1="EDIT_INT" ParmName2="條件" ParmType2="COMBOBOX" ParmItem2="ComboEqual" ParmName3="狀態" ParmType3="COMBOBOX" ParmItem3="ComboEnable"/>
+	<條件 Sequence="EVENT_COND_TIMER_COUNTER" Name="判斷計時器的次數" ParmName1="計時器TAG" ParmType1="EDIT_INT" ParmName2="條件" ParmType2="COMBOBOX" ParmItem2="ComboEqual" ParmName3="次數" ParmType3="EDIT_INT"/>
+	<條件 Sequence="EVENT_COND_IS_PVP_ON" Name="判斷是否正在圖騰戰"/>
+	<條件 Sequence="EVENT_COND_GUILD_PERM" Name="判斷在社團的權限等級" ParmName1="權限" ParmType1="COMBOBOX" ParmItem1="ComboGuildPerm" />
+	<條件 Sequence="EVENT_COND_GUILD_LEVEL" Name="判斷目前社團等級" ParmName1="條件" ParmType1="COMBOBOX" ParmItem1="ComboEqual" ParmName2="等級" ParmType2="EDIT_INT"/>
+	<條件 Sequence="EVENT_COND_MARRY" Name="判斷是否結婚"/>
+	<條件 Sequence="EVENT_COND_EVENT" Name="判斷活動條件" ParmName1="活動" ParmType1="COMBOBOX" ParmItem1="ComboEvent"/>
+	<條件 Sequence="EVENT_COND_IP_IN_GROUP" Name="判斷是否在網咖" ParmName1="條件" ParmType1="COMBOBOX" ParmItem1="ComboEqual" ParmName2="群組" ParmType2="EDIT_INT"/>
+	<條件 Sequence="EVENT_COND_HAVE_MAGIC_STATE" Name="判斷是否有魔法狀態" ParmName1="魔法狀態編號" ParmType1="EDIT_INT"/>
+	<條件 Sequence="EVENT_COND_GROUP" Name="判斷隊伍條件" ParmName1="屬性項目" ParmType1="COMBOBOX" ParmItem1="ComboCondGroup" ParmName2="條件" ParmType2="COMBOBOX" ParmItem2="ComboEqual" ParmName3="數值" ParmType3="EDIT_INT"/>
+	<條件 Sequence="EVENT_COND_HAVE_PET" Name="判斷是否攜帶某寵物" ParmName1="寵物原型編號" ParmType1="EDIT_INT"/>
+	<條件 Sequence="EVENT_COND_DOLLITEM" Name="判斷紙娃娃道具" ParmName1="道具編號" ParmType1="EDIT_INT" ParmName2="條件" ParmType2="COMBOBOX" ParmItem2="ComboEqual" ParmName3="數量" ParmType3="EDIT_INT"/>
+	<條件 Sequence="EVENT_COND_DNA_OWNER" Name="判斷DNA怪物擁有者"/>
+	<條件 Sequence="EVENT_COND_DNA_EXIST" Name="判斷DNA怪物是否存在"/>
+
+	<動作 Sequence="EVENT_ACT_STOP" Name="停止"/>
+	<動作 Sequence="EVENT_ACT_SET_PLAYERNAME" Name="設定對話參數" ParmName1="參數編號" ParmType1="EDIT_INT" ParmName2="參數內容" ParmType2="COMBOBOX" ParmItem2="ComboMsgArg"/>
+	<動作 Sequence="EVENT_ACT_CHANGE_MAP" Name="切換地圖" ParmName1="地圖" ParmType1="EDIT_INT" ParmName2="TAG編號" ParmType2="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_SET_STEP" Name="設定目前步驟" ParmName1="任務編號" ParmType1="EDIT_INT" ParmName2="步驟編號" ParmType2="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_ADD_PROPERTY" Name="增加角色屬性" ParmName1="屬性項目" ParmType1="COMBOBOX" ParmItem1="ComboAddProperty" ParmName2="增加數值" ParmType2="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_SET_PROPERTY" Name="設定角色屬性" ParmName1="屬性項目" ParmType1="COMBOBOX" ParmItem1="ComboSetProperty" ParmName2="設定數值" ParmType2="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_REMOVE_ITEM" Name="接收道具" ParmName1="接收道具1" ParmType1="EDIT_INT" ParmName2="接收數量1" ParmType2="EDIT_INT" ParmName3="接收道具2" ParmType3="EDIT_INT" ParmName4="接收數量2" ParmType4="EDIT_INT" ParmName5="接收道具3" ParmType5="EDIT_INT"
+	    ParmName6="接收數量3" ParmType6="EDIT_INT" ParmName7="接收道具4" ParmType7="EDIT_INT" ParmName8="接收數量4" ParmType8="EDIT_INT" ParmName9="接收道具5" ParmType9="EDIT_INT" ParmName10="接收數量5" ParmType10="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_CREATE_ITEM" Name="給予道具" ParmName1="給予道具1" ParmType1="EDIT_INT" ParmName2="給予數量1" ParmType2="EDIT_INT" ParmName3="給予道具2" ParmType3="EDIT_INT" ParmName4="給予數量2" ParmType4="EDIT_INT" ParmName5="給予道具3" ParmType5="EDIT_INT"
+	    ParmName6="給予數量3" ParmType6="EDIT_INT" ParmName7="給予道具4" ParmType7="EDIT_INT" ParmName8="給予數量4" ParmType8="EDIT_INT" ParmName9="給予道具5" ParmType9="EDIT_INT" ParmName10="給予數量5" ParmType10="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_LIST_QUEST_REWARD" Name="顯示任務獎賞" ParmName1="獎賞道具1" ParmType1="EDIT_INT" ParmName2="獎賞數量1" ParmType2="EDIT_INT" ParmName3="獎賞道具2" ParmType3="EDIT_INT" ParmName4="獎賞數量2" ParmType4="EDIT_INT" ParmName5="獎賞道具3" ParmType5="EDIT_INT"
+	    ParmName6="獎賞數量3" ParmType6="EDIT_INT" ParmName7="獎賞道具4" ParmType7="EDIT_INT" ParmName8="獎賞數量4" ParmType8="EDIT_INT" ParmName9="獎賞道具5" ParmType9="EDIT_INT" ParmName10="獎賞數量5" ParmType10="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_SELECT_QUEST_REWARD" Name="選擇任務獎賞" ParmName1="獎賞道具1" ParmType1="EDIT_INT" ParmName2="獎賞數量1" ParmType2="EDIT_INT" ParmName3="獎賞道具2" ParmType3="EDIT_INT" ParmName4="獎賞數量2" ParmType4="EDIT_INT" ParmName5="獎賞道具3"
+	    ParmType5="EDIT_INT" ParmName6="獎賞數量3" ParmType6="EDIT_INT" ParmName7="獎賞道具4" ParmType7="EDIT_INT" ParmName8="獎賞數量4" ParmType8="EDIT_INT" ParmName9="獎賞道具5" ParmType9="EDIT_INT" ParmName10="獎賞數量5" ParmType10="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_OPEN_SHOP" Name="開啟商店" ParmName1="商店號碼" ParmType1="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_CHANGE_SKILL" Name="更換技能" ParmName1="接收道具" ParmType1="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_REBORN" Name="復活" ParmName1="復活方式" ParmType1="COMBOBOX" ParmItem1="ComboReborn"/>
+	<動作 Sequence="EVENT_ACT_SET_REBORN_POINT" Name="設定復活點" ParmName1="Tag號碼" ParmType1="EDIT_INT" ParmName2="地圖號碼" ParmType2="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_OPEN_MAKE" Name="開啟製作" ParmName1="種類" ParmType1="COMBOBOX" ParmItem1="ComboMake"/>
+	<動作 Sequence="EVENT_ACT_GIVE_MONEY" Name="給予金錢" ParmName1="金額" ParmType1="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_TAKE_MONEY" Name="回收金錢" ParmName1="金額" ParmType1="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_MAKE_NPC" Name="產生NPC" ParmName1="號碼" ParmType1="EDIT_INT" ParmName2="事件" ParmType2="EDIT_INT" ParmName3="對話" ParmType3="EDIT_INT" ParmName4="存活時間" ParmType4="EDIT_INT" ParmName5="TAG編號" ParmType5="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_OPEN_BANK" Name="開啟保險箱" ParmName1="類型" ParmType1="COMBOBOX" ParmItem1="ComboBank"/>
+	<動作 Sequence="EVENT_ACT_OPEN_SELECT_CLASS" Name="開啟職業選擇"/>
+	<動作 Sequence="EVENT_ACT_CLOSE_MESSAGE" Name="關閉對話視窗"/>
+	<動作 Sequence="EVENT_ACT_BEGIN_MESSAGE" Name="開始對話" ParmName1="對話號碼" ParmType1="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_SELECT_SEQ_QUEST" Name="選擇循序任務" ParmName1="任務編號" ParmType1="EDIT_INT" ParmName2="對話編號" ParmType2="EDIT_INT" ParmName3="任務編號" ParmType3="EDIT_INT" ParmName4="對話編號" ParmType4="EDIT_INT" ParmName5="任務編號" ParmType5="EDIT_INT"
+	    ParmName6="對話編號" ParmType6="EDIT_INT" ParmName7="任務編號" ParmType7="EDIT_INT" ParmName8="對話編號" ParmType8="EDIT_INT" ParmName9="任務編號" ParmType9="EDIT_INT" ParmName10="對話編號" ParmType10="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_SELECT_RANDOM_QUEST" Name="選擇亂數任務" ParmName1="任務編號" ParmType1="EDIT_INT" ParmName2="對話編號" ParmType2="EDIT_INT" ParmName3="任務編號" ParmType3="EDIT_INT" ParmName4="對話編號" ParmType4="EDIT_INT" ParmName5="任務編號" ParmType5="EDIT_INT"
+	    ParmName6="對話編號" ParmType6="EDIT_INT" ParmName7="任務編號" ParmType7="EDIT_INT" ParmName8="對話編號" ParmType8="EDIT_INT" ParmName9="任務編號" ParmType9="EDIT_INT" ParmName10="對話編號" ParmType10="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_OPEN_REPAIR" Name="開啟商店修理" ParmName1="修理費用" ParmType1="COMBOBOX" ParmItem1="ComboRepair"/>
+	<動作 Sequence="EVENT_ACT_SET_ALIGNMENT" Name="設定陣營" ParmName1="陣營" ParmType1="COMBOBOX" ParmItem1="ComboAlignment"/>
+	<動作 Sequence="EVENT_ACT_SENDNOTE" Name="發出訊息" ParmName1="訊息編號" ParmType1="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_GENERATE" Name="強迫產生器產生" ParmName1="產生器TAG" ParmType1="EDIT_INT" ParmName2="位置" ParmType2="COMBOBOX" ParmItem2="ComboGenPos"/>
+	<動作 Sequence="EVENT_ACT_SET_GENERATOR" Name="設定產生器" ParmName1="產生器TAG" ParmType1="EDIT_INT" ParmName2="物件" ParmType2="EDIT_INT" ParmName3="時間" ParmType3="EDIT_INT" ParmName4="數量" ParmType4="EDIT_INT" ParmName5="位置" ParmType5="EDIT_INT" ParmName6="事件"
+	    ParmType6="EDIT_INT" ParmName7="路徑" ParmType7="EDIT_INT" ParmName8="對話" ParmType8="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_ENABLE_GENERATOR" Name="開關產生器" ParmName1="產生器TAG" ParmType1="EDIT_INT" ParmName2="狀態" ParmType2="COMBOBOX" ParmItem2="ComboEnable"/>
+	<動作 Sequence="EVENT_ACT_OPEN_CREATE_GUILD" Name="開啟建立社團視窗"/>
+	<動作 Sequence="EVENT_ACT_SET_GENERATE_TIME" Name="設定開始產生時間" ParmName1="時(0-23)" ParmType1="EDIT_INT" ParmName2="分(0-59)" ParmType2="EDIT_INT" ParmName3="前後誤差(分)" ParmType3="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_MAKE_TREASURE" Name="產生寶箱" ParmName1="Tag號碼" ParmType1="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_CHANGE_PARA_MAP" Name="切換平行空間地圖" ParmName1="地圖" ParmType1="EDIT_INT" ParmName2="平行空間編號" ParmType2="EDIT_INT" ParmName3="TAG編號" ParmType3="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_SET_LIFE" Name="設定物件存活時間" ParmName1="時間(秒)" ParmType1="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_TO_REBORN_POINT" Name="回到復活點"/>
+	<動作 Sequence="EVENT_ACT_DRAW_VITEM" Name="領取虛寶"/>
+	<動作 Sequence="EVENT_ACT_KILLTO_NEXTSTEP" Name="打怪完成步驟" ParmName1="任務編號" ParmTyp1="EDIT_INT" ParmName2="目前步驟" ParmTyp2="EDIT_INT" ParmName3="隱藏道具" ParmTyp3="EDIT_INT" ParmName4="每次給予數量" ParmTyp4="EDIT_INT" ParmName5="掉落機率" ParmTyp5="EDIT_INT"
+	    ParmName6="完成數量" ParmTyp6="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_DROP_QUESTITEM" Name="任務道具掉落" ParmName1="任務編號" ParmTyp1="EDIT_INT" ParmName2="目前步驟" ParmTyp2="EDIT_INT" ParmName3="任務道具(非隱藏)" ParmTyp3="EDIT_INT" ParmName4="每次掉落數量" ParmTyp4="EDIT_INT" ParmName5="掉落機率" ParmTyp5="EDIT_INT"
+	    ParmName6="最多掉落數量" ParmTyp6="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_DNA" Name="小天使小主人" ParmName1="執行步驟" ParmType1="COMBOBOX" ParmItem1="ComboDNA"/>
+	<動作 Sequence="EVENT_ACT_SET_TARGET_LIFE" Name="設定目標物件存活時間" ParmName1="時間(秒)" ParmType1="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_DRAW_RITEM" Name="領取歸還道具"/>
+	<動作 Sequence="EVENT_ACT_PET_RESURRECT" Name="開啟寵物復活"/>
+	<動作 Sequence="EVENT_ACT_SELECT_QUEST_REWARD_EX" Name="選擇任務獎賞(不馬上給)" ParmName1="獎賞道具1" ParmType1="EDIT_INT" ParmName2="獎賞數量1" ParmType2="EDIT_INT" ParmName3="獎賞道具2" ParmType3="EDIT_INT" ParmName4="獎賞數量2" ParmType4="EDIT_INT" ParmName5="獎賞道具3"
+	    ParmType5="EDIT_INT" ParmName6="獎賞數量3" ParmType6="EDIT_INT" ParmName7="獎賞道具4" ParmType7="EDIT_INT" ParmName8="獎賞數量4" ParmType8="EDIT_INT" ParmName9="獎賞道具5" ParmType9="EDIT_INT" ParmName10="獎賞數量5" ParmType10="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_GIVE_QUEST_REWARD_EX" Name="接收道具並給予選擇的任務獎賞" ParmName1="接收道具1" ParmType1="EDIT_INT" ParmName2="接收數量1" ParmType2="EDIT_INT" ParmName3="接收道具2" ParmType3="EDIT_INT" ParmName4="接收數量2" ParmType4="EDIT_INT" ParmName5="接收道具3"
+	    ParmType5="EDIT_INT" ParmName6="接收數量3" ParmType6="EDIT_INT" ParmName7="接收道具4" ParmType7="EDIT_INT" ParmName8="接收數量4" ParmType8="EDIT_INT" ParmName9="接收道具5" ParmType9="EDIT_INT" ParmName10="接收數量5" ParmType10="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_SET_GENERATE_TIME_LIMIT" Name="設定產生時間限制" ParmName1="時(0-23)" ParmType1="EDIT_INT" ParmName2="分(0-59)" ParmType2="EDIT_INT" ParmName3="時(0-23)" ParmType3="EDIT_INT" ParmName4="分(0-59)" ParmType4="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_GOTO_GUILD_REGION" Name="傳送至社團領地"/>
+	<動作 Sequence="EVENT_ACT_CREATE_ITEM_DAY" Name="給予道具(0時0分開始)" ParmName1="給予道具1" ParmType1="EDIT_INT" ParmName2="給予數量1" ParmType2="EDIT_INT" ParmName3="給予道具2" ParmType3="EDIT_INT" ParmName4="給予數量2" ParmType4="EDIT_INT" ParmName5="給予道具3"
+	    ParmType5="EDIT_INT" ParmName6="給予數量3" ParmType6="EDIT_INT" ParmName7="給予道具4" ParmType7="EDIT_INT" ParmName8="給予數量4" ParmType8="EDIT_INT" ParmName9="給予道具5" ParmType9="EDIT_INT" ParmName10="給予數量5" ParmType10="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_CHANGE_STATICOBJ" Name="更改靜態物件" ParmName1="Tag號碼" ParmType1="EDIT_INT" ParmName2="物件號碼" ParmType2="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_GOTO_TAG" Name="切換TAG位置" ParmName1="TAG編號" ParmType1="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_CAST" Name="施法" ParmName1="法術號碼" ParmType1="EDIT_INT" ParmName2="目標" ParmType2="COMBOBOX" ParmItem2="ComboTarget" ParmName3="施法者" ParmType3="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_CHAT" Name="頻道發話" ParmName1="頻道" ParmType1="COMBOBOX" ParmItem1="ComboChannel" ParmName2="訊息編號1" ParmType2="EDIT_INT" ParmName3="訊息編號2" ParmType3="EDIT_INT" ParmName4="訊息編號3" ParmType4="EDIT_INT" ParmName5="訊息編號4" ParmType5="EDIT_INT" ParmName6="訊息編號5 " ParmType6="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_SET_MAPVAR" Name="設定地圖變數" ParmName1="地圖編號" ParmType1="EDIT_INT" ParmName2="變數編號" ParmType2="COMBOBOX" ParmItem2="ComboMapVar" ParmName3="設定數值" ParmType3="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_ADD_MAPVAR" Name="增加地圖變數" ParmName1="地圖編號" ParmType1="EDIT_INT" ParmName2="變數編號" ParmType2="COMBOBOX" ParmItem2="ComboMapVar" ParmName3="增加數值" ParmType3="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_MARRY" Name="結婚" ParmName1="婚禮步驟" ParmType1="COMBOBOX" ParmItem1="ComboMarry"/>
+	<動作 Sequence="EVENT_ACT_HITPARADE" Name="開啟排行榜"/>
+	<動作 Sequence="EVENT_ACT_ENABLE_TIMER" Name="開關計時器" ParmName1="計時器TAG" ParmType1="EDIT_INT" ParmName2="狀態" ParmType2="COMBOBOX" ParmItem2="ComboEnable" ParmName3="延遲" ParmType3="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_GUILD_CHANGE_ALIGN" Name="社團轉陣營" ParmName1="陣營" ParmType1="COMBOBOX" ParmItem1="ComboAlignment" />
+	<動作 Sequence="EVENT_ACT_LOTTERY" Name="彩券中獎" ParmName1="高級獎對話" ParmType1="EDIT_INT" ParmName2="中等獎對話" ParmType2="EDIT_INT" ParmName3="一般獎對話" ParmType3="EDIT_INT" ParmName4="沒中獎對話" ParmType4="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_NPCKILLGAME" Name="清怪比賽" ParmName1="開關" ParmType1="COMBOBOX" ParmItem1="ComboYesNo"/>
+	<動作 Sequence="EVENT_ACT_GROUP_QUEST" Name="開啟組隊任務" ParmName1="任務編號" ParmType1="EDIT_INT" ParmName2="失敗對話" ParmType2="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_CHECK_ORDER" Name="判斷訂單" ParmName1="種類" ParmType1="COMBOBOX" ParmItem1="ComboMake2" ParmName2="成功對話" ParmType2="EDIT_INT" ParmName3="失敗對話" ParmType3="EDIT_INT" ParmName4="額外獎對話" ParmType4="EDIT_INT"/>
+	<動作 Sequence="EVENT_ACT_SET_DNA_GENERATE" Name="產生DNA怪物" ParmName1="產生器TAG" ParmType1="EDIT_INT" ParmName2="位置" ParmType2="COMBOBOX" ParmItem2="ComboGenPos"/>
+	<動作 Sequence="EVENT_ACT_MAKE_REVENGE_DNA_MONSTER" Name="產生帶仇恨DNA怪物" ParmName1="號碼" ParmType1="EDIT_INT" ParmName2="事件" ParmType2="EDIT_INT" ParmName3="仇恨值" ParmType3="EDIT_INT" ParmName4="存活時間" ParmType4="EDIT_INT" ParmName5="TAG編號" ParmType5="EDIT_INT"/>
+			
+	<ALIAS CONTACT="觸發方式" CURSOR="游標" EVENTFILTER="事件種類" ACTION="動作" CONDITION="條件" Item="項目" Value="數值"/>
+	<ALIAS ComboEqual="選擇比較" ComboYesNo="選擇是否" ComboSex="選擇性別" ComboAlignment="選擇陣營" ComboMsgArg="選擇對話參數" ComboMap="選擇地圖" ComboAddProperty="選擇增加屬性" ComboSetProperty="選擇設定屬性" ComboCondProperty="選擇條件屬性" ComboSkill="選擇技能" ComboChannel="選擇頻道" ComboGuildPerm="選擇社團權限"/>
+	<ALIAS ComboReborn="選擇復活方式" ComboMake="選擇製作種類" ComboMake2="選擇製作種類二" ComboBank="選擇保險箱類型" ComboRepair="選擇修理費用" ComboGenPos="選擇產生位置" ComboEnable="選擇開關" ComboDNA="選擇步驟" ComboTarget="選擇目標" ComboMapVar="選擇地圖變數" ComboMarry="選擇結婚" ComboEvent="活動名稱" ComboCondGroup="選擇隊伍條件"/>
+
+	<DEFINE EVENT_COND_SEX="1"/>
+	<DEFINE EVENT_COND_QUEST_STEP="2"/>
+	<DEFINE EVENT_COND_PROPERTY="3"/>
+	<DEFINE EVENT_COND_SKILL_LEVEL="4"/>
+	<DEFINE EVENT_COND_EQUIPITEM="5"/>
+	<DEFINE EVENT_COND_BAGITEM="6"/>
+	<DEFINE EVENT_COND_QUESTITEM="7"/>
+	<DEFINE EVENT_COND_EMPTYSLOT_COUNT="8"/>
+	<DEFINE EVENT_COND_HAVE_LEARN_SKILL="9"/>
+	<DEFINE EVENT_COND_PROB100="10"/>
+	<DEFINE EVENT_COND_QUEST_FINISH="11"/>
+	<DEFINE EVENT_COND_ALIGNMENT="12"/>
+	<DEFINE EVENT_COND_QUEST_RUNNING="13"/>
+	<DEFINE EVENT_COND_GENERATOR_ALIVE="14"/>
+	<DEFINE EVENT_COND_GENERATOR_ENABLE="15"/>
+	<DEFINE EVENT_COND_TREASURE_OWNER="16"/>
+	<DEFINE EVENT_COND_MONEY="17"/>
+	<DEFINE EVENT_COND_JAIL="18"/>
+	<DEFINE EVENT_COND_TIMEOBJ="19"/>
+	<DEFINE EVENT_COND_GM="20"/>
+	<DEFINE EVENT_COND_HAVE_GUILD="21"/>
+	<DEFINE EVENT_COND_PARA_ENTER="22"/>
+	<DEFINE EVENT_COND_ALIGNMENT_RATIO="23"/>
+	<DEFINE EVENT_COND_POPULATION="24"/>
+	<DEFINE EVENT_COND_TOTEM_REBORN="25"/>
+	<DEFINE EVENT_COND_MAP_OWN_ALIGNMENT="26"/>
+	<DEFINE EVENT_COND_MAP_OWN_GUILD="27"/>
+	<DEFINE EVENT_COND_HAVE_GUILD_REGION="28"/>
+	<DEFINE EVENT_COND_MAPVAR="29"/>
+	<DEFINE EVENT_COND_TIMER_ENABLE="30"/>
+	<DEFINE EVENT_COND_TIMER_COUNTER="31"/>
+	<DEFINE EVENT_COND_IS_PVP_ON="32"/>
+	<DEFINE EVENT_COND_GUILD_PERM="33"/>
+	<DEFINE EVENT_COND_GUILD_LEVEL="34"/>
+	<DEFINE EVENT_COND_MARRY="35"/>
+	<DEFINE EVENT_COND_EVENT="36"/>
+	<DEFINE EVENT_COND_IP_IN_GROUP="37"/>
+	<DEFINE EVENT_COND_HAVE_MAGIC_STATE="38"/>
+	<DEFINE EVENT_COND_GROUP="39"/>
+	<DEFINE EVENT_COND_HAVE_PET="40"/>
+	<DEFINE EVENT_COND_DOLLITEM="41"/>
+	<DEFINE EVENT_COND_DNA_OWNER="42"/>
+	<DEFINE EVENT_COND_DNA_EXIST="43"/>
+
+	<DEFINE EVENT_ACT_STOP="1"/>
+	<DEFINE EVENT_ACT_SET_PLAYERNAME="2"/>
+	<DEFINE EVENT_ACT_CHANGE_MAP="3"/>
+	<DEFINE EVENT_ACT_SET_STEP="4"/>
+	<DEFINE EVENT_ACT_RANDOM_MSG="5"/>
+	<DEFINE EVENT_ACT_JUMP_QUEST="6"/>
+	<DEFINE EVENT_ACT_ADD_PROPERTY="7"/>
+	<DEFINE EVENT_ACT_SET_PROPERTY="8"/>
+	<DEFINE EVENT_ACT_REMOVE_ITEM="9"/>
+	<DEFINE EVENT_ACT_CREATE_ITEM="10"/>
+	<!--DEFINE EVENT_ACT_REMOVE_CREATE_ITEM="11"/-->
+	<DEFINE EVENT_ACT_LIST_QUEST_REWARD="12"/>
+	<DEFINE EVENT_ACT_SELECT_QUEST_REWARD="13"/>
+	<DEFINE EVENT_ACT_OPEN_SHOP="14"/>
+	<DEFINE EVENT_ACT_CHANGE_SKILL="15"/>
+	<DEFINE EVENT_ACT_REBORN="16"/>
+	<DEFINE EVENT_ACT_SET_REBORN_POINT="17"/>
+	<DEFINE EVENT_ACT_OPEN_MAKE="18"/>
+	<DEFINE EVENT_ACT_GIVE_MONEY="19"/>
+	<DEFINE EVENT_ACT_TAKE_MONEY="20"/>
+	<DEFINE EVENT_ACT_MAKE_NPC="21"/>
+	<DEFINE EVENT_ACT_OPEN_BANK="22"/>
+	<DEFINE EVENT_ACT_OPEN_SELECT_CLASS="23"/>
+	<DEFINE EVENT_ACT_CLOSE_MESSAGE="24"/>
+	<DEFINE EVENT_ACT_BEGIN_MESSAGE="25"/>
+	<DEFINE EVENT_ACT_SELECT_SEQ_QUEST="26"/>
+	<DEFINE EVENT_ACT_SELECT_RANDOM_QUEST="27"/>
+	<DEFINE EVENT_ACT_OPEN_REPAIR="28"/>
+	<DEFINE EVENT_ACT_SET_ALIGNMENT="29"/>
+	<DEFINE EVENT_ACT_SENDNOTE="30"/>
+	<DEFINE EVENT_ACT_GENERATE="31"/>
+	<DEFINE EVENT_ACT_SET_GENERATOR="32"/>
+	<DEFINE EVENT_ACT_ENABLE_GENERATOR="33"/>
+	<DEFINE EVENT_ACT_OPEN_CREATE_GUILD="34"/>
+	<DEFINE EVENT_ACT_SET_GENERATE_TIME="35"/>
+	<DEFINE EVENT_ACT_MAKE_TREASURE="36"/>
+	<DEFINE EVENT_ACT_CHANGE_PARA_MAP="37"/>
+	<DEFINE EVENT_ACT_SET_LIFE="38"/>
+	<DEFINE EVENT_ACT_TO_REBORN_POINT="39"/>
+	<DEFINE EVENT_ACT_DRAW_VITEM="40"/>
+	<DEFINE EVENT_ACT_KILLTO_NEXTSTEP="41"/>
+	<DEFINE EVENT_ACT_DROP_QUESTITEM="42"/>
+	<DEFINE EVENT_ACT_DNA="43"/>
+	<DEFINE EVENT_ACT_SET_TARGET_LIFE="44"/>
+	<DEFINE EVENT_ACT_DRAW_RITEM="45"/>
+	<DEFINE EVENT_ACT_PET_RESURRECT="46"/>
+	<DEFINE EVENT_ACT_SELECT_QUEST_REWARD_EX="47"/>
+	<DEFINE EVENT_ACT_GIVE_QUEST_REWARD_EX="48"/>
+	<DEFINE EVENT_ACT_SET_GENERATE_TIME_LIMIT="49"/>
+	<DEFINE EVENT_ACT_GOTO_GUILD_REGION="50"/>
+	<DEFINE EVENT_ACT_CREATE_ITEM_DAY="51"/>
+	<DEFINE EVENT_ACT_CHANGE_STATICOBJ="52"/>
+	<DEFINE EVENT_ACT_GOTO_TAG="53"/>
+	<DEFINE EVENT_ACT_CAST="54"/>
+	<DEFINE EVENT_ACT_CHAT="55"/>
+	<DEFINE EVENT_ACT_SET_MAPVAR="56"/>
+	<DEFINE EVENT_ACT_ADD_MAPVAR="57"/>
+	<DEFINE EVENT_ACT_MARRY="58"/>
+	<DEFINE EVENT_ACT_HITPARADE="59"/>
+	<DEFINE EVENT_ACT_ENABLE_TIMER="60"/>
+	<DEFINE EVENT_ACT_GUILD_CHANGE_ALIGN="61"/>
+	<DEFINE EVENT_ACT_LOTTERY="62"/>
+	<DEFINE EVENT_ACT_NPCKILLGAME="63"/>
+	<DEFINE EVENT_ACT_GROUP_QUEST="64"/>
+	<DEFINE EVENT_ACT_CHECK_ORDER="65"/>
+	<DEFINE EVENT_ACT_SET_DNA_GENERATE="66"/>
+	<DEFINE EVENT_ACT_MAKE_REVENGE_DNA_MONSTER="69"/>
+
+	<DEFINE COMPARE_E="0" COMPARE_L="1" COMPARE_G="2" COMPARE_LE="3" COMPARE_GE="4" COMPARE_NE="5"/>
+</root>

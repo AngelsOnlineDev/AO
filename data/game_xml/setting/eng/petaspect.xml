@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+	<petaspect 編號="1" 類型="1" 敘述句="/c$2%2/c* is rolling in circles
+excitedly around /c$2%1/c*.
+(Your act affects Pet's growth)" 選項1="Run after it." 反應值1="1" 選項2="Watch it moving around in circles." 反應值2="0" 選項3="Forbid it to move in circles." 反應值3="-1"/>
+	<petaspect 編號="2" 類型="1" 敘述句="/c$2%2/c* is crying at its owner
+/c$2%1/c* unhappily.
+(Your act affects Pet's growth)" 選項1="Teach it a strict lesson." 反應值1="-2" 選項2="Cover its ears." 反應值2="0" 選項3="Comfort it in low voice." 反應值3="1"/>
+	<petaspect 編號="3" 類型="1" 敘述句="/c$2%2/c* is rolling around the place
+acting shamelessly.
+(Your act affects Pet's growth)" 選項1="Let it act this way until it tires out." 反應值1="-2" 選項2="Hold it tenderly." 反應值2="1" 選項3="Punish it slightly." 反應值3="-1"/>
+	<petaspect 編號="4" 類型="1" 敘述句="/c$2%2/c* is wagging right and left
+toward /c$2%1/c* acting cute.
+(Your act affects Pet's growth)" 選項1="Let it be, ignore it." 反應值1="-1" 選項2="Give it a parental peck on the cheek." 反應值2="2" 選項3="Pet its head and praise it." 反應值3="1"/>
+	<petaspect 編號="5" 類型="1" 敘述句="/c$2%2/c* put it's head out when its
+ owner wasn't watching it.
+ (Your act affects Pet's growth)" 選項1="Pretend to turn around casually." 反應值1="0" 選項2="Can't stand watching it." 反應值2="-1" 選項3="Whistle and pretend to see nothing." 反應值3="1"/>
+	<petaspect 編號="6" 類型="1" 敘述句="/c$2%2/c* cries towards its owner
+/c$2%1/c* in a shy fashion.
+(Your act affects Pet's growth)" 選項1="Pat it's head and give it a slight smile." 反應值1="0" 選項2="Hug it tightly." 反應值2="3" 選項3="Not to dote on it. Ignore it." 反應值3="-2"/>
+	<petaspect 編號="7" 類型="1" 敘述句="/c$2%2/c* fell down onto the ground
+and began to cry.
+(Your act affects Pet's growth)" 選項1="Get up by itself after fell." 反應值1="-1" 選項2="Console it in low and gentle voice." 反應值2="1" 選項3="Help it up carefully." 反應值3="0"/>
+	<petaspect 編號="8" 類型="2" 敘述句="/c$2%2/c* is pathetically staring at
+its owner /c$2%1/c*.
+(Your act affects Pet's growth)" 選項1="Give it a big hug." 反應值1="1" 選項2="Being stared at makes you feel lazy." 反應值2="0" 選項3="Glare back with severe eyes." 反應值3="-1"/>
+	<petaspect 編號="9" 類型="2" 敘述句="/c$2%2/c* is naughtily splashing
+ water at its owner /c$2%1/c*.
+ (Your act affects Pet's growth)" 選項1="Splash water back in fun." 反應值1="1" 選項2="Lecture it severely." 反應值2="-1" 選項3="Smile helplessly at it's soaking body." 反應值3="0"/>
+	<petaspect 編號="10" 類型="2" 敘述句="c$2%2/c* hides itself shyly under the
+water.(Your act affects Pet's growth)" 選項1="Patiently persuade it to come out." 反應值1="-1" 選項2="Give it a gentle and shining smile." 反應值2="1" 選項3="Pretend to be anxious to find it." 反應值3="2"/>
+	<petaspect 編號="11" 類型="2" 敘述句="/c$2%2/c* puffed lots of bubbles
+towards its owner /c$2%1/c*.
+(Your act affects Pet's growth)" 選項1="Blow away the bubbles." 反應值1="1" 選項2="Catch and break all of the bubbles." 反應值2="-1" 選項3="Slip on the bubbles." 反應值3="2"/>
+	<petaspect 編號="12" 類型="2" 敘述句="/c$2%2/c* lost it's temper and made
+water splash everywhere.
+(Your act affects Pet's growth)" 選項1="Give it a grown up talking to." 反應值1="-2" 選項2="Comfort it, patiently, in a low voice." 反應值2="1" 選項3="Avoid the water splashes." 反應值3="0"/>
+	<petaspect 編號="13" 類型="2" 敘述句="/c$2%2/c* is so ashamed it has been
+reduced to tears.
+(Your act affects Pet's growth)" 選項1="Enthusiastically inspire it to try again." 反應值1="0" 選項2="Wipe the tear on it's face with a towel." 反應值2="1" 選項3="Crying is part of growing up." 反應值3="-1"/>
+	<petaspect 編號="14" 類型="2" 敘述句="/c$2%2/c* is ignoring it's owner and
+playing with vermins instead.
+(Your act affects Pet's growth)" 選項1="Watch it play quietly." 反應值1="0" 選項2="Insects have pathogens. Get rid of them." 反應值2="-2" 選項3="Shout to draw its attention." 反應值3="1"/>
+	<petaspect 編號="15" 類型="2" 敘述句="/c$2%2/c*'s temperature is rising
+high. Got a fever?
+(Your act affects Pet's growth)" 選項1="Don't play water in Winter again." 反應值1="-1" 選項2="Give it some ice blocks to make it cool." 反應值2="0" 選項3="Give it endless care." 反應值3="1"/>
+	<petaspect 編號="16" 類型="2" 敘述句="/c$2%2/c* is leisurely swimming around
+its owner /c$2%1/c*.
+(Your act affects Pet's growth)" 選項1="Tickle it with your fingers." 反應值1="1" 選項2="Gaze at it softly." 反應值2="0" 選項3="Order it to swim another 3000 metres." 反應值3="-2"/>
+	<petaspect 編號="17" 類型="3" 敘述句="The flame on /c$2%2/c* seems to be
+getting smaller.
+(Your act affects Pet's growth)" 選項1="Encourage and inspire it." 反應值1="0" 選項2="Excite it to stir up the inner flame." 反應值2="-2" 選項3="Give it an enthusiastic hug." 反應值3="2"/>
+	<petaspect 編號="18" 類型="3" 敘述句="/c$2%2/c* is full of angry flames.
+(Your act affects Pet's growth)" 選項1="Amuse it and calm it's anger." 反應值1="1" 選項2="Cook meat with the flame." 反應值2="0" 選項3="Too dangerous. Put out the fire." 反應值3="-2"/>
+	<petaspect 編號="19" 類型="3" 敘述句="/c$2%2/c* angrily jumps up and down
+on the spot.
+(Your act affects Pet's growth)" 選項1="Let it be, until it calms down by itself." 反應值1="-1" 選項2="Make it calm down softly." 反應值2="1" 選項3="Blame it severely." 反應值3="0"/>
+	<petaspect 編號="20" 類型="3" 敘述句="/c$2%2/c* enthusiastically hugs its
+owner.(Your act affects Pet's growth)" 選項1="Refrain from hugging it back." 反應值1="3" 選項2="Refuse to hug it for justifiable reasons." 反應值2="0" 選項3="Refuse it hug for unjustified reasons" 反應值3="-1"/>
+	<petaspect 編號="21" 類型="3" 敘述句="/c$2%2/c* is getting angry. It has
+taken to spying on it's owner.
+(Your act affects Pet's growth)" 選項1="Swash next time it spies on you." 反應值1="1" 選項2="Continue to be cold to it." 反應值2="-1" 選項3="Leave it alone and mind own business." 反應值3="0"/>
+	<petaspect 編號="22" 類型="3" 敘述句="/c$2%2/c* pulls /c$2%1/c*'s clothes in
+order to draw your attention.
+(Your act affects Pet's growth)" 選項1="Pull your clothing back hard." 反應值1="-1" 選項2="Ignore it." 反應值2="0" 選項3="Turn around and give it a loving look." 反應值3="1"/>
+	<petaspect 編號="23" 類型="3" 敘述句="/c$2%2/c* is playing with fire at the
+side of road.
+(Your act affects Pet's growth)" 選項1="Stop it from playing with fire." 反應值1="0" 選項2="Go and care for it." 反應值2="1" 選項3="Put out the fire." 反應值3="-1"/>
+	<petaspect 編號="24" 類型="3" 敘述句="/c$2%2/c* performs some bumbling poses
+to try to be handsome.
+(Your act affects Pet's growth)" 選項1="Laugh at it." 反應值1="-1" 選項2="Flatter it." 反應值2="1" 選項3="Try to act cooler than it." 反應值3="0"/>
+	<petaspect 編號="25" 類型="3" 敘述句="/c$2%2/c* is glaring at /c$2%1/c* and
+stamping feet to show its anger.
+(Your act affects Pet's growth)" 選項1="Glare back." 反應值1="-2" 選項2="Tell it off." 反應值2="-1" 選項3="Try to change it's mood by talking to it." 反應值3="1"/>
+	<petaspect 編號="26" 類型="4" 敘述句="/c$2%2/c* is jumping and dancing
+excitedly around /c$2%2/c*.
+(Your act affects Pet's growth)" 選項1="Whistle happily." 反應值1="1" 選項2="Wave to stop it." 反應值2="-1" 選項3="Tease it." 反應值3="1"/>
+	<petaspect 編號="27" 類型="4" 敘述句="/c$2%2/c* places itself tightly around
+its owner /c$2%2/c* and coquets.
+(Your act affects Pet's growth)" 選項1="Touch it's head." 反應值1="0" 選項2="Hug it." 反應值2="2" 選項3="Push it away." 反應值3="-2"/>
+	<petaspect 編號="28" 類型="4" 敘述句="/c$2%2/c* looks up at the sky blankly.
+(Your act affects Pet's growth)" 選項1="Cry out to frighten it." 反應值1="-1" 選項2="Look up to see the same thing as it does." 反應值2="0" 選項3="Go and care for it." 反應值3="1"/>
+	<petaspect 編號="29" 類型="4" 敘述句="/c$2%2/c* performs a difficult
+continuous back flip.
+(Your act affects Pet's growth)" 選項1="Root for it." 反應值1="2" 選項2="Correct its actions." 反應值2="-2" 選項3="Clap for it." 反應值3="1"/>
+	<petaspect 編號="30" 類型="4" 敘述句="/c$2%2/c* naughtily plays with the
+hair of it's owner /c$2%2/c*.
+(Your act affects Pet's growth)" 選項1="Show impatience." 反應值1="-1" 選項2="Follow it and play." 反應值2="1" 選項3="Wave head slightly." 反應值3="0"/>
+	<petaspect 編號="31" 類型="4" 敘述句="/c$2%2/c* tickles it's owner
+/c$2%2/c*'s body.
+(Your act affects Pet's growth)" 選項1="Guffaw madly." 反應值1="1" 選項2="Use all your strength to throw it off." 反應值2="-2" 選項3="Turn back to scratch it's itches." 反應值3="0"/>
+	<petaspect 編號="32" 類型="4" 敘述句="/c$2%2/c* sticks out it's tongue
+towards /c$2%2/c* making faces.
+(Your act affects Pet's growth)" 選項1="Smile back at it." 反應值1="0" 選項2="Grimace back at it." 反應值2="2" 選項3="Give it a blank facial expression." 反應值3="-2"/>
+	<petaspect 編號="33" 類型="4" 敘述句="/c$2%2/c* is sighing and swooning to
+the left and to the right.
+(Your act affects Pet's growth)" 選項1="Show it concern." 反應值1="0" 選項2="Ignore it." 反應值2="-1" 選項3="Cheer it up." 反應值3="1"/>
+	<petaspect 編號="34" 類型="4" 敘述句="/c$2%2/c* scratches it's owner
+/c$2%2/c*'s face for no reason.
+(Your act affects Pet's growth)" 選項1="Blame it angrily." 反應值1="-2" 選項2="Ignore its scratching." 反應值2="1" 選項3="Draw it away." 反應值3="-1"/>
+	<petaspect 編號="35" 類型="5" 敘述句="/c$2%2/c* digs out a stone and happily
+ presents it to /c$2%2/c*.
+(Your act affects Pet's growth)" 選項1="Throw away the stones." 反應值1="-2" 選項2="Accept the stones." 反應值2="1" 選項3="Pretend not to see." 反應值3="-1"/>
+	<petaspect 編號="36" 類型="5" 敘述句="/c$2%2/c* excitedly knocks and strikes
+ at the ground. 
+(Your act affects Pet's growth)" 選項1="Strike it the same way." 反應值1="1" 選項2="Show it that you are impatient." 反應值2="-1" 選項3="Stop it from striking the ground." 反應值3="0"/>
+	<petaspect 編號="37" 類型="5" 敘述句="/c$2%2/c* is sitting on the floor
+blankly staring into space.
+(Your act affects Pet's growth)" 選項1="Cry out to frighten it." 反應值1="-1" 選項2="Look at it blankly." 反應值2="0" 選項3="Give it a massage to invigorate it." 反應值3="2"/>
+	<petaspect 編號="38" 類型="5" 敘述句="/c$2%2/c* accidentally fell asleep.
+(Your act affects Pet's growth)" 選項1="Cry out to wake it up." 反應值1="0" 選項2="Wake it up in a low voice." 反應值2="1" 選項3="Pour water onto it to wake it up." 反應值3="-1"/>
+	<petaspect 編號="39" 類型="5" 敘述句="/c$2%2/c* looks at it's owner
+/c$2%1/c* giggling.
+(Your act affects Pet's growth)" 選項1="Look at it, smiling." 反應值1="1" 選項2="Watch it, simpering." 反應值2="0" 選項3="Look at it, sneering." 反應值3="-2"/>
+	<petaspect 編號="40" 類型="5" 敘述句="/c$2%2/c* is kneeling down on the
+ground piling up stones.
+(Your act affects Pet's growth)" 選項1="Push the stones piles over." 反應值1="-2" 選項2="Pull it up from the ground." 反應值2="0" 選項3="Squat down to pile up stones together." 反應值3="1"/>
+	<petaspect 編號="41" 類型="5" 敘述句="/c$2%2/c* is rolling in the mud.
+(Your act affects Pet's growth)" 選項1="Pick it up." 反應值1="2" 選項2="Secretly run away from it." 反應值2="0" 選項3="Clean it with water." 反應值3="-1"/>
+	<petaspect 編號="42" 類型="5" 敘述句="/c$2%2/c* turned it's back to you,
+ showing solitude and loneliness.
+ (Your act affects Pet's growth)" 選項1="Wait silently." 反應值1="0" 選項2="Hug it tightly." 反應值2="1" 選項3="Doodle on it's back." 反應值3="-1"/>
+	<petaspect 編號="43" 類型="5" 敘述句="/c$2%2/c* disgruntled, it thumps the ground.
+(Your act affects Pet's growth)" 選項1="Go and care for it." 反應值1="2" 選項2="Ignore it." 反應值2="-1" 選項3="Lecture it." 反應值3="0"/>
+	<petaspect 編號="44" 類型="6" 敘述句="/c$2%2/c* is excitedly licking its
+owner /c$2%1/c*'s face.
+(Your act affects Pet's growth)" 選項1="Scratch it tenderly." 反應值1="1" 選項2="Wipe it's face with a towel." 反應值2="-1" 選項3="Pat it's head gently." 反應值3="0"/>
+	<petaspect 編號="45" 類型="6" 敘述句="/c$2%2/c* is playfully leaning on its
+ owner /c$2%1/c*'s back.
+ (Your act affects Pet's growth)" 選項1="Play tricks with it." 反應值1="0" 選項2="Pat it quietly." 反應值2="1" 選項3="Leave it alone." 反應值3="-1"/>
+	<petaspect 編號="46" 類型="6" 敘述句="/c$2%2/c* is downheartedly grovelling
+on the ground.
+(Your act affects Pet's growth)" 選項1="Keep an eye on it far away." 反應值1="0" 選項2="Sit beside it petting it." 反應值2="3" 選項3="Cheer it up." 反應值3="1"/>
+	<petaspect 編號="47" 類型="6" 敘述句="/c$2%2/c* lays down with it's belly
+facing it's owner /c$2%1/c*.
+(Your act affects Pet's growth)" 選項1="Smile at it's belly." 反應值1="-1" 選項2="Pat it's belly gently." 反應值2="2" 選項3="Only pat it once on the belly." 反應值3="1"/>
+	<petaspect 編號="48" 類型="6" 敘述句="/c$2%2/c* ruins it's owner's boots.
+(Your act affects Pet's growth)" 選項1="Accept the bad luck and dry yourself." 反應值1="0" 選項2="Tell it off, angrily." 反應值2="-2" 選項3="Ignore it." 反應值3="1"/>
+	<petaspect 編號="49" 類型="6" 敘述句="/c$2%2/c* suddenly cries out towards
+something in the distance.
+(Your act affects Pet's growth)" 選項1="Order it to be quiet." 反應值1="-1" 選項2="Don't bother about it." 反應值2="0" 選項3="See the direction it is snarling towards" 反應值3="1"/>
+	<petaspect 編號="50" 類型="6" 敘述句="/c$2%2/c* gives a big yawn.
+(Your act affects Pet's growth)" 選項1="Copy it by having a big yawn yourself." 反應值1="0" 選項2="Give it a massage to invigorate it." 反應值2="1" 選項3="Cover its mouth." 反應值3="-1"/>
+	<petaspect 編號="51" 類型="6" 敘述句="/c$2%2/c* randomly scratches itself.
+(Your act affects Pet's growth)" 選項1="Help it to shower with hot water." 反應值1="2" 選項2="Get it to wash itself." 反應值2="-2" 選項3="Scratch the itches for it." 反應值3="1"/>
+	<petaspect 編號="52" 類型="6" 敘述句="/c$2%2/c* grovels with it's owner
+/c$2%1/c*, to play with it.
+(Your act affects Pet's growth)" 選項1="Let it keep grovelling on the ground." 反應值1="1" 選項2="Push it away due to its heavy weight." 反應值2="-3" 選項3="Play with it ." 反應值3="2"/>
+	<petaspect 編號="53" 類型="6" 敘述句="/c$2%2/c* is scampering about in a
+high spirits.
+(Your act affects Pet's growth)" 選項1="Feel happy for it." 反應值1="0" 選項2="Play happily with it." 反應值2="1" 選項3="Order it to be quiet." 反應值3="-1"/>
+	<petaspect 編號="54" 類型="6" 敘述句="/c$2%2/c* is staring at it's owner
+/c$2%1/c* with begging eyes.
+(Your act affects Pet's growth)" 選項1="Shake your head seriously." 反應值1="-1" 選項2="Avoid making eye contact." 反應值2="0" 選項3="Give it a dessert to cheer it up." 反應值3="1"/>
+	<petaspect 編號="55" 類型="6" 敘述句="/c$2%2/c* is crying at it's owner
+/c$2%1/c* unhappily.
+(Your act affects Pet's growth)" 選項1="Order it to stop crying." 反應值1="-1" 選項2="Stare at it calmly." 反應值2="0" 選項3="Capture it and teach it a lesson." 反應值3="-2"/>
+	<petaspect 編號="56" 類型="7" 敘述句="/c$2%2/c* is dancing a strange dance
+around its owner /c$2%1/c*.
+(Your act affects Pet's growth)" 選項1="Dance after it in the same fashion." 反應值1="2" 選項2="Sing to the beat of it's dance." 反應值2="0" 選項3="Tired of watching it, you fell asleep." 反應值3="-1"/>
+	<petaspect 編號="57" 類型="7" 敘述句="Some Vermins are found on /c$2%2/c*'s
+body.(Your act affects Pet's growth)" 選項1="Vermins deserve respection as lives." 反應值1="-2" 選項2="Splash pesticide onto it." 反應值2="0" 選項3="Carefully get rid of the Vermins." 反應值3="1"/>
+	<petaspect 編號="58" 類型="7" 敘述句="Some parts of /c$2%2/c*'s body are
+injured.
+(Your act affects Pet's growth)" 選項1="Cut off the damaged parts." 反應值1="2" 選項2="Bind up the injureded part." 反應值2="0" 選項3="Keep it as a showy scar." 反應值3="-2"/>
+	<petaspect 編號="59" 類型="7" 敘述句="/c$2%2/c* is giving off a great deal
+of Phytonicidene.
+(Your act affects Pet's growth)" 選項1="Encourage it to breathe deeply." 反應值1="1" 選項2="Expel the carbon dioxide from it's mouth." 反應值2="2" 選項3="Keep a careful eye on it." 反應值3="0"/>
+	<petaspect 編號="60" 類型="7" 敘述句="/c$2%2/c* is leaning on it's owner's
+/c$2%1/c*'s feet softly.
+(Your act affects Pet's growth)" 選項1="Ignore it to toughen it up purposely." 反應值1="-2" 選項2="So cute that cann't help petting it." 反應值2="2" 選項3="Why is it behaving so creepy?" 反應值3="0"/>
+	<petaspect 編號="61" 類型="7" 敘述句="/c$2%2/c* is staring at its owner
+/c$2%1/c* pathetically.
+(Your act affects Pet's growth)" 選項1="So cute that you cann't help holding it." 反應值1="1" 選項2="Touch it's head." 反應值2="0" 選項3="Glare back fiercely." 反應值3="-1"/>
+	<petaspect 編號="62" 類型="7" 敘述句="/c$2%2/c* has buried half of its body
+into the earth to absorb nutrients.
+(Your act affects Pet's growth)" 選項1="Wait silently beside it." 反應值1="0" 選項2="Pull out the surrounding weed." 反應值2="1" 選項3="Help it fertilize and water the soil." 反應值3="2"/>
+	<petaspect 編號="63" 類型="7" 敘述句="/c$2%2/c* hides itself in the earth
+because it is angry with /c$2%1/c*.
+(Your act affects Pet's growth)" 選項1="Start to dig it out from the earth." 反應值1="-1" 選項2="Wait until it can stand up by itself." 反應值2="0" 選項3="Make efforts to persuade it out." 反應值3="1"/>
+	<petaspect 編號="64" 類型="8" 敘述句="/c$2%2/c* kisses its owner
+/c$2%1/c* softly on the face.
+(Your act affects Pet's growth)" 選項1="Gently kiss it's cheek." 反應值1="1" 選項2="Wipe it's face in a detatched way." 反應值2="1" 選項3="Blush due to embarrassment." 反應值3="0"/>
+	<petaspect 編號="65" 類型="8" 敘述句="/c$2%2/c* embraces its owner
+/c$2%1/c* wrapping its arms around
+him.(Your act affects Pet's growth)" 選項1="Push her away shyly." 反應值1="2" 選項2="Hug her gently." 反應值2="1" 選項3="Throw her off gently." 反應值3="-1"/>
+	<petaspect 編號="66" 類型="8" 敘述句="/c$2%2/c* angrily spanks its owner
+/c$2%1/c*.
+(Your act affects Pet's growth)" 選項1="Become angry with her." 反應值1="-2" 選項2="Endure the pain of the spank quietly." 反應值2="-1" 選項3="Ask for the reason of her anger." 反應值3="1"/>
+	<petaspect 編號="67" 類型="8" 敘述句="/c$2%2/c* smiles at its owner
+/c$2%1/c* smugly.
+(Your act affects Pet's growth)" 選項1="Pretend to be cool and indifferent." 反應值1="-1" 選項2="Smile back at it." 反應值2="0" 選項3="The smile makes you blush a little." 反應值3="2"/>
+	<petaspect 編號="68" 類型="8" 敘述句="/c$2%2/c* is heavy-heartedly looking
+somewhere into the distance.
+(Your act affects Pet's growth)" 選項1="Stay beside her, and do as she do." 反應值1="2" 選項2="Wait at her side, silently." 反應值2="0" 選項3="Move over and shoot the breeze with her." 反應值3="1"/>
+	<petaspect 編號="69" 類型="8" 敘述句="/c$2%2/c* grumbles into its owner
+/c$2%1/c*'s ears.
+(Your act affects Pet's growth)" 選項1="You can't bare it and shut her up." 反應值1="-2" 選項2="Listen to her croak patiently." 反應值2="1" 選項3="Argue with it." 反應值3="-1"/>
+	<petaspect 編號="70" 類型="8" 敘述句="/c$2%2/c* is dancing beautifully in
+the sky.
+(Your act affects Pet's growth)" 選項1="Focus on the enemies all around." 反應值1="-1" 選項2="Watch it become possessed." 反應值2="0" 選項3="Hum songs to the beat of her dancing." 反應值3="1"/>
+	<petaspect 編號="71" 類型="8" 敘述句="/c$2%2/c* stares at its owner
+/c$2%1/c*.
+(Your act affects Pet's growth)" 選項1="Your heart is beating faster and faster." 反應值1="1" 選項2="Pretend to ignore it." 反應值2="-1" 選項3="Strive to not let feelings run amok." 反應值3="0"/>
+	<petaspect 編號="72" 類型="8" 敘述句="/c$2%2/c* makes many kinds of gestures
+in front of the mirror.
+(Your act affects Pet's growth)" 選項1="Lightly flatter her." 反應值1="1" 選項2="Flatter her a great deal." 反應值2="-2" 選項3="Look at her blankly." 反應值3="-1"/>
+	<petaspect 編號="73" 類型="9" 敘述句="/c$2%2/c* stretches out its neck to
+look around vigilantly.
+(Your act affects Pet's growth)" 選項1="So funny that you cann't help laugh." 反應值1="-1" 選項2="Look around with it." 反應值2="1" 選項3="It has no manners, strike it on the head." 反應值3="-2"/>
+	<petaspect 編號="74" 類型="9" 敘述句="/c$2%2/c* is wagging its tail at its
+owner /c$2%1/c*.
+(Your act affects Pet's growth)" 選項1="Tease it happily." 反應值1="1" 選項2="Pat it's head gently." 反應值2="0" 選項3="Leave it alone." 反應值3="-1"/>
+	<petaspect 編號="75" 類型="9" 敘述句="/c$2%2/c* angrily emits thick black
+smoke from its mouth and nose.
+(Your act affects Pet's growth)" 選項1="Tell it some old jokes to comfort it." 反應值1="-1" 選項2="Pour water on its head to calm it down." 反應值2="-3" 選項3="Let it vent it's anger." 反應值3="1"/>
+	<petaspect 編號="76" 類型="9" 敘述句="/c$2%2/c* behaves rebelliously toward
+its owner /c$2%1/c*.
+(Your act affects Pet's growth)" 選項1="Avoid confronting it face to face." 反應值1="0" 選項2="Take a strict approach with it." 反應值2="-1" 選項3="Be humble when you make up with it." 反應值3="3"/>
+	<petaspect 編號="77" 類型="9" 敘述句="/c$2%2/c* bellows madly all around.
+(Your act affects Pet's growth)" 選項1="Stop it by any means necessary." 反應值1="-2" 選項2="Stop it calmly." 反應值2="1" 選項3="For your own security, leave it alone." 反應值3="0"/>
+	<petaspect 編號="78" 類型="9" 敘述句="/c$2%2/c* snarls at the small animals
+around it.
+(Your act affects Pet's growth)" 選項1="Give it food so it will stop snarling." 反應值1="0" 選項2="Ignore its snarling." 反應值2="1" 選項3="Force it to stop snarling." 反應值3="-1"/>
+	<petaspect 編號="79" 類型="9" 敘述句="/c$2%2/c* cuddled itself up, finally
+fell asleep on the ground.
+(Your act affects Pet's growth)" 選項1="Stay beside and comfort it." 反應值1="1" 選項2="Remind it to prepare for fighting." 反應值2="-2" 選項3="Let it have a good rest." 反應值3="0"/>
+	<petaspect 編號="80" 類型="9" 敘述句="/c$2%2/c* turns around to scratch the
+squamae on it's back with its claws.
+(Your act affects Pet's growth)" 選項1="Help it to scratch squamae on its back." 反應值1="0" 選項2="Clean the parasites behind the squamaes." 反應值2="2" 選項3="Make it have a bath." 反應值3="-1"/>
+	<petaspect 編號="81" 類型="9" 敘述句="/c$2%2/c* lowers its head towards its
+owner /c$2%1/c*, calling gently.
+(Your act affects Pet's growth)" 選項1="Hold it with two hands." 反應值1="2" 選項2="Reject it's flirtations." 反應值2="-1" 選項3="Pat its head." 反應值3="0"/>
+	<ALIAS id="編號" group="類型" statment="敘述句" option1="選項1" aspect1="反應值1" option2="選項2" aspect2="反應值2" option3="選項3" aspect3="反應值3"/>
+</root>

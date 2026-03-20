@@ -1,0 +1,625 @@
+<?xml version="1.0"?>
+<root>
+	<INCLUDE file="setting\wnddef.xml"/>
+	<!--預設背景-->
+	<icon id="25950" dir="\card\" normal="b01" focus="normal" down="normal" disable="normal"/>
+
+	<!--套卡圖:s01是第一套,第三碼數字1是未收集完成,2是收集完成,3是已經兌換-->
+	<icon id="25951" dir="\card\" normal="s011" focus="normal" down="normal" disable="normal"/>
+	<icon id="25952" dir="\card\" normal="s012" focus="normal" down="normal" disable="normal"/>
+	<icon id="25953" dir="\card\" normal="s013" focus="normal" down="normal" disable="normal"/>
+	<icon id="25954" dir="\card\" normal="s021" focus="normal" down="normal" disable="normal"/>
+	<icon id="25955" dir="\card\" normal="s022" focus="normal" down="normal" disable="normal"/>
+	<icon id="25956" dir="\card\" normal="s023" focus="normal" down="normal" disable="normal"/>
+	<icon id="25957" dir="\card\" normal="s031" focus="normal" down="normal" disable="normal"/>
+	<icon id="25958" dir="\card\" normal="s032" focus="normal" down="normal" disable="normal"/>
+	<icon id="25959" dir="\card\" normal="s033" focus="normal" down="normal" disable="normal"/>
+	<icon id="25960" dir="\card\" normal="s041" focus="normal" down="normal" disable="normal"/>
+	<icon id="25961" dir="\card\" normal="s042" focus="normal" down="normal" disable="normal"/>
+	<icon id="25962" dir="\card\" normal="s043" focus="normal" down="normal" disable="normal"/>
+
+	<!--卡片圖:現在只有500 可以加到1000-->
+	<icon id="25001" dir="\card\" normal="c0001" focus="normal" down="normal" disable="normal"/>
+	<icon id="25002" dir="\card\" normal="c0002" focus="normal" down="normal" disable="normal"/>
+	<icon id="25003" dir="\card\" normal="c0003" focus="normal" down="normal" disable="normal"/>
+	<icon id="25004" dir="\card\" normal="c0004" focus="normal" down="normal" disable="normal"/>
+	<icon id="25005" dir="\card\" normal="c0005" focus="normal" down="normal" disable="normal"/>
+	<icon id="25006" dir="\card\" normal="c0006" focus="normal" down="normal" disable="normal"/>
+	<icon id="25007" dir="\card\" normal="c0007" focus="normal" down="normal" disable="normal"/>
+	<icon id="25008" dir="\card\" normal="c0008" focus="normal" down="normal" disable="normal"/>
+	<icon id="25009" dir="\card\" normal="c0009" focus="normal" down="normal" disable="normal"/>
+	<icon id="25010" dir="\card\" normal="c0010" focus="normal" down="normal" disable="normal"/>
+	<icon id="25011" dir="\card\" normal="c0011" focus="normal" down="normal" disable="normal"/>
+	<icon id="25012" dir="\card\" normal="c0012" focus="normal" down="normal" disable="normal"/>
+	<icon id="25013" dir="\card\" normal="c0013" focus="normal" down="normal" disable="normal"/>
+	<icon id="25014" dir="\card\" normal="c0014" focus="normal" down="normal" disable="normal"/>
+	<icon id="25015" dir="\card\" normal="c0015" focus="normal" down="normal" disable="normal"/>
+	<icon id="25016" dir="\card\" normal="c0016" focus="normal" down="normal" disable="normal"/>
+	<icon id="25017" dir="\card\" normal="c0017" focus="normal" down="normal" disable="normal"/>
+	<icon id="25018" dir="\card\" normal="c0018" focus="normal" down="normal" disable="normal"/>
+	<icon id="25019" dir="\card\" normal="c0019" focus="normal" down="normal" disable="normal"/>
+	<icon id="25020" dir="\card\" normal="c0020" focus="normal" down="normal" disable="normal"/>
+	<icon id="25021" dir="\card\" normal="c0021" focus="normal" down="normal" disable="normal"/>
+	<icon id="25022" dir="\card\" normal="c0022" focus="normal" down="normal" disable="normal"/>
+	<icon id="25023" dir="\card\" normal="c0023" focus="normal" down="normal" disable="normal"/>
+	<icon id="25024" dir="\card\" normal="c0024" focus="normal" down="normal" disable="normal"/>
+	<icon id="25025" dir="\card\" normal="c0025" focus="normal" down="normal" disable="normal"/>
+	<icon id="25026" dir="\card\" normal="c0026" focus="normal" down="normal" disable="normal"/>
+	<icon id="25027" dir="\card\" normal="c0027" focus="normal" down="normal" disable="normal"/>
+	<icon id="25028" dir="\card\" normal="c0028" focus="normal" down="normal" disable="normal"/>
+	<icon id="25029" dir="\card\" normal="c0029" focus="normal" down="normal" disable="normal"/>
+	<icon id="25030" dir="\card\" normal="c0030" focus="normal" down="normal" disable="normal"/>
+	<icon id="25031" dir="\card\" normal="c0031" focus="normal" down="normal" disable="normal"/>
+	<icon id="25032" dir="\card\" normal="c0032" focus="normal" down="normal" disable="normal"/>
+	<icon id="25033" dir="\card\" normal="c0033" focus="normal" down="normal" disable="normal"/>
+	<icon id="25034" dir="\card\" normal="c0034" focus="normal" down="normal" disable="normal"/>
+	<icon id="25035" dir="\card\" normal="c0035" focus="normal" down="normal" disable="normal"/>
+	<icon id="25036" dir="\card\" normal="c0036" focus="normal" down="normal" disable="normal"/>
+	<icon id="25037" dir="\card\" normal="c0037" focus="normal" down="normal" disable="normal"/>
+	<icon id="25038" dir="\card\" normal="c0038" focus="normal" down="normal" disable="normal"/>
+	<icon id="25039" dir="\card\" normal="c0039" focus="normal" down="normal" disable="normal"/>
+	<icon id="25040" dir="\card\" normal="c0040" focus="normal" down="normal" disable="normal"/>
+	<icon id="25041" dir="\card\" normal="c0041" focus="normal" down="normal" disable="normal"/>
+	<icon id="25042" dir="\card\" normal="c0042" focus="normal" down="normal" disable="normal"/>
+	<icon id="25043" dir="\card\" normal="c0043" focus="normal" down="normal" disable="normal"/>
+	<icon id="25044" dir="\card\" normal="c0044" focus="normal" down="normal" disable="normal"/>
+	<icon id="25045" dir="\card\" normal="c0045" focus="normal" down="normal" disable="normal"/>
+	<icon id="25046" dir="\card\" normal="c0046" focus="normal" down="normal" disable="normal"/>
+	<icon id="25047" dir="\card\" normal="c0047" focus="normal" down="normal" disable="normal"/>
+	<icon id="25048" dir="\card\" normal="c0048" focus="normal" down="normal" disable="normal"/>
+	<icon id="25049" dir="\card\" normal="c0049" focus="normal" down="normal" disable="normal"/>
+	<icon id="25050" dir="\card\" normal="c0050" focus="normal" down="normal" disable="normal"/>
+	<icon id="25051" dir="\card\" normal="c0051" focus="normal" down="normal" disable="normal"/>
+	<icon id="25052" dir="\card\" normal="c0052" focus="normal" down="normal" disable="normal"/>
+	<icon id="25053" dir="\card\" normal="c0053" focus="normal" down="normal" disable="normal"/>
+	<icon id="25054" dir="\card\" normal="c0054" focus="normal" down="normal" disable="normal"/>
+	<icon id="25055" dir="\card\" normal="c0055" focus="normal" down="normal" disable="normal"/>
+	<icon id="25056" dir="\card\" normal="c0056" focus="normal" down="normal" disable="normal"/>
+	<icon id="25057" dir="\card\" normal="c0057" focus="normal" down="normal" disable="normal"/>
+	<icon id="25058" dir="\card\" normal="c0058" focus="normal" down="normal" disable="normal"/>
+	<icon id="25059" dir="\card\" normal="c0059" focus="normal" down="normal" disable="normal"/>
+	<icon id="25060" dir="\card\" normal="c0060" focus="normal" down="normal" disable="normal"/>
+	<icon id="25061" dir="\card\" normal="c0061" focus="normal" down="normal" disable="normal"/>
+	<icon id="25062" dir="\card\" normal="c0062" focus="normal" down="normal" disable="normal"/>
+	<icon id="25063" dir="\card\" normal="c0063" focus="normal" down="normal" disable="normal"/>
+	<icon id="25064" dir="\card\" normal="c0064" focus="normal" down="normal" disable="normal"/>
+	<icon id="25065" dir="\card\" normal="c0065" focus="normal" down="normal" disable="normal"/>
+	<icon id="25066" dir="\card\" normal="c0066" focus="normal" down="normal" disable="normal"/>
+	<icon id="25067" dir="\card\" normal="c0067" focus="normal" down="normal" disable="normal"/>
+	<icon id="25068" dir="\card\" normal="c0068" focus="normal" down="normal" disable="normal"/>
+	<icon id="25069" dir="\card\" normal="c0069" focus="normal" down="normal" disable="normal"/>
+	<icon id="25070" dir="\card\" normal="c0070" focus="normal" down="normal" disable="normal"/>
+	<icon id="25071" dir="\card\" normal="c0071" focus="normal" down="normal" disable="normal"/>
+	<icon id="25072" dir="\card\" normal="c0072" focus="normal" down="normal" disable="normal"/>
+	<icon id="25073" dir="\card\" normal="c0073" focus="normal" down="normal" disable="normal"/>
+	<icon id="25074" dir="\card\" normal="c0074" focus="normal" down="normal" disable="normal"/>
+	<icon id="25075" dir="\card\" normal="c0075" focus="normal" down="normal" disable="normal"/>
+	<icon id="25076" dir="\card\" normal="c0076" focus="normal" down="normal" disable="normal"/>
+	<icon id="25077" dir="\card\" normal="c0077" focus="normal" down="normal" disable="normal"/>
+	<icon id="25078" dir="\card\" normal="c0078" focus="normal" down="normal" disable="normal"/>
+	<icon id="25079" dir="\card\" normal="c0079" focus="normal" down="normal" disable="normal"/> 	                                                                           
+	<icon id="25080" dir="\card\" normal="c0080" focus="normal" down="normal" disable="normal"/>
+	<icon id="25081" dir="\card\" normal="c0081" focus="normal" down="normal" disable="normal"/>
+	<icon id="25082" dir="\card\" normal="c0082" focus="normal" down="normal" disable="normal"/>
+	<icon id="25083" dir="\card\" normal="c0083" focus="normal" down="normal" disable="normal"/>
+	<icon id="25084" dir="\card\" normal="c0084" focus="normal" down="normal" disable="normal"/>
+	<icon id="25085" dir="\card\" normal="c0085" focus="normal" down="normal" disable="normal"/>
+	<icon id="25086" dir="\card\" normal="c0086" focus="normal" down="normal" disable="normal"/>
+	<icon id="25087" dir="\card\" normal="c0087" focus="normal" down="normal" disable="normal"/>
+	<icon id="25088" dir="\card\" normal="c0088" focus="normal" down="normal" disable="normal"/>
+	<icon id="25089" dir="\card\" normal="c0089" focus="normal" down="normal" disable="normal"/>
+	<icon id="25090" dir="\card\" normal="c0090" focus="normal" down="normal" disable="normal"/>
+	<icon id="25091" dir="\card\" normal="c0091" focus="normal" down="normal" disable="normal"/>
+	<icon id="25092" dir="\card\" normal="c0092" focus="normal" down="normal" disable="normal"/>
+	<icon id="25093" dir="\card\" normal="c0093" focus="normal" down="normal" disable="normal"/>
+	<icon id="25094" dir="\card\" normal="c0094" focus="normal" down="normal" disable="normal"/>
+	<icon id="25095" dir="\card\" normal="c0095" focus="normal" down="normal" disable="normal"/>
+	<icon id="25096" dir="\card\" normal="c0096" focus="normal" down="normal" disable="normal"/>
+	<icon id="25097" dir="\card\" normal="c0097" focus="normal" down="normal" disable="normal"/>
+	<icon id="25098" dir="\card\" normal="c0098" focus="normal" down="normal" disable="normal"/>
+	<icon id="25099" dir="\card\" normal="c0099" focus="normal" down="normal" disable="normal"/>
+                                                                                                    
+	<icon id="25100" dir="\card\" normal="c0100" focus="normal" down="normal" disable="normal"/>
+	<icon id="25101" dir="\card\" normal="c0101" focus="normal" down="normal" disable="normal"/>
+	<icon id="25102" dir="\card\" normal="c0102" focus="normal" down="normal" disable="normal"/>
+	<icon id="25103" dir="\card\" normal="c0103" focus="normal" down="normal" disable="normal"/>
+	<icon id="25104" dir="\card\" normal="c0104" focus="normal" down="normal" disable="normal"/>
+	<icon id="25105" dir="\card\" normal="c0105" focus="normal" down="normal" disable="normal"/>
+	<icon id="25106" dir="\card\" normal="c0106" focus="normal" down="normal" disable="normal"/>
+	<icon id="25107" dir="\card\" normal="c0107" focus="normal" down="normal" disable="normal"/>
+	<icon id="25108" dir="\card\" normal="c0108" focus="normal" down="normal" disable="normal"/>
+	<icon id="25109" dir="\card\" normal="c0109" focus="normal" down="normal" disable="normal"/>
+	<icon id="25110" dir="\card\" normal="c0110" focus="normal" down="normal" disable="normal"/>
+	<icon id="25111" dir="\card\" normal="c0111" focus="normal" down="normal" disable="normal"/>
+	<icon id="25112" dir="\card\" normal="c0112" focus="normal" down="normal" disable="normal"/>
+	<icon id="25113" dir="\card\" normal="c0113" focus="normal" down="normal" disable="normal"/>
+	<icon id="25114" dir="\card\" normal="c0114" focus="normal" down="normal" disable="normal"/>
+	<icon id="25115" dir="\card\" normal="c0115" focus="normal" down="normal" disable="normal"/>
+	<icon id="25116" dir="\card\" normal="c0116" focus="normal" down="normal" disable="normal"/>
+	<icon id="25117" dir="\card\" normal="c0117" focus="normal" down="normal" disable="normal"/>
+	<icon id="25118" dir="\card\" normal="c0118" focus="normal" down="normal" disable="normal"/>
+	<icon id="25119" dir="\card\" normal="c0119" focus="normal" down="normal" disable="normal"/>
+	<icon id="25120" dir="\card\" normal="c0120" focus="normal" down="normal" disable="normal"/>
+	<icon id="25121" dir="\card\" normal="c0121" focus="normal" down="normal" disable="normal"/>
+	<icon id="25122" dir="\card\" normal="c0122" focus="normal" down="normal" disable="normal"/>
+	<icon id="25123" dir="\card\" normal="c0123" focus="normal" down="normal" disable="normal"/>
+	<icon id="25124" dir="\card\" normal="c0124" focus="normal" down="normal" disable="normal"/>
+	<icon id="25125" dir="\card\" normal="c0125" focus="normal" down="normal" disable="normal"/>
+	<icon id="25126" dir="\card\" normal="c0126" focus="normal" down="normal" disable="normal"/>
+	<icon id="25127" dir="\card\" normal="c0127" focus="normal" down="normal" disable="normal"/>
+	<icon id="25128" dir="\card\" normal="c0128" focus="normal" down="normal" disable="normal"/>
+	<icon id="25129" dir="\card\" normal="c0129" focus="normal" down="normal" disable="normal"/>
+	<icon id="25130" dir="\card\" normal="c0130" focus="normal" down="normal" disable="normal"/>
+	<icon id="25131" dir="\card\" normal="c0131" focus="normal" down="normal" disable="normal"/>
+	<icon id="25132" dir="\card\" normal="c0132" focus="normal" down="normal" disable="normal"/>
+	<icon id="25133" dir="\card\" normal="c0133" focus="normal" down="normal" disable="normal"/>
+	<icon id="25134" dir="\card\" normal="c0134" focus="normal" down="normal" disable="normal"/>
+	<icon id="25135" dir="\card\" normal="c0135" focus="normal" down="normal" disable="normal"/>
+	<icon id="25136" dir="\card\" normal="c0136" focus="normal" down="normal" disable="normal"/>
+	<icon id="25137" dir="\card\" normal="c0137" focus="normal" down="normal" disable="normal"/>
+	<icon id="25138" dir="\card\" normal="c0138" focus="normal" down="normal" disable="normal"/>
+	<icon id="25139" dir="\card\" normal="c0139" focus="normal" down="normal" disable="normal"/>
+	<icon id="25140" dir="\card\" normal="c0140" focus="normal" down="normal" disable="normal"/>
+	<icon id="25141" dir="\card\" normal="c0141" focus="normal" down="normal" disable="normal"/>
+	<icon id="25142" dir="\card\" normal="c0142" focus="normal" down="normal" disable="normal"/>
+	<icon id="25143" dir="\card\" normal="c0143" focus="normal" down="normal" disable="normal"/>
+	<icon id="25144" dir="\card\" normal="c0144" focus="normal" down="normal" disable="normal"/>
+	<icon id="25145" dir="\card\" normal="c0145" focus="normal" down="normal" disable="normal"/>
+	<icon id="25146" dir="\card\" normal="c0146" focus="normal" down="normal" disable="normal"/>
+	<icon id="25147" dir="\card\" normal="c0147" focus="normal" down="normal" disable="normal"/>
+	<icon id="25148" dir="\card\" normal="c0148" focus="normal" down="normal" disable="normal"/>
+	<icon id="25149" dir="\card\" normal="c0149" focus="normal" down="normal" disable="normal"/>
+	<icon id="25150" dir="\card\" normal="c0150" focus="normal" down="normal" disable="normal"/>
+	<icon id="25151" dir="\card\" normal="c0151" focus="normal" down="normal" disable="normal"/>
+	<icon id="25152" dir="\card\" normal="c0152" focus="normal" down="normal" disable="normal"/>
+	<icon id="25153" dir="\card\" normal="c0153" focus="normal" down="normal" disable="normal"/>
+	<icon id="25154" dir="\card\" normal="c0154" focus="normal" down="normal" disable="normal"/>
+	<icon id="25155" dir="\card\" normal="c0155" focus="normal" down="normal" disable="normal"/>
+	<icon id="25156" dir="\card\" normal="c0156" focus="normal" down="normal" disable="normal"/>
+	<icon id="25157" dir="\card\" normal="c0157" focus="normal" down="normal" disable="normal"/>
+	<icon id="25158" dir="\card\" normal="c0158" focus="normal" down="normal" disable="normal"/>
+	<icon id="25159" dir="\card\" normal="c0159" focus="normal" down="normal" disable="normal"/>
+	<icon id="25160" dir="\card\" normal="c0160" focus="normal" down="normal" disable="normal"/>
+	<icon id="25161" dir="\card\" normal="c0161" focus="normal" down="normal" disable="normal"/>
+	<icon id="25162" dir="\card\" normal="c0162" focus="normal" down="normal" disable="normal"/>
+	<icon id="25163" dir="\card\" normal="c0163" focus="normal" down="normal" disable="normal"/>
+	<icon id="25164" dir="\card\" normal="c0164" focus="normal" down="normal" disable="normal"/>
+	<icon id="25165" dir="\card\" normal="c0165" focus="normal" down="normal" disable="normal"/>
+	<icon id="25166" dir="\card\" normal="c0166" focus="normal" down="normal" disable="normal"/>
+	<icon id="25167" dir="\card\" normal="c0167" focus="normal" down="normal" disable="normal"/>
+	<icon id="25168" dir="\card\" normal="c0168" focus="normal" down="normal" disable="normal"/>
+	<icon id="25169" dir="\card\" normal="c0169" focus="normal" down="normal" disable="normal"/>
+	<icon id="25170" dir="\card\" normal="c0170" focus="normal" down="normal" disable="normal"/>
+	<icon id="25171" dir="\card\" normal="c0171" focus="normal" down="normal" disable="normal"/>
+	<icon id="25172" dir="\card\" normal="c0172" focus="normal" down="normal" disable="normal"/>
+	<icon id="25173" dir="\card\" normal="c0173" focus="normal" down="normal" disable="normal"/>
+	<icon id="25174" dir="\card\" normal="c0174" focus="normal" down="normal" disable="normal"/>
+	<icon id="25175" dir="\card\" normal="c0175" focus="normal" down="normal" disable="normal"/>
+	<icon id="25176" dir="\card\" normal="c0176" focus="normal" down="normal" disable="normal"/>
+	<icon id="25177" dir="\card\" normal="c0177" focus="normal" down="normal" disable="normal"/>
+	<icon id="25178" dir="\card\" normal="c0178" focus="normal" down="normal" disable="normal"/>
+	<icon id="25179" dir="\card\" normal="c0179" focus="normal" down="normal" disable="normal"/>
+	<icon id="25180" dir="\card\" normal="c0180" focus="normal" down="normal" disable="normal"/>
+	<icon id="25181" dir="\card\" normal="c0181" focus="normal" down="normal" disable="normal"/>
+	<icon id="25182" dir="\card\" normal="c0182" focus="normal" down="normal" disable="normal"/>
+	<icon id="25183" dir="\card\" normal="c0183" focus="normal" down="normal" disable="normal"/>
+	<icon id="25184" dir="\card\" normal="c0184" focus="normal" down="normal" disable="normal"/>
+	<icon id="25185" dir="\card\" normal="c0185" focus="normal" down="normal" disable="normal"/>
+	<icon id="25186" dir="\card\" normal="c0186" focus="normal" down="normal" disable="normal"/>
+	<icon id="25187" dir="\card\" normal="c0187" focus="normal" down="normal" disable="normal"/>
+	<icon id="25188" dir="\card\" normal="c0188" focus="normal" down="normal" disable="normal"/>
+	<icon id="25189" dir="\card\" normal="c0189" focus="normal" down="normal" disable="normal"/>
+	<icon id="25190" dir="\card\" normal="c0190" focus="normal" down="normal" disable="normal"/>
+	<icon id="25191" dir="\card\" normal="c0191" focus="normal" down="normal" disable="normal"/>
+	<icon id="25192" dir="\card\" normal="c0192" focus="normal" down="normal" disable="normal"/>
+	<icon id="25193" dir="\card\" normal="c0193" focus="normal" down="normal" disable="normal"/>
+	<icon id="25194" dir="\card\" normal="c0194" focus="normal" down="normal" disable="normal"/>
+	<icon id="25195" dir="\card\" normal="c0195" focus="normal" down="normal" disable="normal"/>
+	<icon id="25196" dir="\card\" normal="c0196" focus="normal" down="normal" disable="normal"/>
+	<icon id="25197" dir="\card\" normal="c0197" focus="normal" down="normal" disable="normal"/>
+	<icon id="25198" dir="\card\" normal="c0198" focus="normal" down="normal" disable="normal"/>
+	<icon id="25199" dir="\card\" normal="c0199" focus="normal" down="normal" disable="normal"/>
+                                                                                                    
+	<icon id="25200" dir="\card\" normal="c0200" focus="normal" down="normal" disable="normal"/>
+	<icon id="25201" dir="\card\" normal="c0201" focus="normal" down="normal" disable="normal"/>
+	<icon id="25202" dir="\card\" normal="c0202" focus="normal" down="normal" disable="normal"/>
+	<icon id="25203" dir="\card\" normal="c0203" focus="normal" down="normal" disable="normal"/>
+	<icon id="25204" dir="\card\" normal="c0204" focus="normal" down="normal" disable="normal"/>
+	<icon id="25205" dir="\card\" normal="c0205" focus="normal" down="normal" disable="normal"/>
+	<icon id="25206" dir="\card\" normal="c0206" focus="normal" down="normal" disable="normal"/>
+	<icon id="25207" dir="\card\" normal="c0207" focus="normal" down="normal" disable="normal"/>
+	<icon id="25208" dir="\card\" normal="c0208" focus="normal" down="normal" disable="normal"/>
+	<icon id="25209" dir="\card\" normal="c0209" focus="normal" down="normal" disable="normal"/>
+	<icon id="25210" dir="\card\" normal="c0210" focus="normal" down="normal" disable="normal"/>
+	<icon id="25211" dir="\card\" normal="c0211" focus="normal" down="normal" disable="normal"/>
+	<icon id="25212" dir="\card\" normal="c0212" focus="normal" down="normal" disable="normal"/>
+	<icon id="25213" dir="\card\" normal="c0213" focus="normal" down="normal" disable="normal"/>
+	<icon id="25214" dir="\card\" normal="c0214" focus="normal" down="normal" disable="normal"/>
+	<icon id="25215" dir="\card\" normal="c0215" focus="normal" down="normal" disable="normal"/>
+	<icon id="25216" dir="\card\" normal="c0216" focus="normal" down="normal" disable="normal"/>
+	<icon id="25217" dir="\card\" normal="c0217" focus="normal" down="normal" disable="normal"/>
+	<icon id="25218" dir="\card\" normal="c0218" focus="normal" down="normal" disable="normal"/>
+	<icon id="25219" dir="\card\" normal="c0219" focus="normal" down="normal" disable="normal"/>
+	<icon id="25220" dir="\card\" normal="c0220" focus="normal" down="normal" disable="normal"/>
+	<icon id="25221" dir="\card\" normal="c0221" focus="normal" down="normal" disable="normal"/>
+	<icon id="25222" dir="\card\" normal="c0222" focus="normal" down="normal" disable="normal"/>
+	<icon id="25223" dir="\card\" normal="c0223" focus="normal" down="normal" disable="normal"/>
+	<icon id="25224" dir="\card\" normal="c0224" focus="normal" down="normal" disable="normal"/>
+	<icon id="25225" dir="\card\" normal="c0225" focus="normal" down="normal" disable="normal"/>
+	<icon id="25226" dir="\card\" normal="c0226" focus="normal" down="normal" disable="normal"/>
+	<icon id="25227" dir="\card\" normal="c0227" focus="normal" down="normal" disable="normal"/>
+	<icon id="25228" dir="\card\" normal="c0228" focus="normal" down="normal" disable="normal"/>
+	<icon id="25229" dir="\card\" normal="c0229" focus="normal" down="normal" disable="normal"/>
+	<icon id="25230" dir="\card\" normal="c0230" focus="normal" down="normal" disable="normal"/>
+	<icon id="25231" dir="\card\" normal="c0231" focus="normal" down="normal" disable="normal"/>
+	<icon id="25232" dir="\card\" normal="c0232" focus="normal" down="normal" disable="normal"/>
+	<icon id="25233" dir="\card\" normal="c0233" focus="normal" down="normal" disable="normal"/>
+	<icon id="25234" dir="\card\" normal="c0234" focus="normal" down="normal" disable="normal"/>
+	<icon id="25235" dir="\card\" normal="c0235" focus="normal" down="normal" disable="normal"/>
+	<icon id="25236" dir="\card\" normal="c0236" focus="normal" down="normal" disable="normal"/>
+	<icon id="25237" dir="\card\" normal="c0237" focus="normal" down="normal" disable="normal"/>
+	<icon id="25238" dir="\card\" normal="c0238" focus="normal" down="normal" disable="normal"/>
+	<icon id="25239" dir="\card\" normal="c0239" focus="normal" down="normal" disable="normal"/>
+	<icon id="25240" dir="\card\" normal="c0240" focus="normal" down="normal" disable="normal"/>
+	<icon id="25241" dir="\card\" normal="c0241" focus="normal" down="normal" disable="normal"/>
+	<icon id="25242" dir="\card\" normal="c0242" focus="normal" down="normal" disable="normal"/>
+	<icon id="25243" dir="\card\" normal="c0243" focus="normal" down="normal" disable="normal"/>
+	<icon id="25244" dir="\card\" normal="c0244" focus="normal" down="normal" disable="normal"/>
+	<icon id="25245" dir="\card\" normal="c0245" focus="normal" down="normal" disable="normal"/>
+	<icon id="25246" dir="\card\" normal="c0246" focus="normal" down="normal" disable="normal"/>
+	<icon id="25247" dir="\card\" normal="c0247" focus="normal" down="normal" disable="normal"/>
+	<icon id="25248" dir="\card\" normal="c0248" focus="normal" down="normal" disable="normal"/>
+	<icon id="25249" dir="\card\" normal="c0249" focus="normal" down="normal" disable="normal"/>
+	<icon id="25250" dir="\card\" normal="c0250" focus="normal" down="normal" disable="normal"/>
+	<icon id="25251" dir="\card\" normal="c0251" focus="normal" down="normal" disable="normal"/>
+	<icon id="25252" dir="\card\" normal="c0252" focus="normal" down="normal" disable="normal"/>
+	<icon id="25253" dir="\card\" normal="c0253" focus="normal" down="normal" disable="normal"/>
+	<icon id="25254" dir="\card\" normal="c0254" focus="normal" down="normal" disable="normal"/>
+	<icon id="25255" dir="\card\" normal="c0255" focus="normal" down="normal" disable="normal"/>
+	<icon id="25256" dir="\card\" normal="c0256" focus="normal" down="normal" disable="normal"/>
+	<icon id="25257" dir="\card\" normal="c0257" focus="normal" down="normal" disable="normal"/>
+	<icon id="25258" dir="\card\" normal="c0258" focus="normal" down="normal" disable="normal"/>
+	<icon id="25259" dir="\card\" normal="c0259" focus="normal" down="normal" disable="normal"/>
+	<icon id="25260" dir="\card\" normal="c0260" focus="normal" down="normal" disable="normal"/>
+	<icon id="25261" dir="\card\" normal="c0261" focus="normal" down="normal" disable="normal"/>
+	<icon id="25262" dir="\card\" normal="c0262" focus="normal" down="normal" disable="normal"/>
+	<icon id="25263" dir="\card\" normal="c0263" focus="normal" down="normal" disable="normal"/>
+	<icon id="25264" dir="\card\" normal="c0264" focus="normal" down="normal" disable="normal"/>
+	<icon id="25265" dir="\card\" normal="c0265" focus="normal" down="normal" disable="normal"/>
+	<icon id="25266" dir="\card\" normal="c0266" focus="normal" down="normal" disable="normal"/>
+	<icon id="25267" dir="\card\" normal="c0267" focus="normal" down="normal" disable="normal"/>
+	<icon id="25268" dir="\card\" normal="c0268" focus="normal" down="normal" disable="normal"/>
+	<icon id="25269" dir="\card\" normal="c0269" focus="normal" down="normal" disable="normal"/>
+	<icon id="25270" dir="\card\" normal="c0270" focus="normal" down="normal" disable="normal"/>
+	<icon id="25271" dir="\card\" normal="c0271" focus="normal" down="normal" disable="normal"/>
+	<icon id="25272" dir="\card\" normal="c0272" focus="normal" down="normal" disable="normal"/>
+	<icon id="25273" dir="\card\" normal="c0273" focus="normal" down="normal" disable="normal"/>
+	<icon id="25274" dir="\card\" normal="c0274" focus="normal" down="normal" disable="normal"/>
+	<icon id="25275" dir="\card\" normal="c0275" focus="normal" down="normal" disable="normal"/>
+	<icon id="25276" dir="\card\" normal="c0276" focus="normal" down="normal" disable="normal"/>
+	<icon id="25277" dir="\card\" normal="c0277" focus="normal" down="normal" disable="normal"/>
+	<icon id="25278" dir="\card\" normal="c0278" focus="normal" down="normal" disable="normal"/>
+	<icon id="25279" dir="\card\" normal="c0279" focus="normal" down="normal" disable="normal"/>
+	<icon id="25280" dir="\card\" normal="c0280" focus="normal" down="normal" disable="normal"/>
+	<icon id="25281" dir="\card\" normal="c0281" focus="normal" down="normal" disable="normal"/>
+	<icon id="25282" dir="\card\" normal="c0282" focus="normal" down="normal" disable="normal"/>
+	<icon id="25283" dir="\card\" normal="c0283" focus="normal" down="normal" disable="normal"/>
+	<icon id="25284" dir="\card\" normal="c0284" focus="normal" down="normal" disable="normal"/>
+	<icon id="25285" dir="\card\" normal="c0285" focus="normal" down="normal" disable="normal"/>
+	<icon id="25286" dir="\card\" normal="c0286" focus="normal" down="normal" disable="normal"/>
+	<icon id="25287" dir="\card\" normal="c0287" focus="normal" down="normal" disable="normal"/>
+	<icon id="25288" dir="\card\" normal="c0288" focus="normal" down="normal" disable="normal"/>
+	<icon id="25289" dir="\card\" normal="c0289" focus="normal" down="normal" disable="normal"/>
+	<icon id="25290" dir="\card\" normal="c0290" focus="normal" down="normal" disable="normal"/>
+	<icon id="25291" dir="\card\" normal="c0291" focus="normal" down="normal" disable="normal"/>
+	<icon id="25292" dir="\card\" normal="c0292" focus="normal" down="normal" disable="normal"/>
+	<icon id="25293" dir="\card\" normal="c0293" focus="normal" down="normal" disable="normal"/>
+	<icon id="25294" dir="\card\" normal="c0294" focus="normal" down="normal" disable="normal"/>
+	<icon id="25295" dir="\card\" normal="c0295" focus="normal" down="normal" disable="normal"/>
+	<icon id="25296" dir="\card\" normal="c0296" focus="normal" down="normal" disable="normal"/>
+	<icon id="25297" dir="\card\" normal="c0297" focus="normal" down="normal" disable="normal"/>
+	<icon id="25298" dir="\card\" normal="c0298" focus="normal" down="normal" disable="normal"/>
+	<icon id="25299" dir="\card\" normal="c0299" focus="normal" down="normal" disable="normal"/>
+                                                                                                    
+	<icon id="25300" dir="\card\" normal="c0300" focus="normal" down="normal" disable="normal"/>
+	<icon id="25301" dir="\card\" normal="c0301" focus="normal" down="normal" disable="normal"/>
+	<icon id="25302" dir="\card\" normal="c0302" focus="normal" down="normal" disable="normal"/>
+	<icon id="25303" dir="\card\" normal="c0303" focus="normal" down="normal" disable="normal"/>
+	<icon id="25304" dir="\card\" normal="c0304" focus="normal" down="normal" disable="normal"/>
+	<icon id="25305" dir="\card\" normal="c0305" focus="normal" down="normal" disable="normal"/>
+	<icon id="25306" dir="\card\" normal="c0306" focus="normal" down="normal" disable="normal"/>
+	<icon id="25307" dir="\card\" normal="c0307" focus="normal" down="normal" disable="normal"/>
+	<icon id="25308" dir="\card\" normal="c0308" focus="normal" down="normal" disable="normal"/>
+	<icon id="25309" dir="\card\" normal="c0309" focus="normal" down="normal" disable="normal"/>
+	<icon id="25310" dir="\card\" normal="c0310" focus="normal" down="normal" disable="normal"/>
+	<icon id="25311" dir="\card\" normal="c0311" focus="normal" down="normal" disable="normal"/>
+	<icon id="25312" dir="\card\" normal="c0312" focus="normal" down="normal" disable="normal"/>
+	<icon id="25313" dir="\card\" normal="c0313" focus="normal" down="normal" disable="normal"/>
+	<icon id="25314" dir="\card\" normal="c0314" focus="normal" down="normal" disable="normal"/>
+	<icon id="25315" dir="\card\" normal="c0315" focus="normal" down="normal" disable="normal"/>
+	<icon id="25316" dir="\card\" normal="c0316" focus="normal" down="normal" disable="normal"/>
+	<icon id="25317" dir="\card\" normal="c0317" focus="normal" down="normal" disable="normal"/>
+	<icon id="25318" dir="\card\" normal="c0318" focus="normal" down="normal" disable="normal"/>
+	<icon id="25319" dir="\card\" normal="c0319" focus="normal" down="normal" disable="normal"/>
+	<icon id="25320" dir="\card\" normal="c0320" focus="normal" down="normal" disable="normal"/>
+	<icon id="25321" dir="\card\" normal="c0321" focus="normal" down="normal" disable="normal"/>
+	<icon id="25322" dir="\card\" normal="c0322" focus="normal" down="normal" disable="normal"/>
+	<icon id="25323" dir="\card\" normal="c0323" focus="normal" down="normal" disable="normal"/>
+	<icon id="25324" dir="\card\" normal="c0324" focus="normal" down="normal" disable="normal"/>
+	<icon id="25325" dir="\card\" normal="c0325" focus="normal" down="normal" disable="normal"/>
+	<icon id="25326" dir="\card\" normal="c0326" focus="normal" down="normal" disable="normal"/>
+	<icon id="25327" dir="\card\" normal="c0327" focus="normal" down="normal" disable="normal"/>
+	<icon id="25328" dir="\card\" normal="c0328" focus="normal" down="normal" disable="normal"/>
+	<icon id="25329" dir="\card\" normal="c0329" focus="normal" down="normal" disable="normal"/>
+	<icon id="25330" dir="\card\" normal="c0330" focus="normal" down="normal" disable="normal"/>
+	<icon id="25331" dir="\card\" normal="c0331" focus="normal" down="normal" disable="normal"/>
+	<icon id="25332" dir="\card\" normal="c0332" focus="normal" down="normal" disable="normal"/>
+	<icon id="25333" dir="\card\" normal="c0333" focus="normal" down="normal" disable="normal"/>
+	<icon id="25334" dir="\card\" normal="c0334" focus="normal" down="normal" disable="normal"/>
+	<icon id="25335" dir="\card\" normal="c0335" focus="normal" down="normal" disable="normal"/>
+	<icon id="25336" dir="\card\" normal="c0336" focus="normal" down="normal" disable="normal"/>
+	<icon id="25337" dir="\card\" normal="c0337" focus="normal" down="normal" disable="normal"/>
+	<icon id="25338" dir="\card\" normal="c0338" focus="normal" down="normal" disable="normal"/>
+	<icon id="25339" dir="\card\" normal="c0339" focus="normal" down="normal" disable="normal"/>
+	<icon id="25340" dir="\card\" normal="c0340" focus="normal" down="normal" disable="normal"/>
+	<icon id="25341" dir="\card\" normal="c0341" focus="normal" down="normal" disable="normal"/>
+	<icon id="25342" dir="\card\" normal="c0342" focus="normal" down="normal" disable="normal"/>
+	<icon id="25343" dir="\card\" normal="c0343" focus="normal" down="normal" disable="normal"/>
+	<icon id="25344" dir="\card\" normal="c0344" focus="normal" down="normal" disable="normal"/>
+	<icon id="25345" dir="\card\" normal="c0345" focus="normal" down="normal" disable="normal"/>
+	<icon id="25346" dir="\card\" normal="c0346" focus="normal" down="normal" disable="normal"/>
+	<icon id="25347" dir="\card\" normal="c0347" focus="normal" down="normal" disable="normal"/>
+	<icon id="25348" dir="\card\" normal="c0348" focus="normal" down="normal" disable="normal"/>
+	<icon id="25349" dir="\card\" normal="c0349" focus="normal" down="normal" disable="normal"/>
+	<icon id="25350" dir="\card\" normal="c0350" focus="normal" down="normal" disable="normal"/>
+	<icon id="25351" dir="\card\" normal="c0351" focus="normal" down="normal" disable="normal"/>
+	<icon id="25352" dir="\card\" normal="c0352" focus="normal" down="normal" disable="normal"/>
+	<icon id="25353" dir="\card\" normal="c0353" focus="normal" down="normal" disable="normal"/>
+	<icon id="25354" dir="\card\" normal="c0354" focus="normal" down="normal" disable="normal"/>
+	<icon id="25355" dir="\card\" normal="c0355" focus="normal" down="normal" disable="normal"/>
+	<icon id="25356" dir="\card\" normal="c0356" focus="normal" down="normal" disable="normal"/>
+	<icon id="25357" dir="\card\" normal="c0357" focus="normal" down="normal" disable="normal"/>
+	<icon id="25358" dir="\card\" normal="c0358" focus="normal" down="normal" disable="normal"/>
+	<icon id="25359" dir="\card\" normal="c0359" focus="normal" down="normal" disable="normal"/>
+	<icon id="25360" dir="\card\" normal="c0360" focus="normal" down="normal" disable="normal"/>
+	<icon id="25361" dir="\card\" normal="c0361" focus="normal" down="normal" disable="normal"/>
+	<icon id="25362" dir="\card\" normal="c0362" focus="normal" down="normal" disable="normal"/>
+	<icon id="25363" dir="\card\" normal="c0363" focus="normal" down="normal" disable="normal"/>
+	<icon id="25364" dir="\card\" normal="c0364" focus="normal" down="normal" disable="normal"/>
+	<icon id="25365" dir="\card\" normal="c0365" focus="normal" down="normal" disable="normal"/>
+	<icon id="25366" dir="\card\" normal="c0366" focus="normal" down="normal" disable="normal"/>
+	<icon id="25367" dir="\card\" normal="c0367" focus="normal" down="normal" disable="normal"/>
+	<icon id="25368" dir="\card\" normal="c0368" focus="normal" down="normal" disable="normal"/>
+	<icon id="25369" dir="\card\" normal="c0369" focus="normal" down="normal" disable="normal"/>
+	<icon id="25370" dir="\card\" normal="c0370" focus="normal" down="normal" disable="normal"/>
+	<icon id="25371" dir="\card\" normal="c0371" focus="normal" down="normal" disable="normal"/>
+	<icon id="25372" dir="\card\" normal="c0372" focus="normal" down="normal" disable="normal"/>
+	<icon id="25373" dir="\card\" normal="c0373" focus="normal" down="normal" disable="normal"/>
+	<icon id="25374" dir="\card\" normal="c0374" focus="normal" down="normal" disable="normal"/>
+	<icon id="25375" dir="\card\" normal="c0375" focus="normal" down="normal" disable="normal"/>
+	<icon id="25376" dir="\card\" normal="c0376" focus="normal" down="normal" disable="normal"/>
+	<icon id="25377" dir="\card\" normal="c0377" focus="normal" down="normal" disable="normal"/>
+	<icon id="25378" dir="\card\" normal="c0378" focus="normal" down="normal" disable="normal"/>
+	<icon id="25379" dir="\card\" normal="c0379" focus="normal" down="normal" disable="normal"/>
+	<icon id="25380" dir="\card\" normal="c0380" focus="normal" down="normal" disable="normal"/>
+	<icon id="25381" dir="\card\" normal="c0381" focus="normal" down="normal" disable="normal"/>
+	<icon id="25382" dir="\card\" normal="c0382" focus="normal" down="normal" disable="normal"/>
+	<icon id="25383" dir="\card\" normal="c0383" focus="normal" down="normal" disable="normal"/>
+	<icon id="25384" dir="\card\" normal="c0384" focus="normal" down="normal" disable="normal"/>
+	<icon id="25385" dir="\card\" normal="c0385" focus="normal" down="normal" disable="normal"/>
+	<icon id="25386" dir="\card\" normal="c0386" focus="normal" down="normal" disable="normal"/>
+	<icon id="25387" dir="\card\" normal="c0387" focus="normal" down="normal" disable="normal"/>
+	<icon id="25388" dir="\card\" normal="c0388" focus="normal" down="normal" disable="normal"/>
+	<icon id="25389" dir="\card\" normal="c0389" focus="normal" down="normal" disable="normal"/>
+	<icon id="25390" dir="\card\" normal="c0390" focus="normal" down="normal" disable="normal"/>
+	<icon id="25391" dir="\card\" normal="c0391" focus="normal" down="normal" disable="normal"/>
+	<icon id="25392" dir="\card\" normal="c0392" focus="normal" down="normal" disable="normal"/>
+	<icon id="25393" dir="\card\" normal="c0393" focus="normal" down="normal" disable="normal"/>
+	<icon id="25394" dir="\card\" normal="c0394" focus="normal" down="normal" disable="normal"/>
+	<icon id="25395" dir="\card\" normal="c0395" focus="normal" down="normal" disable="normal"/>
+	<icon id="25396" dir="\card\" normal="c0396" focus="normal" down="normal" disable="normal"/>
+	<icon id="25397" dir="\card\" normal="c0397" focus="normal" down="normal" disable="normal"/>
+	<icon id="25398" dir="\card\" normal="c0398" focus="normal" down="normal" disable="normal"/>
+	<icon id="25399" dir="\card\" normal="c0399" focus="normal" down="normal" disable="normal"/>
+                                                                                                    
+	<icon id="25400" dir="\card\" normal="c0400" focus="normal" down="normal" disable="normal"/>
+	<icon id="25401" dir="\card\" normal="c0401" focus="normal" down="normal" disable="normal"/>
+	<icon id="25402" dir="\card\" normal="c0402" focus="normal" down="normal" disable="normal"/>
+	<icon id="25403" dir="\card\" normal="c0403" focus="normal" down="normal" disable="normal"/>
+	<icon id="25404" dir="\card\" normal="c0404" focus="normal" down="normal" disable="normal"/>
+	<icon id="25405" dir="\card\" normal="c0405" focus="normal" down="normal" disable="normal"/>
+	<icon id="25406" dir="\card\" normal="c0406" focus="normal" down="normal" disable="normal"/>
+	<icon id="25407" dir="\card\" normal="c0407" focus="normal" down="normal" disable="normal"/>
+	<icon id="25408" dir="\card\" normal="c0408" focus="normal" down="normal" disable="normal"/>
+	<icon id="25409" dir="\card\" normal="c0409" focus="normal" down="normal" disable="normal"/>
+	<icon id="25410" dir="\card\" normal="c0410" focus="normal" down="normal" disable="normal"/>
+	<icon id="25411" dir="\card\" normal="c0411" focus="normal" down="normal" disable="normal"/>
+	<icon id="25412" dir="\card\" normal="c0412" focus="normal" down="normal" disable="normal"/>
+	<icon id="25413" dir="\card\" normal="c0413" focus="normal" down="normal" disable="normal"/>
+	<icon id="25414" dir="\card\" normal="c0414" focus="normal" down="normal" disable="normal"/>
+	<icon id="25415" dir="\card\" normal="c0415" focus="normal" down="normal" disable="normal"/>
+	<icon id="25416" dir="\card\" normal="c0416" focus="normal" down="normal" disable="normal"/>
+	<icon id="25417" dir="\card\" normal="c0417" focus="normal" down="normal" disable="normal"/>
+	<icon id="25418" dir="\card\" normal="c0418" focus="normal" down="normal" disable="normal"/>
+	<icon id="25419" dir="\card\" normal="c0419" focus="normal" down="normal" disable="normal"/>
+	<icon id="25420" dir="\card\" normal="c0420" focus="normal" down="normal" disable="normal"/>
+	<icon id="25421" dir="\card\" normal="c0421" focus="normal" down="normal" disable="normal"/>
+	<icon id="25422" dir="\card\" normal="c0422" focus="normal" down="normal" disable="normal"/>
+	<icon id="25423" dir="\card\" normal="c0423" focus="normal" down="normal" disable="normal"/>
+	<icon id="25424" dir="\card\" normal="c0424" focus="normal" down="normal" disable="normal"/>
+	<icon id="25425" dir="\card\" normal="c0425" focus="normal" down="normal" disable="normal"/>
+	<icon id="25426" dir="\card\" normal="c0426" focus="normal" down="normal" disable="normal"/>
+	<icon id="25427" dir="\card\" normal="c0427" focus="normal" down="normal" disable="normal"/>
+	<icon id="25428" dir="\card\" normal="c0428" focus="normal" down="normal" disable="normal"/>
+	<icon id="25429" dir="\card\" normal="c0429" focus="normal" down="normal" disable="normal"/>
+	<icon id="25430" dir="\card\" normal="c0430" focus="normal" down="normal" disable="normal"/>
+	<icon id="25431" dir="\card\" normal="c0431" focus="normal" down="normal" disable="normal"/>
+	<icon id="25432" dir="\card\" normal="c0432" focus="normal" down="normal" disable="normal"/>
+	<icon id="25433" dir="\card\" normal="c0433" focus="normal" down="normal" disable="normal"/>
+	<icon id="25434" dir="\card\" normal="c0434" focus="normal" down="normal" disable="normal"/>
+	<icon id="25435" dir="\card\" normal="c0435" focus="normal" down="normal" disable="normal"/>
+	<icon id="25436" dir="\card\" normal="c0436" focus="normal" down="normal" disable="normal"/>
+	<icon id="25437" dir="\card\" normal="c0437" focus="normal" down="normal" disable="normal"/>
+	<icon id="25438" dir="\card\" normal="c0438" focus="normal" down="normal" disable="normal"/>
+	<icon id="25439" dir="\card\" normal="c0439" focus="normal" down="normal" disable="normal"/>
+	<icon id="25440" dir="\card\" normal="c0440" focus="normal" down="normal" disable="normal"/>
+	<icon id="25441" dir="\card\" normal="c0441" focus="normal" down="normal" disable="normal"/>
+	<icon id="25442" dir="\card\" normal="c0442" focus="normal" down="normal" disable="normal"/>
+	<icon id="25443" dir="\card\" normal="c0443" focus="normal" down="normal" disable="normal"/>
+	<icon id="25444" dir="\card\" normal="c0444" focus="normal" down="normal" disable="normal"/>
+	<icon id="25445" dir="\card\" normal="c0445" focus="normal" down="normal" disable="normal"/>
+	<icon id="25446" dir="\card\" normal="c0446" focus="normal" down="normal" disable="normal"/>
+	<icon id="25447" dir="\card\" normal="c0447" focus="normal" down="normal" disable="normal"/>
+	<icon id="25448" dir="\card\" normal="c0448" focus="normal" down="normal" disable="normal"/>
+	<icon id="25449" dir="\card\" normal="c0449" focus="normal" down="normal" disable="normal"/>
+	<icon id="25450" dir="\card\" normal="c0450" focus="normal" down="normal" disable="normal"/>
+	<icon id="25451" dir="\card\" normal="c0451" focus="normal" down="normal" disable="normal"/>
+	<icon id="25452" dir="\card\" normal="c0452" focus="normal" down="normal" disable="normal"/>
+	<icon id="25453" dir="\card\" normal="c0453" focus="normal" down="normal" disable="normal"/>
+	<icon id="25454" dir="\card\" normal="c0454" focus="normal" down="normal" disable="normal"/>
+	<icon id="25455" dir="\card\" normal="c0455" focus="normal" down="normal" disable="normal"/>
+	<icon id="25456" dir="\card\" normal="c0456" focus="normal" down="normal" disable="normal"/>
+	<icon id="25457" dir="\card\" normal="c0457" focus="normal" down="normal" disable="normal"/>
+	<icon id="25458" dir="\card\" normal="c0458" focus="normal" down="normal" disable="normal"/>
+	<icon id="25459" dir="\card\" normal="c0459" focus="normal" down="normal" disable="normal"/>
+	<icon id="25460" dir="\card\" normal="c0460" focus="normal" down="normal" disable="normal"/>
+	<icon id="25461" dir="\card\" normal="c0461" focus="normal" down="normal" disable="normal"/>
+	<icon id="25462" dir="\card\" normal="c0462" focus="normal" down="normal" disable="normal"/>
+	<icon id="25463" dir="\card\" normal="c0463" focus="normal" down="normal" disable="normal"/>
+	<icon id="25464" dir="\card\" normal="c0464" focus="normal" down="normal" disable="normal"/>
+	<icon id="25465" dir="\card\" normal="c0465" focus="normal" down="normal" disable="normal"/>
+	<icon id="25466" dir="\card\" normal="c0466" focus="normal" down="normal" disable="normal"/>
+	<icon id="25467" dir="\card\" normal="c0467" focus="normal" down="normal" disable="normal"/>
+	<icon id="25468" dir="\card\" normal="c0468" focus="normal" down="normal" disable="normal"/>
+	<icon id="25469" dir="\card\" normal="c0469" focus="normal" down="normal" disable="normal"/>
+	<icon id="25470" dir="\card\" normal="c0470" focus="normal" down="normal" disable="normal"/>
+	<icon id="25471" dir="\card\" normal="c0471" focus="normal" down="normal" disable="normal"/>
+	<icon id="25472" dir="\card\" normal="c0472" focus="normal" down="normal" disable="normal"/>
+	<icon id="25473" dir="\card\" normal="c0473" focus="normal" down="normal" disable="normal"/>
+	<icon id="25474" dir="\card\" normal="c0474" focus="normal" down="normal" disable="normal"/>
+	<icon id="25475" dir="\card\" normal="c0475" focus="normal" down="normal" disable="normal"/>
+	<icon id="25476" dir="\card\" normal="c0476" focus="normal" down="normal" disable="normal"/>
+	<icon id="25477" dir="\card\" normal="c0477" focus="normal" down="normal" disable="normal"/>
+	<icon id="25478" dir="\card\" normal="c0478" focus="normal" down="normal" disable="normal"/>
+	<icon id="25479" dir="\card\" normal="c0479" focus="normal" down="normal" disable="normal"/>
+	<icon id="25480" dir="\card\" normal="c0480" focus="normal" down="normal" disable="normal"/>
+	<icon id="25481" dir="\card\" normal="c0481" focus="normal" down="normal" disable="normal"/>
+	<icon id="25482" dir="\card\" normal="c0482" focus="normal" down="normal" disable="normal"/>
+	<icon id="25483" dir="\card\" normal="c0483" focus="normal" down="normal" disable="normal"/>
+	<icon id="25484" dir="\card\" normal="c0484" focus="normal" down="normal" disable="normal"/>
+	<icon id="25485" dir="\card\" normal="c0485" focus="normal" down="normal" disable="normal"/>
+	<icon id="25486" dir="\card\" normal="c0486" focus="normal" down="normal" disable="normal"/>
+	<icon id="25487" dir="\card\" normal="c0487" focus="normal" down="normal" disable="normal"/>
+	<icon id="25488" dir="\card\" normal="c0488" focus="normal" down="normal" disable="normal"/>
+	<icon id="25489" dir="\card\" normal="c0489" focus="normal" down="normal" disable="normal"/>
+	<icon id="25490" dir="\card\" normal="c0490" focus="normal" down="normal" disable="normal"/>
+	<icon id="25491" dir="\card\" normal="c0491" focus="normal" down="normal" disable="normal"/>
+	<icon id="25492" dir="\card\" normal="c0492" focus="normal" down="normal" disable="normal"/>
+	<icon id="25493" dir="\card\" normal="c0493" focus="normal" down="normal" disable="normal"/>
+	<icon id="25494" dir="\card\" normal="c0494" focus="normal" down="normal" disable="normal"/>
+	<icon id="25495" dir="\card\" normal="c0495" focus="normal" down="normal" disable="normal"/>
+	<icon id="25496" dir="\card\" normal="c0496" focus="normal" down="normal" disable="normal"/>
+	<icon id="25497" dir="\card\" normal="c0497" focus="normal" down="normal" disable="normal"/>
+	<icon id="25498" dir="\card\" normal="c0498" focus="normal" down="normal" disable="normal"/>
+	<icon id="25499" dir="\card\" normal="c0499" focus="normal" down="normal" disable="normal"/>
+</root>	                                                                                            
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    

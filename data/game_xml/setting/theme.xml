@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<root>
+	<佈景主題 名稱="預設" 道具說明顏色="1" 道具說明變化屬性顏色="2">
+		<顏色定義 代碼="1" 顏色="FFFFFF"/>
+		<顏色定義 代碼="2" 顏色="00FF00"/>
+	</佈景主題>
+
+	<ALIAS theme="佈景主題" name="名稱" color_def="顏色定義" color_num="代碼" color="顏色"/>
+	<ALIAS item_color="道具說明顏色" item_adv_color="道具說明變化屬性顏色"/>
+</root>

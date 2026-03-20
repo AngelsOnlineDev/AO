@@ -1,0 +1,21 @@
+﻿<?xml version="1.0"?>
+<root>
+	<訊息種類 Name="全部" Low="1" High="1000000"/>
+	<訊息種類 Name="天使任務" Low="10001" High="19999"/>
+	<訊息種類 Name="聖光任務" Low="20001" High="29999"/>
+	<訊息種類 Name="暗影任務" Low="30001" High="39999"/>
+	<訊息種類 Name="鋼鐵任務" Low="40001" High="49999"/>
+                  <訊息種類 Name="百獸任務" Low="50001" High="59999"/>
+                  <訊息種類 Name="社團任務" Low="60001" High="69999"/>
+                  <訊息種類 Name="其他任務" Low="70001" High="999999"/>	
+	<訊息檔 Name="一般對話" Low="5001" High="10000" File="S:\midage\setting\big5\msg.xml"/>
+                 <訊息檔 Name="天使任務" Low="10001" High="19999" File="S:\midage\setting\big5\msg.xml"/>
+                 <訊息檔 Name="聖光任務" Low="20001" High="29999" File="S:\midage\setting\big5\msg.xml"/>
+                <訊息檔 Name="暗影任務" Low="30001" High="39999" File="S:\midage\setting\big5\msg.xml"/>
+                 <訊息檔 Name="鋼鐵任務" Low="40001" High="49999" File="S:\midage\setting\big5\msg.xml"/>
+                 <訊息檔 Name="百獸任務" Low="50001" High="59999" File="S:\midage\setting\big5\msg.xml"/>
+                 <訊息檔 Name="社團任務" Low="60001" High="69999" File="S:\midage\setting\big5\msg.xml"/>
+                 <訊息檔 Name="其他任務" Low="70001" High="999999" File="S:\midage\setting\big5\msg.xml"/>
+	<訊息檔 Name="文字訊息" Low="1" High="500" File="S:\midage\setting\big5\string.xml"/>
+	<ALIAS MSGFILTER="訊息種類" MSGFILE="訊息檔"/>
+</root>

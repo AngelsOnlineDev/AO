@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+	<window name="WND_BANK" x="225" y="156"/>
+	<window name="WND_BANKBAGS1" x="0" y="261"/>
+	<window name="WND_BANKBAGS2" x="0" y="427"/>
+	<window name="WND_CHAR_INFO" x="0" y="0">
+		<custom name="SWITCH_CHARINFO" value="1"/>
+		<custom name="SWITCH_SKILLEXP" value="1"/>
+		<custom name="SYSTEM_CHANNEL_SIZE" value="3"/>
+		<custom name="SYSTEM_CUR_CHANNEL" value="0"/>
+		<custom name="WND_COMMAND_HIDE" value="0"/>
+	</window>
+	<window name="WND_EMOTION" x="317" y="50"/>
+	<window name="WND_EQUIP" x="63" y="81"/>
+	<window name="WND_FRIEND" x="365" y="36"/>
+	<window name="WND_GROUP" x="227" y="162"/>
+	<window name="WND_GUILD" x="336" y="49"/>
+	<window name="WND_ITEM" x="226" y="93"/>
+	<window name="WND_MESSAGE" x="350" y="450"/>
+	<window name="WND_MINIMAP" x="476" y="50"/>
+	<window name="WND_NPCINFO" x="341" y="70"/>
+	<window name="WND_NPCSALE" x="120" y="100"/>
+	<window name="WND_PACKAGE" x="272" y="62"/>
+	<window name="WND_PARTNER" x="740" y="125"/>
+	<window name="WND_PARTNER_CMD" x="749" y="177"/>
+	<window name="WND_PET_INFO" x="147" y="80"/>
+	<window name="WND_QUEST" x="149" y="105"/>
+	<window name="WND_QUEST_SHORTCUT" x="430" y="170"/>
+	<window name="WND_QUICK_COMMAND" x="231" y="0">
+		<custom name="QUICK_COMMAND_TYPE" value="1"/>
+		<custom name="QUICK_COMMAND_X1" value="328"/>
+		<custom name="QUICK_COMMAND_X2" value="210"/>
+		<custom name="QUICK_COMMAND_Y1" value="0"/>
+		<custom name="QUICK_COMMAND_Y2" value="0"/>
+	</window>
+	<window name="WND_REPAIR" x="-1" y="-1"/>
+	<window name="WND_SALE" x="427" y="93"/>
+	<window name="WND_SKILLS" x="195" y="48"/>
+	<window name="WND_SKILLS_CHANGE" x="363" y="66"/>
+	<window name="WND_STAGEMAP" x="0" y="0"/>
+	<window name="WND_SYSTEM" x="195" y="48"/>
+	<window name="WND_TUTIONWINDOW" x="356" y="495"/>
+</root>

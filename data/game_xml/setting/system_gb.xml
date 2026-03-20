@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<root>
+	<語系 語系="簡體中文"/>
+	<文字檔>
+		<load>setting\gb\string.xml</load>
+		<load>setting\gb\msg.xml</load>
+	</文字檔>
+	<物件定義檔>
+		<load>setting\common.obd</load>
+		<load>setting\mapobj.obd</load>
+		<load>setting\char.obd</load>
+		<load>setting\house.obd</load>
+		<load>setting\server.obd</load>
+		<load>setting\npc.obd</load>
+		<load>setting\effect.obd</load>
+		<load>setting\m01.obd</load>
+		<load>setting\m02.obd</load>
+	</物件定義檔>
+	<視窗定義檔>
+		<load>setting\globalwnd.xml</load>
+		<load>setting\itemicon.xml</load>
+		<load>setting\skillicon.xml</load>
+		<load>setting\gb\testwnd.xml</load>
+		<load>setting\gb\wnd01.xml</load>
+		<load>setting\gb\wnd02.xml</load>
+		<load>setting\gb\wnd03.xml</load>
+		<load>setting\gb\wnd04.xml</load>
+		<load>setting\gb\wnd05.xml</load>
+		<load>setting\faceicon.xml</load>
+	</視窗定義檔>
+	<場景定義檔 load="setting\gb\stage.xml"/>
+	<npc定義檔>
+		<load>setting\gb\npc.xml</load>
+		<load>setting\gb\monster.xml</load>
+		<load>setting\gb\pet.xml</load>
+	</npc定義檔>
+	<道具定義檔 load="setting\gb\item.xml"/>
+	<套裝定義檔 load="setting\gb\itemset.xml"/>
+	<寶石效果定義檔 load="setting\gb\jeweleffect.xml"/>
+	<藏寶圖定義檔 load="setting\gb\treasuremap.xml"/>
+	<魔法定義檔 load="setting\gb\magic.xml"/>
+	<技能定義檔 load="setting\gb\skill.xml"/>
+	<物產定義檔 load="setting\gb\material.xml"/>
+	<任務定義檔 load="setting\gb\quest.xml"/>
+	<製作定義檔 load="setting\gb\make.xml"/>
+	<掉寶定義檔 load="setting\gb\drop.xml"/>
+	<職業定義檔 load="setting\gb\class.xml"/>
+	<組合定義檔 load="setting\gb\adv.xml"/>
+	<佈景主題定義檔 load="setting\gb\theme.xml"/>
+	<文字保留過濾檔 load="setting\gb\strfilter.xml"/>
+	<script>
+		<load>script\system.so</load>
+		<load>script\magic.so</load>
+		<load>script\stage.so</load>
+		<load>script\logo.so</load>
+	</script>
+	<字型 編號="1" 英文字型="font\eng12.fnt" 英文字型種類="FONT_BIT4" 雙位元字型="font\chs12.fnt" 雙位元字型種類="FONT_BIT4"/>
+	<字型 編號="2" 英文字型="font\eng16.fnt" 英文字型種類="FONT_BIT4" 雙位元字型="font\chs16.fnt" 雙位元字型種類="FONT_BIT4"/>
+	<字型 編號="3" 英文字型="font\a" 英文字型種類="FONT_SHAPE" 英文字型寬="6" 英文字型高="9"/>
+	<字型 編號="4" 英文字型="font\b" 英文字型種類="FONT_SHAPE" 英文字型寬="6" 英文字型高="9"/>
+	<字型 編號="5" 英文字型="font\c" 英文字型種類="FONT_SHAPE" 英文字型寬="12" 英文字型高="18"/>
+	<DEFINE 繁體中文="0" 簡體中文="1" 日文="2" FONT_SHAPE="1" FONT_BITMASK="2" FONT_BITMAP="4" FONT_SYSTEM="8" FONT_BIT4="16"/>
+	<ALIAS string="文字檔" object="物件定義檔" window="視窗定義檔" stage="場景定義檔" npc="npc定義檔" item="道具定義檔" mat="物產定義檔" magic="魔法定義檔" skill="技能定義檔" quest="任務定義檔" make="製作定義檔" drop="掉寶定義檔" class="職業定義檔" adv="組合定義檔" theme="佈景主題定義檔" filter="文字保留過濾檔" itemset="套裝定義檔" treasuremap="藏寶圖定義檔" jeweleffect="寶石效果定義檔"/>
+	<ALIAS font="字型" charset="語系" id="編號" englishfont="英文字型" englishtype="英文字型種類" chinesefont="雙位元字型" chinesetype="雙位元字型種類" englishwidth="英文字型寬" englishheight="英文字型高"/>
+</root>

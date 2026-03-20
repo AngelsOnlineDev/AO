@@ -1,0 +1,19 @@
+# Database journal files (runtime artifacts)
+*.db-wal
+*.db-shm
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+
+# Logs
+logs/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

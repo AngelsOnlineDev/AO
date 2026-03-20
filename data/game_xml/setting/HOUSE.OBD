@@ -1,0 +1,1401 @@
+#include house.obd
+
+[SYSTEM]
+ShapeDir = shape
+SoundDir = sound
+SpriteDir = shape
+BgPath = 
+BgColor = 0x0
+DelayUnit = 60
+UseDefault = 2
+UseDefine = 2
+MinSize = 131072
+MaxSize = 104857600
+Mirror = 0
+
+
+[DEFINE]
+#define SP_NUMBER_MAX				0x7fffffff
+
+#define SP_EVENT_ACT_WAIT                       0x00000001	//SP_EVENT_ACT_WAIT
+#define SP_EVENT_ACT_FADEOUT                    0x00000002	//SP_EVENT_ACT_FADEOUT
+#define SP_EVENT_ACT_REMOVE                     0x00000003	//SP_EVENT_ACT_REMOVE
+#define SP_EVENT_ACT_NO_SHADOW                  0x00000004	//SP_EVENT_ACT_NO_SHADOW
+
+#define SERV_CLASS_BASE                         0x80000001	//伺服器一般物件
+#define SERV_CLASS_CHAROBJ                      0x80000002	//伺服器角色物件
+#define SERV_CLASS_ITEMOBJ                      0x80000003	//伺服器道具物件
+#define SERV_CLASS_STATIC                       0x80000004	//伺服器靜態物件
+#define SERV_CLASS_GEN                          0x80000005	//伺服器怪物產生器
+#define SERV_CLASS_PLAYEROBJ                    0x80000102	//伺服器玩家物件
+#define SERV_CLASS_MATOBJ                       0x80000104	//伺服器物產物件
+#define SERV_CLASS_NPCOBJ                       0x80000202	//伺服器NPC物件
+#define SERV_CLASS_PETOBJ                       0x80010202	//伺服器寵物物件
+#define SP_CLASS_BASE                           0x00000001	//SP_CLASS_BASE
+#define SP_CLASS_MAPOBJ                         0x00000002	//SP_CLASS_MAPOBJ
+#define SP_CLASS_CHAROBJ                        0x00000102	//SP_CLASS_CHAROBJ
+#define SP_CLASS_HOUSEIN                        0x00000202	//SP_CLASS_HOUSEIN
+#define SP_CLASS_HOUSEOUT                       0x00000402	//SP_CLASS_HOUSEOUT
+#define SP_CLASS_EFFECT                         0x00000802	//SP_CLASS_EFFECT
+#define SP_CLASS_PLAYER                         0x00001102	//SP_CLASS_PLAYER
+#define SP_CLASS_MAGIC                          0x00001802	//SP_CLASS_MAGIC
+#define SP_CLASS_MAPOBJ_11TREE                  0x00010002	//樹木植物
+#define SP_CLASS_HOUSEIN_COMMON                 0x00010202	//共用屋內
+#define SP_CLASS_HOUSEOUT_COMMON                0x00010402	//共用屋外
+#define SP_CLASS_MAPOBJ_12FLOWER                0x00020002	//花草植物
+#define SP_CLASS_HOUSEIN_LIGHT                  0x00020202	//光明屋內
+#define SP_CLASS_HOUSEOUT_LIGHT                 0x00020402	//光明屋外
+#define SP_CLASS_MAPOBJ_13PLANT                 0x00030002	//其他植物
+#define SP_CLASS_HOUSEIN_DARK                   0x00030202	//黑暗屋內
+#define SP_CLASS_HOUSEOUT_DARK                  0x00030402	//黑暗屋外
+#define SP_CLASS_MAPOBJ_21COMMONOBJ             0x00040002	//普通雜物
+#define SP_CLASS_HOUSEIN_CHAOS                  0x00040202	//渾沌屋內
+#define SP_CLASS_HOUSEOUT_CHAOS                 0x00040402	//渾沌屋外
+#define SP_CLASS_MAPOBJ_22LIGHTOBJ              0x00050002	//光明雜物
+#define SP_CLASS_HOUSEIN_EARTH                  0x00050202	//大地屋內
+#define SP_CLASS_HOUSEOUT_EARTH                 0x00050402	//大地屋外
+#define SP_CLASS_MAPOBJ_23DARKOBJ               0x00060002	//黑暗雜物
+#define SP_CLASS_MAPOBJ_24CHAOSOBJ              0x00070002	//渾沌雜物
+#define SP_CLASS_MAPOBJ_25EARTHOBJ              0x00080002	//大地雜物
+#define SP_CLASS_MAPOBJ_31ACTIONOBJ             0x00090002	//動態物件
+
+#define SP_ATTRIB_DISTURB                       0x00020000	//SP_ATTRIB_DISTURB
+#define SP_ATTRIB_ZBUFFER1                      0x00040000	//SP_ATTRIB_ZBUFFER1
+#define SP_ATTRIB_ZBUFFER2                      0x00080000	//SP_ATTRIB_ZBUFFER2
+#define SP_ATTRIB_STATIC                        0x00100000	//SP_ATTRIB_STATIC
+#define SP_ATTRIB_HITTEST                       0x00200000	//SP_ATTRIB_HITTEST
+#define SP_ATTRIB_SHADOW                        0x00400000	//SP_ATTRIB_SHADOW
+#define SP_ATTRIB_MIRROR                        0x00800000	//SP_ATTRIB_MIRROR
+#define SP_ATTRIB_BOMBALL                       0x01000000	//SP_ATTRIB_BOMBALL
+#define SP_ATTRIB_HIDE                          0x02000000	//SP_ATTRIB_HIDE
+
+#define SP_ATTRIB_ALPHA                         0x00000001	//Alpha
+#define SP_ATTRIB_MIXER                         0x00000002	//混色
+#define SP_ATTRIB_WHITELIGHT                    0x00000004	//加色
+#define SP_ATTRIB_DARKLIGHT                     0x00000008	//減色
+#define SP_ATTRIB_OUTLINE                       0x00000010	//外框
+#define SP_ATTRIB_FLASH                         0x00000020	//Flash效果
+#define SP_ATTRIB_SMOKE                         0x00000040	//Smoke效果
+#define SP_ATTRIB_WATER                         0x00000080	//Water效果
+#define SP_ATTRIB_SINGLE                        0x00000100	//單色
+#define SP_ATTRIB_GLASS                         0x00000200	//玻璃色
+#define SP_ATTRIB_GRAY                          0x00000400	//灰階
+#define SP_ATTRIB_TABLE                         0x00001000	//表格
+#define SP_ATTRIB_BIAS                          0x00002000	//換色
+
+
+[SP_CLASS]
+Name = SERV_CLASS_BASE
+Value = 0x80000001
+Comment = 伺服器一般物件
+
+[SP_CLASS]
+Name = SERV_CLASS_CHAROBJ
+Value = 0x80000002
+Comment = 伺服器角色物件
+
+[SP_CLASS]
+Name = SERV_CLASS_GEN
+Value = 0x80000005
+Comment = 伺服器怪物產生器
+Label = 物件
+Label = 時間
+Label = 數量
+Label = 位置
+Label = 事件
+Label = 路徑
+Label = 範圍
+Label = 對話
+
+[SP_CLASS]
+Name = SERV_CLASS_ITEMOBJ
+Value = 0x80000003
+Comment = 伺服器道具物件
+
+[SP_CLASS]
+Name = SERV_CLASS_MATOBJ
+Value = 0x80000104
+Comment = 伺服器物產物件
+
+[SP_CLASS]
+Name = SERV_CLASS_NPCOBJ
+Value = 0x80000202
+Comment = 伺服器NPC物件
+Label = 路徑
+Label = 重生
+
+[SP_CLASS]
+Name = SERV_CLASS_PETOBJ
+Value = 0x80010202
+Comment = 伺服器寵物物件
+
+[SP_CLASS]
+Name = SERV_CLASS_PLAYEROBJ
+Value = 0x80000102
+Comment = 伺服器玩家物件
+
+[SP_CLASS]
+Name = SERV_CLASS_STATIC
+Value = 0x80000004
+Comment = 伺服器靜態物件
+
+[SP_CLASS]
+Name = SP_CLASS_BASE
+Value = 0x00000001
+Comment = SP_CLASS_BASE
+
+[SP_CLASS]
+Name = SP_CLASS_CHAROBJ
+Value = 0x00000102
+Comment = SP_CLASS_CHAROBJ
+
+[SP_CLASS]
+Name = SP_CLASS_EFFECT
+Value = 0x00000802
+Comment = SP_CLASS_EFFECT
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEIN
+Value = 0x00000202
+Comment = SP_CLASS_HOUSEIN
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEIN_CHAOS
+Value = 0x00040202
+Comment = 渾沌屋內
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEIN_COMMON
+Value = 0x00010202
+Comment = 共用屋內
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEIN_DARK
+Value = 0x00030202
+Comment = 黑暗屋內
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEIN_EARTH
+Value = 0x00050202
+Comment = 大地屋內
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEIN_LIGHT
+Value = 0x00020202
+Comment = 光明屋內
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEOUT
+Value = 0x00000402
+Comment = SP_CLASS_HOUSEOUT
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEOUT_CHAOS
+Value = 0x00040402
+Comment = 渾沌屋外
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEOUT_COMMON
+Value = 0x00010402
+Comment = 共用屋外
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEOUT_DARK
+Value = 0x00030402
+Comment = 黑暗屋外
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEOUT_EARTH
+Value = 0x00050402
+Comment = 大地屋外
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEOUT_LIGHT
+Value = 0x00020402
+Comment = 光明屋外
+
+[SP_CLASS]
+Name = SP_CLASS_MAGIC
+Value = 0x00001802
+Comment = SP_CLASS_MAGIC
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ
+Value = 0x00000002
+Comment = SP_CLASS_MAPOBJ
+Label = 光源
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_11TREE
+Value = 0x00010002
+Comment = 樹木植物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_12FLOWER
+Value = 0x00020002
+Comment = 花草植物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_13PLANT
+Value = 0x00030002
+Comment = 其他植物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_21COMMONOBJ
+Value = 0x00040002
+Comment = 普通雜物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_22LIGHTOBJ
+Value = 0x00050002
+Comment = 光明雜物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_23DARKOBJ
+Value = 0x00060002
+Comment = 黑暗雜物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_24CHAOSOBJ
+Value = 0x00070002
+Comment = 渾沌雜物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_25EARTHOBJ
+Value = 0x00080002
+Comment = 大地雜物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_31ACTIONOBJ
+Value = 0x00090002
+Comment = 動態物件
+
+[SP_CLASS]
+Name = SP_CLASS_PLAYER
+Value = 0x00001102
+Comment = SP_CLASS_PLAYER
+
+
+
+[SP_EVENT]
+Name = SP_EVENT_ACT_FADEOUT
+Value = 0x00000002
+Comment = SP_EVENT_ACT_FADEOUT
+
+[SP_EVENT]
+Name = SP_EVENT_ACT_NO_SHADOW
+Value = 0x00000004
+Comment = SP_EVENT_ACT_NO_SHADOW
+
+[SP_EVENT]
+Name = SP_EVENT_ACT_REMOVE
+Value = 0x00000003
+Comment = SP_EVENT_ACT_REMOVE
+
+[SP_EVENT]
+Name = SP_EVENT_ACT_WAIT
+Value = 0x00000001
+Comment = SP_EVENT_ACT_WAIT
+
+
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_BOMBALL
+Value = 0x01000000
+Comment = SP_ATTRIB_BOMBALL
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_DISTURB
+Value = 0x00020000
+Comment = SP_ATTRIB_DISTURB
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_HIDE
+Value = 0x02000000
+Comment = SP_ATTRIB_HIDE
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_HITTEST
+Value = 0x00200000
+Comment = SP_ATTRIB_HITTEST
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_MIRROR
+Value = 0x00800000
+Comment = SP_ATTRIB_MIRROR
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_SHADOW
+Value = 0x00400000
+Comment = SP_ATTRIB_SHADOW
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_STATIC
+Value = 0x00100000
+Comment = SP_ATTRIB_STATIC
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_ZBUFFER1
+Value = 0x00040000
+Comment = SP_ATTRIB_ZBUFFER1
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_ZBUFFER2
+Value = 0x00080000
+Comment = SP_ATTRIB_ZBUFFER2
+
+
+
+[OBJECT]
+Name = 新手小教室-內
+Sequence = 10001
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_COMMON
+Directory = \house
+Sprite = Wait, 00-001-2N0
+
+
+[OBJECT]
+Name = 新手小教室-外
+Sequence = 10002
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_COMMON
+Directory = \house
+Sprite = Wait, 00-001-2U0
+
+
+[OBJECT]
+Name = 新手小教室-背
+Sequence = 10003
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_COMMON
+Directory = \house
+Sprite = Wait, 00-001-3U0
+
+
+[OBJECT]
+Name = 新手大教室-內(X)
+Sequence = 10004
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_COMMON
+Directory = \house
+Sprite = Wait, 00-002-1N0
+
+
+[OBJECT]
+Name = 新手大教室-外(X)
+Sequence = 10005
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_COMMON
+Directory = \house
+Sprite = Wait, 00-002-1U0
+
+
+[OBJECT]
+Name = 光明銀行-內
+Sequence = 10006
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_LIGHT
+Directory = \house
+Sprite = Wait, 01-001-1N0
+
+
+[OBJECT]
+Name = 光明銀行-外
+Sequence = 10007
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_LIGHT
+Directory = \house
+Sprite = Wait, 01-001-1U0
+
+
+[OBJECT]
+Name = 光明工作坊-內
+Sequence = 10008
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_LIGHT
+Directory = \house
+Sprite = Wait, 01-002-1N0
+
+
+[OBJECT]
+Name = 光明工作坊-外
+Sequence = 10009
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_LIGHT
+Directory = \house
+Sprite = Wait, 01-002-1U0
+
+
+[OBJECT]
+Name = 光明工作坊-背
+Sequence = 10010
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_LIGHT
+Directory = \house
+Sprite = Wait, 01-002-3U0
+
+
+[OBJECT]
+Name = 光明鍊金房-內
+Sequence = 10011
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_LIGHT
+Directory = \house
+Sprite = Wait, 01-003-1N0
+
+
+[OBJECT]
+Name = 光明鍊金房-外
+Sequence = 10012
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_LIGHT
+Directory = \house
+Sprite = Wait, 01-003-1U0
+
+
+[OBJECT]
+Name = 光明鍊金房-背
+Sequence = 10013
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_LIGHT
+Directory = \house
+Sprite = Wait, 01-003-3U0
+
+
+[OBJECT]
+Name = 光明服飾店-內
+Sequence = 10014
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_LIGHT
+Directory = \house
+Sprite = Wait, 01-004-2N0
+
+
+[OBJECT]
+Name = 光明服飾店-外
+Sequence = 10015
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_LIGHT
+Directory = \house
+Sprite = Wait, 01-004-2U0
+
+
+[OBJECT]
+Name = 光明服飾店-無彩帶
+Sequence = 10016
+BaseBias = 0x309, 0xb595, 132
+MaskBias = 0xff083d, 0x7716, 160
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2, SP_ATTRIB_BIAS
+Process = SP_CLASS_HOUSEOUT_LIGHT
+Directory = \house
+Sprite = Wait, 01-004-1U0
+
+
+[OBJECT]
+Name = 光明大民房1-內
+Sequence = 10017
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_LIGHT
+Directory = \house
+Sprite = Wait, 01-005-1N0
+
+
+[OBJECT]
+Name = 光明大民房1-外
+Sequence = 10018
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_LIGHT
+Directory = \house
+Sprite = Wait, 01-005-1U0
+
+
+[OBJECT]
+Name = 光明大民房1-背
+Sequence = 10019
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_LIGHT
+Directory = \house
+Sprite = Wait, 01-005-3U0
+
+
+[OBJECT]
+Name = 光明民房1-內
+Sequence = 10020
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_LIGHT
+Directory = \house
+Sprite = Wait, 01-007-1N0
+
+
+[OBJECT]
+Name = 光明民房1-外
+Sequence = 10021
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_LIGHT
+Directory = \house
+Sprite = Wait, 01-007-1U0
+
+
+[OBJECT]
+Name = 光明民房1-背
+Sequence = 10022
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_LIGHT
+Directory = \house
+Sprite = Wait, 01-007-4U0
+
+
+[OBJECT]
+Name = 光明民房2-內
+Sequence = 10023
+Flags = SP_ATTRIB_STATIC
+Process = SP_CLASS_HOUSEIN_LIGHT
+Directory = \house
+Sprite = Wait, 01-008-1N0
+
+
+[OBJECT]
+Name = 光明民房2-外
+Sequence = 10024
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_LIGHT
+Directory = \house
+Sprite = Wait, 01-008-1U0
+
+
+[OBJECT]
+Name = 光明民房2-背
+Sequence = 10025
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_LIGHT
+Directory = \house
+Sprite = Wait, 01-008-4U0
+
+
+[OBJECT]
+Name = 光明民房3-內
+Sequence = 10026
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_LIGHT
+Directory = \house
+Sprite = Wait, 01-009-1N0
+
+
+[OBJECT]
+Name = 光明民房3-外
+Sequence = 10027
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_LIGHT
+Directory = \house
+Sprite = Wait, 01-009-1U0
+
+
+[OBJECT]
+Name = 光明民房3-背
+Sequence = 10028
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_LIGHT
+Directory = \house
+Sprite = Wait, 01-009-4U0
+
+
+[OBJECT]
+Name = 光明大民房2-內
+Sequence = 10029
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_LIGHT
+Directory = \house
+Sprite = Wait, 01-010-1N0
+
+
+[OBJECT]
+Name = 光明大民房2-外
+Sequence = 10030
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_LIGHT
+Directory = \house
+Sprite = Wait, 01-010-1U0
+
+
+[OBJECT]
+Name = 光明大民房2-背
+Sequence = 10031
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_LIGHT
+Directory = \house
+Sprite = Wait, 01-010-3U0
+
+
+[OBJECT]
+Name = 黑暗民房1-內
+Sequence = 10032
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_DARK
+Directory = \house
+Sprite = Wait, 02-004-1N0
+
+
+[OBJECT]
+Name = 黑暗民房1-外
+Sequence = 10033
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_DARK
+Directory = \house
+Sprite = Wait, 02-004-1U0
+
+
+[OBJECT]
+Name = 黑暗民房1-背
+Sequence = 10034
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_DARK
+Directory = \house
+Sprite = Wait, 02-004-3U0
+
+
+[OBJECT]
+Name = 黑暗大民房1-內
+Sequence = 10035
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_DARK
+Directory = \house
+Sprite = Wait, 02-005-1N0
+
+
+[OBJECT]
+Name = 黑暗大民房1-外
+Sequence = 10036
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_DARK
+Directory = \house
+Sprite = Wait, 02-005-1U0
+
+
+[OBJECT]
+Name = 黑暗大民房1-背
+Sequence = 10037
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_DARK
+Directory = \house
+Sprite = Wait, 02-005-3U0
+
+
+[OBJECT]
+Name = 黑暗大民房2-內
+Sequence = 10038
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_DARK
+Directory = \house
+Sprite = Wait, 02-006-1N0
+
+
+[OBJECT]
+Name = 黑暗大民房2-外
+Sequence = 10039
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_DARK
+Directory = \house
+Sprite = Wait, 02-006-1U0
+
+
+[OBJECT]
+Name = 黑暗大民房2-背
+Sequence = 10040
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_DARK
+Directory = \house
+Sprite = Wait, 02-006-4U0
+
+
+[OBJECT]
+Name = 黑暗大民房3-內
+Sequence = 10041
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_DARK
+Directory = \house
+Sprite = Wait, 02-007-1N0
+
+
+[OBJECT]
+Name = 黑暗大民房3-外
+Sequence = 10042
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_DARK
+Directory = \house
+Sprite = Wait, 02-007-1U0
+
+
+[OBJECT]
+Name = 黑暗大民房3-背
+Sequence = 10043
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_DARK
+Directory = \house
+Sprite = Wait, 02-007-4U0
+
+
+[OBJECT]
+Name = 渾沌工作坊-內
+Sequence = 10044
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_CHAOS
+Directory = \house
+Sprite = Wait, 03-002-1N0
+
+
+[OBJECT]
+Name = 渾沌工作坊-外
+Sequence = 10045
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_CHAOS
+Directory = \house
+Sprite = Wait, 03-002-1U0
+
+
+[OBJECT]
+Name = 渾沌工作坊-背
+Sequence = 10046
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_CHAOS
+Directory = \house
+Sprite = Wait, 03-002-3U0
+
+
+[OBJECT]
+Name = 渾沌鍊金房-內
+Sequence = 10047
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_CHAOS
+Directory = \house
+Sprite = Wait, 03-003-1N0
+
+
+[OBJECT]
+Name = 渾沌鍊金房-外
+Sequence = 10048
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_CHAOS
+Directory = \house
+Sprite = Wait, 03-003-1U0
+
+
+[OBJECT]
+Name = 渾沌鍊金房-背
+Sequence = 10049
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_CHAOS
+Directory = \house
+Sprite = Wait, 03-003-4U0
+
+
+[OBJECT]
+Name = 渾沌民房1-內
+Sequence = 10050
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_CHAOS
+Directory = \house
+Sprite = Wait, 03-004-1N0
+
+
+[OBJECT]
+Name = 渾沌民房1-外
+Sequence = 10051
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_CHAOS
+Directory = \house
+Sprite = Wait, 03-004-1U0
+
+
+[OBJECT]
+Name = 渾沌民房1-背
+Sequence = 10052
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_CHAOS
+Directory = \house
+Sprite = Wait, 03-004-3U0
+
+
+[OBJECT]
+Name = 渾沌大民房1-內
+Sequence = 10053
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_CHAOS
+Directory = \house
+Sprite = Wait, 03-005-1N0
+
+
+[OBJECT]
+Name = 渾沌大民房1-外
+Sequence = 10054
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2, SP_ATTRIB_BIAS
+Process = SP_CLASS_HOUSEOUT_CHAOS
+Directory = \house
+Sprite = Wait, 03-005-1U0
+
+
+[OBJECT]
+Name = 渾沌大民房1-背
+Sequence = 10055
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_CHAOS
+Directory = \house
+Sprite = Wait, 03-005-3U0
+
+
+[OBJECT]
+Name = 大地工作坊1-內
+Sequence = 10056
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_EARTH
+Directory = \house
+Sprite = Wait, 04-001-1N0
+
+
+[OBJECT]
+Name = 大地工作坊1-外
+Sequence = 10057
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_EARTH
+Directory = \house
+Sprite = Wait, 04-001-1U0
+
+
+[OBJECT]
+Name = 大地工作坊1-背
+Sequence = 10058
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_EARTH
+Directory = \house
+Sprite = Wait, 04-001-4U0
+
+
+[OBJECT]
+Name = 大地工作坊2-內
+Sequence = 10059
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_EARTH
+Directory = \house
+Sprite = Wait, 04-002-1N0
+
+
+[OBJECT]
+Name = 大地工作坊2-外
+Sequence = 10060
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_EARTH
+Directory = \house
+Sprite = Wait, 04-002-1U0
+
+
+[OBJECT]
+Name = 大地工作坊2-背
+Sequence = 10061
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_EARTH
+Directory = \house
+Sprite = Wait, 04-002-3U0
+
+
+[OBJECT]
+Name = 大地民房1-內
+Sequence = 10062
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_EARTH
+Directory = \house
+Sprite = Wait, 04-003-1N0
+
+
+[OBJECT]
+Name = 大地民房1-外
+Sequence = 10063
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_EARTH
+Directory = \house
+Sprite = Wait, 04-003-1U0
+
+
+[OBJECT]
+Name = 大地民房1-背
+Sequence = 10064
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_EARTH
+Directory = \house
+Sprite = Wait, 04-003-4U0
+
+
+[OBJECT]
+Name = 大地民房(麻紗)-內
+Sequence = 10065
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_EARTH
+Directory = \house
+Sprite = Wait, 04-003-2N0
+
+
+[OBJECT]
+Name = 大地民房(麻紗)-外
+Sequence = 10066
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_EARTH
+Directory = \house
+Sprite = Wait, 04-003-2U0
+
+
+[OBJECT]
+Name = 大地民房(麻紗)-背
+Sequence = 10067
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_EARTH
+Directory = \house
+Sprite = Wait, 04-003-3U0
+
+
+[OBJECT]
+Name = 大地大民房-內
+Sequence = 10068
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_EARTH
+Directory = \house
+Sprite = Wait, 04-005-1N0
+
+
+[OBJECT]
+Name = 大地大民房-外
+Sequence = 10069
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_EARTH
+Directory = \house
+Sprite = Wait, 04-005-1U0
+
+
+[OBJECT]
+Name = 大地大民房-背
+Sequence = 10070
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_EARTH
+Directory = \house
+Sprite = Wait, 04-005-2U0
+
+
+[OBJECT]
+Name = 木頭民房-內
+Sequence = 10071
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_COMMON
+Directory = \house
+Sprite = Wait, 00-003-1N0
+
+
+[OBJECT]
+Name = 木頭民房-外
+Sequence = 10072
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_COMMON
+Directory = \house
+Sprite = Wait, 00-003-1U0
+
+
+[OBJECT]
+Name = 木頭民房-背
+Sequence = 10073
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_COMMON
+Directory = \house
+Sprite = Wait, 00-003-3U0
+
+
+[OBJECT]
+Name = 木頭大民房-內
+Sequence = 10074
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_COMMON
+Directory = \house
+Sprite = Wait, 00-004-2N0
+
+
+[OBJECT]
+Name = 木頭大民房-外
+Sequence = 10075
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_COMMON
+Directory = \house
+Sprite = Wait, 00-004-2U0
+
+
+[OBJECT]
+Name = 木頭大民房-背
+Sequence = 10076
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_COMMON
+Directory = \house
+Sprite = Wait, 00-004-3U0
+
+
+[OBJECT]
+Name = 石頭民房-內
+Sequence = 10077
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_COMMON
+Directory = \house
+Sprite = Wait, 00-006-1N0
+
+
+[OBJECT]
+Name = 石頭民房-外
+Sequence = 10078
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_COMMON
+Directory = \house
+Sprite = Wait, 00-006-1U0
+
+
+[OBJECT]
+Name = 石頭民房-背
+Sequence = 10079
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_COMMON
+Directory = \house
+Sprite = Wait, 00-006-3U0
+
+
+[OBJECT]
+Name = 石頭大民房-內
+Sequence = 10080
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_COMMON
+Directory = \house
+Sprite = Wait, 00-005-1N0
+
+
+[OBJECT]
+Name = 石頭大民房-外
+Sequence = 10081
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_COMMON
+Directory = \house
+Sprite = Wait, 00-005-1U0
+
+
+[OBJECT]
+Name = 石頭大民房-背
+Sequence = 10082
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_COMMON
+Directory = \house
+Sprite = Wait, 00-005-3U0
+
+
+[OBJECT]
+Name = 營寨民房-內
+Sequence = 10083
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_COMMON
+Directory = \house
+Sprite = Wait, 00-007-1N0
+
+
+[OBJECT]
+Name = 營寨民房-外
+Sequence = 10084
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_COMMON
+Directory = \house
+Sprite = Wait, 00-007-1U0
+
+
+[OBJECT]
+Name = 營寨民房-背
+Sequence = 10085
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_COMMON
+Directory = \house
+Sprite = Wait, 00-007-3U0
+
+
+[OBJECT]
+Name = 營寨大民房-內
+Sequence = 10086
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_COMMON
+Directory = \house
+Sprite = Wait, 00-008-1N0
+
+
+[OBJECT]
+Name = 營寨大民房-外
+Sequence = 10087
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_COMMON
+Directory = \house
+Sprite = Wait, 00-008-1U0
+
+
+[OBJECT]
+Name = 營寨大民房-背
+Sequence = 10088
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_COMMON
+Directory = \house
+Sprite = Wait, 00-008-3U0
+
+
+[OBJECT]
+Name = 光明大民房3-內
+Sequence = 10089
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_LIGHT
+Directory = \house
+Sprite = Wait, 01-006-1N0
+
+
+[OBJECT]
+Name = 光明大民房3-外
+Sequence = 10090
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_LIGHT
+Directory = \house
+Sprite = Wait, 01-006-1U0
+
+
+[OBJECT]
+Name = 光明大民房3-背
+Sequence = 10091
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_LIGHT
+Directory = \house
+Sprite = Wait, 01-006-3U0
+
+
+[OBJECT]
+Name = 黑暗銀行-內
+Sequence = 10092
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_DARK
+Directory = \house
+Sprite = Wait, 02-001-1N0
+
+
+[OBJECT]
+Name = 黑暗銀行-外
+Sequence = 10093
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_DARK
+Directory = \house
+Sprite = Wait, 02-001-1U0
+
+
+[OBJECT]
+Name = 黑暗工作坊1-內
+Sequence = 10094
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_DARK
+Directory = \house
+Sprite = Wait, 02-002-1N0
+
+
+[OBJECT]
+Name = 黑暗工作坊1-外
+Sequence = 10095
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_DARK
+Directory = \house
+Sprite = Wait, 02-002-1U0
+
+
+[OBJECT]
+Name = 黑暗工作坊1-背
+Sequence = 10096
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_DARK
+Directory = \house
+Sprite = Wait, 02-002-4U0
+
+
+[OBJECT]
+Name = 渾沌銀行-內
+Sequence = 10097
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_CHAOS
+Directory = \house
+Sprite = Wait, 03-001-1N0
+
+
+[OBJECT]
+Name = 渾沌銀行-外
+Sequence = 10098
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_CHAOS
+Directory = \house
+Sprite = Wait, 03-001-1U0
+
+
+[OBJECT]
+Name = 大地民房2-內
+Sequence = 10099
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_EARTH
+Directory = \house
+Sprite = Wait, 04-004-1N0
+
+
+[OBJECT]
+Name = 大地民房2-外
+Sequence = 10100
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_EARTH
+Directory = \house
+Sprite = Wait, 04-004-1U0
+
+
+[OBJECT]
+Name = 大地民房2-背
+Sequence = 10101
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_EARTH
+Directory = \house
+Sprite = Wait, 04-004-3U0
+
+
+[OBJECT]
+Name = 大地銀行-內
+Sequence = 10102
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_EARTH
+Directory = \house
+Sprite = Wait, 04-006-1N0
+
+
+[OBJECT]
+Name = 大地銀行-外
+Sequence = 10103
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_EARTH
+Directory = \house
+Sprite = Wait, 04-006-1U0
+
+
+[OBJECT]
+Name = 大地銀行-背
+Sequence = 10104
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_EARTH
+Directory = \house
+Sprite = Wait, 04-006-3U0
+
+
+[OBJECT]
+Name = 黑暗工作坊2-內
+Sequence = 10105
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_DARK
+Directory = \house
+Sprite = Wait, 02-003-1N0
+
+
+[OBJECT]
+Name = 黑暗工作坊2-1-外
+Sequence = 10106
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_DARK
+Directory = \house
+Sprite = Wait, 02-003-1U0
+
+
+[OBJECT]
+Name = 黑暗工作坊2-2-外
+Sequence = 10107
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_DARK
+Directory = \house
+Sprite = Wait, 02-003-2U0
+
+
+[OBJECT]
+Name = 教堂-內
+Sequence = 10108
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_COMMON
+Directory = \house
+Sprite = Wait, 00-009-1N0
+
+
+[OBJECT]
+Name = 教堂-外
+Sequence = 10109
+Level = 0
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_COMMON
+Directory = \house
+Sprite = Wait, 00-009-1U0
+
+
+[OBJECT]
+Name = 海攤小屋(正面)-外觀
+Sequence = 10110
+Level = 0
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_COMMON
+Directory = \house
+Sprite = Wait, 00-010-1U0
+
+
+[OBJECT]
+Name = 海攤小屋(背面)-外觀
+Sequence = 10111
+Level = 0
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_COMMON
+Directory = \house
+Sprite = Wait, 00-010-2U0
+
+
+[OBJECT]
+Name = 海攤小屋-內觀
+Sequence = 10112
+Level = 0
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_COMMON
+Directory = \house
+Sprite = Wait, 00-010-1N0
+
+
+[OBJECT]
+Name = 咖啡吧-外觀
+Sequence = 10113
+Level = 0
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_COMMON
+Directory = \house
+Sprite = Wait, 00-011-1U0
+
+
+[OBJECT]
+Name = 咖啡吧-內觀
+Sequence = 10114
+Level = 0
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEIN_COMMON
+Directory = \house
+Sprite = Wait, 00-011-1N0
+
+
+[OBJECT]
+Name = 涼亭-外觀
+Sequence = 10115
+Level = 0
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1, SP_ATTRIB_ZBUFFER2
+Process = SP_CLASS_HOUSEOUT_COMMON
+Directory = \house
+Sprite = Wait, 00-012-1U0
+
+
+[OBJECT]
+Name = 涼亭-吊床
+Sequence = 10116
+Level = 0
+Flags = SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SP_CLASS_HOUSEOUT_COMMON
+Directory = \house
+Sprite = Wait, 00-012-1N0
+

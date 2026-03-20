@@ -1,0 +1,1883 @@
+#include common.obd
+
+[SYSTEM]
+ShapeDir = shape
+SoundDir = sound
+SpriteDir = shape
+BgPath = 
+BgColor = 0x0
+DelayUnit = 60
+UseDefault = 2
+UseDefine = 2
+MinSize = 131072
+MaxSize = 10485760
+Mirror = 0
+
+
+[DEFINE]
+#define SP_NUMBER_MAX				0x7fffffff
+
+#define SP_EVENT_ACT_WAIT                       0x00000001	//SP_EVENT_ACT_WAIT
+#define SP_EVENT_ACT_FADEOUT                    0x00000002	//SP_EVENT_ACT_FADEOUT
+#define SP_EVENT_ACT_REMOVE                     0x00000003	//SP_EVENT_ACT_REMOVE
+#define SP_EVENT_ACT_NO_SHADOW                  0x00000004	//SP_EVENT_ACT_NO_SHADOW
+
+#define SERV_CLASS_BASE                         0x80000001	//伺服器一般物件
+#define SERV_CLASS_CHAROBJ                      0x80000002	//伺服器角色物件
+#define SERV_CLASS_ITEMOBJ                      0x80000003	//伺服器道具物件
+#define SERV_CLASS_STATIC                       0x80000004	//伺服器靜態物件
+#define SERV_CLASS_GEN                          0x80000005	//伺服器怪物產生器
+#define SERV_CLASS_TIMER                        0x80000006	//伺服器計時器物件
+#define SERV_CLASS_PLAYEROBJ                    0x80000102	//伺服器玩家物件
+#define SERV_CLASS_MATOBJ                       0x80000104	//伺服器物產物件
+#define SERV_CLASS_NPCOBJ                       0x80000202	//伺服器NPC物件
+#define SERV_CLASS_PETOBJ                       0x80010202	//伺服器寵物物件
+#define SP_CLASS_BASE                           0x00000001	//SP_CLASS_BASE
+#define SP_CLASS_MAPOBJ                         0x00000002	//SP_CLASS_MAPOBJ
+#define SP_CLASS_CHAROBJ                        0x00000102	//SP_CLASS_CHAROBJ
+#define SP_CLASS_HOUSEIN                        0x00000202	//SP_CLASS_HOUSEIN
+#define SP_CLASS_HOUSEOUT                       0x00000402	//SP_CLASS_HOUSEOUT
+#define SP_CLASS_EFFECT                         0x00000802	//SP_CLASS_EFFECT
+#define SP_CLASS_PLAYER                         0x00001102	//SP_CLASS_PLAYER
+#define SP_CLASS_MAGIC                          0x00001802	//SP_CLASS_MAGIC
+#define SP_CLASS_MAPOBJ_11TREE                  0x00010002	//樹木植物
+#define SP_CLASS_HOUSEIN_COMMON                 0x00010202	//共用屋內
+#define SP_CLASS_HOUSEOUT_COMMON                0x00010402	//共用屋外
+#define SP_CLASS_MAPOBJ_12FLOWER                0x00020002	//花草植物
+#define SP_CLASS_HOUSEIN_LIGHT                  0x00020202	//光明屋內
+#define SP_CLASS_HOUSEOUT_LIGHT                 0x00020402	//光明屋外
+#define SP_CLASS_MAPOBJ_13PLANT                 0x00030002	//其他植物
+#define SP_CLASS_HOUSEIN_DARK                   0x00030202	//黑暗屋內
+#define SP_CLASS_HOUSEOUT_DARK                  0x00030402	//黑暗屋外
+#define SP_CLASS_MAPOBJ_21COMMONOBJ             0x00040002	//普通雜物
+#define SP_CLASS_HOUSEIN_CHAOS                  0x00040202	//渾沌屋內
+#define SP_CLASS_HOUSEOUT_CHAOS                 0x00040402	//渾沌屋外
+#define SP_CLASS_MAPOBJ_22LIGHTOBJ              0x00050002	//光明雜物
+#define SP_CLASS_HOUSEIN_EARTH                  0x00050202	//大地屋內
+#define SP_CLASS_HOUSEOUT_EARTH                 0x00050402	//大地屋外
+#define SP_CLASS_MAPOBJ_23DARKOBJ               0x00060002	//黑暗雜物
+#define SP_CLASS_MAPOBJ_24CHAOSOBJ              0x00070002	//渾沌雜物
+#define SP_CLASS_MAPOBJ_25EARTHOBJ              0x00080002	//大地雜物
+#define SP_CLASS_MAPOBJ_31ACTIONOBJ             0x00090002	//動態物件
+
+#define SP_ATTRIB_DISTURB                       0x00020000	//SP_ATTRIB_DISTURB
+#define SP_ATTRIB_ZBUFFER1                      0x00040000	//SP_ATTRIB_ZBUFFER1
+#define SP_ATTRIB_ZBUFFER2                      0x00080000	//SP_ATTRIB_ZBUFFER2
+#define SP_ATTRIB_STATIC                        0x00100000	//SP_ATTRIB_STATIC
+#define SP_ATTRIB_HITTEST                       0x00200000	//SP_ATTRIB_HITTEST
+#define SP_ATTRIB_SHADOW                        0x00400000	//SP_ATTRIB_SHADOW
+#define SP_ATTRIB_MIRROR                        0x00800000	//SP_ATTRIB_MIRROR
+#define SP_ATTRIB_BOMBALL                       0x01000000	//SP_ATTRIB_BOMBALL
+#define SP_ATTRIB_HIDE                          0x02000000	//SP_ATTRIB_HIDE
+
+#define SP_ATTRIB_ALPHA                         0x00000001	//Alpha
+#define SP_ATTRIB_MIXER                         0x00000002	//混色
+#define SP_ATTRIB_WHITELIGHT                    0x00000004	//加色
+#define SP_ATTRIB_DARKLIGHT                     0x00000008	//減色
+#define SP_ATTRIB_OUTLINE                       0x00000010	//外框
+#define SP_ATTRIB_FLASH                         0x00000020	//Flash效果
+#define SP_ATTRIB_SMOKE                         0x00000040	//Smoke效果
+#define SP_ATTRIB_WATER                         0x00000080	//Water效果
+#define SP_ATTRIB_SINGLE                        0x00000100	//單色
+#define SP_ATTRIB_GLASS                         0x00000200	//玻璃色
+#define SP_ATTRIB_GRAY                          0x00000400	//灰階
+#define SP_ATTRIB_TABLE                         0x00001000	//表格
+#define SP_ATTRIB_BIAS                          0x00002000	//換色
+
+
+[SP_CLASS]
+Name = SERV_CLASS_BASE
+Value = 0x80000001
+Comment = 伺服器一般物件
+
+[SP_CLASS]
+Name = SERV_CLASS_CHAROBJ
+Value = 0x80000002
+Comment = 伺服器角色物件
+
+[SP_CLASS]
+Name = SERV_CLASS_GEN
+Value = 0x80000005
+Comment = 伺服器怪物產生器
+Label = 物件
+Label = 時間
+Label = 數量
+Label = 位置
+Label = 事件
+Label = 路徑
+Label = 範圍
+Label = 對話
+
+[SP_CLASS]
+Name = SERV_CLASS_ITEMOBJ
+Value = 0x80000003
+Comment = 伺服器道具物件
+
+[SP_CLASS]
+Name = SERV_CLASS_MATOBJ
+Value = 0x80000104
+Comment = 伺服器物產物件
+
+[SP_CLASS]
+Name = SERV_CLASS_NPCOBJ
+Value = 0x80000202
+Comment = 伺服器NPC物件
+Label = 路徑
+Label = 重生
+
+[SP_CLASS]
+Name = SERV_CLASS_PETOBJ
+Value = 0x80010202
+Comment = 伺服器寵物物件
+
+[SP_CLASS]
+Name = SERV_CLASS_PLAYEROBJ
+Value = 0x80000102
+Comment = 伺服器玩家物件
+
+[SP_CLASS]
+Name = SERV_CLASS_STATIC
+Value = 0x80000004
+Comment = 伺服器靜態物件
+
+[SP_CLASS]
+Name = SERV_CLASS_TIMER
+Value = 0x80000006
+Comment = 伺服器計時器物件
+Label = 開關
+Label = 時間
+Label = 次數
+Label = 自動關
+Label = 延遲
+
+[SP_CLASS]
+Name = SP_CLASS_BASE
+Value = 0x00000001
+Comment = SP_CLASS_BASE
+
+[SP_CLASS]
+Name = SP_CLASS_CHAROBJ
+Value = 0x00000102
+Comment = SP_CLASS_CHAROBJ
+
+[SP_CLASS]
+Name = SP_CLASS_EFFECT
+Value = 0x00000802
+Comment = SP_CLASS_EFFECT
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEIN
+Value = 0x00000202
+Comment = SP_CLASS_HOUSEIN
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEIN_CHAOS
+Value = 0x00040202
+Comment = 渾沌屋內
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEIN_COMMON
+Value = 0x00010202
+Comment = 共用屋內
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEIN_DARK
+Value = 0x00030202
+Comment = 黑暗屋內
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEIN_EARTH
+Value = 0x00050202
+Comment = 大地屋內
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEIN_LIGHT
+Value = 0x00020202
+Comment = 光明屋內
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEOUT
+Value = 0x00000402
+Comment = SP_CLASS_HOUSEOUT
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEOUT_CHAOS
+Value = 0x00040402
+Comment = 渾沌屋外
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEOUT_COMMON
+Value = 0x00010402
+Comment = 共用屋外
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEOUT_DARK
+Value = 0x00030402
+Comment = 黑暗屋外
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEOUT_EARTH
+Value = 0x00050402
+Comment = 大地屋外
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEOUT_LIGHT
+Value = 0x00020402
+Comment = 光明屋外
+
+[SP_CLASS]
+Name = SP_CLASS_MAGIC
+Value = 0x00001802
+Comment = SP_CLASS_MAGIC
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ
+Value = 0x00000002
+Comment = SP_CLASS_MAPOBJ
+Label = 光源
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_11TREE
+Value = 0x00010002
+Comment = 樹木植物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_12FLOWER
+Value = 0x00020002
+Comment = 花草植物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_13PLANT
+Value = 0x00030002
+Comment = 其他植物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_21COMMONOBJ
+Value = 0x00040002
+Comment = 普通雜物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_22LIGHTOBJ
+Value = 0x00050002
+Comment = 光明雜物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_23DARKOBJ
+Value = 0x00060002
+Comment = 黑暗雜物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_24CHAOSOBJ
+Value = 0x00070002
+Comment = 渾沌雜物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_25EARTHOBJ
+Value = 0x00080002
+Comment = 大地雜物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_31ACTIONOBJ
+Value = 0x00090002
+Comment = 動態物件
+
+[SP_CLASS]
+Name = SP_CLASS_PLAYER
+Value = 0x00001102
+Comment = SP_CLASS_PLAYER
+
+
+
+[SP_EVENT]
+Name = SP_EVENT_ACT_FADEOUT
+Value = 0x00000002
+Comment = SP_EVENT_ACT_FADEOUT
+
+[SP_EVENT]
+Name = SP_EVENT_ACT_NO_SHADOW
+Value = 0x00000004
+Comment = SP_EVENT_ACT_NO_SHADOW
+
+[SP_EVENT]
+Name = SP_EVENT_ACT_REMOVE
+Value = 0x00000003
+Comment = SP_EVENT_ACT_REMOVE
+
+[SP_EVENT]
+Name = SP_EVENT_ACT_WAIT
+Value = 0x00000001
+Comment = SP_EVENT_ACT_WAIT
+
+
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_BOMBALL
+Value = 0x01000000
+Comment = SP_ATTRIB_BOMBALL
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_DISTURB
+Value = 0x00020000
+Comment = SP_ATTRIB_DISTURB
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_HIDE
+Value = 0x02000000
+Comment = SP_ATTRIB_HIDE
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_HITTEST
+Value = 0x00200000
+Comment = SP_ATTRIB_HITTEST
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_MIRROR
+Value = 0x00800000
+Comment = SP_ATTRIB_MIRROR
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_SHADOW
+Value = 0x00400000
+Comment = SP_ATTRIB_SHADOW
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_STATIC
+Value = 0x00100000
+Comment = SP_ATTRIB_STATIC
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_ZBUFFER1
+Value = 0x00040000
+Comment = SP_ATTRIB_ZBUFFER1
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_ZBUFFER2
+Value = 0x00080000
+Comment = SP_ATTRIB_ZBUFFER2
+
+
+
+[OBJECT]
+Name = 一般游標
+Sequence = 1
+Process = SP_CLASS_BASE
+Directory = \cursor
+Sprite = Wait, c01_1
+
+
+[OBJECT]
+Name = 製造游標
+Sequence = 2
+Process = SP_CLASS_BASE
+Directory = \cursor
+Sprite = Wait, c2_1, #14, c2_2
+
+
+[OBJECT]
+Name = 傳送游標
+Sequence = 3
+Process = SP_CLASS_BASE
+Directory = \cursor
+Sprite = Wait, c3_1, #14, c3_2, c3_3
+
+
+[OBJECT]
+Name = 錢幣游標
+Sequence = 4
+Process = SP_CLASS_BASE
+Directory = \cursor
+Sprite = Wait, c4_1, #8, c4_2, c4_3, c4_4
+
+
+[OBJECT]
+Name = 交易游標
+Sequence = 5
+Process = SP_CLASS_BASE
+Directory = \cursor
+Sprite = Wait, c5_1, #14, c5_2
+
+
+[OBJECT]
+Name = 定位圖示
+Sequence = 6
+Process = SP_CLASS_MAPOBJ
+Directory = \cursor
+Sprite = Wait, c6_1, #14, c6_2
+
+
+[OBJECT]
+Name = 不可走游標
+Sequence = 11
+Process = SP_CLASS_BASE
+Directory = \cursor
+Sprite = Wait, c11_1, #14, c11_2
+
+
+[OBJECT]
+Name = 對話游標
+Sequence = 12
+Process = SP_CLASS_BASE
+Directory = \cursor
+Sprite = Wait, c12_1, #14, c12_2, c12_3, c12_4
+
+
+[OBJECT]
+Name = 撿游標
+Sequence = 13
+Process = SP_CLASS_BASE
+Directory = \cursor
+Sprite = Wait, c13_1, #14, c13_2
+
+
+[OBJECT]
+Name = 攻擊游標
+Sequence = 14
+Process = SP_CLASS_BASE
+Directory = \cursor
+Sprite = Wait, c14_1
+
+
+[OBJECT]
+Name = 物產游標1
+Sequence = 15
+Process = SP_CLASS_BASE
+Directory = \cursor
+Sprite = Wait, c15_1, #14, c15_2
+
+
+[OBJECT]
+Name = 物產游標2
+Sequence = 16
+Process = SP_CLASS_BASE
+Directory = \cursor
+Sprite = Wait, c16_1, #14, c16_2
+
+
+[OBJECT]
+Name = 物產游標3
+Sequence = 17
+Process = SP_CLASS_BASE
+Directory = \cursor
+Sprite = Wait, c17_1, #14, c17_2
+
+
+[OBJECT]
+Name = 物產游標4
+Sequence = 18
+Process = SP_CLASS_BASE
+Directory = \cursor
+Sprite = Wait, c18_1, #14, c18_2
+
+
+[OBJECT]
+Name = 連續移動游標
+Sequence = 19
+Process = SP_CLASS_BASE
+Directory = \cursor
+Sprite = Wait, c19_1, #14, c19_2
+
+
+[OBJECT]
+Name = 調查游標
+Sequence = 20
+Process = SP_CLASS_BASE
+Directory = \cursor
+Sprite = Wait, c20_1, #14, c20_2
+
+
+[OBJECT]
+Name = 隊伍邀請游標
+Sequence = 21
+Process = SP_CLASS_BASE
+Directory = \cursor
+Sprite = Wait, c21_1, #14, c21_2
+
+
+[OBJECT]
+Name = 隊長換人游標
+Sequence = 22
+Process = SP_CLASS_BASE
+Directory = \cursor
+Sprite = Wait, c22_1, #14, c22_2
+
+
+[OBJECT]
+Name = 隊伍踢人游標
+Sequence = 23
+Process = SP_CLASS_BASE
+Directory = \cursor
+Sprite = Wait, c23_1, #14, c23_2
+
+
+[OBJECT]
+Name = 好友邀請游標
+Sequence = 24
+Process = SP_CLASS_BASE
+Directory = \cursor
+Sprite = Wait, c24_1, #14, c24_2
+
+
+[OBJECT]
+Name = 交易游標
+Sequence = 25
+Process = SP_CLASS_BASE
+Directory = \cursor
+Sprite = Wait, c25_1, #14, c25_2
+
+
+[OBJECT]
+Name = 測試變色游標
+Sequence = 26
+Process = SP_CLASS_BASE
+Directory = \cursor
+Sprite = Wait, testcursor
+
+
+[OBJECT]
+Name = 機甲附魔游標
+Sequence = 27
+Process = SP_CLASS_BASE
+Directory = \cursor
+Sprite = Wait, c27_1, #14, c27_2
+
+
+[OBJECT]
+Name = 打洞游標
+Sequence = 28
+Process = SP_CLASS_BASE
+Directory = \cursor
+Sprite = Wait, c28_1, #14, c28_2
+
+
+[OBJECT]
+Name = 鑲寶石游標
+Sequence = 29
+Process = SP_CLASS_BASE
+Directory = \cursor
+Sprite = Wait, c29_1, #14, c29_2
+
+
+[OBJECT]
+Name = 數字1-0
+Sequence = 30
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_10
+
+
+[OBJECT]
+Name = 數字1-1
+Sequence = 31
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_01
+
+
+[OBJECT]
+Name = 數字1-2
+Sequence = 32
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_02
+
+
+[OBJECT]
+Name = 數字1-3
+Sequence = 33
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_03
+
+
+[OBJECT]
+Name = 數字1-4
+Sequence = 34
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_04
+
+
+[OBJECT]
+Name = 數字1-5
+Sequence = 35
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_05
+
+
+[OBJECT]
+Name = 數字1-6
+Sequence = 36
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_06
+
+
+[OBJECT]
+Name = 數字1-7
+Sequence = 37
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_07
+
+
+[OBJECT]
+Name = 數字1-8
+Sequence = 38
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_08
+
+
+[OBJECT]
+Name = 數字1-9
+Sequence = 39
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_09
+
+
+[OBJECT]
+Name = 數字2-0
+Sequence = 40
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_20
+
+
+[OBJECT]
+Name = 數字2-1
+Sequence = 41
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_11
+
+
+[OBJECT]
+Name = 數字2-2
+Sequence = 42
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_12
+
+
+[OBJECT]
+Name = 數字2-3
+Sequence = 43
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_13
+
+
+[OBJECT]
+Name = 數字2-4
+Sequence = 44
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_14
+
+
+[OBJECT]
+Name = 數字2-5
+Sequence = 45
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_15
+
+
+[OBJECT]
+Name = 數字2-6
+Sequence = 46
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_16
+
+
+[OBJECT]
+Name = 數字2-7
+Sequence = 47
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_17
+
+
+[OBJECT]
+Name = 數字2-8
+Sequence = 48
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_18
+
+
+[OBJECT]
+Name = 數字2-9
+Sequence = 49
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_19
+
+
+[OBJECT]
+Name = 數字3-0
+Sequence = 50
+BaseBias = 0x20, 0xfb22, 5
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_10
+
+
+[OBJECT]
+Name = 數字3-1
+Sequence = 51
+BaseBias = 0x20, 0xfb22, 5
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_01
+
+
+[OBJECT]
+Name = 數字3-2
+Sequence = 52
+BaseBias = 0x20, 0xfb22, 5
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_02
+
+
+[OBJECT]
+Name = 數字3-3
+Sequence = 53
+BaseBias = 0x20, 0xfb22, 5
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_03
+
+
+[OBJECT]
+Name = 數字3-4
+Sequence = 54
+BaseBias = 0x20, 0xfb22, 5
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_04
+
+
+[OBJECT]
+Name = 數字3-5
+Sequence = 55
+BaseBias = 0x20, 0xfb22, 5
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_05
+
+
+[OBJECT]
+Name = 數字3-6
+Sequence = 56
+BaseBias = 0x20, 0xfb22, 5
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_06
+
+
+[OBJECT]
+Name = 數字3-7
+Sequence = 57
+BaseBias = 0x20, 0xfb22, 5
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_07
+
+
+[OBJECT]
+Name = 數字3-8
+Sequence = 58
+BaseBias = 0x20, 0xfb22, 5
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_08
+
+
+[OBJECT]
+Name = 數字3-9
+Sequence = 59
+BaseBias = 0x20, 0xfb22, 5
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_09
+
+
+[OBJECT]
+Name = MISS
+Sequence = 60
+BaseBias = 0x2b, 0x27ff, 2
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_21
+
+
+[OBJECT]
+Name = CriticalA
+Sequence = 61
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_23
+
+
+[OBJECT]
+Name = CriticalB
+Sequence = 62
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_22
+
+
+[OBJECT]
+Name = 隊員0
+Sequence = 63
+Process = SP_CLASS_BASE
+Directory = \wnd01
+Sprite = Wait, w033_09, #20
+
+
+[OBJECT]
+Name = 隊員1
+Sequence = 64
+Process = SP_CLASS_BASE
+Directory = \wnd01
+Sprite = Wait, w033_01
+
+
+[OBJECT]
+Name = 隊員2
+Sequence = 65
+Process = SP_CLASS_BASE
+Directory = \wnd01
+Sprite = Wait, w033_02
+
+
+[OBJECT]
+Name = 隊員3
+Sequence = 66
+Process = SP_CLASS_BASE
+Directory = \wnd01
+Sprite = Wait, w033_03
+
+
+[OBJECT]
+Name = 隊員4
+Sequence = 67
+Process = SP_CLASS_BASE
+Directory = \wnd01
+Sprite = Wait, w033_04
+
+
+[OBJECT]
+Name = 隊員5
+Sequence = 68
+Process = SP_CLASS_BASE
+Directory = \wnd01
+Sprite = Wait, w033_05
+
+
+[OBJECT]
+Name = 釣魚
+Sequence = 69
+Process = SP_CLASS_MAPOBJ
+Directory = \wnd01
+Sprite = Wait, #15, w033_12, w033_13
+
+
+[OBJECT]
+Name = 升級效果-LEVEL UP旗幟(技能)
+Sequence = 70
+Process = SP_CLASS_MAPOBJ
+Directory = \comm\
+Sprite = Wait, lvup02-4, #8, lvup02-5, lvup02-6, lvup02-5
+
+
+[OBJECT]
+Name = 升級效果-LEVEL UP旗幟(階級)
+Sequence = 71
+Process = SP_CLASS_MAPOBJ
+Directory = \comm\
+Sprite = Wait, lvup02-7, #8, lvup02-8, lvup02-9, lvup02-8
+
+
+[OBJECT]
+Name = Logo01_800x600
+Sequence = 72
+Process = SP_CLASS_BASE
+Directory = \logo\
+Sprite = Wait, logo01a, SCROVER
+
+
+[OBJECT]
+Name = Logo01_1024x768
+Sequence = 73
+Process = SP_CLASS_BASE
+Directory = \logo\
+Sprite = Wait, logo01b, SCROVER
+
+
+[OBJECT]
+Name = Logo02_800x600
+Sequence = 74
+Process = SP_CLASS_BASE
+Directory = \logo\
+Sprite = Wait, logo02a, SCROVER
+
+
+[OBJECT]
+Name = Logo02_1024x768
+Sequence = 75
+Process = SP_CLASS_BASE
+Directory = \logo\
+Sprite = Wait, logo02b, SCROVER
+
+
+[OBJECT]
+Name = Logo03_800x600
+Sequence = 76
+Process = SP_CLASS_BASE
+Directory = \logo\
+Sprite = Wait, logo03a, SCROVER
+
+
+[OBJECT]
+Name = Logo03_1024x768
+Sequence = 77
+Process = SP_CLASS_BASE
+Directory = \logo\
+Sprite = Wait, logo03b, SCROVER
+
+
+[OBJECT]
+Name = Logo04_800x600
+Sequence = 78
+Process = SP_CLASS_BASE
+Directory = \logo\
+Sprite = Wait, logo04a, SCROVER
+
+
+[OBJECT]
+Name = Logo04_1024x768
+Sequence = 79
+Process = SP_CLASS_BASE
+Directory = \logo\
+Sprite = Wait, logo04b, SCROVER
+
+
+[OBJECT]
+Name = 世界地圖1024x768
+Sequence = 80
+Process = SP_CLASS_BASE
+Directory = \smap\
+Sprite = Wait, world, SCROVER
+
+
+[OBJECT]
+Name = 世界地圖800x600
+Sequence = 81
+Process = SP_CLASS_BASE
+Directory = \smap\
+Sprite = Wait, world2, SCROVER
+
+
+[OBJECT]
+Name = 地圖點
+Sequence = 82
+Process = SP_CLASS_BASE
+Directory = \wnd01\
+Sprite = Wait, w068_01, SCROVER
+
+
+[OBJECT]
+Name = 施法游標
+Sequence = 83
+Process = SP_CLASS_BASE
+Directory = \cursor
+Sprite = Wait, c30_1, #18, c30_2, #6, c30_3, c30_4
+
+
+[OBJECT]
+Name = GM公告背景
+Sequence = 84
+Flags = SP_ATTRIB_ALPHA
+Process = SP_CLASS_BASE
+Directory = \wnd01\
+Sprite = Wait, w069_01.SHP, SCROVER
+
+
+[OBJECT]
+Name = 超級廣播器背景
+Sequence = 85
+Flags = SP_ATTRIB_ALPHA
+Process = SP_CLASS_BASE
+Directory = \wnd01\
+Sprite = Wait, w072_01.SHP, SCROVER
+
+
+[OBJECT]
+Name = 百人斬背景
+Sequence = 86
+Flags = SP_ATTRIB_ALPHA
+Process = SP_CLASS_BASE
+Directory = \wnd01\
+Sprite = Wait, w072_02.SHP, SCROVER
+
+
+[OBJECT]
+Name = 謎城地圖1024x768
+Sequence = 87
+Process = SP_CLASS_BASE
+Directory = \smap\
+Sprite = Wait, world3, SCROVER
+
+
+[OBJECT]
+Name = 謎城地圖800x600
+Sequence = 88
+Process = SP_CLASS_BASE
+Directory = \smap\
+Sprite = Wait, world4, SCROVER
+
+
+[OBJECT]
+Name = 百人斬背景
+Sequence = 89
+Flags = SP_ATTRIB_ALPHA
+Process = SP_CLASS_BASE
+Directory = \wnd01\
+Sprite = Wait, w072_03.SHP, SCROVER
+
+
+[OBJECT]
+Name = 數字4-0
+Sequence = 90
+BaseBias = 0x11, 0xfb22, 5
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_10
+
+
+[OBJECT]
+Name = 數字4-1
+Sequence = 91
+BaseBias = 0x11, 0xfb22, 5
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_01
+
+
+[OBJECT]
+Name = 數字4-2
+Sequence = 92
+BaseBias = 0x11, 0xfb22, 5
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_02
+
+
+[OBJECT]
+Name = 數字4-3
+Sequence = 93
+BaseBias = 0x11, 0xfb22, 5
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_03
+
+
+[OBJECT]
+Name = 數字4-4
+Sequence = 94
+BaseBias = 0x11, 0xfb22, 5
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_04
+
+
+[OBJECT]
+Name = 數字4-5
+Sequence = 95
+BaseBias = 0x11, 0xfb22, 5
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_05
+
+
+[OBJECT]
+Name = 數字4-6
+Sequence = 96
+BaseBias = 0x11, 0xfb22, 5
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_06
+
+
+[OBJECT]
+Name = 數字4-7
+Sequence = 97
+BaseBias = 0x11, 0xfb22, 5
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_07
+
+
+[OBJECT]
+Name = 數字4-8
+Sequence = 98
+BaseBias = 0x11, 0xfb22, 5
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_08
+
+
+[OBJECT]
+Name = 數字4-9
+Sequence = 99
+BaseBias = 0x11, 0xfb22, 5
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_09
+
+
+[OBJECT]
+Name = 祕海神話1024x768
+Sequence = 100
+Process = SP_CLASS_BASE
+Directory = \smap\
+Sprite = Wait, world5, SCROVER
+
+
+[OBJECT]
+Name = 祕海神話800x600
+Sequence = 101
+Process = SP_CLASS_BASE
+Directory = \smap\
+Sprite = Wait, world6, SCROVER
+
+
+[OBJECT]
+Name = 升級效果-小天使
+Sequence = 301
+Process = SP_CLASS_MAPOBJ
+Directory = \comm\
+Sprite = Wait, lvup01-1, #5, lvup01-2, lvup01-3, lvup01-2
+
+
+[OBJECT]
+Name = 升級效果-LEVEL UP旗幟
+Sequence = 302
+Process = SP_CLASS_MAPOBJ
+Directory = \comm\
+Sprite = Wait, lvup02-1, #8, lvup02-2, lvup02-3, lvup02-2
+
+
+[OBJECT]
+Name = 升級效果-燈光
+Sequence = 303
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_MAPOBJ
+Directory = \comm\
+Sprite = Wait, lvup03-1, #5, lvup03-2, lvup03-3
+
+
+[OBJECT]
+Name = 升級效果-紙片
+Sequence = 304
+Process = SP_CLASS_MAPOBJ
+Directory = \comm\
+Sprite = Wait, lvup04-1, #10, lvup04-2, lvup04-3, lvup04-4, lvup04-5, lvup04-6
+
+
+[OBJECT]
+Name = 升級效果-光點
+Sequence = 305
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \comm\
+Sprite = Wait, lvup05, SCROVER
+
+
+[OBJECT]
+Name = 情緒符號1
+Sequence = 501
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em001_1, #16, em001_2
+
+
+[OBJECT]
+Name = 情緒符號2
+Sequence = 502
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em002_1, #16, em002_2
+
+
+[OBJECT]
+Name = 情緒符號3
+Sequence = 503
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em003_1, #16, em003_2
+
+
+[OBJECT]
+Name = 情緒符號4
+Sequence = 504
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em004_1, #16, em004_2
+
+
+[OBJECT]
+Name = 情緒符號5
+Sequence = 505
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em005_1, #16, em005_2
+
+
+[OBJECT]
+Name = 情緒符號6
+Sequence = 506
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em006_1, #16, em006_2
+
+
+[OBJECT]
+Name = 情緒符號7
+Sequence = 507
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em007_1, #16, em007_2
+
+
+[OBJECT]
+Name = 情緒符號8
+Sequence = 508
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em008_1, #16, em008_2
+
+
+[OBJECT]
+Name = 情緒符號9
+Sequence = 509
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em009_1, #16, em009_2
+
+
+[OBJECT]
+Name = 情緒符號10
+Sequence = 510
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em010_1, #16, em010_2
+
+
+[OBJECT]
+Name = 情緒符號11
+Sequence = 511
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em011_1, #16, em011_2
+
+
+[OBJECT]
+Name = 情緒符號12
+Sequence = 512
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em012_1, #16, em012_2
+
+
+[OBJECT]
+Name = 情緒符號13
+Sequence = 513
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em013_1, #16, em013_2
+
+
+[OBJECT]
+Name = 情緒符號14
+Sequence = 514
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em014_1, #16, em014_2
+
+
+[OBJECT]
+Name = 情緒符號15
+Sequence = 515
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em015_1, #16, em015_2
+
+
+[OBJECT]
+Name = 情緒符號16
+Sequence = 516
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em016_1, #16, em016_2
+
+
+[OBJECT]
+Name = 情緒符號17
+Sequence = 517
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em017_1, #16, em017_2
+
+
+[OBJECT]
+Name = 情緒符號18
+Sequence = 518
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em018_1, #16, em018_2
+
+
+[OBJECT]
+Name = 情緒符號19
+Sequence = 519
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em019_1, #16, em019_2
+
+
+[OBJECT]
+Name = 情緒符號20
+Sequence = 520
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em020_1, #16, em020_2
+
+
+[OBJECT]
+Name = 情緒符號21
+Sequence = 521
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em021_1, #16, em021_2
+
+
+[OBJECT]
+Name = 情緒符號22
+Sequence = 522
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em022_1, #16, em022_2
+
+
+[OBJECT]
+Name = 情緒符號23
+Sequence = 523
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em023_1, #16, em023_2, em023_3
+
+
+[OBJECT]
+Name = 情緒符號24
+Sequence = 524
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em024_1, #16, em024_2, em024_3
+
+
+[OBJECT]
+Name = 情緒符號25
+Sequence = 525
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em025_1, #16, em025_2
+
+
+[OBJECT]
+Name = 情緒符號26
+Sequence = 526
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em026_1, #16, em026_2
+
+
+[OBJECT]
+Name = 情緒符號27
+Sequence = 527
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em027_1, #16, em027_2
+
+
+[OBJECT]
+Name = 情緒符號28
+Sequence = 528
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em028_1, #16, em028_2
+
+
+[OBJECT]
+Name = 情緒符號29
+Sequence = 529
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em029_1, #16, em029_2
+
+
+[OBJECT]
+Name = 情緒符號30
+Sequence = 530
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em030_1, #16, em030_2
+
+
+[OBJECT]
+Name = 情緒符號31
+Sequence = 531
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em031_1, #16, em031_2, em031_3, em031_4
+
+
+[OBJECT]
+Name = 情緒符號32
+Sequence = 532
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em032_1, #16, em032_2
+
+
+[OBJECT]
+Name = 情緒符號33
+Sequence = 533
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em033_1, #16, em033_2
+
+
+[OBJECT]
+Name = 情緒符號34
+Sequence = 534
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em034_1, #16, em034_2
+
+
+[OBJECT]
+Name = 情緒符號35
+Sequence = 535
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em035_1, #16, em035_2
+
+
+[OBJECT]
+Name = 情緒符號36
+Sequence = 536
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em036_1, #16, em036_2
+
+
+[OBJECT]
+Name = 情緒符號37
+Sequence = 537
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em037_1, #16, em037_2, em037_3, em037_4
+
+
+[OBJECT]
+Name = 情緒符號38
+Sequence = 538
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em038_1, #16, em038_2
+
+
+[OBJECT]
+Name = 情緒符號39
+Sequence = 539
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em039_1, #16, em039_2
+
+
+[OBJECT]
+Name = 情緒符號40
+Sequence = 540
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em040_1, #16, em040_2
+
+
+[OBJECT]
+Name = 情緒符號41
+Sequence = 541
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em041_1, #16, em041_2, em041_3
+
+
+[OBJECT]
+Name = 情緒符號42
+Sequence = 542
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em042_1, #16, em042_2, em042_3
+
+
+[OBJECT]
+Name = 情緒符號43
+Sequence = 543
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em043_1, #16, em043_2, em043_3, em043_4
+
+
+[OBJECT]
+Name = 情緒符號44
+Sequence = 544
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em044_1, #16, em044_2, em044_3, em044_4
+
+
+[OBJECT]
+Name = 情緒符號45
+Sequence = 545
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em045_1, #16, em045_2, em045_3, em045_4
+
+
+[OBJECT]
+Name = 情緒符號-鐵甲(工作技能)
+Sequence = 681
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em001_1, #16, em001_2
+
+
+[OBJECT]
+Name = 情緒符號-裁縫(工作技能)
+Sequence = 682
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em002_1, #16, em002_2
+
+
+[OBJECT]
+Name = 情緒符號-工藝(工作技能)
+Sequence = 683
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em003_1, #16, em003_2
+
+
+[OBJECT]
+Name = 情緒符號-煉金(工作技能)
+Sequence = 684
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em004_1, #16, em004_2
+
+
+[OBJECT]
+Name = 情緒符號-烹飪(工作技能)
+Sequence = 685
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em005_1, #16, em005_2
+
+
+[OBJECT]
+Name = 情緒符號-武器(工作技能)
+Sequence = 686
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em006_1, #16, em006_2
+
+
+[OBJECT]
+Name = 情緒符號-代木(採集技能)
+Sequence = 687
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em008_1, #16, em008_2
+
+
+[OBJECT]
+Name = 情緒符號-挖礦(採集技能)
+Sequence = 688
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em009_1, #16, em009_2
+
+
+[OBJECT]
+Name = 情緒符號-採集(採集技能)
+Sequence = 689
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em010_1, #16, em010_2
+
+
+[OBJECT]
+Name = 情緒符號-釣魚(採集技能)
+Sequence = 690
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em011_1, #16, em011_2
+
+
+[OBJECT]
+Name = 狀態符號-恐懼
+Sequence = 691
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em046_1, #8, em046_2
+
+
+[OBJECT]
+Name = 狀態符號-挑釁
+Sequence = 692
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em047_1, #16
+
+
+[OBJECT]
+Name = 狀態符號-暈眩
+Sequence = 693
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em048_1, #10, em048_2
+
+
+[OBJECT]
+Name = 狀態符號-仇恨
+Sequence = 694
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em049_1, #8, em049_2
+
+
+[OBJECT]
+Name = 狀態符號-冰凍
+Sequence = 695
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em050_1, #5, em050_2
+
+
+[OBJECT]
+Name = 狀態符號-綑綁
+Sequence = 696
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em051_1, #10, em051_2
+
+
+[OBJECT]
+Name = 狀態符號-麻痺
+Sequence = 697
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em052_1, #10, em052_2
+
+
+[OBJECT]
+Name = 狀態符號-定身
+Sequence = 698
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em053_1, #10, em053_2
+
+
+[OBJECT]
+Name = 寵物反應-1
+Sequence = 699
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em054_1, #10, em054_2, em054_3
+
+
+[OBJECT]
+Name = 寵物反應-2
+Sequence = 700
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em055_1, #10, em055_2
+
+
+[OBJECT]
+Name = 寵物反應-3
+Sequence = 701
+Process = SP_CLASS_MAPOBJ
+Directory = \emot\
+Sprite = Wait, em056_1, #10, em056_2
+
+
+[OBJECT]
+Name = 轉蛋機
+Sequence = 702
+Process = SP_CLASS_MAPOBJ
+Directory = \comm\
+Sprite = Wait, twistegg01, SCROVER
+Sprite = Twist, twistegg01, #6, twistegg02
+
+
+[OBJECT]
+Name = 轉蛋
+Sequence = 703
+Process = SP_CLASS_MAPOBJ
+Directory = \comm\
+Sprite = Wait, twistegg03, SCROVER
+
+
+[OBJECT]
+Name = 轉蛋破掉1
+Sequence = 704
+Process = SP_CLASS_MAPOBJ
+Directory = \comm\
+Sprite = Wait, twistegg04, #4, twistegg05, twistegg06
+
+
+[OBJECT]
+Name = 轉蛋破掉2
+Sequence = 705
+Process = SP_CLASS_MAPOBJ
+Directory = \comm\
+Sprite = Wait, twistegg07, #4, twistegg08, twistegg09
+
+
+[OBJECT]
+Name = 數字5-0
+Sequence = 706
+BaseBias = 0x806, 0x0, 10
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_10
+
+
+[OBJECT]
+Name = 數字5-1
+Sequence = 707
+BaseBias = 0x6, 0x0, 10
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_01
+
+
+[OBJECT]
+Name = 數字5-2
+Sequence = 708
+BaseBias = 0x6, 0x0, 10
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_02
+
+
+[OBJECT]
+Name = 數字5-3
+Sequence = 709
+BaseBias = 0x6, 0x0, 10
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_03
+
+
+[OBJECT]
+Name = 數字5-4
+Sequence = 710
+BaseBias = 0x6, 0x0, 10
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_04
+
+
+[OBJECT]
+Name = 數字5-5
+Sequence = 711
+BaseBias = 0x6, 0x0, 10
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_05
+
+
+[OBJECT]
+Name = 數字5-6
+Sequence = 712
+BaseBias = 0x6, 0x0, 10
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_06
+
+
+[OBJECT]
+Name = 數字5-7
+Sequence = 713
+BaseBias = 0x6, 0x0, 10
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_07
+
+
+[OBJECT]
+Name = 數字5-8
+Sequence = 714
+BaseBias = 0x6, 0x0, 10
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_08
+
+
+[OBJECT]
+Name = 數字5-9
+Sequence = 715
+BaseBias = 0x6, 0x0, 10
+Flags = SP_ATTRIB_BIAS
+Process = SP_CLASS_MAPOBJ
+Directory = \font\
+Sprite = Wait, w016_09
+

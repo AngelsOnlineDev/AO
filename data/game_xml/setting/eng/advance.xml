@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+	<ALIAS advance="增強屬性" id="編號" adv_part="增強部位" npclevel="怪物等級" hp="HP" mp="HP" attack="平均攻擊" attack_range="攻擊變數" defend="防禦" magic_attack="魔攻" magic_defend="魔防" hit="精準" dodge="靈敏"/>
+	<ALIAS lightning_attack="雷電攻擊" lightning_resist="雷電防禦" fire_attack="火焰攻擊" fire_resist="火焰防禦" ice_attack="寒冰攻擊" ice_resist="寒冰防禦" acid_attack="腐蝕攻擊" acid_resist="腐蝕防禦"/>
+	<ALIAS con_resist="體質抵抗" spr_resist="心靈抵抗" critical="重擊機率" moves_peed="移動速度" attack_speed="攻擊速度" attack_distance="攻擊範圍" slayer="專剋系別" slayer_param="專剋數值" break="耐久破壞" dur="耐久" add_skill="提昇技能" skill_level="技能等限" magic="常駐法術" max_weight="最大負重" value="價格" param1="動態資料1"/>
+	<DEFINE 頭飾="1" 衣服="1" 手套="3" 鞋子="4" 飾品="5" 背包="6" 披風="7"/>
+</root>

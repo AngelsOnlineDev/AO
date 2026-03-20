@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<root>
+	<語系 語系="英文"/>
+	<文字檔>
+		<load>setting\eng\string.xml</load>
+		<load>setting\eng\msg.xml</load>
+	</文字檔>
+	<物件定義檔>
+		<load>setting\common.obd</load>
+		<load>setting\mapobj.obd</load>
+		<load>setting\char.obd</load>
+		<load>setting\house.obd</load>
+		<load>setting\server.obd</load>
+		<load>setting\npc.obd</load>
+		<load>setting\effect.obd</load>
+		<load>setting\m01.obd</load>
+		<load>setting\m02.obd</load>
+	</物件定義檔>
+	<視窗定義檔>
+		<load>setting\globalwnd.xml</load>
+		<load>setting\itemicon.xml</load>
+		<load>setting\skillicon.xml</load>
+		<load>setting\eng\testwnd.xml</load>
+		<load>setting\eng\wnd01.xml</load>
+		<load>setting\eng\wnd02.xml</load>
+		<load>setting\eng\wnd03.xml</load>
+		<load>setting\eng\wnd04.xml</load>
+		<load>setting\eng\wnd05.xml</load>
+		<load>setting\faceicon.xml</load>
+		<load>setting\peticon.xml</load>
+	</視窗定義檔>
+	<場景定義檔 load="setting\eng\stage.xml"/>
+	<npc定義檔>
+		<load>setting\eng\npc.xml</load>
+		<load>setting\eng\monster.xml</load>
+	</npc定義檔>
+	<投資品定義檔 load="setting\eng\investitem.xml"/>
+	<道具定義檔 load="setting\eng\item.xml"/>
+	<商城定義檔 load="setting\eng\mall.xml"/>
+	<套裝定義檔 load="setting\eng\itemset.xml"/>
+	<寶石效果定義檔 load="setting\eng\jeweleffect.xml"/>
+	<藏寶圖定義檔 load="setting\eng\treasuremap.xml"/>
+	<魔法定義檔 load="setting\eng\magic.xml"/>
+	<技能定義檔 load="setting\eng\skill.xml"/>
+	<物產定義檔 load="setting\eng\material.xml"/>
+	<任務定義檔 load="setting\eng\quest.xml"/>
+	<製作定義檔 load="setting\eng\make.xml"/>
+	<掉寶定義檔 load="setting\eng\drop.xml"/>
+	<紙娃娃定義檔 load="setting\eng\doll.xml"/>
+	<職業定義檔 load="setting\eng\class.xml"/>
+	<組合定義檔 load="setting\eng\adv.xml"/>
+	<佈景主題定義檔 load="setting\eng\theme.xml"/>
+	<文字保留過濾檔 load="setting\eng\strfilter.xml"/>
+	<寵物定義檔 load="setting\eng\pet.xml"/>
+	<寵物屬性檔 load="setting\eng\petattrib.xml"/>
+	<寵物反應類別檔 load="setting\eng\petaspect.xml"/>
+	<寵物技能階級檔 load="setting\eng\petskill.xml"/>
+	<社團貢獻物資 load="setting\eng\guild_contrib.xml"/>
+	<script>
+		<load>script\system.so</load>
+		<load>script\magic.so</load>
+		<load>script\effect.so</load>
+		<load>script\stage.so</load>
+		<load>script\logo.so</load>
+	</script>
+	<mscript>
+		<load>mscript\npcai.so</load>
+		<load>mscript\system.so</load>
+	</mscript>
+
+<!--	
+	<spevent name="double exp event" start="2007-09-15 00:00:00" end="2007-09-16 23:59:59" script="mscript\sp05.so" on_create="sp05_create" on_destroy="sp05_destroy"/>
+	<spevent name="lebaran event" start="2007-10-03 00:00:00" end="2007-10-24 23:59:59" script="mscript\sp23.so" on_create="sp23_create" on_drop="sp23_drop" on_gather="sp23_gather" on_destroy="sp23_destroy" msg="setting\eng\spmsg.xml"/>
+	<spevent name="Halloween event" start="2007-10-30 00:00:00" end="2007-11-14 11:00:00" script="mscript\sp28.so" on_drop="sp28_drop" on_gather="sp28_gather"/>
+-->
+	<字型 編號="1" 英文字型="font\eng12.fnt" 英文字型種類="FONT_BIT4" 雙位元字型="font\cht12.fnt" 雙位元字型種類="FONT_BIT4"/>
+	<字型 編號="2" 英文字型="font\eng16.fnt" 英文字型種類="FONT_BIT4" 雙位元字型="font\cht16.fnt" 雙位元字型種類="FONT_BIT4"/>
+	<字型 編號="3" 英文字型="font\a" 英文字型種類="FONT_SHAPE" 英文字型寬="6" 英文字型高="9"/>
+	<字型 編號="4" 英文字型="font\b" 英文字型種類="FONT_SHAPE" 英文字型寬="6" 英文字型高="9"/>
+	<字型 編號="5" 英文字型="font\c" 英文字型種類="FONT_SHAPE" 英文字型寬="12" 英文字型高="18"/>
+	<DEFINE 繁體中文="0" 簡體中文="1" 日文="2" 印尼文="3" 英文="4" FONT_SHAPE="1" FONT_BITMASK="2" FONT_BITMAP="4" FONT_SYSTEM="8" FONT_BIT4="16"/>
+	<ALIAS string="文字檔" object="物件定義檔" window="視窗定義檔" stage="場景定義檔" npc="npc定義檔" item="道具定義檔" mall="商城定義檔" mat="物產定義檔" magic="魔法定義檔" skill="技能定義檔" quest="任務定義檔" make="製作定義檔" drop="掉寶定義檔" doll="紙娃娃定義檔" class="職業定義檔" adv="組合定義檔" theme="佈景主題定義檔" filter="文字保留過濾檔" itemset="套裝定義檔" treasuremap="藏寶圖定義檔" jeweleffect="寶石效果定義檔" pet="寵物定義檔" petattrib="寵物屬性檔" petaspect="寵物反應類別檔" petskill="寵物技能階級檔" investitem="投資品定義檔" gcontrib="社團貢獻物資"/>
+	<ALIAS font="字型" charset="語系" id="編號" englishfont="英文字型" englishtype="英文字型種類" chinesefont="雙位元字型" chinesetype="雙位元字型種類" englishwidth="英文字型寬" englishheight="英文字型高"/>
+</root>

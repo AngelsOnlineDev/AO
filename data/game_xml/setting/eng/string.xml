@@ -1,0 +1,1427 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+	<字串 編號="0" 文字="????"/>
+	<字串 編號="1" 文字="Angels Online"/>
+	<字串 編號="2" 文字="Please enter your account."/>
+	<字串 編號="3" 文字="Please enter your password."/>
+	<字串 編號="4" 文字="Congratulations. You are the first graduates of the lyceum. Good Luck!"/>
+	<字串 編號="5" 文字="I am a famous designer in Sunshine City. Look at my dress, it's very beautiful, right?!"/>
+	<字串 編號="6" 文字="Work is hard."/>
+	<字串 編號="7" 文字="@#@%..."/>
+	<字串 編號="8" 文字="I am Bony Foxman."/>
+	<字串 編號="9" 文字="Congratulations. You have graduated. I hope you can say goodbye to the Archangel before you leave."/>
+	<字串 編號="10" 文字="If you want to be fashionable, you should give yourself a beautiful hairstyle!"/>
+	<字串 編號="11"/>
+	<字串 編號="12"/>
+	<字串 編號="13"/>
+	<字串 編號="14"/>
+	<字串 編號="15" 文字="Can you do me a favor?(no Q02)"/>
+	<字串 編號="16" 文字="Yes."/>
+	<字串 編號="17" 文字="No."/>
+	<字串 編號="18" 文字="You can't...Well, that's ok!(Refuse the quest 2)"/>
+	<字串 編號="19" 文字="Hello...Do you want an adventure?(no Q02)"/>
+	<字串 編號="20" 文字="You have talked to A...Congratulations. You have finished the quest 2!(set 0202)"/>
+	<字串 編號="21" 文字="Hello...What can I do for you?(have finished the quest 2)"/>
+	<字串 編號="22" 文字="B asked you to talk to me...Ok...You should talk to him...(set 0201)"/>
+	<字串 編號="23" 文字="Go talk to A for me and then come to find me.(open Q02)"/>
+	<字串 編號="24" 文字="You have finished the step 1. The next is step 2."/>
+	<字串 編號="25" 文字="You haven't finished step 1."/>
+	<字串 編號="26" 文字="[DEBUG]%s"/>
+	<字串 編號="100" 文字="Test games"/>
+	<字串 編號="101" 文字="Gomoku"/>
+	<字串 編號="102" 文字="Bingo"/>
+	<字串 編號="103" 文字="Big-2"/>
+	<字串 編號="104" 文字="Othello"/>
+	<字串 編號="147" 文字="%s has started."/>
+	<字串 編號="148" 文字="%s has closed."/>
+	<字串 編號="149" 文字="You have invited %s to start %s. Please wait for the target's response."/>
+	<字串 編號="150" 文字="/c$1%-12s/c* invites you to play /c$2%s/c*. Do you want to accept the invitation?"/>
+	<字串 編號="151" 文字="The account has been logged already. The connection is interrupted."/>
+	<字串 編號="152" 文字="Wrong account or password"/>
+	<字串 編號="153" 文字="The character name is unavailable."/>
+	<字串 編號="154" 文字="Create a character failed"/>
+	<字串 編號="155" 文字="Delete a character failed"/>
+	<字串 編號="156" 文字="The map server hasn't started."/>
+	<字串 編號="157" 文字="Login character failed"/>
+	<字串 編號="158" 文字="Validation code login failed"/>
+	<字串 編號="159" 文字="Character failed to load"/>
+	<字串 編號="160" 文字="Wrong edition"/>
+	<字串 編號="161" 文字="The account is logged in."/>
+	<字串 編號="162" 文字="There has been a character."/>
+	<字串 編號="163" 文字="Account login is under way. Please wait."/>
+	<字串 編號="164" 文字="The server is not ready. Please try again later."/>
+	<字串 編號="165" 文字="The connection with the server has been interrupted."/>
+	<字串 編號="166" 文字="Connection with the server failed"/>
+	<字串 編號="167" 文字="Abnormal program requirement"/>
+	<字串 編號="168" 文字="Connection with the server is interrupted."/>
+	<字串 編號="169" 文字="Character recovery failed"/>
+	<字串 編號="170" 文字="Unable to start because too many games are open"/>
+	<字串 編號="171" 文字="The target is playing games."/>
+	<字串 編號="172" 文字="%s refuses your invitation."/>
+	<字串 編號="173" 文字="Unable to join in the game because it is full."/>
+	<字串 編號="174" 文字="Unable to join in the game because the game is closed."/>
+	<字串 編號="175" 文字="Unable to join in the game because the game has already started."/>
+	<字串 編號="176" 文字="Unable to invite other players after the game has begun."/>
+	<字串 編號="177" 文字="Unable to invite other players when the game is full."/>
+	<字串 編號="178" 文字="/c$5You tell (%s): %s"/>
+	<字串 編號="179" 文字="/c$5(%s) tells you: %s"/>
+	<字串 編號="180" 文字="/c$2%s/c$4 is unavailable."/>
+	<字串 編號="181" 文字="/c$1[public]%s&gt;/c$6%s"/>
+	<字串 編號="182" 文字="%s is unavailable now."/>
+	<字串 編號="183" 文字="%s has logged off from the game."/>
+	<字串 編號="184" 文字="%s joins the game."/>
+	<字串 編號="185" 文字="%s is in the team."/>
+	<字串 編號="186" 文字="/c$2%-12s/c* invites you to be his friend. Do you accept?"/>
+	<字串 編號="187" 文字="/c$1[Team]%s&gt;/c$7%s"/>
+	<字串 編號="188" 文字="Header:/c$2%s/c*\n Mode:Share Exp and drops\n invites you to join his team."/>
+	<字串 編號="189" 文字="%s joins the team."/>
+	<字串 編號="190" 文字="%s becomes the leader."/>
+	<字串 編號="191" 文字="%s leaves the team."/>
+	<字串 編號="192" 文字="%s has been kicked out of the team."/>
+	<字串 編號="193" 文字="The team is diabanded."/>
+	<字串 編號="194" 文字="You invite %s to join the team."/>
+	<字串 編號="195" 文字="/c$4%s"/>
+	<字串 編號="196" 文字="/c$8%s&gt;/c*%s"/>
+	<字串 編號="197" 文字="/c$5%s&gt;/c*%s"/>
+	<字串 編號="198" 文字="/c$1[Trade]%s&gt;/c$9%s"/>
+	<字串 編號="199" 文字="/c$1[League]%s&gt;/c$a%s"/>
+	<字串 編號="200" 文字="Delete %s from your friends list?"/>
+	<字串 編號="201" 文字="Delete group %s?"/>
+	<字串 編號="202" 文字="Add %s into your blacklist?"/>
+	<字串 編號="203" 文字="Delete %s from your blacklist?"/>
+	<字串 編號="204" 文字="Unable to add yourself into your blacklist."/>
+	<字串 編號="205" 文字="Add %s\n into your blacklist?"/>
+	<字串 編號="206" 文字="%s is already in your blacklist."/>
+	<字串 編號="207" 文字="Recipient:"/>
+	<字串 編號="208" 文字="Topic:"/>
+	<字串 編號="209" 文字="Copy:"/>
+	<字串 編號="210" 文字="Time:"/>
+	<字串 編號="211" 文字="Content:"/>
+	<字串 編號="212" 文字="The mail will be saved in"/>
+	<字串 編號="213" 文字="Please enter the recipient of the mail."/>
+	<字串 編號="214" 文字="Please enter the topic of the mail."/>
+	<字串 編號="215" 文字="Please enter the content of the mail."/>
+	<字串 編號="216" 文字="Unable to send the mail because of a lack of money"/>
+	<字串 編號="217" 文字="Mail delivery successful."/>
+	<字串 編號="218" 文字="Mail delivery failed. The character %s is unavailable."/>
+	<字串 編號="219" 文字="Mail delivery failed. The addressee %s's mailbox is full."/>
+	<字串 編號="220" 文字="Mail delivery failed. You are in %s's blacklist."/>
+	<字串 編號="221" 文字="Mail delivery failed."/>
+	<字串 編號="222" 文字="Mail will soon reach the upper limit."/>
+	<字串 編號="223" 文字="%s is already in your friends list."/>
+	<字串 編號="224" 文字="%s's friends list is full."/>
+	<字串 編號="225" 文字="Your friends list is full."/>
+	<字串 編號="226" 文字="online"/>
+	<字串 編號="227" 文字="offline"/>
+	<字串 編號="228" 文字="You have added %s into your friends list."/>
+	<字串 編號="229" 文字="Failed to add friend!"/>
+	<字串 編號="230" 文字="%s is not ready to add you into his friends list."/>
+	<字串 編號="231" 文字="Headwear"/>
+	<字串 編號="232" 文字="Half-cup"/>
+	<字串 編號="233" 文字="Whole-cup"/>
+	<字串 編號="234" 文字="Clothes"/>
+	<字串 編號="235" 文字="Gown"/>
+	<字串 編號="236" 文字="Hand"/>
+	<字串 編號="237" 文字="Shoes"/>
+	<字串 編號="238" 文字="Boots"/>
+	<字串 編號="239" 文字="Kitbag"/>
+	<字串 編號="240" 文字="Mantle"/>
+	<字串 編號="241" 文字="Sword"/>
+	<字串 編號="242" 文字="Hammer"/>
+	<字串 編號="243" 文字="Spear"/>
+	<字串 編號="244" 文字="Wand"/>
+	<字串 編號="245" 文字="Bow"/>
+	<字串 編號="246" 文字="Sling"/>
+	<字串 編號="247" 文字="Shield"/>
+	<字串 編號="248" 文字="Trinket"/>
+	<字串 編號="249" 文字="Props"/>
+	<字串 編號="250" 文字="Scroll"/>
+	<字串 編號="251" 文字="Recipe"/>
+	<字串 編號="252" 文字="Axe"/>
+	<字串 編號="253" 文字="Shovel"/>
+	<字串 編號="254" 文字="Hoe"/>
+	<字串 編號="255" 文字="FishRod"/>
+	<字串 編號="256" 文字="Pet"/>
+	<字串 編號="257" 文字="Robot"/>
+	<字串 編號="258" 文字="Ride"/>
+	<字串 編號="259" 文字="Arrow"/>
+	<字串 編號="260" 文字="Ammo"/>
+	<字串 編號="261" 文字="Dye"/>
+	<字串 編號="262" 文字="Diamond"/>
+	<字串 編號="263" 文字="Treasure map"/>
+	<字串 編號="271" 文字="Lv 1-10"/>
+	<字串 編號="272" 文字="Lv 11-20"/>
+	<字串 編號="273" 文字="Lv 21-30"/>
+	<字串 編號="274" 文字="Lv 31-40"/>
+	<字串 編號="275" 文字="Lv 41-50"/>
+	<字串 編號="276" 文字="Lv 51-60"/>
+	<字串 編號="277" 文字="Lv 61-70"/>
+	<字串 編號="278" 文字="Lv 71-80"/>
+	<字串 編號="279" 文字="Lv 81-90"/>
+	<字串 編號="280" 文字="Lv 91-100"/>
+	<字串 編號="281" 文字="1"/>
+	<字串 編號="282" 文字="2"/>
+	<字串 編號="283" 文字="3"/>
+	<字串 編號="284" 文字="4"/>
+	<字串 編號="285" 文字="5"/>
+	<字串 編號="286" 文字="6"/>
+	<字串 編號="287" 文字="7"/>
+	<字串 編號="288" 文字="8"/>
+	<字串 編號="289" 文字="9"/>
+	<字串 編號="301" 文字="(online)"/>
+	<字串 編號="302" 文字="(busy)"/>
+	<字串 編號="303" 文字="(leave)"/>
+	<字串 編號="304" 文字="(auto)"/>
+	<字串 編號="305" 文字="(chat)"/>
+	<字串 編號="306" 文字="(train)"/>
+	<字串 編號="307" 文字="(MF)"/>
+	<字串 編號="308" 文字="(happy)"/>
+	<字串 編號="309" 文字="(gloomy)"/>
+	<字串 編號="310" 文字="(angry)"/>
+	<字串 編號="311" 文字="(offline)"/>
+	<字串 編號="312" 文字="Header:/c$2%s/c*\n Mode: Enjoy Exp and drops alone \n invites you to join his team."/>
+	<字串 編號="313" 文字="The team is full."/>
+	<字串 編號="314" 文字="Other players are inviting /c$2%s/c$4."/>
+	<字串 編號="315" 文字="/c$2%s/c* Invites you to join his team(share exp and drops)"/>
+	<字串 編號="316" 文字="/c$3%s/c* Invites you to join his team(enjoy exp and drops alone)"/>
+	<字串 編號="317" 文字="Unable to carry any more because the bag is too heavy. &gt;_&lt;"/>
+	<字串 編號="318" 文字="Unable to carry any more because the bag is too heavy. Take out some items."/>
+	<字串 編號="319" 文字="Qty:%d"/>
+	<字串 編號="320" 文字="You are unable to equip the arrow unless you have one."/>
+	<字串 編號="321" 文字="You are unable to equip the ammunition unless you have one."/>
+	<字串 編號="322" 文字="Unable to change the equipment because you are dead."/>
+	<字串 編號="323" 文字="You blacklist is full."/>
+	<字串 編號="324" 文字="You should clear out your bag before you offload it."/>
+	<字串 編號="325" 文字="Please correctly choose the group."/>
+	<字串 編號="326" 文字="Please correctly choose the friend."/>
+	<字串 編號="327" 文字="Please switch to the Customized Groups mode and then perform again."/>
+	<字串 編號="328" 文字="Mail server error. Please try again later."/>
+	<字串 編號="329" 文字="Unable to learn new spells because the quantity of spells has reached the upper limit."/>
+	<字串 編號="330" 文字="Unable to learn %s repeatedly."/>
+	<字串 編號="331" 文字="Price:"/>
+	<字串 編號="332" 文字="You can only equip one spell from %s and %s."/>
+	<字串 編號="333" 文字="Learn spell %s."/>
+	<字串 編號="334" 文字="The spell %s has been deleted."/>
+	<字串 編號="335" 文字="%s sets a stall."/>
+	<字串 編號="336" 文字="You are dead."/>
+	<字串 編號="337" 文字="Trade failed!"/>
+	<字串 編號="338" 文字="Unable to buy because of a lack of money"/>
+	<字串 編號="339" 文字="You are trading..."/>
+	<字串 編號="340" 文字="You are setting a stall..."/>
+	<字串 編號="341" 文字="Stop setting a stall."/>
+	<字串 編號="342" 文字="Begin to trade..."/>
+	<字串 編號="343" 文字="Unable to buy because the trade sum is too expensive."/>
+	<字串 編號="344" 文字="You are not ready to collect."/>
+	<字串 編號="345" 文字="Begin collecting."/>
+	<字串 編號="346" 文字="Stop collecting."/>
+	<字串 編號="347" 文字="There is no material for collection. Please wait..."/>
+	<字串 編號="348" 文字="PIN set."/>
+	<字串 編號="349" 文字="Please enter the correct password."/>
+	<字串 編號="350" 文字="Please enter the correct PIN."/>
+	<字串 編號="351" 文字="PIN was deleted."/>
+	<字串 編號="352" 文字="Please enter the correct current PIN."/>
+	<字串 編號="353" 文字="The PIN should be 6-20 capital/lowercase English letters or numbers."/>
+	<字串 編號="354" 文字="The two sets of PINs are not the same."/>
+	<字串 編號="355" 文字="There is no material."/>
+	<字串 編號="356" 文字="You are unable to collect unless you are %s level %s."/>
+	<字串 編號="357" 文字="Please set your PIN to protect your account."/>
+	<字串 編號="358" 文字="You must set a password."/>
+	<字串 編號="359" 文字="Unable to collect without proper equipment."/>
+	<字串 編號="360" 文字="Unable to collect with worn tools."/>
+	<字串 編號="361" 文字="%s(1)"/>
+	<字串 編號="362" 文字="%s(2)"/>
+	<字串 編號="363" 文字="%s(3)"/>
+	<字串 編號="364" 文字="%s(4)"/>
+	<字串 編號="365" 文字="%s(5)"/>
+	<字串 編號="366" 文字="%s(6)"/>
+	<字串 編號="367" 文字="%s(7)"/>
+	<字串 編號="368" 文字="You are not a member of any teams."/>
+	<字串 編號="369" 文字="Choose."/>
+	<字串 編號="370" 文字="/c$2%-12s/c* invites you to trade. Do you accept?"/>
+	<字串 編號="371" 文字="You are trading..."/>
+	<字串 編號="372" 文字="Finish the trade."/>
+	<字串 編號="373" 文字="%s refuses to trade."/>
+	<字串 編號="374" 文字="The target is trading or setting a stall."/>
+	<字串 編號="375" 文字="The item is in the process of trading."/>
+	<字串 編號="376" 文字="The item is in the stall."/>
+	<字串 編號="377" 文字="The item is too heavy to trade."/>
+	<字串 編號="378" 文字="The item is unavailable."/>
+	<字串 編號="379" 文字="Not enough money"/>
+	<字串 編號="380" 文字="Not enough space or the item is too heavy."/>
+	<字串 編號="381" 文字="The item is in the manufacturing list."/>
+	<字串 編號="382" 文字="Hit rate:%2d%"/>
+	<字串 編號="383" 文字="%02d secs"/>
+	<字串 編號="384" 文字="%02d mins %02d secs"/>
+	<字串 編號="385" 文字="%02d hrs %02d mins %02d secs"/>
+	<字串 編號="386" 文字="Failed to manufacture the item"/>
+	<字串 編號="387" 文字="Item manufactured successfully."/>
+	<字串 編號="388" 文字="Item manufacturing interrupted."/>
+	<字串 編號="389" 文字="%02d %02d"/>
+	<字串 編號="390" 文字="Manufacture"/>
+	<字串 編號="391" 文字="Experiment"/>
+	<字串 編號="392" 文字="Item experiment failed."/>
+	<字串 編號="393" 文字="Item experiment successful"/>
+	<字串 編號="394" 文字="Item experiment interrupted."/>
+	<字串 編號="395" 文字="Stop item manufacturing."/>
+	<字串 編號="396" 文字="Unable to buy all items because of lack of money."/>
+	<字串 編號="397" 文字="The target doesn't have enough money or space or the items are too heavy."/>
+	<字串 編號="398" 文字="Repaired fee:%d"/>
+	<字串 編號="399" 文字="Spell needed:"/>
+	<字串 編號="400" 文字="A"/>
+	<字串 編號="401" 文字="B"/>
+	<字串 編號="402" 文字="O"/>
+	<字串 編號="403" 文字="AB"/>
+	<字串 編號="404" 文字="Aries"/>
+	<字串 編號="405" 文字="Taurus"/>
+	<字串 編號="406" 文字="Gemini"/>
+	<字串 編號="407" 文字="Cancer"/>
+	<字串 編號="408" 文字="Leo"/>
+	<字串 編號="409" 文字="Virgo"/>
+	<字串 編號="410" 文字="Libra"/>
+	<字串 編號="411" 文字="Scorpio"/>
+	<字串 編號="412" 文字="Sagittarius"/>
+	<字串 編號="413" 文字="Capricorn"/>
+	<字串 編號="414" 文字="Aquarius"/>
+	<字串 編號="415" 文字="Pisces"/>
+	<字串 編號="416" 文字="Please enter the character name (less than 6 characters,no spaces,special characters,or disgraceful characters)"/>
+	<字串 編號="417" 文字="The character name is unavailable."/>
+	<字串 編號="418" 文字="Finish the trade."/>
+	<字串 編號="419" 文字="Sum: %lu"/>
+	<字串 編號="420" 文字="The item is unable to be traded."/>
+	<字串 編號="421" 文字="Please enter the quantity of the item."/>
+	<字串 編號="422" 文字="Please enter the unit price of the item."/>
+	<字串 編號="423" 文字="The spell %s has been offloaded."/>
+	<字串 編號="424" 文字="The spell %s has been equipped."/>
+	<字串 編號="425" 文字="Learn %s"/>
+	<字串 編號="488" 文字="The item is unable to be deleted."/>
+	<字串 編號="489" 文字="Not enough MP"/>
+	<字串 編號="490" 文字="Not enough SP"/>
+	<字串 編號="491" 文字="The server is full. Please try again later."/>
+	<字串 編號="492" 文字="Obtain %s"/>
+	<字串 編號="493" 文字="Obtain %s, %s."/>
+	<字串 編號="494" 文字="Obtain %s, %s, %s."/>
+	<字串 編號="495" 文字="Obtain %s, %s, %s, %s."/>
+	<字串 編號="496" 文字="Obtain %s,%s, %s, %s, %s."/>
+	<字串 編號="497" 文字="Obtain %s, %s, %s, %s, %s, %s."/>
+	<字串 編號="498" 文字="Obtain %s, %s, %s, %s,%s, %s, %s."/>
+	<字串 編號="499" 文字="Obtain %s, %s, %s, %s, %s, %s, %s, %s."/>
+	<字串 編號="500" 文字="Pay %s."/>
+	<字串 編號="501" 文字="Obtain %s Exp."/>
+	<字串 編號="502" 文字="Lose %s Exp."/>
+	<字串 編號="503" 文字="%s has obtained %s Exp."/>
+	<字串 編號="504" 文字="%s has lost %s Exp."/>
+	<字串 編號="505" 文字="Sold %s."/>
+	<字串 編號="506" 文字="Learn to manufacture: %s."/>
+	<字串 編號="507" 文字="Unable to learn to manufacture repeatedly: %s"/>
+	<字串 編號="508" 文字="The level of the spell %s has been upgraded."/>
+	<字串 編號="509" 文字="%s:%s"/>
+	<字串 編號="510" 文字="You accept the quest [%s]"/>
+	<字串 編號="511" 文字="1.Choose the type: Choose the type of spells from the upper part of the window.\n 2. Choose spell: Choose your favorite spells and then click the button [+].\n 3. Delete a spell: Choose the spell you want to delete and then click the button [-].\n 4. Choose 6 spells and then you can see the career you should choose."/>
+	<字串 編號="512" 文字="You can still equip(residual times %d)"/>
+	<字串 編號="513" 文字="/c$3 equipment for yourself /c*(residual times %d )"/>
+	<字串 編號="514" 文字="Unable to trade"/>
+	<字串 編號="515" 文字="It needs level %d spell %s"/>
+	<字串 編號="516" 文字="Usage:"/>
+	<字串 編號="517" 文字="Hardiness %d/%d"/>
+	<字串 編號="518" 文字="%d-%d attack"/>
+	<字串 編號="519" 文字="%d defense"/>
+	<字串 編號="520" 文字="attack"/>
+	<字串 編號="521" 文字="defense"/>
+	<字串 編號="522" 文字="spell attack"/>
+	<字串 編號="523" 文字="spell defense"/>
+	<字串 編號="524" 文字="Rigor"/>
+	<字串 編號="525" 文字="Agility"/>
+	<字串 編號="526" 文字="Stamina defense"/>
+	<字串 編號="527" 文字="Soul defense"/>
+	<字串 編號="528" 文字="Beating rate"/>
+	<字串 編號="529" 文字="Movement Speed"/>
+	<字串 編號="530" 文字="+%d spell %s"/>
+	<字串 編號="531" 文字="Weight %d"/>
+	<字串 編號="532" 文字="Thunderbolt attack"/>
+	<字串 編號="533" 文字="Fire attack"/>
+	<字串 編號="534" 文字="Ice attack"/>
+	<字串 編號="535" 文字="Rotten attack"/>
+	<字串 編號="536" 文字="Thunderbolt defense"/>
+	<字串 編號="537" 文字="Fire defense"/>
+	<字串 編號="538" 文字="Ice defense"/>
+	<字串 編號="539" 文字="Rotten defense"/>
+	<字串 編號="540" 文字="Head"/>
+	<字串 編號="541" 文字="Body"/>
+	<字串 編號="542" 文字="Main Hand"/>
+	<字串 編號="543" 文字="Assistant"/>
+	<字串 編號="544" 文字="Hand"/>
+	<字串 編號="545" 文字="Feet"/>
+	<字串 編號="546" 文字="Back"/>
+	<字串 編號="547" 文字="Trinket"/>
+	<字串 編號="548" 文字="Ride Robot"/>
+	<字串 編號="549" 文字="The item is unable to lay in another vessel."/>
+	<字串 編號="550" 文字="Switch to the General Channel"/>
+	<字串 編號="551" 文字="Switch to the Public Channel"/>
+	<字串 編號="552" 文字="Switch to the Trade Channel"/>
+	<字串 編號="553" 文字="Switch to the Team Channel"/>
+	<字串 編號="554" 文字="Switch to the League Channel"/>
+	<字串 編號="555" 文字="You should clear out your bag before you delete it."/>
+	<字串 編號="556" 文字="You need %s to change the spell"/>
+	<字串 編號="557" 文字="For female"/>
+	<字串 編號="558" 文字="For male"/>
+	<字串 編號="559" 文字="For %s faction"/>
+	<字串 編號="560" 文字="Both hands"/>
+	<字串 編號="561" 文字=" Maximum HP"/>
+	<字串 編號="562" 文字=" Maximum MP"/>
+	<字串 編號="563" 文字="(For ever)"/>
+	<字串 編號="564" 文字="Increase "/>
+	<字串 編號="565" 文字="Reduce "/>
+	<字串 編號="566" 文字="Unable to save in the Safe."/>
+	<字串 編號="567" 文字="every %d sec"/>
+	<字串 編號="568" 文字="%s%d%s"/>
+	<字串 編號="569" 文字="continue %s"/>
+	<字串 編號="570" 文字="%s%d%%%s"/>
+	<字串 編號="571" 文字=" HP"/>
+	<字串 編號="572" 文字=" MP"/>
+	<字串 編號="573" 文字="Unable to collect when you are riding."/>
+	<字串 編號="574" 文字="Unable to collect because the distance is too far."/>
+	<字串 編號="575" 文字="Unable to fish because you are too far away from the Fishing Area."/>
+	<字串 編號="576" 文字="Equipment:"/>
+	<字串 編號="577" 文字="Equipment: there are %d cases."/>
+	<字串 編號="578" 文字="Unable to delete"/>
+	<字串 編號="579" 文字="You are unable to attack unless you equip the arrow."/>
+	<字串 編號="580" 文字="You are unable to attack unless you equip the ammunition."/>
+	<字串 編號="581" 文字="Unable to save in storage."/>
+	<字串 編號="582" 文字="This equipment needs %s slots to carry."/>
+	<字串 編號="583" 文字="Material needed:"/>
+	<字串 編號="584" 文字="Return to %s to revive"/>
+	<字串 編號="585" 文字="extra space"/>
+	<字串 編號="586" 文字="Maximum weight"/>
+	<字串 編號="587" 文字="/c$b%d-%d/c*(%d-%d /c$b%s%d/c*) attack"/>
+	<字串 編號="588" 文字="/c$b%d/c*(%d/c$b%s%d/c*) defense"/>
+	<字串 編號="589" 文字="Equipment: /c$b%d/c*(%d/c$b%s%d/c*) cases"/>
+	<字串 編號="590" 文字="Endurance %d / /c$b%d/c*(%d/c$b%s%d/c*)"/>
+	<字串 編號="591" 文字="/c$b+%d/c* Spell %s"/>
+	<字串 編號="592" 文字="/c$b equipment:"/>
+	<字串 編號="593" 文字="Level required %d"/>
+	<字串 編號="594" 文字="Attack speed"/>
+	<字串 編號="595" 文字="You are unable to learn unless you have already learned %s."/>
+	<字串 編號="596" 文字="present location"/>
+	<字串 編號="597" 文字="/c$2%s:/c*/c$1%s/c*"/>
+	<字串 編號="598" 文字="%s joins in the instant communication."/>
+	<字串 編號="599" 文字="%s leaves the instant communication."/>
+	<字串 編號="600" 文字="You have joined the instant communication."/>
+	<字串 編號="601" 文字="/c$b%s%d/c*(%d/c$b%s%d/c*) %s"/>
+	<字串 編號="602" 文字="%s%d %s"/>
+	<字串 編號="603" 文字="/c$b%s%d/c* %s"/>
+	<字串 編號="604" 文字="The pet is dead."/>
+	<字串 編號="605" 文字="pet /c$b%s/c* %s\n────────────\n antetype:%s\n level:level %d \n Exp:%lu / %lu \n HP:%d / %d\n MP:%d / %d\n Satiation Degree:%d / 100\n Intimacy Degree:%d / 100\n Exp diamond(%d%%):%d / %d\n Spell:%s\n Attribute:%s\n────────────\n"/>
+	<字串 編號="606" 文字="Pet's HP /c$b%d/c*/%d"/>
+	<字串 編號="607" 文字="Pet's Exp /c$b%lu/c*%"/>
+	<字串 編號="608" 文字="Pet's attack mode: Help"/>
+	<字串 編號="609" 文字="Pet's attack mode: Initiative"/>
+	<字串 編號="610" 文字="The chat room is full."/>
+	<字串 編號="611" 文字="HP"/>
+	<字串 編號="612" 文字="Exp"/>
+	<字串 編號="613" 文字="%s's pet %s"/>
+	<字串 編號="614" 文字="%s /c$b(is using)/c*"/>
+	<字串 編號="615" 文字="Unable to delete pet props when in use."/>
+	<字串 編號="616" 文字="Unable to sell pet props when in use."/>
+	<字串 編號="617" 文字="Unable to trade pet props when in use."/>
+	<字串 編號="618" 文字="Unable to save pet props in storage when in use."/>
+	<字串 編號="619" 文字="Unable to put pet props in stall when in use."/>
+	<字串 編號="620" 文字="%s joins the chat room."/>
+	<字串 編號="621" 文字="%s leaves the chat room."/>
+	<字串 編號="622" 文字="The room leader becomes %s."/>
+	<字串 編號="623" 文字="Unable to sit down when you are riding or driving the robot."/>
+	<字串 編號="624" 文字="Unable to sit down when you are shapeshifting."/>
+	<字串 編號="625" 文字="Your list is full."/>
+	<字串 編號="626" 文字="Summon %s to help you in battle."/>
+	<字串 編號="627" 文字="Used %d MP"/>
+	<字串 編號="628" 文字="Used %d SP lanterns."/>
+	<字串 編號="629" 文字="%d days"/>
+	<字串 編號="630" 文字="%d hrs"/>
+	<字串 編號="631" 文字="%d mins"/>
+	<字串 編號="632" 文字="%d secs"/>
+	<字串 編號="633" 文字="%s at term"/>
+	<字串 編號="634" 文字="Casting %s"/>
+	<字串 編號="635" 文字="Cooldown %s"/>
+	<字串 編號="636" 文字=" Physical damage"/>
+	<字串 編號="637" 文字=" Spell damage"/>
+	<字串 編號="638" 文字=" Physical defense"/>
+	<字串 編號="639" 文字=" Spell defense"/>
+	<字串 編號="640" 文字=" Melee attack the target"/>
+	<字串 編號="641" 文字="Please enter a title which is shorter than 6 characters, no spaces, or special characters"/>
+	<字串 編號="642" 文字="Obtain %s credit."/>
+	<字串 編號="643" 文字="%s invites you to join the league %s."/>
+	<字串 編號="644" 文字="Kick %s out of the league?"/>
+	<字串 編號="645" 文字="Demote the colonel to %s?"/>
+	<字串 編號="646" 文字="Give up this territory %s?"/>
+	<字串 編號="647" 文字="Leave the league? (You are unable to join any league within 2 hours.)"/>
+	<字串 編號="648" 文字="Disband the league? (You are unable to join any league within 2 hours.)"/>
+	<字串 編號="649" 文字="Lv.%3d"/>
+	<字串 編號="650" 文字="Your are unqualified to make that decision."/>
+	<字串 編號="651" 文字="The target is already in a league."/>
+	<字串 編號="652" 文字="The target hasn't joined a league yet."/>
+	<字串 編號="653" 文字="Unable to upgrade to colonel."/>
+	<字串 編號="654" 文字="Please enter a league name which is shorter than 12 characters no spaces, or special characters."/>
+	<字串 編號="655" 文字="That league name is unavailable."/>
+	<字串 編號="656" 文字="Unqualified."/>
+	<字串 編號="657" 文字="System Error"/>
+	<字串 編號="658" 文字="The colonel is unable to leave the league."/>
+	<字串 編號="659" 文字="The position of colonel is unable to be demoted. Please remove player and replace with another player."/>
+	<字串 編號="660" 文字="The character is not in the world."/>
+	<字串 編號="661" 文字="The league is full."/>
+	<字串 編號="662" 文字="The members of the league are unable to be demoted."/>
+	<字串 編號="663" 文字="Finish to edit"/>
+	<字串 編號="664" 文字="Unable to disband the league because there are props in league storage."/>
+	<字串 編號="665" 文字="You are not in any league now."/>
+	<字串 編號="666" 文字="Colonel"/>
+	<字串 編號="667" 文字="Vice-colonel"/>
+	<字串 編號="668" 文字="Cadre"/>
+	<字串 編號="669" 文字="Members"/>
+	<字串 編號="670" 文字="Leave the league"/>
+	<字串 編號="671" 文字="Disband the league"/>
+	<字串 編號="672" 文字="%s joins the league."/>
+	<字串 編號="673" 文字="%s leaves the league."/>
+	<字串 編號="674" 文字="%s is kicked out of the league."/>
+	<字串 編號="675" 文字="%s's rank is upgraded."/>
+	<字串 編號="676" 文字="%s's rank is degraded."/>
+	<字串 編號="677" 文字="%s becomes the Colonel."/>
+	<字串 編號="678" 文字="The league is disbanded."/>
+	<字串 編號="679" 文字="%s's position name is changed to %s."/>
+	<字串 編號="680" 文字="?? Level"/>
+	<字串 編號="681" 文字="Storage is opened."/>
+	<字串 編號="682" 文字="%s is using the league storage."/>
+	<字串 編號="683" 文字="Time's up. The window will be closed automatically."/>
+	<字串 編號="684" 文字="Self storage"/>
+	<字串 編號="685" 文字="League storage"/>
+	<字串 編號="686" 文字="Succeed in creating a league"/>
+	<字串 編號="687" 文字="You are unable to join a league at present."/>
+	<字串 編號="688" 文字="You need %s and then you can join a league."/>
+	<字串 編號="689" 文字="Unable to equip the equipment."/>
+	<字串 編號="690" 文字="/c$3Unable to equip/c*(residual times %d )"/>
+	<字串 編號="691" 文字="Unable to use without weapon spell"/>
+	<字串 編號="692" 文字="The server will be closed in %s..."/>
+	<字串 編號="693" 文字="Unable to use without armor spell"/>
+	<字串 編號="694" 文字="Unable to use without dress spell"/>
+	<字串 編號="695" 文字="Unable to use without craft spell"/>
+	<字串 編號="696" 文字="Unable to use without food spell"/>
+	<字串 編號="697" 文字="No auto-trace quest now."/>
+	<字串 編號="698" 文字="It needs %d rank."/>
+	<字串 編號="699" 文字="/c#9a9cf7 a diamond has been set ( %d / %d )/c*"/>
+	<字串 編號="700" 文字="Reduce the time of collection."/>
+	<字串 編號="701" 文字="Unable to use stance or spell when you are driving a robot."/>
+	<字串 編號="702" 文字="It needs %s faction rank %d."/>
+	<字串 編號="703" 文字=",%s"/>
+	<字串 編號="704" 文字="It needs %s."/>
+	<字串 編號="705" 文字="Spell level %d"/>
+	<字串 編號="706" 文字="It needs equipment %s."/>
+	<字串 編號="707" 文字="Stance power:%d"/>
+	<字串 編號="708" 文字="Spell power:%d-%d"/>
+	<字串 編號="709" 文字="Cast at once"/>
+	<字串 編號="710" 文字="SP"/>
+	<字串 編號="711" 文字="You can only invite players who are in the same map with you."/>
+	<字串 編號="712" 文字="Qty:"/>
+	<字串 編號="713" 文字="[%s]/c$2%s:/c*/c$1%s/c*"/>
+	<字串 編號="714" 文字="Unable to learn at the same time:%s"/>
+	<字串 編號="715" 文字="Are you sure you want to change the spell? No going back after confirmation. It will cost you a %s."/>
+	<字串 編號="716" 文字="Are you sure you want to change the spell? No going back after confirmation."/>
+	<字串 編號="717" 文字="/c#ffff83%s spell/c*"/>
+	<字串 編號="718" 文字="You have used a map piece."/>
+	<字串 編號="719" 文字="Congratulations. The treasure map is finished."/>
+	<字串 編號="720" 文字="Unable to use more map pieces because the treasure map is finished."/>
+	<字串 編號="721" 文字="The treasure map has been deleted."/>
+	<字串 編號="722" 文字="Unfinished treasure map."/>
+	<字串 編號="723" 文字="/c$b%s%d%%/c*(%d%%/c$b%s%d%%/c*) %s"/>
+	<字串 編號="724" 文字="%s%d%% %s"/>
+	<字串 編號="725" 文字="/c$b%s%d%%/c* %s"/>
+	<字串 編號="726" 文字="Item level:%d"/>
+	<字串 編號="727" 文字="You have found a chest."/>
+	<字串 編號="728" 文字="The chest is not yours."/>
+	<字串 編號="729" 文字="%d%s"/>
+	<字串 編號="730" 文字="Hole %d:none"/>
+	<字串 編號="731" 文字="/c#ff0000 have learnt/c*"/>
+	<字串 編號="732" 文字="%s"/>
+	<字串 編號="733" 文字="Unable to cast because of the landform."/>
+	<字串 編號="734" 文字="%s is already in your blacklist."/>
+	<字串 編號="735" 文字="Are you sure you want to set %s in the %s?"/>
+	<字串 編號="736" 文字="Are you sure you want to intensify %s?\n The success rate is -%d%%"/>
+	<字串 編號="737" 文字="Are you sure you want to cut a hole in %s?\n The success rate is -%d%%"/>
+	<字串 編號="738" 文字="Unable to attack because of the landform"/>
+	<字串 編號="739" 文字="Male"/>
+	<字串 編號="740" 文字="Female"/>
+	<字串 編號="741" 文字="Gomoku"/>
+	<字串 編號="742" 文字="Big-2"/>
+	<字串 編號="743" 文字="Bingo"/>
+	<字串 編號="744" 文字="Othello"/>
+	<字串 編號="745" 文字="Unable to set a stall here."/>
+	<字串 編號="746" 文字="%s is unable to join the league because of the different factions."/>
+	<字串 編號="747" 文字="You invite %s to join your league."/>
+	<字串 編號="748" 文字="Unable to trade equipment which is bound."/>
+	<字串 編號="749" 文字="Gender:%s          Level:%02d \nFaction:%s\nJob:%s\nRank:%s\nLeague:%s\n------------------------------\nBirthday:%02d month %02d day \nSign:%-10s  Bloodtype:%s\nResidence:%-10s  Identity:%s\nExterior:%-10s   Personality:%s"/>
+	<字串 編號="750" 文字="Unable to be misled because of having been misled."/>
+	<字串 編號="751" 文字="Physical Dodge"/>
+	<字串 編號="752" 文字="You have been muted.(%s days %s hours %s minutes)"/>
+	<字串 編號="753" 文字="You are in jail.(%s days %s hours %s minutes)"/>
+	<字串 編號="754" 文字="Character error %s, please contact a GM."/>
+	<字串 編號="755" 文字="Combo hit:%d."/>
+	<字串 編號="756" 文字="This account has been locked."/>
+	<字串 編號="757" 文字="[%s]%s"/>
+	<字串 編號="758" 文字="Error when you draw your props."/>
+	<字串 編號="759" 文字="No available props you can draw."/>
+	<字串 編號="760" 文字="Props server error."/>
+	<字串 編號="761" 文字="This item is unable to be traded."/>
+	<字串 編號="762" 文字="%28d group"/>
+	<字串 編號="763" 文字="Unable to equip because level requirements are not enough."/>
+	<字串 編號="764" 文字="Unable to equip because the spell level is not high enough."/>
+	<字串 編號="765" 文字="%s is in a different branch of the server."/>
+	<字串 編號="766" 文字="The sum is more than the upper limit of the character."/>
+	<字串 編號="767" 文字="%2.1f secs"/>
+	<字串 編號="768" 文字="Are you sure you want to set %s in the %s?"/>
+	<字串 編號="769" 文字="Finish setting the %s."/>
+	<字串 編號="770" 文字="There are parts in %s."/>
+	<字串 編號="771" 文字="Unable to set parts because the %s is not a robot."/>
+	<字串 編號="772" 文字="Succeed in using %s in %s."/>
+	<字串 編號="773" 文字="Unable to use because the %s is not a robot."/>
+	<字串 編號="774" 文字="Are you sure you want to use %s in the %s?"/>
+	<字串 編號="775" 文字="Have set a part:%s"/>
+	<字串 編號="776" 文字="You say too fast."/>
+	<字串 編號="778" 文字="Version:%s"/>
+	<字串 編號="779" 文字="Unable to log into account now."/>
+	<字串 編號="780" 文字="/c#FF0000(is dead)/c*"/>
+	<字串 編號="781" 文字="Add fire damage"/>
+	<字串 編號="782" 文字="Add thunderbolt damage"/>
+	<字串 編號="783" 文字="Add ice damage"/>
+	<字串 編號="784" 文字="Add rotten damage"/>
+	<字串 編號="785" 文字="The server is undergoing maintenance right now. Thanks for your understanding."/>
+	<字串 編號="786" 文字="%s."/>
+	<字串 編號="787" 文字="Unable to cast in an area which can't be walked through."/>
+	<字串 編號="788" 文字="Unable to create a character repeatedly in such a short time. Please try again later."/>
+	<字串 編號="789" 文字="Wait for the target to confirm..."/>
+	<字串 編號="790" 文字="Confirm trade and then you can trade with target for money or items."/>
+	<字串 編號="791" 文字="Unable to create a league repeatedly in such a short time. Please try again later."/>
+	<字串 編號="792" 文字="This function is unavailable."/>
+	<字串 編號="793" 文字="You can revive yourself by clicking the totem you belong to in the scene or pressing Esc to revive in your birth place."/>
+	<字串 編號="794" 文字="%s is already in a league."/>
+	<字串 編號="795" 文字="Unable to delete the character because it is in a league."/>
+	<字串 編號="796" 文字="not enough HP."/>
+	<字串 編號="797" 文字="/c#ff8080 you tell(%s): %s"/>
+	<字串 編號="798" 文字="/c#ff8080(%s) tells you: %s"/>
+	<字串 編號="799" 文字="Unable to trade an item that is bound."/>
+	<字串 編號="800" 文字="Unable to put an item in a stall that is bound."/>
+	<字串 編號="801" 文字="Screenshot successful (%s)."/>
+	<字串 編號="802" 文字="You are unable to create a character unless you buy a character position for it."/>
+	<字串 編號="803" 文字="Wait for a response from the server..."/>
+	<字串 編號="804" 文字="Increase character position successfully. Login again and then you can create a character."/>
+	<字串 編號="805" 文字="There is no need to increase character position."/>
+	<字串 編號="806" 文字="Congratulations. %s and %s are a couple."/>
+	<字串 編號="807" 文字="Your Angel Protector is coming!"/>
+	<字串 編號="808" 文字="Unable to open the gift. The residual time is %s secs."/>
+	<字串 編號="809" 文字="Unable to open the gift. The residual time is %s mins %s secs."/>
+	<字串 編號="810" 文字="Unable to open the gift. The residual time is %s hrs %s mins %s secs."/>
+	<字串 編號="811" 文字="Unable to open the gift. The residual time is %s day %s hrs %s mins %s secs."/>
+	<字串 編號="812" 文字="Application finished. Please come to complete courtship in 1 hour."/>
+	<字串 編號="813" 文字="Application failed. Everyone can only apply one time."/>
+	<字串 編號="814" 文字="Courtship successful. Hurry and find your lovely Angel Protector."/>
+	<字串 編號="815" 文字="Haven't completed courtship. Please come to complete courtship after 1 hour."/>
+	<字串 編號="816" 文字="Not enough people to complete courtship. Please try again later."/>
+	<字串 編號="817" 文字="Unable to transport to the destination."/>
+	<字串 編號="818" 文字="Please enter the numbers.(just numbers, not English characters.)"/>
+	<字串 編號="819" 文字="/c#ffff83 duration %d seconds/c*"/>
+	<字串 編號="820" 文字="/c#ffff84 duration %d minutes %d seconds/c*"/>
+	<字串 編號="821" 文字="/c#ffff85 duration %d hours %d minutes %d seconds/c*"/>
+	<字串 編號="822" 文字="/c#ffff86 duration %d days %d hours %d minutes %d seconds/c*"/>
+	<字串 編號="823" 文字="Unable to intensify the %s."/>
+	<字串 編號="824" 文字="Unable to cut a hole in %s."/>
+	<字串 編號="825" 文字="Unable to set a diamond in %s."/>
+	<字串 編號="826" 文字="/c#c894ff has been intensified ( %d ) times /c*"/>
+	<字串 編號="827" 文字="Weapon:"/>
+	<字串 編號="828" 文字="Armor:"/>
+	<字串 編號="829" 文字="Shield:"/>
+	<字串 編號="830" 文字="You are right. I will give you a blessing and I hope you can work hard in Eden."/>
+	<字串 編號="831" 文字="You are wrong. It seems that you are controlled by evil. However, you still have %s chances."/>
+	<字串 編號="832" 文字="Unable to enter the map because you have too many members. Please try again later."/>
+	<字串 編號="833" 文字="You should be a team and then you can enter the map."/>
+	<字串 編號="834" 文字="You should be a guild and then you can enter the map."/>
+	<字串 編號="835" 文字="Unable to enter the map because you are not qualified."/>
+	<字串 編號="836" 文字="You will return to the renascence place after %s seconds."/>
+	<字串 編號="837" 文字="You are not in a team in the map. You will return to the renascence place after %s seconds."/>
+	<字串 編號="838" 文字="You are not in a guild in the map. You will return to the renascence place after %s seconds."/>
+	<字串 編號="839" 文字="You are unable to buy because you don't have enough Angel Gold."/>
+	<字串 編號="840" 文字="The Angel Mall is closed at present. Thanks for your understanding."/>
+	<字串 編號="841" 文字="Price:"/>
+	<字串 編號="842" 文字="On sale:"/>
+	<字串 編號="843" 文字="Period of validity:"/>
+	<字串 編號="844" 文字="You are unable to say in the public channel unless you have broadcasting. Please buy it in the Angel Mall."/>
+	<字串 編號="845" 文字="You are unable to broadcast unless you have super broadcasting. Please buy it in the Angel Mall."/>
+	<字串 編號="846" 文字="Sword"/>
+	<字串 編號="847" 文字="Hammer"/>
+	<字串 編號="848" 文字="Spear"/>
+	<字串 編號="849" 文字="Bow"/>
+	<字串 編號="850" 文字="Wand"/>
+	<字串 編號="851" 文字="Gloves"/>
+	<字串 編號="852" 文字="Shoes"/>
+	<字串 編號="853" 文字="Headwear"/>
+	<字串 編號="854" 文字="Clothes"/>
+	<字串 編號="855" 文字="Trinket"/>
+	<字串 編號="856" 文字="Windpack"/>
+	<字串 編號="857" 文字="General"/>
+	<字串 編號="858" 文字="Games"/>
+	<字串 編號="859" 文字="General"/>
+	<字串 編號="860" 文字="Ltd sale"/>
+	<字串 編號="861" 文字="robot"/>
+	<字串 編號="862" 文字="ride"/>
+	<字串 編號="863" 文字="Error when you draw restored props."/>
+	<字串 編號="864" 文字="No available restored props you can draw."/>
+	<字串 編號="865" 文字="Error on the restored props server."/>
+	<字串 編號="866" 文字="Haven't rent."/>
+	<字串 編號="867" 文字="Residual time:%s."/>
+	<字串 編號="868" 文字="The Safe is unavailable."/>
+	<字串 編號="869" 文字="Storage is not opened."/>
+	<字串 編號="870" 文字="No tenancy props. Please buy in the Angel Mall."/>
+	<字串 編號="871" 文字="The Safe has been rented."/>
+	<字串 編號="872" 文字="Rented the Safe successfully."/>
+	<字串 編號="873" 文字="New Props."/>
+	<字串 編號="874" 文字="Hot Props."/>
+	<字串 編號="875" 文字="It is dealing. Please wait for 2 seconds and then perform again."/>
+	<字串 編號="876" 文字="Successfully set the trade password."/>
+	<字串 編號="877" 文字="Please enter the right trade password."/>
+	<字串 編號="878" 文字="You are unable to trade now because you have entered the wrong password many times."/>
+	<字串 編號="879" 文字="Fail to modify the trade password."/>
+	<字串 編號="880" 文字="System Error. Please try again later."/>
+	<字串 編號="881" 文字="Unable to trade or delete befor you pass the validation of the trade password."/>
+	<字串 編號="882" 文字="%s?"/>
+	<字串 編號="883" 文字="You have had the same or better effect."/>
+	<字串 編號="884" 文字="Two groups of trade passwords are different. Fail to modify."/>
+	<字串 編號="885" 文字="Cases:%02d  Time limit:%02d days"/>
+	<字串 編號="886" 文字="Cases:%02d  Time limit:%03d hours"/>
+	<字串 編號="887" 文字="Cases:%02d  Time limit:%04d minutes"/>
+	<字串 編號="888" 文字="Cases:%02d  Time limit:%05d seconds"/>
+	<字串 編號="889" 文字="You have failed validation many times. Please trade later. The residual time is %d seconds."/>
+	<字串 編號="890" 文字="It is validating."/>
+	<字串 編號="891" 文字="Please enter the original password."/>
+	<字串 編號="892" 文字="Please enter the new trade password."/>
+	<字串 編號="893" 文字="Please enter the new trade password again."/>
+	<字串 編號="894" 文字="Please enter the orginal trade password."/>
+	<字串 編號="895" 文字="Unable to trade when you are setting a stall."/>
+	<字串 編號="896" 文字="Unable to set a stall when you are trading."/>
+	<字串 編號="897" 文字="Please enter the trade password."/>
+	<字串 編號="898" 文字="Modify the trade password."/>
+	<字串 編號="899" 文字="Set the trade password."/>
+	<字串 編號="900" 文字="Please enter the 4-6 number trade password."/>
+	<字串 編號="901" 文字="The player %s wants to trade. Please validate the trade."/>
+	<字串 編號="902" 文字="Please enter the 4-6 number trade password."/>
+	<字串 編號="903" 文字="Please enter the 4-6 number original trade password."/>
+	<字串 編號="904" 文字="Please enter the 4-6 number original trade password again."/>
+	<字串 編號="905" 文字="The new trade password should be between 4-6 numbers."/>
+	<字串 編號="906" 文字="Deleted the old trade password successfully."/>
+	<字串 編號="907" 文字="Use Angel Amulet."/>
+	<字串 編號="908" 文字="Are you sure you want to use %s in the %s?\n The effect %s will instead %s."/>
+	<字串 編號="909" 文字="Are you sure you want to use %s in the %s?\n The effect %s will prolong %s."/>
+	<字串 編號="910" 文字="Items sort:%02d"/>
+	<字串 編號="911" 文字="/c#ff0000 The additional effect is over the equipment's time limit./c*"/>
+	<字串 編號="912" 文字="Hasn't been started.(Unable to trade after usage)"/>
+	<字串 編號="913" 文字="You are unable to trade the item after using. Are you sure you want to use it?"/>
+	<字串 編號="914" 文字="/c$3 has been started /c*(can be used but not to be traded.)"/>
+	<字串 編號="915" 文字="The character's sum is more than the upper limit."/>
+	<字串 編號="916" 文字="/c#e1e100%s the endurance is less than %s%%!/c*"/>
+	<字串 編號="917" 文字="/c#ff0000%s has been destroyed /c*"/>
+	<字串 編號="918" 文字="/c#ff0000  Validation failed/c*"/>
+	<字串 編號="919" 文字="[Use for ever]"/>
+	<字串 編號="920" 文字="You have this emote."/>
+	<字串 編號="921" 文字="Successfully added the emote."/>
+	<字串 編號="922" 文字="Are you sure you want to use %s?"/>
+	<字串 編號="923" 文字="This small game can be used for ever."/>
+	<字串 編號="924" 文字="cases:%02d   Time limit: for ever"/>
+	<字串 編號="925" 文字="Sale for a limited time"/>
+	<字串 編號="926" 文字="Sending a gift succeeded. The target will receive the gift within several minutes."/>
+	<字串 編號="927" 文字="The target is unavailable. Please check the name again."/>
+	<字串 編號="928" 文字="/c#ffff66 Gift from %s /c*"/>
+	<字串 編號="929" 文字="Are you sure you want to transport to %s?"/>
+	<字串 編號="930" 文字="Are you sure you want to summon %s?"/>
+	<字串 編號="931" 文字="Are you sure you want to use %s in %s?"/>
+	<字串 編號="932" 文字="The character is locked."/>
+	<字串 編號="933" 文字="The target is unable to summon or you are unable to summon in the present map."/>
+	<字串 編號="934" 文字="The item is unavailable."/>
+	<字串 編號="935" 文字="Exp %lu / %lu\nHP %d / %d\nMP %d / %d"/>
+	<字串 編號="936" 文字="Satiation degree %d /100"/>
+	<字串 編號="937" 文字="Intimacy degree %d /100"/>
+	<字串 編號="938" 文字="Total Exp of the Exp Diamond %d /%d"/>
+	<字串 編號="939" 文字="The pet is unable to upgrade."/>
+	<字串 編號="940" 文字="The props can only be used in the present pet."/>
+	<字串 編號="941" 文字="The pet upgrades to %s!"/>
+	<字串 編號="942" 文字="Pet Attack Mode: Life protected."/>
+	<字串 編號="943" 文字="Use Exp diamond to share %s%% exp and then the total exp is %s!"/>
+	<字串 編號="944" 文字="You are using an exp diamond!"/>
+	<字串 編號="945" 文字="You are unable to add exp to the character unless the Exp Diamond is full."/>
+	<字串 編號="946" 文字="Unable to use the function unless you have used Exp diamond."/>
+	<字串 編號="947" 文字="You add %s exp from the exp diamond to yourself."/>
+	<字串 編號="948" 文字="Do you want to accpet %s's summoning and transport to him."/>
+	<字串 編號="949" 文字="Summoning failed. The target has no summon props."/>
+	<字串 編號="950" 文字="Transport failed. You have no transportion props."/>
+	<字串 編號="951" 文字="Cost a %s."/>
+	<字串 編號="952" 文字="%s has been transported to you."/>
+	<字串 編號="953" 文字="The target refuses your summons."/>
+	<字串 編號="954" 文字="Summoning failed. You have no summoning props."/>
+	<字串 編號="955" 文字="Use a Pet Amulet."/>
+	<字串 編號="956" 文字="The intimacy between you and your pet increases %s."/>
+	<字串 編號="957" 文字="The pet is full."/>
+	<字串 編號="958" 文字="The intimacy between you and your pet is full."/>
+	<字串 編號="959" 文字="Revival fee: %d"/>
+	<字串 編號="960" 文字="Your pet %s has run away."/>
+	<字串 編號="961" 文字="Your pet %s has revived."/>
+	<字串 編號="962" 文字="The pet has obtained %s exp."/>
+	<字串 編號="963" 文字="The pet has lost %s exp."/>
+	<字串 編號="964" 文字="You have deposited %s exp in the exp diamond."/>
+	<字串 編號="965" 文字="The intimacy between you and your pet is reduced %s."/>
+	<字串 編號="966" 文字="The intimacy between you and your pet increases %s."/>
+	<字串 編號="967" 文字="The pet's satiation degree is %s."/>
+	<字串 編號="968" 文字="The target should be [pet props]."/>
+	<字串 編號="969" 文字="The pet's satiation degree increases %s."/>
+	<字串 編號="970" 文字="The exp in the pet's exp diamond will be zero and the intimacy degree will be reduced after usage. Are you sure you want to use the diamond."/>
+	<字串 編號="971" 文字="can be used(residual times %d)"/>
+	<字串 編號="972" 文字="/c$3 can only be used by yourself /c*(residual times %d )"/>
+	<字串 編號="973" 文字="The pet's %s increases %d."/>
+	<字串 編號="974" 文字="You are unable to summon the pet continually within a short time."/>
+	<字串 編號="975" 文字="Reduce the time of manufacture."/>
+	<字串 編號="976" 文字="%s /c$b%d%%/c*(%d%%/c$b%s%d%%/c*)"/>
+	<字串 編號="977" 文字="%s %d%%"/>
+	<字串 編號="978" 文字="%s /c$b%d%%/c*"/>
+	<字串 編號="979" 文字="The totem battle will begin soon. You will be transported to the main city in % seconds."/>
+	<字串 編號="980" 文字="You are unable to set the fortifications."/>
+	<字串 編號="981" 文字="You are unable to split the defensive tower unless it is full of HP."/>
+	<字串 編號="982" 文字="There is no available defensive tower you can split."/>
+	<字串 編號="983" 文字="Exp:"/>
+	<字串 編號="984" 文字="Credit:"/>
+	<字串 編號="985" 文字="It is past time to validate. Please login again."/>
+	<字串 編號="986" 文字="Are you sure you want to send \n/c#FFFF66[%s]/c*\n to /c#FF99FF%s/c*?"/>
+	<字串 編號="987" 文字="Validation failed. Please login again."/>
+	<字串 編號="988" 文字="Renascence place: /c$2%s/c*"/>
+	<字串 編號="989" 文字="Unknown"/>
+	<字串 編號="990" 文字="Angels Online"/>
+	<字串 編號="991" 文字="You are killed by %s."/>
+	<字串 編號="992" 文字="The pet is killed by %s."/>
+	<字串 編號="993" 文字="Addresser"/>
+	<字串 編號="994" 文字="Topic"/>
+	<字串 編號="995" 文字="Time"/>
+	<字串 編號="996" 文字="Content"/>
+	<字串 編號="997" 文字="Addressee"/>
+	<字串 編號="998" 文字="Copy"/>
+	<字串 編號="999" 文字="Mail"/>
+	<字串 編號="1000" 文字="The special treasure map is unable to use map pieces which have repeated numbers."/>
+	<字串 編號="1001" 文字="Wait for the target's response..."/>
+	<字串 編號="1002" 文字="It is your turn."/>
+	<字串 編號="1003" 文字="Opponent is thinking ..."/>
+	<字串 編號="1004" 文字="YA... You win. Do you want to challenge again?"/>
+	<字串 編號="1005" 文字="Oh... You fail. Do you want to challenge again?"/>
+	<字串 編號="1006" 文字="Ah...It's a tie. Do you want to challenge again?"/>
+	<字串 編號="1007" 文字="You yield. Work harder next time!"/>
+	<字串 編號="1008" 文字="The target yields. Congratulations. You win."/>
+	<字串 編號="1009" 文字="Put the number [%d] in the position you want."/>
+	<字串 編號="1010" 文字="Wait. The target is not ready."/>
+	<字串 編號="1011" 文字="It is your turn. Choose a number you want."/>
+	<字串 編號="1012" 文字="Are you ready? Confirm it and then begin the challenge."/>
+	<字串 編號="1013" 文字="It is your turn. Choose a location to move your piece."/>
+	<字串 編號="1014" 文字="Black %d White %d, you win. Do you want to challenge again?"/>
+	<字串 編號="1015" 文字="Black %d White %d, you lose. Do you want to challenge again?"/>
+	<字串 編號="1016" 文字="Black %d White %d, it's a tie. Do you want to challenge again?"/>
+	<字串 編號="1017" 文字="You are unable to move any pieces. Please click the button [Pass]"/>
+	<字串 編號="1018" 文字="The target is unable to move any pieces. The game is over."/>
+	<字串 編號="1019" 文字="Wait for other players..."/>
+	<字串 編號="1020" 文字="The game begins. The player with the diamond 3 goes first."/>
+	<字串 編號="1021" 文字="It is your turn to play a card."/>
+	<字串 編號="1022" 文字="Wait for other players to play a card..."/>
+	<字串 編號="1023" 文字="Congratulations. You win. Do you want to challenge again?"/>
+	<字串 編號="1024" 文字="The game is over. Do you want to challenge again?"/>
+	<字串 編號="1030" 文字="Neutrally"/>
+	<字串 編號="1031" 文字="Aurora"/>
+	<字串 編號="1032" 文字="Beasts"/>
+	<字串 編號="1033" 文字="Steel"/>
+	<字串 編號="1034" 文字="Shadow"/>
+	<字串 編號="1035" 文字="Heaven"/>
+	<字串 編號="1036" 文字="PK"/>
+	<字串 編號="1037" 文字="Monster"/>
+	<字串 編號="1071"/>
+	<字串 編號="1072"/>
+	<字串 編號="1073"/>
+	<字串 編號="1074"/>
+	<字串 編號="1075"/>
+	<字串 編號="1076"/>
+	<字串 編號="1077"/>
+	<字串 編號="1078"/>
+	<字串 編號="1079"/>
+	<字串 編號="1080"/>
+	<字串 編號="1081"/>
+	<字串 編號="1082"/>
+	<字串 編號="1083"/>
+	<字串 編號="1084"/>
+	<字串 編號="1085"/>
+	<字串 編號="1086"/>
+	<字串 編號="1087"/>
+	<字串 編號="1088"/>
+	<字串 編號="1089"/>
+	<字串 編號="1090"/>
+	<字串 編號="1201" 文字="Human"/>
+	<字串 編號="1202" 文字="Animal"/>
+	<字串 編號="1203" 文字="Plant"/>
+	<字串 編號="1204" 文字="Energy"/>
+	<字串 編號="1205" 文字="Undead"/>
+	<字串 編號="1206" 文字="Evil"/>
+	<字串 編號="1300" 文字="Keep a secret"/>
+	<字串 編號="1301" 文字="Argentina"/>
+	<字串 編號="1302" 文字="Australia"/>
+	<字串 編號="1303" 文字="Austria"/>
+	<字串 編號="1304" 文字="Brazil"/>
+	<字串 編號="1305" 文字="Canada"/>
+  <字串 編號="1306" 文字="China"/>
+  <字串 編號="1307" 文字="Denmark"/>
+  <字串 編號="1308" 文字="Finland"/>
+  <字串 編號="1309" 文字="France"/>
+  <字串 編號="1310" 文字="Germany"/>
+  <字串 編號="1311" 文字="Greece"/>
+  <字串 編號="1312" 文字="Iceland"/>
+  <字串 編號="1313" 文字="Indonesia"/>
+  <字串 編號="1314" 文字="Italy"/>
+  <字串 編號="1315" 文字="Mexico"/>
+  <字串 編號="1316" 文字="Netherlands"/>
+  <字串 編號="1317" 文字="New Zealand"/>
+  <字串 編號="1318" 文字="Norway"/>
+  <字串 編號="1319" 文字="Poland"/>
+  <字串 編號="1320" 文字="Portugal"/>
+  <字串 編號="1321" 文字="Spain"/>
+  <字串 編號="1322" 文字="Sweden"/>
+  <字串 編號="1323" 文字="Switzerland"/>
+  <字串 編號="1324" 文字="United Kingdom"/>
+  <字串 編號="1325" 文字="United States"/>
+	<字串 編號="1340" 文字="Keep a secret"/>
+	<字串 編號="1341" 文字="Student"/>
+	<字串 編號="1342" 文字="Teacher"/>
+	<字串 編號="1343" 文字="Doctor"/>
+	<字串 編號="1344" 文字="Nurse"/>
+	<字串 編號="1345" 文字="Athlete"/>
+	<字串 編號="1346" 文字="Seneschal"/>
+	<字串 編號="1347" 文字="Soldier"/>
+	<字串 編號="1348" 文字="General"/>
+	<字串 編號="1349" 文字="Warrior"/>
+	<字串 編號="1350" 文字="Firemen"/>
+	<字串 編號="1351" 文字="Courtling"/>
+	<字串 編號="1352" 文字="Office"/>
+	<字串 編號="1353" 文字="Rich man"/>
+	<字串 編號="1354" 文字="Cook"/>
+	<字串 編號="1355" 文字="Day Laborer"/>
+	<字串 編號="1356" 文字="SOHO"/>
+	<字串 編號="1357" 文字="Out of work"/>
+	<字串 編號="1358" 文字="Strange"/>
+	<字串 編號="1370" 文字="Keep a secret"/>
+	<字串 編號="1371" 文字="Humourous"/>
+	<字串 編號="1372" 文字="Lively"/>
+	<字串 編號="1373" 文字="Zealous"/>
+	<字串 編號="1374" 文字="Foresighted"/>
+	<字串 編號="1375" 文字="Thrifty"/>
+	<字串 編號="1376" 文字="Careful"/>
+	<字串 編號="1377" 文字="Stubborn"/>
+	<字串 編號="1378" 文字="Outright"/>
+	<字串 編號="1379" 文字="Ambitious"/>
+	<字串 編號="1380" 文字="Mature"/>
+	<字串 編號="1381" 文字="Polite"/>
+	<字串 編號="1382" 文字="Frank"/>
+	<字串 編號="1383" 文字="Close-lipped"/>
+	<字串 編號="1384" 文字="Shy"/>
+	<字串 編號="1385" 文字="Bland"/>
+	<字串 編號="1386" 文字="Onefold"/>
+	<字串 編號="1387" 文字="Woozy"/>
+	<字串 編號="1388" 文字="Careless"/>
+	<字串 編號="1389" 文字="Capricious"/>
+	<字串 編號="1390" 文字="Weak-headed"/>
+	<字串 編號="1391" 文字="Easy-going"/>
+	<字串 編號="1392" 文字="Stylish"/>
+	<字串 編號="1393" 文字="Forthright"/>
+	<字串 編號="1394" 文字="Naughty"/>
+	<字串 編號="1410" 文字="Keep a secret"/>
+	<字串 編號="1411" 文字="Lovely"/>
+	<字串 編號="1412" 文字="Slim"/>
+	<字串 編號="1413" 文字="Tenuous"/>
+	<字串 編號="1414" 文字="Plump"/>
+	<字串 編號="1415" 文字="Proper"/>
+	<字串 編號="1416" 文字="Sexy"/>
+	<字串 編號="1417" 文字="Graceful"/>
+	<字串 編號="1418" 文字="Decent"/>
+	<字串 編號="1419" 文字="Ice beauty"/>
+	<字串 編號="1420" 文字="Rutabaga"/>
+	<字串 編號="1430" 文字="Keep a secret"/>
+	<字串 編號="1431" 文字="Capable"/>
+	<字串 編號="1432" 文字="Gentle"/>
+	<字串 編號="1433" 文字="Dry-boned"/>
+	<字串 編號="1434" 文字="Strapping"/>
+	<字串 編號="1435" 文字="Medium"/>
+	<字串 編號="1436" 文字="Handsome"/>
+	<字串 編號="1437" 文字="Punk"/>
+	<字串 編號="1438" 文字="Bonny"/>
+	<字串 編號="1439" 文字="Yappy"/>
+	<字串 編號="1440" 文字="Frog Prince"/>
+	<字串 編號="1456" 文字="General"/>
+	<字串 編號="1457" 文字="Money"/>
+	<字串 編號="1458" 文字="Headwear"/>
+	<字串 編號="1459" 文字="Clothes"/>
+	<字串 編號="1460" 文字="Gloves"/>
+	<字串 編號="1461" 文字="Shoes"/>
+	<字串 編號="1462" 文字="Trinket"/>
+	<字串 編號="1463" 文字="Kitbag"/>
+	<字串 編號="1464" 文字="Mantle"/>
+	<字串 編號="1465" 文字="Sword"/>
+	<字串 編號="1466" 文字="Blade"/>
+	<字串 編號="1467" 文字="Axe"/>
+	<字串 編號="1468" 文字="Hammer"/>
+	<字串 編號="1469" 文字="Spear"/>
+	<字串 編號="1470" 文字="Wand"/>
+	<字串 編號="1471" 文字="Bow"/>
+	<字串 編號="1472" 文字="Sling"/>
+	<字串 編號="1473" 文字="Shield"/>
+	<字串 編號="1474" 文字="Scroll"/>
+	<字串 編號="1475" 文字="Recipe"/>
+	<字串 編號="1476" 文字="Shovel"/>
+	<字串 編號="1477" 文字="Hook"/>
+	<字串 編號="1478" 文字="FishRod"/>
+	<字串 編號="1479" 文字="Pet"/>
+	<字串 編號="1480" 文字="Robot"/>
+	<字串 編號="1481" 文字="Ride"/>
+	<字串 編號="1482" 文字="Arrow"/>
+	<字串 編號="1483" 文字="Ammo"/>
+	<字串 編號="1484" 文字="Dye"/>
+	<字串 編號="1485" 文字="Diamond"/>
+	<字串 編號="1486" 文字="Treasure Map"/>
+	<字串 編號="1487" 文字="Quest"/>
+	<字串 編號="1488" 文字="Quest(Hide)"/>
+	<字串 編號="1490" 文字="Robot"/>
+	<字串 編號="1497" 文字="Defensive Tower"/>
+	<字串 編號="1501" 文字="Emotion 1"/>
+	<字串 編號="1502" 文字="Emotion 2"/>
+	<字串 編號="1503" 文字="Emotion 3"/>
+	<字串 編號="1504" 文字="Emotion 4"/>
+	<字串 編號="1505" 文字="Emotion 5"/>
+	<字串 編號="1506" 文字="Emotion 6"/>
+	<字串 編號="1507" 文字="Emotion 7"/>
+	<字串 編號="1508" 文字="Emotion 8"/>
+	<字串 編號="1509" 文字="Emotion 9"/>
+	<字串 編號="1510" 文字="Emotion 10"/>
+	<字串 編號="1511" 文字="Emotion 11"/>
+	<字串 編號="1512" 文字="Help"/>
+	<字串 編號="1513" 文字="Thanks"/>
+	<字串 編號="1514" 文字="Sorry"/>
+	<字串 編號="1515" 文字="Hello"/>
+	<字串 編號="1516" 文字="Salaam"/>
+	<字串 編號="1517" 文字="Goodbye"/>
+	<字串 編號="1518" 文字="Accept"/>
+	<字串 編號="1519" 文字="Refuse"/>
+	<字串 編號="1520" 文字="Wait for me"/>
+	<字串 編號="1521" 文字="Follow"/>
+	<字串 編號="1522" 文字="Battle"/>
+	<字串 編號="1523" 文字="Cure"/>
+	<字串 編號="1524" 文字="Magic has been exhausted."/>
+	<字串 編號="1525" 文字="Flee"/>
+	<字串 編號="1526" 文字="Help"/>
+	<字串 編號="1527" 文字="Admiration"/>
+	<字串 編號="1528" 文字="Congratulations"/>
+	<字串 編號="1529" 文字="Train"/>
+	<字串 編號="1530" 文字="Make faces"/>
+	<字串 編號="1531" 文字="Howl"/>
+	<字串 編號="1532" 文字="Cry"/>
+	<字串 編號="1533" 文字="Wail"/>
+	<字串 編號="1534" 文字="Laugh"/>
+	<字串 編號="1535" 文字="Yuk"/>
+	<字串 編號="1536" 文字="Cheer"/>
+	<字串 編號="1537" 文字="Yawn"/>
+	<字串 編號="1538" 文字="Sigh"/>
+	<字串 編號="1539" 文字="Scorn"/>
+	<字串 編號="1540" 文字="Love"/>
+	<字串 編號="1541" 文字="Vomit"/>
+	<字串 編號="1542" 文字="Surprise"/>
+	<字串 編號="1543" 文字="No choice"/>
+	<字串 編號="1544" 文字="Chaos"/>
+	<字串 編號="1545" 文字="Mute"/>
+	<字串 編號="1546" 文字="Scissors"/>
+	<字串 編號="1547" 文字="Stone"/>
+	<字串 編號="1548" 文字="Paper"/>
+	<字串 編號="1600" 文字="/C#FFFFFF%s ( %d / %d )/C*"/>
+	<字串 編號="1601" 文字="/C#FFDD01%s/C*"/>
+	<字串 編號="1602" 文字="/C#FF0000%s/C*"/>
+	<字串 編號="1603" 文字="%s Succeed in cutting a hole"/>
+	<字串 編號="1604" 文字="/C#FF0000%s Fail to cut a hole /C*"/>
+	<字串 編號="1605" 文字="/C#FF0000 The level of the props for cutting are not high enough. /C*"/>
+	<字串 編號="1606" 文字="/C#FF0000%s Unable to cut a hole because the upper limit has been reached. /C*"/>
+	<字串 編號="1607" 文字="/C#FF0000%s Unable to set a diamond because there are not enough holes. /C*"/>
+	<字串 編號="1608" 文字="%s finish setting the diamond."/>
+	<字串 編號="1609" 文字="/C#FF0000 Unable to use the props yourself /C*"/>
+	<字串 編號="1610" 文字="/C#FF0000%s Unable to endure the power of the diamond /C*"/>
+	<字串 編號="1611" 文字="Your weight is over the limit."/>
+	<字串 編號="1612" 文字="There is not enough spcae in the bag."/>
+	<字串 編號="1613" 文字="Succeed in intensifying %s."/>
+	<字串 編號="1614" 文字="/C#FF0000%s Failed to intensify /C*"/>
+	<字串 編號="1615" 文字="/C#FF0000%sUnable to cut a hole, please set the diamond first. /C*"/>
+	<字串 編號="1616" 文字="/C#FF0000 Unable to cut a hole in %s /C*"/>
+	<字串 編號="1617" 文字="/C#FF0000 Unable to set a diamond in %s /C*"/>
+	<字串 編號="1618" 文字="/C#FF0000 The level of the props for intensifying are not high enough. /C*"/>
+	<字串 編號="1698" 文字="Weight:"/>
+	<字串 編號="1699" 文字="Credit:"/>
+	<字串 編號="1700" 文字="Growing Power"/>
+	<字串 編號="1701" 文字="Make a figure"/>
+	<字串 編號="1702" 文字="Belief Preacher"/>
+	<字串 編號="1703" 文字="Order Apostle"/>
+	<字串 編號="1704" 文字="Gospel Archangel"/>
+	<字串 編號="1705" 文字="Holy Dedicator"/>
+	<字串 編號="1706" 文字="God as Lawyer"/>
+	<字串 編號="1707" 文字="Rainbow Guide"/>
+	<字串 編號="1708" 文字="Gospel Sower"/>
+	<字串 編號="1709" 文字="Chief Justice"/>
+	<字串 編號="1710" 文字="Eden's Hope"/>
+	<字串 編號="1711" 文字="War Angel"/>
+	<字串 編號="1712" 文字="God as Judge"/>
+	<字串 編號="1713" 文字="Heavenly Hero"/>
+	<字串 編號="1714" 文字="Six-winged Angel"/>
+	<字串 編號="1715" 文字="Symbol of Might"/>
+	<字串 編號="1716" 文字="Order founder"/>
+	<字串 編號="1717" 文字="Star Ruler"/>
+	<字串 編號="1718" 文字="Holy Angel"/>
+	<字串 編號="1719" 文字="God's Mouthpiece"/>
+	<字串 編號="1751" 文字="You are in the Totem Battlefield (PVP Area). You may be attacked by other angels from different factions."/>
+	<字串 編號="1752" 文字="Fail to contribute. Please check your material."/>
+	<字串 編號="1753" 文字="You are in your opponents area. Please transport to the main city."/>
+	<字串 編號="1754" 文字="Unable to invest because the totem is very weak."/>
+	<字串 編號="1755" 文字="Unable to invest because the HP of the totem is less than 90%."/>
+	<字串 編號="1756" 文字="Give up this territory -%s."/>
+	<字串 編號="1757" 文字="/c$2%s/c* wants to revive you. Do you agree?"/>
+	<字串 編號="1758" 文字="Rep.:%d"/>
+	<字串 編號="1759" 文字="%d units / %d"/>
+	<字串 編號="1760" 文字="Available: %d / %d"/>
+	<字串 編號="1761" 文字="/c$3%s/c$8%s/c$3 earns %d reputation points for the league. /c*"/>
+	<字串 編號="1762" 文字="Contribution: %d"/>
+	<字串 編號="1763" 文字="Aurora Totem"/>
+	<字串 編號="1764" 文字="Beasts Totem"/>
+	<字串 編號="1765" 文字="Steel Totem"/>
+	<字串 編號="1766" 文字="Shadow Totem"/>
+	<字串 編號="1767" 文字="Unmanned Totem"/>
+	<字串 編號="1768" 文字="Empty base"/>
+	<字串 編號="1769" 文字="The league has reached the upper limit."/>
+	<字串 編號="1770" 文字="You have changed your gift for Bachelor's Day"/>
+	<字串 編號="1771" 文字="You are unable to change unless you are in the same faction and your level gap is less than 5."/>
+	<字串 編號="1772" 文字="Enter Non-PVP mode"/>
+	<字串 編號="1773" 文字="Enter PVP mode"/>
+	<字串 編號="1774" 文字="Unable to sign in the map"/>
+	<字串 編號="1775" 文字="Unable to transport because there are no signs."/>
+	<字串 編號="1776" 文字="Signing into the map successful."/>
+	<字串 編號="1777" 文字="Sign: /c$2%s(%d, %d)/c*"/>
+	<字串 編號="1778" 文字="Sign: /c$2 none /c*"/>
+	<字串 編號="1779" 文字="coss set points: %d points"/>
+	<字串 編號="1780" 文字="No league territory"/>
+	<字串 編號="1781" 文字="Not enough set points"/>
+	<字串 編號="1782" 文字="Too far"/>
+	<字串 編號="1783" 文字="The totem battle begins. All angels please be ready for the battle."/>
+	<字串 編號="1784" 文字="The totem battle is over."/>
+	<字串 編號="1785" 文字="%s has been occupied by league %s and becomes %s's territory."/>
+	<字串 編號="1786" 文字="%s has been occupied and becomes %s's territory."/>
+	<字串 編號="1787" 文字="No territory"/>
+	<字串 編號="1788" 文字="No league"/>
+	<字串 編號="1789" 文字="Badge"/>
+	<字串 編號="1790" 文字="You will return to the league territory after %s seconds."/>
+	<字串 編號="1791" 文字="You will return to the main city after %s seconds."/>
+	<字串 編號="1792" 文字="Unable to transport because the sign %s belongs to %s's territory."/>
+	<字串 編號="1793" 文字="Unable to give up your territory because the totem battle has begun."/>
+	<字串 編號="1794" 文字="%d, it's your great luck to be killed by me!"/>
+	<字串 編號="1795" 文字="%d, it is said that ten thousand are unable to get through if one man guards the pass...I'm the bravest man in Angels Online!"/>
+	<字串 編號="1796" 文字="%d, this is the 100th person...Is there no end to my slaughter?"/>
+	<字串 編號="1797" 文字="%d, you will be blessed by the angel...the Archangel is waiting for you..."/>
+	<字串 編號="1798" 文字="%d, no one can stop me! I can slaughter hundreds of people at the same time."/>
+	<字串 編號="1799" 文字="%d, come on!"/>
+	<字串 編號="1800" 文字="%d I have continously killed 100 people. Who will be next?"/>
+	<字串 編號="1801" 文字="%d Who wants to be the 101st victim of my wrath?"/>
+	<字串 編號="1802" 文字="%d Please make a will and have it witnessed, signed and stamped by a notary before you challenge me!  Hahaha...!"/>
+	<字串 編號="1803" 文字="%d Your spell is so 1st grade. Did you learn it in the sandbox at school?"/>
+	<字串 編號="1804" 文字="Use %s."/>
+	<字串 編號="1805" 文字="Exp"/>
+	<字串 編號="1806" 文字="Credit"/>
+	<字串 編號="1807" 文字="Total kill"/>
+	<字串 編號="1808" 文字="Total died"/>
+	<字串 編號="1809" 文字="Reputation"/>
+	<字串 編號="1810" 文字="Total wins"/>
+	<字串 編號="1811" 文字="Total kill"/>
+	<字串 編號="1812" 文字="Top Killer (I)"/>
+	<字串 編號="1813" 文字="Top Rep.   (I)"/>
+	<字串 編號="1814" 文字="Top Killer (L)"/>
+	<字串 編號="1815" 文字="Top Rep.   (L)"/>
+	<字串 編號="1816" 文字="Rank"/>
+	<字串 編號="1817" 文字="Members"/>
+	<字串 編號="1818" 文字="Thank you for coming to attend the wedding of %s and %s."/>
+	<字串 編號="1819" 文字="Now, I announce,&quot;the wedding has begun&quot;."/>
+	<字串 編號="1820" 文字="Let's welcome today's bride and groom."/>
+	<字串 編號="1821" 文字="Bride and Groom, please be ready."/>
+	<字串 編號="1822" 文字="%s Would you like to marry %s ? To take as your wife forever in sickness and in health, for richer or for poorer, til death do you part?."/>
+	<字串 編號="1823" 文字="%s Would you like to marry %s ? To take as your husband forever in sickness and in health, for richer or for poorer, til death do you part?."/>
+	<字串 編號="1824" 文字="Please exchange the rings."/>
+	<字串 編號="1825" 文字="With the right endowed by God, I announce you are a happily married couple in the world of Angels Online."/>
+	<字串 編號="1826" 文字="The length of the bulletin has reached the upper limit."/>
+	<字串 編號="1827" 文字="The league is changed to be %s."/>
+	<字串 編號="1828" 文字="The accounts are invalid."/>
+	<字串 編號="1829" 文字="Unable to summon a pet whose level is higher than yours."/>
+	<字串 編號="1830" 文字="/c#EEFF33 If you buy, we will send you「%s%s」./c*"/>
+	<字串 編號="1831" 文字="Mall shopping failed: Your bag doesn't have enough space for the extra presents."/>
+	<字串 編號="1832" 文字="The pet's satiation degree is zero and you can't get exp and props."/>
+	<字串 編號="1833" 文字="Would you like to marry %s?"/>
+	<字串 編號="1834" 文字="Yes, I do!"/>
+	<字串 編號="1835" 文字="Sorry, I won't..."/>
+	<字串 編號="1836" 文字="Too far away, the wedding is over."/>
+	<字串 編號="1837" 文字="There is a wedding here now. Please wait for a moment."/>
+	<字串 編號="1838" 文字="Please confirm that both of them have not married yet."/>
+	<字串 編號="1839" 文字="You have divorced."/>
+	<字串 編號="1840" 文字="Please invite the bride."/>
+	<字串 編號="1841" 文字="The bride owns a wedding ring."/>
+	<字串 編號="1842" 文字="Switch to the marriage channel."/>
+	<字串 編號="1843" 文字="You are unmarried."/>
+	<字串 編號="1845" 文字="/c$1[love]%s&gt;/c$b%s"/>
+	<字串 編號="1846" 文字="Your lover is online..."/>
+	<字串 編號="1847" 文字="It is a symbol of love."/>
+	<字串 編號="1848" 文字="Congratulations. %s married %s and wish their love to be everlasting..."/>
+	<字串 編號="1884" 文字="Revive in the original place"/>
+	<字串 編號="1885" 文字="Please enter the target name."/>
+	<字串 編號="1886" 文字="%s is cursed by death ahead of time, please wait for the horrible archangel Azrael to come."/>
+	<字串 編號="1887" 文字="%s is blessed and then he is full of sacred power!"/>
+	<字串 編號="1888" 文字="Unable to use %s in %s."/>
+	<字串 編號="1889" 文字="You are not in a team or the instance server is full."/>
+	<字串 編號="1890" 文字="All the evil power has been cleared away from the statue. A burst of evil laughter comes from the right side."/>
+	<字串 編號="1891" 文字="You are impolite. Let me show you my power!"/>
+	<字串 編號="1892" 文字="From now on, the visitor who is the closest to death, is my first immolation!"/>
+	<字串 編號="1893" 文字="Come...to catch...me...!"/>
+	<字串 編號="1894" 文字="Hahaha! You are unable to beat me down unless there are no air holes to provide me with sufficient energy!!"/>
+	<字串 編號="1895" 文字="Oh! I will try my best to destroy you guys!"/>
+	<字串 編號="1896" 文字="Kill these followers of Heaven! My loyal servants!!"/>
+	<字串 編號="1897" 文字="I must hurry up to the energy pillar to get more power!"/>
+	<字串 編號="1898" 文字="Haha! You will not win now, stupid angels!"/>
+	<字串 編號="1899" 文字="Do you know which one is me?"/>
+	<字串 編號="1900" 文字="It's hard to tell now!"/>
+	<字串 編號="1901" 文字="You can't tell now!"/>
+	<字串 編號="1902" 文字="Damn!!! I'm unafraid of death!!!"/>
+	<字串 編號="1903" 文字="I'll kill you!!!!"/>
+	<字串 編號="1904" 文字="Who interrupts my ceremony!!!"/>
+	<字串 編號="1905" 文字="You are a group of sheep waiting for a wolf to slaughter you!!"/>
+	<字串 編號="1906" 文字="Stay away from me!!"/>
+	<字串 編號="1907" 文字="Do you think it is safe to flee!?"/>
+	<字串 編號="1908" 文字="Wu..."/>
+	<字串 編號="1909" 文字="Gaga..."/>
+	<字串 編號="1910" 文字="Hehe..."/>
+	<字串 編號="1911" 文字="Mwahaha...I'm invincible!!"/>
+	<字串 編號="1912" 文字="So co...co...cold...!!"/>
+	<字串 編號="1913" 文字="Ah... there is still someone who can come here..."/>
+	<字串 編號="1914" 文字="There is no one who can beat me up..."/>
+	<字串 編號="1915" 文字="That makes me eat more and I will be fatter..."/>
+	<字串 編號="1916" 文字="Eat more and more..."/>
+	<字串 編號="1917" 文字="Be more and more...fatter..."/>
+	<字串 編號="1918" 文字="I am so angry."/>
+	<字串 編號="1919" 文字="All be my food!!"/>
+	<字串 編號="1920" 文字="Oh... I can't enrich the blood!!"/>
+	<字串 編號="1921" 文字="Oh... Why are all of my power going away...?"/>
+	<字串 編號="1922" 文字="Damn... Why do I run slower and slower...!?"/>
+	<字串 編號="1923" 文字="Why can't I use my sealed energy...?"/>
+	<字串 編號="1924" 文字="I can't use the spell..."/>
+	<字串 編號="1925" 文字="Oh... I am unable to transport..."/>
+	<字串 編號="1926" 文字="Get away!!!"/>
+	<字串 編號="1927" 文字="Let me show you my power!"/>
+	<字串 編號="1928" 文字="Unable to buy because this product is out of stock."/>
+	<字串 編號="1929" 文字="Unable to enter the instance more than 4 times in 2 hours."/>
+	<字串 編號="1930" 文字="%s has accepted or finished the team quest[%s]."/>
+	<字串 編號="1931" 文字="Darn...can't use at that side"/>
+	<字串 編號="1932" 文字="Baby %s~~~ my only sweet heart,\nwithout you, I will not be happy."/>
+	<字串 編號="1933" 文字="%s My darling! I wish I can see you as\nevery minute and be with you forever. I love you..."/>
+	<字串 編號="1934" 文字="Nothing can be happier than staying with\n%s, I am the one who loves you the most"/>
+	<字串 編號="1935" 文字="%s, it's my great luck to meet you in the world\n. It's my great happiness to be with you!"/>
+	<字串 編號="1936" 文字="%s's love is a bright star in my life.\n I wish you could stay with me forever."/>
+	<字串 編號="1937" 文字="Weapon Skill"/>
+	<字串 編號="1938" 文字="Armor Skill"/>
+	<字串 編號="1939" 文字="Dress Skill"/>
+	<字串 編號="1940" 文字="Craft Skill"/>
+	<字串 編號="1941" 文字="Food Skill"/>
+	<字串 編號="1942" 文字="Level/exp"/>
+	<字串 編號="1943" 文字="/c#FFFF64 Time-limited commodities! Deadline: %s/c*"/>
+	<字串 編號="1944" 文字="/c#64FF64 Quantity-limited commodities!Residual quantity:%d/c*"/>
+	<字串 編號="1945" 文字="Male"/>
+	<字串 編號="1946" 文字="Female"/>
+	<字串 編號="1947" 文字="Lucky Bag"/>
+	<字串 編號="1948" 文字="/c#64FF64 the limited items have sold out!...^_^.../c*"/>
+	<字串 編號="1949" 文字="Buy for a limited time!"/>
+	<字串 編號="1950" 文字="Buy Now! Limited quantity!"/>
+	<字串 編號="1951" 文字="Yourself"/>
+	<字串 編號="1952" 文字="Teammates"/>
+	<字串 編號="1953" 文字="Your own pet"/>
+	<字串 編號="1954" 文字="Teammate's pet"/>
+	<字串 編號="1955" 文字="Soul"/>
+	<字串 編號="1956" 文字="Return to the city"/>
+	<字串 編號="1957" 文字="Original Place"/>
+	<字串 編號="1958" 文字="Nearby player"/>
+	<字串 編號="1959" 文字="Share Exp and drops"/>
+	<字串 編號="1960" 文字="Enjoy Exp and drops alone"/>
+	<字串 編號="1961" 文字="Carry out the Angel Guard Elf."/>
+	<字串 編號="1962" 文字="Stop the Angel Guard Elf."/>
+	<字串 編號="1963" 文字="Leave"/>
+	<字串 編號="1964" 文字="% Use spells automatically:"/>
+	<字串 編號="1965" 文字="% Use props automatically:"/>
+	<字串 編號="1966" 文字="Start the Auto-learn Spell(Take care. It will affect your fight with the monsters.)"/>
+	<字串 編號="1967" 文字="Close the Auto-learn Spell"/>
+	<字串 編號="1968" 文字="You help automatically."/>
+	<字串 編號="1969" 文字="Revive."/>
+	<字串 編號="1970" 文字="You are dead and your soul will revive automatically."/>
+	<字串 編號="1971" 文字="You are dead and you will return to the city to revive."/>
+	<字串 編號="1972" 文字="You are dead and you will revive in the original place with props."/>
+	<字串 編號="1973" 文字="You agree to be revived by others."/>
+	<字串 編號="1974" 文字="You refuse to be revived by others."/>
+	<字串 編號="1975" 文字="Meet"/>
+	<字串 編號="1976" 文字="Use"/>
+	<字串 編號="1977" 文字="Hurry up and return to the city"/>
+	<字串 編號="1978" 文字="be"/>
+	<字串 編號="1979" 文字="hit"/>
+	<字串 編號="1980" 文字="You have been online for %d hours."/>
+	<字串 編號="1981" 文字="You have been online for 3 hours. Your game income has declined to be 50% of the normal point. Please go offline to have a rest."/>
+	<字串 編號="1982" 文字="You are tired and your game income has declined to 50% of the normal point. Please go offline to have a rest."/>
+	<字串 編號="1983" 文字="You are too tired to be online. For your health, please go offline at once. Otherwise, your health will be harmed. Your game income has declined to zero and will not recover until you are offline for 5 hours."/>
+	<字串 編號="1984" 文字="Please set the searching center point of auto-attack on %s(%d,%d)."/>
+	<字串 編號="1985" 文字="Attack monsters at the same time, use"/>
+	<字串 編號="1986" 文字="Set the searching center point of auto-collect on %s(%d,%d)."/>
+	<字串 編號="1987" 文字="Paper Moppet storage"/>
+	<字串 編號="1988" 文字="Failed to draw items from the mall. You must have more than one slot open."/>
+	<字串 編號="1989" 文字="Failed to draw items from the mall. The definite case should be empty."/>
+	<字串 編號="1990" 文字="You can only draw or deposit decorations."/>
+	<字串 編號="1991" 文字="You are so far away from Abba that he cannot finish your wedding."/>
+	<字串 編號="1992" 文字="All cards"/>
+	<字串 編號="1993" 文字="General monster"/>
+	<字串 編號="1994" 文字="Special monster"/>
+	<字串 編號="1995" 文字="Scene"/>
+	<字串 編號="1996" 文字="Equipment props"/>
+	<字串 編號="1997" 文字="Unable to buy because the seller is carrying too much money."/>
+	<字串 編號="1999" 文字="Return to the city. Use"/>
+	<字串 編號="2000" 文字="Finish supply in the city. Go back to the battlefield."/>
+	<字串 編號="2001" 文字="Unable to supply completely or return to Auto-attack (collecting) location."/>
+	<字串 編號="2002" 文字="Exchanged"/>
+	<字串 編號="2003" 文字="Save"/>
+	<字串 編號="2004" 文字="Deposit"/>
+	<字串 編號="2005" 文字="Discard"/>
+	<字串 編號="2006" 文字="Sell"/>
+	<字串 編號="2007" 文字="The rent for the Safe %d is due!"/>
+	<字串 編號="2008" 文字="There is no available [sign scroll] to use."/>
+	<字串 編號="2009" 文字="Failed to exchange the cardset!"/>
+	<字串 編號="2010" 文字="The cardset has been exchanged!"/>
+	<字串 編號="2011" 文字="Total online time %s."/>
+	<字串 編號="2012" 文字="Total offline time %s."/>
+	<字串 編號="2013" 文字="%s's cards album"/>
+	<字串 編號="2014" 文字="%s refuses to share his cards album."/>
+	<字串 編號="2015" 文字="%s is enjoying your cards album."/>
+	<字串 編號="2016" 文字="Total online time has gone beyond the healthy time"/>
+	<字串 編號="2017" 文字="%d hours %d minutes %d seconds"/>
+	<字串 編號="2018" 文字="*****"/>
+	<字串 編號="2019" 文字="finished %s shares of %s%s."/>
+	<字串 編號="2020" 文字="Unable to put [%s] in the Paper Moppet bag"/>
+	<字串 編號="2021" 文字="Unable to put [%s] in the cards bag."/>
+	<字串 編號="2022" 文字="Unable to put [%s] in the cards album because there is already one."/>
+	<字串 編號="2023" 文字="/c#FF0000 &lt;All presents are free!&gt;/c*"/>
+	<字串 編號="2024" 文字="/c#FF0000 &lt;please choose one present!&gt;/c*"/>
+	<字串 編號="2025" 文字="Please choose one of the rewards."/>
+	<字串 編號="2026" 文字="I'm lucky! I got [%s] from the Lucky Bag."/>
+	<字串 編號="2027" 文字="Berzerk: Haha... This Rice Dumpling is delicious! I'm coming!"/>
+	<字串 編號="2029" 文字="...Why don't you let me eat Rice Dumpling...Wah...!"/>
+	<字串 編號="2030" 文字="The one who dares to stop me from having the Rice Dumpling... I will kill you... Mwahahahaha"/>
+	<字串 編號="2031" 文字="Bule ox horn! This spell... is useless on me..."/>
+	<字串 編號="2032" 文字="Red ox horn! This spell... is useless on me..."/>
+	<字串 編號="2033" 文字="Come on... My guys..."/>
+	<字串 編號="2034" 文字="Come to help me... my servants..."/>
+	<字串 編號="2035" 文字="I can hardly keep moving... my guys..."/>
+	<字串 編號="2036" 文字="I can hardly keep moving... my guys..."/>
+	<字串 編號="2037" 文字="I can hardly keep moving... my guys..."/>
+	<字串 編號="2038" 文字="/c$3 Can only be used by you/c*(unable to be traded)"/>
+	<字串 編號="2039" 文字="Ready?"/>
+	<字串 編號="2040" 文字="GO... !!!"/>
+	<字串 編號="2041" 文字="Wrong Weapon..."/>
+	<字串 編號="2042" 文字="SP lamp"/>
+	<字串 編號="2043" 文字="It is impossible to take the robot away!"/>
+	<字串 編號="2044" 文字="I unexpectedly...failed."/>
+	<字串 編號="2045" 文字="Hicalu NO.1 is starting - -"/>
+	<字串 編號="2046" 文字="Attack warning----"/>
+	<字串 編號="2047" 文字="Find aggressor"/>
+	<字串 編號="2048" 文字="!Start the anti-invasion program------"/>
+	<字串 編號="2049" 文字="Ten thousand volt pressure-- slam----!"/>
+	<字串 編號="2050" 文字="Hicalu's attack----!"/>
+	<字串 編號="2051" 文字="System Error----disturbed by unknown electromagnet----"/>
+	<字串 編號="2052" 文字="Return--Error----Error----!"/>
+	<字串 編號="2053" 文字="The system has been repaired urgently----"/>
+	<字串 編號="2054" 文字="Start again----the anti-invasion program------"/>
+	<字串 編號="2055" 文字="Stop----the invader------"/>
+	<字串 編號="2056" 文字="Stupid guy..."/>
+	<字串 編號="2057" 文字="Be attracted by my beautiful appearance and sweet singing."/>
+	<字串 編號="2058" 文字="Hehehe...another collection."/>
+	<字串 編號="2059" 文字="How dare you disturb my singing!"/>
+	<字串 編號="2060" 文字="Hu...so comfortable"/>
+	<字串 編號="2061" 文字="Being alive is good..."/>
+	<字串 編號="2062" 文字="Don't stop..."/>
+	<字串 編號="2063" 文字="Wonderful!"/>
+	<字串 編號="2064" 文字="A temporary victory is nothing! I will kill you."/>
+	<字串 編號="2065" 文字="You have to pay for your stupid behavior painfully!"/>
+	<字串 編號="2066" 文字="You are not allowed to act wildly here!"/>
+	<字串 編號="2067" 文字="I'm rich!"/>
+	<字串 編號="2068" 文字="Reckless angel,you will regret your stupidity!"/>
+	<字串 編號="2069" 文字="Haha...It is very early to be celebrating...my most loyal servants...Sallen...will guard my Yatissi for me. He will destroy it totally if he is unable to protect it... You, low-down creatures can never own it..."/>
+	<字串 編號="2070" 文字="スイカを倒しました。"/>
+	<字串 編號="2071" 文字="Main-hand attack power"/>
+	<字串 編號="2072" 文字="Off-hand attack power"/>
+	<字串 編號="2073" 文字=",and"/>
+	<字串 編號="2074" 文字="According to"/>
+	<字串 編號="2075" 文字="Maximal MP, increase the maximal HP"/>
+	<字串 編號="2076" 文字="Increase the spell attack"/>
+	<字串 編號="2077" 文字="Increase the spell defense"/>
+	<字串 編號="2078" 文字="Unable to use any more after %d times."/>
+	<字串 編號="2079" 文字="It can counteract %d damage."/>
+	<字串 編號="2080" 文字="Under the moon, \n and %s are sitting together, drinking a cup of tea, enjoying the flowers, and listening to a love song. Their love is as pure as the moonlight."/>
+	<字串 編號="2081" 文字="I am feeling your heart quietly. Only %s knows \n my heart. I will protect you for ever."/>
+	<字串 編號="2082" 文字="Among thousands of people, only %s is my lover. Let me speak loudly, &quot;I love you&quot;!"/>
+	<字串 編號="2083" 文字="%s's love makes me feel warm just like the sun \n. We will always stay together."/>
+	<字串 編號="2084" 文字="No matter how many obstacles in front of us, %s's heart will still be with me \n. Your true love is unique and I will treasure it in my heart."/>
+	<字串 編號="2085" 文字="Not enough recovery HP props, unable to go back to the Auto-attack(collecting) Area."/>
+	<字串 編號="2086" 文字="Not enough recovery MP props, unable to go back to the Auto-attack(collecting) Area."/>
+	<字串 編號="2087" 文字="Equipment has been destroyed, unable to go back to the Auto-attack(collecting) Area."/>
+	<字串 編號="2088" 文字="Not enough arrow or ammunition, unable to go back to the Auto-attack(collecting) Area."/>
+	<字串 編號="2089" 文字="Too heavy or not enough slots in your bag, unable to go back to the Auto-attack(collecting) Area."/>
+	<字串 編號="2090" 文字="Without login number, you are unable to buy or present items in the special area."/>
+	<字串 編號="2091" 文字="Lucky color: %s"/>
+	<字串 編號="2092" 文字="Lucky PD:%s%s"/>
+	<字串 編號="2093" 文字="Red"/>
+	<字串 編號="2094" 文字="Orange"/>
+	<字串 編號="2095" 文字="Yellow"/>
+	<字串 編號="2096" 文字="Green"/>
+	<字串 編號="2097" 文字="Blue"/>
+	<字串 編號="2098" 文字="Purple"/>
+	<字串 編號="2099" 文字="Step forward if you are a man...Come on!"/>
+	<字串 編號="2100" 文字="Wu..."/>
+	<字串 編號="2101" 文字="Fight with me if you are brave enough."/>
+	<字串 編號="2102" 文字="Ah...It is painful. Why do you treat me so badly?"/>
+	<字串 編號="2103" 文字="Haha! Let me punish you, little angels, instead of the moon..."/>
+	<字串 編號="2104" 文字="Eh...why do you hit me...&gt;_&lt;"/>
+	<字串 編號="2105" 文字="Roar! You dare to steal my rabbit!!"/>
+	<字串 編號="2106" 文字="Lovely rabbits, stand in a line one by one..."/>
+	<字串 編號="2107" 文字="Follow me, many delicious mooncakes are waiting for you!"/>
+	<字串 編號="2108" 文字="Failed to modify the character name."/>
+	<字串 編號="2109" 文字="Modified the character name successfully."/>
+	<字串 編號="2110" 文字="When the pet's intimacy degree is lower than 40,it's possible it will run away if you make it revive. Are you sure you want to revive it?"/>
+	<字串 編號="2111" 文字="It's invalid. You will be transported to the main city in 5 seconds."/>
+	<字串 編號="2112" 文字="Failed to modify the league name."/>
+	<字串 編號="2113" 文字="Modify the league name successfully."/>
+	<字串 編號="2114" 文字="The league name is unavailable. The Colonel has changed the name to [%s]."/>
+	<字串 編號="2115" 文字="Please modify your name before you enter the game!"/>
+	<字串 編號="2116" 文字="Warning"/>
+	<字串 編號="2117" 文字="The present resolution of the desktop may affect the efficiency of the game. If it is unable to display normally or the efficiency declines, please change the desktop resolution to be a higher one."/>
+	<字串 編號="2118" 文字="Faction change successful."/>
+	<字串 編號="2119" 文字="Failed to change the faction without the right props."/>
+	<字串 編號="2120" 文字="You are in a faction. There is no need to change the faction."/>
+	<字串 編號="2121" 文字="Fail to change the faction. You have to leave the league if you want to change the faction."/>
+	<字串 編號="2122" 文字="Are you sure you want to change the faction? You will change at once if you confirm."/>
+	<字串 編號="2123" 文字="Are you sure you want to change your gender? Your gender will change and you will have the default hairstyle."/>
+	<字串 編號="2124" 文字="Failed to change the gender without right props."/>
+	<字串 編號="2125" 文字="Fail to change the gender. Please offload equipment which are connected with the previous gender."/>
+	<字串 編號="2126" 文字="Gender change successful."/>
+	<字串 編號="2127" 文字="Are you sure you want to change your appearance? You will change at once after you confirm."/>
+	<字串 編號="2128" 文字="Failed to change your appearance. There is no change."/>
+	<字串 編號="2129" 文字="Failed to change your appearance because you chose the wrong one."/>
+	<字串 編號="2130" 文字="Failed to change your appearance without the right props."/>
+	<字串 編號="2131" 文字="Appearance changed successfully."/>
+	<字串 編號="2138" 文字="Unable to replace the original effect on %s."/>
+	<ALIAS id="編號" text="文字" string="字串"/>
+</root>

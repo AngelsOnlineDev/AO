@@ -1,0 +1,583 @@
+<?xml version="1.0"?>
+<root>
+	<INCLUDE file="setting\wnddef.xml"/>
+	
+	<icon id="14000" pos="450,150" dir="\face\" normal="nullshp" focus="normal" down="normal" disable="normal"/>
+	<icon id="14001" pos="450,150" dir="\face\" normal="f001" focus="normal" down="normal" disable="normal"/>
+	<icon id="14002" pos="450,150" dir="\face\" normal="f002" focus="normal" down="normal" disable="normal"/>
+	<icon id="14003" pos="450,150" dir="\face\" normal="f003" focus="normal" down="normal" disable="normal"/>
+	<icon id="14004" pos="450,150" dir="\face\" normal="f004" focus="normal" down="normal" disable="normal"/>
+	<icon id="14005" pos="450,150" dir="\face\" normal="f005" focus="normal" down="normal" disable="normal"/>
+	<icon id="14006" pos="450,150" dir="\face\" normal="f006" focus="normal" down="normal" disable="normal"/>
+	<icon id="14007" pos="450,150" dir="\face\" normal="f007" focus="normal" down="normal" disable="normal"/>
+	<icon id="14008" pos="450,150" dir="\face\" normal="f008" focus="normal" down="normal" disable="normal"/>
+	<icon id="14009" pos="450,150" dir="\face\" normal="f009" focus="normal" down="normal" disable="normal"/>
+	<icon id="14010" pos="450,150" dir="\face\" normal="f010" focus="normal" down="normal" disable="normal"/>
+	<icon id="14011" pos="450,150" dir="\face\" normal="f011" focus="normal" down="normal" disable="normal"/>
+	<icon id="14012" pos="450,150" dir="\face\" normal="f012" focus="normal" down="normal" disable="normal"/>
+	<icon id="14013" pos="450,150" dir="\face\" normal="f013" focus="normal" down="normal" disable="normal"/>
+	<icon id="14014" pos="450,150" dir="\face\" normal="f014" focus="normal" down="normal" disable="normal"/>
+	<icon id="14015" pos="450,150" dir="\face\" normal="f015" focus="normal" down="normal" disable="normal"/>
+	<icon id="14016" pos="450,150" dir="\face\" normal="f016" focus="normal" down="normal" disable="normal"/>
+	<icon id="14017" pos="450,150" dir="\face\" normal="f017" focus="normal" down="normal" disable="normal"/>
+	<icon id="14018" pos="450,150" dir="\face\" normal="f018" focus="normal" down="normal" disable="normal"/>
+	<icon id="14019" pos="450,150" dir="\face\" normal="f019" focus="normal" down="normal" disable="normal"/>
+	<icon id="14020" pos="450,150" dir="\face\" normal="f020" focus="normal" down="normal" disable="normal"/>
+	<icon id="14021" pos="450,150" dir="\face\" normal="f021" focus="normal" down="normal" disable="normal"/>
+	<icon id="14022" pos="450,150" dir="\face\" normal="f022" focus="normal" down="normal" disable="normal"/>
+	<icon id="14023" pos="450,150" dir="\face\" normal="f023" focus="normal" down="normal" disable="normal"/>
+	<icon id="14024" pos="450,150" dir="\face\" normal="f024" focus="normal" down="normal" disable="normal"/>
+	<icon id="14025" pos="450,150" dir="\face\" normal="f025" focus="normal" down="normal" disable="normal"/>
+	<icon id="14026" pos="450,150" dir="\face\" normal="f026" focus="normal" down="normal" disable="normal"/>
+	<icon id="14027" pos="450,150" dir="\face\" normal="f027" focus="normal" down="normal" disable="normal"/>
+	<icon id="14028" pos="450,150" dir="\face\" normal="f028" focus="normal" down="normal" disable="normal"/>
+	<icon id="14029" pos="450,150" dir="\face\" normal="f029" focus="normal" down="normal" disable="normal"/>
+	<icon id="14030" pos="450,150" dir="\face\" normal="f030" focus="normal" down="normal" disable="normal"/>
+	<icon id="14031" pos="450,150" dir="\face\" normal="f031" focus="normal" down="normal" disable="normal"/>
+	<icon id="14032" pos="450,150" dir="\face\" normal="f032" focus="normal" down="normal" disable="normal"/>
+	<icon id="14033" pos="450,150" dir="\face\" normal="f033" focus="normal" down="normal" disable="normal"/>
+	<icon id="14034" pos="450,150" dir="\face\" normal="f034" focus="normal" down="normal" disable="normal"/>
+	<icon id="14035" pos="450,150" dir="\face\" normal="f035" focus="normal" down="normal" disable="normal"/>
+	<icon id="14036" pos="450,150" dir="\face\" normal="f036" focus="normal" down="normal" disable="normal"/>
+	<icon id="14037" pos="450,150" dir="\face\" normal="f037" focus="normal" down="normal" disable="normal"/>
+	<icon id="14038" pos="450,150" dir="\face\" normal="f038" focus="normal" down="normal" disable="normal"/>
+	<icon id="14039" pos="450,150" dir="\face\" normal="f039" focus="normal" down="normal" disable="normal"/>
+	<icon id="14040" pos="450,150" dir="\face\" normal="f040" focus="normal" down="normal" disable="normal"/>
+	<icon id="14041" pos="450,150" dir="\face\" normal="f004" focus="normal" down="normal" disable="normal"  maskbias="0xfd0125" maskcolor="0xf54f" maskrange="160">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14042" pos="450,150" dir="\face\" normal="f003" focus="normal" down="normal"  basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x70a25" maskcolor="0xc6fd" maskrange="0">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14043" pos="450,150" dir="\face\" normal="f003" focus="normal" down="normal" disable="normal"  maskbias="0xfe0a16" maskcolor="0xc6fd" maskrange="143">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14044" pos="450,150" dir="\face\" normal="f044" focus="normal" down="normal" disable="normal"/>
+	<icon id="14045" pos="450,150" dir="\face\" normal="f003" focus="normal" down="normal" disable="normal"  maskbias="0x10d0a" maskcolor="0xc6fd" maskrange="148">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14046" pos="450,150" dir="\face\" normal="f046" focus="normal" down="normal" disable="normal"/>
+	<icon id="14047" pos="450,150" dir="\face\" normal="f003" focus="normal" down="normal" disable="normal"  basebias="0x0" basecolor="0x0" baserange="0" maskbias="0xff0505" maskcolor="0x9d55" maskrange="11">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14048" pos="450,150" dir="\face\" normal="f002" focus="normal" down="normal" disable="normal"  basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x40d07" maskcolor="0xcf5b" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14049" pos="450,150" dir="\face\" normal="f005" focus="normal" down="normal" disable="normal"  maskbias="0xfe0e29" maskcolor="0xc6fb" maskrange="160">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14050" pos="450,150" dir="\face\" normal="f010" focus="normal" down="normal" disable="normal" basebias="0x30724" basecolor="0x33fa" baserange="10">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14051" pos="450,150" dir="\face\" normal="f004" focus="normal" down="normal" disable="normal"  maskbias="0xfc09" maskcolor="0xf54f" maskrange="160">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14052" pos="450,150" dir="\face\" normal="f005" focus="normal" down="normal" disable="normal"  maskbias="0xfc0f3d" maskcolor="0xc6fb" maskrange="32">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14053" pos="450,150" dir="\face\" normal="f005" focus="normal" down="normal" disable="normal"  maskbias="0x1143d" maskcolor="0xc71b" maskrange="160">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14054" pos="450,150" dir="\face\" normal="f007" focus="normal" down="normal" disable="normal" maskbias="0xfbf101" maskcolor="0x3b2e" maskrange="130">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="14055" pos="450,150" dir="\face\" normal="f007" focus="normal" down="normal" disable="normal"  maskbias="0x2f20a" maskcolor="0x4bd0" maskrange="130">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="14056" pos="450,150" dir="\face\" normal="f009" focus="normal" down="normal" disable="normal"  baserange="128" maskbias="0x90807" maskcolor="0x8923" maskrange="2">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="14057" pos="450,150" dir="\face\" normal="f009" focus="normal" down="normal" disable="normal" baserange="128" maskbias="0x820" maskcolor="0x8943" maskrange="2">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="14058" pos="450,150" dir="\face\" normal="f010" focus="normal" down="normal" disable="normal" basebias="0x1ff3b" basecolor="0x33fb" baserange="130" maskbias="0xfef70f" maskcolor="0xdda9" maskrange="32">
+		<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon> 
+	<icon id="14059" pos="450,150" dir="\face\" normal="f010" focus="normal" down="normal" disable="normal" basebias="0xea07" basecolor="0x33fb" baserange="147" maskbias="0xf7ff1c" maskcolor="0xdda9" maskrange="10">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14060" pos="450,150" dir="\face\" normal="f014" focus="normal" down="normal" disable="normal" basebias="0x3013c" basecolor="0xef97" baserange="131" maskbias="0xc1700" maskcolor="0x0" maskrange="149">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14061" pos="450,150" dir="\face\" normal="f014" focus="normal" down="normal" disable="normal" basebias="0x10416" basecolor="0xdf15" baserange="131" maskbias="0x62023" maskcolor="0x0" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14062" pos="450,150" dir="\face\" normal="f010" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x2ed00" maskcolor="0x0" maskrange="12">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14063" pos="450,150" dir="\face\" normal="f008" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0xfc0d27" maskcolor="0x0" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14064" pos="450,150" dir="\face\" normal="f008" focus="normal" down="normal" disable="normal"  baserange="128" maskbias="0xfc0c39" maskcolor="0xee93" maskrange="4">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="14065" pos="450,150" dir="\face\" normal="f010" focus="normal" down="normal" disable="normal"  maskbias="0xf7011a" maskcolor="0xdda9" maskrange="160">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14066" pos="450,150" dir="\face\" normal="f010" focus="normal" down="normal" disable="normal" basebias="0x20" basecolor="0x33fa" baserange="2" maskbias="0xf4f020" maskcolor="0xdda9" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon> 
+	<icon id="14067" pos="450,150" dir="\face\" normal="f007" focus="normal" down="normal" disable="normal" maskbias="0xfdfb0b" maskcolor="0x4bd0" maskrange="32">
+	<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="14068" pos="450,150" dir="\face\" normal="f007" focus="normal" down="normal" disable="normal"  maskbias="0xfef920" maskcolor="0x43b0" maskrange="32">
+	<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="14069" pos="450,150" dir="\face\" normal="f069" focus="normal" down="normal" disable="normal"  maskbias="0xfa0a" maskcolor="0xcf7b" maskrange="13">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14070" pos="450,150" dir="\face\" normal="f069" focus="normal" down="normal" disable="normal"  maskbias="0xf1fc00" maskcolor="0xcf5b" maskrange="160">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14071" pos="450,150" dir="\face\" normal="f069" focus="normal" down="normal" disable="normal"  maskbias="0x20f00" maskcolor="0xcf5b" maskrange="160">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14072" pos="450,150" dir="\face\" normal="f069" focus="normal" down="normal" disable="normal"  maskbias="0xfa0e16" maskcolor="0xd77c" maskrange="160">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14073" pos="450,150" dir="\face\" normal="f035" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="128" maskbias="0x2fc28" maskcolor="0xc245" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14074" pos="450,150" dir="\face\" normal="f038" focus="normal" down="normal" disable="normal" basebias="0x20704" basecolor="0xae58" baserange="135" maskbias="0x20a03" maskcolor="0x4a28" maskrange="160">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14075" pos="450,150" dir="\face\" normal="f038" focus="normal" down="normal" disable="normal" baserange="128" maskbias="0xde63e" maskcolor="0x4a28" maskrange="160">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14076" pos="450,150" dir="\face\" normal="f039" focus="normal" down="normal" disable="normal" basebias="0xe100" basecolor="0x0" baserange="128" maskbias="0xf3f936" maskcolor="0xf7be" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14077" pos="450,150" dir="\face\" normal="f039" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0xfc1304" maskcolor="0x0" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14078" pos="450,150" dir="\face\" normal="f039" focus="normal" down="normal" disable="normal" baserange="128" maskbias="0xfa101b" maskcolor="0xffff" maskrange="160">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14079" pos="450,150" dir="\face\" normal="f017" focus="normal" down="normal" disable="normal"/>
+	<icon id="14080" pos="450,150" dir="\face\" normal="f017" focus="normal" down="normal" disable="normal" basebias="0xfe0b02" basecolor="0xbe13" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14081" pos="450,150" dir="\face\" normal="f021" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x239" maskcolor="0xff95" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14082" pos="450,150" dir="\face\" normal="f082" focus="normal" down="normal" disable="normal" basebias="0xfff206" basecolor="0x0" baserange="143" maskbias="0x5ef00" maskcolor="0x0" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14083" pos="450,150" dir="\face\" normal="f082" focus="normal" down="normal" disable="normal" basebias="0xfcfc29" basecolor="0xc612" baserange="136" maskbias="0xfcfc29" maskcolor="0xd5b2" maskrange="8">
+		<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14084" pos="450,150" dir="\face\" normal="f082" focus="normal" down="normal" disable="normal" basebias="0x40302" basecolor="0xce73" baserange="131" maskbias="0x501" maskcolor="0xd5b2" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14085" pos="450,150" dir="\face\" normal="f082" focus="normal" down="normal" disable="normal" basebias="0x612" basecolor="0xce73" baserange="131" maskbias="0x612" maskcolor="0xd5b2" maskrange="4">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14086" pos="450,150" dir="\face\" normal="f027" focus="normal" down="normal" disable="normal" basebias="0xfe021d" basecolor="0x7e7c" baserange="133" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14087" pos="450,150" dir="\face\" normal="f027" focus="normal" down="normal" disable="normal" basebias="0xfafb05" basecolor="0x7e7c" baserange="2">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14088" pos="450,150" dir="\face\" normal="f028" focus="normal" down="normal" disable="normal" baserange="128" maskbias="0xb1617" maskcolor="0x632b" maskrange="160">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14089" pos="450,150" dir="\face\" normal="f034" focus="normal" down="normal" disable="normal" maskbias="0x4eb05" maskcolor="0xcee9" maskrange="2">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14090" pos="450,150" dir="\face\" normal="f034" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0xf8e800" maskcolor="0xcee9" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14091" pos="450,150" dir="\face\" normal="f034" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x30704" maskcolor="0xcee9" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14092" pos="450,150" dir="\face\" normal="f027" focus="normal" down="normal" disable="normal" basebias="0xfbff10" basecolor="0x7e7c" baserange="130">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+
+
+	<icon id="14095" pos="450,150" dir="\face\" normal="f035" focus="normal" down="normal" disable="normal" basebias="0x5" basecolor="0xed46" baserange="134" maskbias="0x40820" maskcolor="0x9183" maskrange="2">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14096" pos="450,150" dir="\face\" normal="f036" focus="normal" down="normal" disable="normal" maskbias="0xfd2021" maskcolor="0xf388" maskrange="131">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14097" pos="450,150" dir="\face\" normal="f036" focus="normal" down="normal" disable="normal" maskbias="0x91f" maskcolor="0xfbc9" maskrange="131">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14098" pos="450,150" dir="\face\" normal="f036" focus="normal" down="normal" disable="normal"  maskbias="0xf7f023" maskcolor="0xfbc9" maskrange="3">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14099" pos="450,150" dir="\face\" normal="f007" focus="normal" down="normal" disable="normal"  maskbias="0xb0706" maskcolor="0x3b8f" maskrange="130">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14100" pos="450,150" dir="\face\" normal="f039" focus="normal" down="normal" disable="normal" basebias="0x30807" basecolor="0x9596" baserange="160">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon> 
+	<icon id="14101" pos="450,150" dir="\face\" normal="f039" focus="normal" down="normal" disable="normal" basebias="0x30701" basecolor="0x9596" baserange="160" maskbias="0x10105" maskcolor="0xf7be" maskrange="20">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14102" pos="450,150" dir="\face\" normal="f037" focus="normal" down="normal" disable="normal" basebias="0xfefd1a" basecolor="0xb52e" baserange="131" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14103" pos="450,150" dir="\face\" normal="f037" focus="normal" down="normal" disable="normal" basebias="0x10103" basecolor="0xbd4f" baserange="131" maskbias="0x83b" maskcolor="0x4249" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14104" pos="450,150" dir="\face\" normal="f037" focus="normal" down="normal" disable="normal" basebias="0x20326" basecolor="0xacee" baserange="131" maskbias="0xff032f" maskcolor="0x4229" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14105" pos="450,150" dir="\face\" normal="f036" focus="normal" down="normal" disable="normal" basebias="0xfcf13e" basecolor="0xad53" baserange="130" maskbias="0xfcf13e" maskcolor="0xfbc9" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14106" pos="450,150" dir="\face\" normal="f017" focus="normal" down="normal" disable="normal" basebias="0x6002c" basecolor="0xf7bd" baserange="133" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14107" pos="450,150" dir="\face\" normal="f017" focus="normal" down="normal" disable="normal" basebias="0x10610" basecolor="0xad4f" baserange="129" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14108" pos="450,150" dir="\face\" normal="f023" focus="normal" down="normal" disable="normal"  maskbias="0x8e520" maskcolor="0x8167" maskrange="130">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14109" pos="450,150" dir="\face\" normal="f024" focus="normal" down="normal" disable="normal"  maskbias="0xe420" maskcolor="0xd795" maskrange="130">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14110" pos="450,150" dir="\face\" normal="f019" focus="normal" down="normal" disable="normal"  maskbias="0x1fd26" maskcolor="0xff8f" maskrange="145">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14111" pos="450,150" dir="\face\" normal="f021" focus="normal" down="normal" disable="normal" basebias="0x1fe29" basecolor="0xf5ed" baserange="160" maskbias="0x3fb27" maskcolor="0xe691" maskrange="160">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14112" pos="450,150" dir="\face\" normal="f002" focus="normal" down="normal" disable="normal"  maskbias="0x11a3f" maskcolor="0xd77b" maskrange="160">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14113" pos="450,150" dir="\face\" normal="f013" focus="normal" down="normal" disable="normal"/>
+	<icon id="14114" pos="450,150" dir="\face\" normal="f022" focus="normal" down="normal" disable="normal"/>
+	<icon id="14115" pos="450,150" dir="\face\" normal="f032" focus="normal" down="normal" disable="normal"/>
+	<icon id="14116" pos="450,150" dir="\face\" normal="f040" focus="normal" down="normal" disable="normal"/>
+	<icon id="14117" pos="450,150" dir="\face\" normal="f007" focus="normal" down="normal" disable="normal"  maskbias="0x5fa1b" maskcolor="0x43d0" maskrange="130">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14118" pos="450,150" dir="\face\" normal="f007" focus="normal" down="normal" disable="normal"  maskbias="0x4fd3e" maskcolor="0x43b0" maskrange="130">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14119" pos="450,150" dir="\face\" normal="f010" focus="normal" down="normal" disable="normal" basebias="0x10802" basecolor="0x3c1b" baserange="138" maskbias="0xf30710" maskcolor="0xdda9" maskrange="10">
+		<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon> 	
+	<icon id="14120" pos="450,150" dir="\face\" normal="f014" focus="normal" down="normal" disable="normal" basebias="0x20605" basecolor="0xffd9" baserange="132" maskbias="0x60d29" maskcolor="0x31cc" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14121" pos="450,150" dir="\face\" normal="f008" focus="normal" down="normal" disable="normal" maskbias="0xfb0b0e" maskcolor="0xee93" maskrange="4">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14122" pos="450,150" dir="\face\" normal="f010" focus="normal" down="normal" disable="normal" basebias="0x20" basecolor="0x33fa" baserange="2" maskbias="0xf4fa1a" maskcolor="0xdda9" maskrange="32">
+		<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+  	<icon id="14123" pos="450,150" dir="\face\" normal="f007" focus="normal" down="normal" disable="normal"  maskbias="0xfefa20" maskcolor="0x4bd0" maskrange="2">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14124" pos="450,150" dir="\face\" normal="f010" focus="normal" down="normal" disable="normal"  basebias="0xfe001d" basecolor="0x33fb" baserange="128" maskbias="0x4f800" maskcolor="0xdd89" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+ 	<icon id="14125" pos="450,150" dir="\face\" normal="f035" focus="normal" down="normal" disable="normal" basebias="0xf537" basecolor="0x0" baserange="128" maskbias="0xfdff03" maskcolor="0xa982" maskrange="2">
+		<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14126" pos="450,150" dir="\face\" normal="f038" focus="normal" down="normal" disable="normal" basebias="0x21208" basecolor="0xb6db" baserange="138" maskbias="0x20a28" maskcolor="0x5248" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14127" pos="450,150" dir="\face\" normal="f038" focus="normal" down="normal" disable="normal" basebias="0xff0a16" basecolor="0xc75c" baserange="135" maskbias="0xe0707" maskcolor="0x528a" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14128" pos="450,150" dir="\face\" normal="f039" focus="normal" down="normal" disable="normal"/>
+
+	<icon id="14129" pos="450,150" dir="\face\" normal="f035" focus="normal" down="normal" disable="normal"
+basebias="0x0" basecolor="0x0" baserange="128" maskbias="0x12025" maskcolor="0x8122" maskrange="160">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14130" pos="450,150" dir="\face\" normal="f038" focus="normal" down="normal" disable="normal"/>
+
+	<icon id="14131" pos="450,150" dir="\face\" normal="f038" focus="normal" down="normal" disable="normal"  basebias="0x6" basecolor="0xa1e5" baserange="131" maskbias="0xf1000" maskcolor="0x7bae" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14132" pos="450,150" dir="\face\" normal="f035" focus="normal" down="normal" disable="normal"/>
+
+	<icon id="14133" pos="450,150" dir="\face\" normal="f017" focus="normal" down="normal" disable="normal"  maskbias="0xff0411" maskcolor="0x5411" maskrange="130">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14134" pos="450,150" dir="\face\" normal="f017" focus="normal" down="normal" disable="normal"  maskbias="0xfd063f" maskcolor="0x4bf1" maskrange="133">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14135" pos="450,150" dir="\face\" normal="f018" focus="normal" down="normal" disable="normal"/>
+
+	<icon id="14136" pos="450,150" dir="\face\" normal="f021" focus="normal" down="normal" disable="normal"  maskbias="0xf020" maskcolor="0xf713" maskrange="131">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14137" pos="450,150" dir="\face\" normal="f019" focus="normal" down="normal" disable="normal"/>
+
+	<icon id="14138" pos="450,150" dir="\face\" normal="f017" focus="normal" down="normal" disable="normal" basebias="0x20521" basecolor="0xe77c" baserange="144" maskbias="0x20521" maskcolor="0x4bf1" maskrange="135">
+		<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14139" pos="450,150" dir="\face\" normal="f017" focus="normal" down="normal" disable="normal"  maskbias="0x91a" maskcolor="0x4bf1" maskrange="130">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14140" pos="450,150" dir="\face\" normal="f021" focus="normal" down="normal" disable="normal"  maskbias="0x10a3c" maskcolor="0xff95" maskrange="133">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14141" pos="450,150" dir="\face\" normal="f027" focus="normal" down="normal" disable="normal" basebias="0x401" basecolor="0x7e7c" baserange="130">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14142" pos="450,150" dir="\face\" normal="f027" focus="normal" down="normal" disable="normal" basebias="0xfe041a" basecolor="0x7e7c" baserange="130">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14143" pos="450,150" dir="\face\" normal="f033" focus="normal" down="normal" disable="normal"/>
+
+	<icon id="14144" pos="450,150" dir="\face\" normal="f028" focus="normal" down="normal" disable="normal"  maskbias="0x90f16" maskcolor="0x632b" maskrange="160">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14145" pos="450,150" dir="\face\" normal="f025" focus="normal" down="normal" disable="normal"/>
+
+	<icon id="14146" pos="450,150" dir="\face\" normal="f027" focus="normal" down="normal" disable="normal" basebias="0x10d08" basecolor="0x7e7c" baserange="130">
+
+<attrib ICON_ATTRIB_BIAS=""/>
+
+</icon>
+	<icon id="14147" pos="450,150" dir="\face\" normal="f027" focus="normal" down="normal" disable="normal" basebias="0xfd0004" basecolor="0x7e7c" baserange="128" maskbias="0xe" maskcolor="0x0" maskrange="0">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="14148" pos="450,150" dir="\face\" normal="f028" focus="normal" down="normal" disable="normal" maskbias="0xd1300" maskcolor="0x632b" maskrange="160"><attrib ICON_ATTRIB_BIAS=""/></icon>
+	<icon id="14149" pos="450,150" dir="\face\" normal="f010" focus="normal" down="normal" disable="normal" basebias="0x60328" basecolor="0x3c3b" baserange="5" maskbias="0x60328" maskcolor="0x445c" maskrange="133">
+<attrib ICON_ATTRIB_BIAS=""/>
+<attrib ICON_ATTRIB_BIAS=""/></icon>
+	<icon id="14150" pos="450,150" dir="\face\" normal="f010" focus="normal" down="normal" disable="normal" basebias="0xfef705" basecolor="0x5d3f" baserange="5" maskbias="0x0" maskcolor="0x0" maskrange="0">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="14151" pos="450,150" dir="\face\" normal="f010" focus="normal" down="normal" disable="normal" basebias="0x3e812" basecolor="0x5d1f" baserange="5" maskbias="0x0" maskcolor="0x632b" maskrange="0">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="14152" pos="450,150" dir="\face\" normal="f010" focus="normal" down="normal" disable="normal" basebias="0xf916" basecolor="0x3c3b" baserange="134" maskbias="0x0" maskcolor="0x632b" maskrange="0">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+        <icon id="14153" pos="450,150" dir="\face\" normal="f017" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0xffff" baserange="0" maskbias="0x70507" maskcolor="0x7c51" maskrange="134">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+        <icon id="14154" pos="450,150" dir="\face\" normal="f017" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0xffff" baserange="0" maskbias="0x20425" maskcolor="0x7c51" maskrange="135">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+        <icon id="14155" pos="450,150" dir="\face\" normal="f017" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0xffff" baserange="0" maskbias="0x5ee10" maskcolor="0x7c51" maskrange="133">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+        <icon id="14156" pos="450,150" dir="\face\" normal="f017" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0xffff" baserange="0" maskbias="0x50313" maskcolor="0x7c51" maskrange="133">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="14157" pos="450,150" dir="\face\" normal="f038" focus="normal" down="normal" disable="normal" basebias="0x10c07" basecolor="0xbedb" baserange="148" maskbias="0xe1106" maskcolor="0xc75c" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="14158" pos="450,150" dir="\face\" normal="f038" focus="normal" down="normal" disable="normal" basebias="0xff0728" basecolor="0xbedb" baserange="146" maskbias="0x60729" maskcolor="0xc75c" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="14159" pos="450,150" dir="\face\" normal="f038" focus="normal" down="normal" disable="normal" basebias="0xfc20" basecolor="0xbedb" baserange="132" maskbias="0x8fb07" maskcolor="0xc75c" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="14160" pos="450,150" dir="\face\" normal="f038" focus="normal" down="normal" disable="normal" basebias="0xfd0a17" basecolor="0xbedb" baserange="132" maskbias="0x60814" maskcolor="0xc75c" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="14161" pos="450,150" dir="\face\" normal="f033" focus="normal" down="normal" disable="normal"  basebias="0xff0419" basecolor="0x8518" baserange="130" maskbias="0x1708" maskcolor="0xa36b" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="14162" pos="450,150" dir="\face\" normal="f033" focus="normal" down="normal" disable="normal" basebias="0x40d06" basecolor="0x8518" baserange="128" maskbias="0xfb0829" maskcolor="0xa36b" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="14163" pos="450,150" dir="\face\" normal="f033" focus="normal" down="normal" disable="normal" basebias="0xfdf522" basecolor="0x8518" baserange="130" maskbias="0xfffd03" maskcolor="0xa36b" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="14164" pos="450,150" dir="\face\" normal="f033" focus="normal" down="normal" disable="normal" basebias="0xfc0224" basecolor="0x8518" baserange="130" maskbias="0xd18" maskcolor="0xa36b" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/> </icon>
+
+	<icon id="14165" pos="450,150" dir="\face\" normal="f007" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0xffdf" baserange="0" maskbias="0x5fa06" maskcolor="0x4bd0" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14166" pos="450,150" dir="\face\" normal="f038" focus="normal" down="normal" disable="normal" basebias="0x1063f" basecolor="0xae79" baserange="142" maskbias="0x20a1a" maskcolor="0x62cb" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14167" pos="450,150" dir="\face\" normal="f017" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0xfd0636" maskcolor="0x5411" maskrange="132">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14168" pos="450,150" dir="\face\" normal="f027" focus="normal" down="normal" disable="normal" basebias="0xfe002a" basecolor="0x5537" baserange="130" maskbias="0xa" maskcolor="0x5aa9" maskrange="88">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+
+	<icon id="14169" pos="450,150" dir="\face\" normal="nullshp" focus="normal" down="normal" disable="normal"/>
+	<icon id="14170" pos="450,150" dir="\face\" normal="nullshp" focus="normal" down="normal" disable="normal"/>
+	<icon id="14171" pos="450,150" dir="\face\" normal="nullshp" focus="normal" down="normal" disable="normal"/>
+	<icon id="14172" pos="450,150" dir="\face\" normal="nullshp" focus="normal" down="normal" disable="normal"/>
+	<icon id="14173" pos="450,150" dir="\face\" normal="nullshp" focus="normal" down="normal" disable="normal"/>
+	<icon id="14174" pos="450,150" dir="\face\" normal="nullshp" focus="normal" down="normal" disable="normal"/>
+
+	<icon id="14175" pos="450,150" dir="\face\" normal="f175" focus="normal" down="normal" disable="normal"/>
+	<icon id="14176" pos="450,150" dir="\face\" normal="f176" focus="normal" down="normal" disable="normal"/>
+	<icon id="14177" pos="450,150" dir="\face\" normal="f177" focus="normal" down="normal" disable="normal"/>
+	<icon id="14178" pos="450,150" dir="\face\" normal="f178" focus="normal" down="normal" disable="normal"/>
+
+	<icon id="14179" pos="450,150" dir="\face\" normal="f004" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x500" maskcolor="0x0" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>	</icon>
+
+	<icon id="14180" pos="450,150" dir="\face\" normal="f180" focus="normal" down="normal" disable="normal"/>
+	<icon id="14181" pos="450,150" dir="\face\" normal="f181" focus="normal" down="normal" disable="normal"/>
+	<icon id="14182" pos="450,150" dir="\face\" normal="f182" focus="normal" down="normal" disable="normal"/>
+	<icon id="14183" pos="450,150" dir="\face\" normal="f183" focus="normal" down="normal" disable="normal"/>
+
+
+	<icon id="14184" pos="450,150" dir="\face\" normal="f184" focus="normal" down="normal" disable="normal"/>
+
+	<icon id="14185" pos="450,150" dir="\face\" normal="f185" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x4" maskcolor="0x0" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14186" pos="450,150" dir="\face\" normal="f185" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0xfb29" maskcolor="0x0" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+
+	<icon id="14187" pos="450,150" dir="\face\" normal="f180" focus="normal" down="normal" disable="normal" basebias="0x40622" basecolor="0xb1e7" baserange="130" maskbias="0x1422" maskcolor="0x0" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14188" pos="450,150" dir="\face\" normal="f182" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0xf634" maskcolor="0x0" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14189" pos="450,150" dir="\face\" normal="f181" focus="normal" down="normal" disable="normal" basebias="0x3f" basecolor="0x3bf3" baserange="128" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+        <icon id="14190" pos="450,150" dir="\face\" normal="f010" focus="normal" down="normal" disable="normal" basebias="0x3" basecolor="0x33fa" baserange="128" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+
+	<icon id="14191" pos="450,150" dir="\face\" normal="f191" focus="normal" down="normal" disable="normal"/>
+	<icon id="14192" pos="450,150" dir="\face\" normal="f192" focus="normal" down="normal" disable="normal"/>	
+	<icon id="14193" pos="450,150" dir="\face\" normal="f193" focus="normal" down="normal" disable="normal"/>
+	<icon id="14194" pos="450,150" dir="\face\" normal="f182" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0xfa27" maskcolor="0x0" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14195" pos="450,150" dir="\face\" normal="f004" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x1f939" maskcolor="0x0" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14196" pos="450,150" dir="\face\" normal="f196" focus="normal" down="normal" disable="normal" basebias="0x19" basecolor="0x3cf7" baserange="128" maskbias="0x0" maskcolor="0x0" maskrange="0">		<attrib ICON_ATTRIB_BIAS=""/>	</icon>
+
+	<icon id="14198" pos="450,150" dir="\face\" normal="f193" focus="normal" down="normal" disable="normal" basebias="0x207" basecolor="0xa5d8" baserange="153" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="14199" pos="450,150" dir="\face\" normal="f199" focus="normal" down="normal"/>
+
+	<icon id="15000" pos="450,150" dir="\face\" normal="f1000" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x30423" maskcolor="0x0" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="15001" pos="450,150" dir="\face\" normal="f1000" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0xfaf822" maskcolor="0x0" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="15002" pos="450,150" dir="\face\" normal="f1000" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x30808" maskcolor="0x0" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="15003" pos="450,150" dir="\face\" normal="f1000" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x6033f" maskcolor="0x0" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="15004" pos="450,150" dir="\face\" normal="f1000" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x5051a" maskcolor="0x0" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="15005" pos="450,150" dir="\face\" normal="f009" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0xfc12" maskcolor="0x0" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+</root>

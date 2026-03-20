@@ -1,0 +1,1013 @@
+#include m01.obd
+
+[SYSTEM]
+ShapeDir = shape
+SoundDir = sound
+SpriteDir = shape
+BgPath = 
+BgColor = 0xc618
+DelayUnit = 60
+UseDefault = 2
+UseDefine = 2
+MinSize = 131072
+MaxSize = 10485760
+
+
+[DEFINE]
+#define SP_NUMBER_MAX				0x7fffffff
+
+#define SP_EVENT_ACT_WAIT                       0x00000001	//SP_EVENT_ACT_WAIT
+#define SP_EVENT_ACT_FADEOUT                    0x00000002	//SP_EVENT_ACT_FADEOUT
+#define SP_EVENT_ACT_REMOVE                     0x00000003	//SP_EVENT_ACT_REMOVE
+#define SP_EVENT_ACT_NO_SHADOW                  0x00000004	//SP_EVENT_ACT_NO_SHADOW
+
+#define SERV_CLASS_BASE                         0x80000001	//伺服器一般物件
+#define SERV_CLASS_CHAROBJ                      0x80000002	//伺服器角色物件
+#define SERV_CLASS_ITEMOBJ                      0x80000003	//伺服器道具物件
+#define SERV_CLASS_STATIC                       0x80000004	//伺服器靜態物件
+#define SERV_CLASS_GEN                          0x80000005	//伺服器怪物產生器
+#define SERV_CLASS_NPCOBJ                       0x80000202	//伺服器NPC物件
+#define SERV_CLASS_PETOBJ                       0x80010202	//伺服器寵物物件
+#define SP_CLASS_BASE                           0x00000001	//SP_CLASS_BASE
+#define SP_CLASS_MAPOBJ                         0x00000002	//SP_CLASS_MAPOBJ
+#define SP_CLASS_CHAROBJ                        0x00000102	//SP_CLASS_CHAROBJ
+#define SP_CLASS_HOUSEIN                        0x00000202	//SP_CLASS_HOUSEIN
+#define SP_CLASS_HOUSEOUT                       0x00000402	//SP_CLASS_HOUSEOUT
+#define SP_CLASS_EFFECT							0x00000802	//SP_CLASS_EFFECT
+#define SP_CLASS_MAGIC							0x00001802	//SP_CLASS_MAGIC
+#define SP_CLASS_PLAYER                         0x00001102	//SP_CLASS_PLAYER
+#define SP_CLASS_MAPOBJ_11TREE                  0x00010002	//樹木植物
+#define SP_CLASS_MAPOBJ_12FLOWER                0x00020002	//花草植物
+#define SP_CLASS_MAPOBJ_13PLANT                 0x00030002	//其他植物
+#define SP_CLASS_MAPOBJ_21COMMONOBJ             0x00040002	//普通雜物
+#define SP_CLASS_MAPOBJ_22LIGHTOBJ              0x00050002	//光明雜物
+#define SP_CLASS_MAPOBJ_23DARKOBJ               0x00060002	//黑暗雜物
+#define SP_CLASS_MAPOBJ_24CHAOSOBJ              0x00070002	//渾沌雜物
+#define SP_CLASS_MAPOBJ_25EARTHOBJ              0x00080002	//大地雜物
+#define SP_CLASS_MAPOBJ_31ACTIONOBJ             0x00090002	//動態物件
+
+#define SP_ATTRIB_DISTURB                       0x00020000	//SP_ATTRIB_DISTURB
+#define SP_ATTRIB_ZBUFFER1                      0x00040000	//SP_ATTRIB_ZBUFFER1
+#define SP_ATTRIB_ZBUFFER2                      0x00080000	//SP_ATTRIB_ZBUFFER2
+#define SP_ATTRIB_STATIC                        0x00100000	//SP_ATTRIB_STATIC
+#define SP_ATTRIB_HITTEST                       0x00200000	//SP_ATTRIB_HITTEST
+#define SP_ATTRIB_SHADOW                        0x00400000	//SP_ATTRIB_SHADOW
+
+#define SP_ATTRIB_ALPHA                         0x00000001	//Alpha
+#define SP_ATTRIB_MIXER                         0x00000002	//混色
+#define SP_ATTRIB_WHITELIGHT                    0x00000004	//加色
+#define SP_ATTRIB_DARKLIGHT                     0x00000008	//減色
+#define SP_ATTRIB_OUTLINE                       0x00000010	//外框
+#define SP_ATTRIB_FLASH                         0x00000020	//Flash效果
+#define SP_ATTRIB_SMOKE                         0x00000040	//Smoke效果
+#define SP_ATTRIB_WATER                         0x00000080	//Water效果
+#define SP_ATTRIB_SINGLE                        0x00000100	//單色
+#define SP_ATTRIB_GLASS                         0x00000200	//玻璃色
+#define SP_ATTRIB_GRAY                          0x00000400	//灰階
+#define SP_ATTRIB_TABLE                         0x00001000	//表格
+#define SP_ATTRIB_BIAS                          0x00002000	//換色
+
+[SP_CLASS]
+Name = SERV_CLASS_BASE
+Value = 0x80000001
+Comment = 伺服器一般物件
+
+[SP_CLASS]
+Name = SERV_CLASS_CHAROBJ
+Value = 0x80000002
+Comment = 伺服器角色物件
+
+[SP_CLASS]
+Name = SERV_CLASS_GEN
+Value = 0x80000005
+Comment = 伺服器怪物產生器
+Label = 物件
+Label = 時間
+Label = 數量
+Label = 位置
+Label = 事件
+Label = 路徑
+Label = 範圍
+Label = 對話
+
+[SP_CLASS]
+Name = SERV_CLASS_ITEMOBJ
+Value = 0x80000003
+Comment = 伺服器道具物件
+
+[SP_CLASS]
+Name = SERV_CLASS_NPCOBJ
+Value = 0x80000202
+Comment = 伺服器NPC物件
+Label = 路徑
+Label = 重生
+
+[SP_CLASS]
+Name = SERV_CLASS_PETOBJ
+Value = 0x80010202
+Comment = 伺服器寵物物件
+
+[SP_CLASS]
+Name = SERV_CLASS_STATIC
+Value = 0x80000004
+Comment = 伺服器靜態物件
+
+[SP_CLASS]
+Name = SP_CLASS_BASE
+Value = 0x00000001
+Comment = SP_CLASS_BASE
+
+[SP_CLASS]
+Name = SP_CLASS_CHAROBJ
+Value = 0x00000102
+Comment = SP_CLASS_CHAROBJ
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEIN
+Value = 0x00000202
+Comment = SP_CLASS_HOUSEIN
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEOUT
+Value = 0x00000402
+Comment = SP_CLASS_HOUSEOUT
+
+[SP_CLASS]
+Name = SP_CLASS_EFFECT
+Value = 0x00000802
+Comment = SP_CLASS_EFFECT
+
+[SP_CLASS]
+Name = SP_CLASS_MAGIC
+Value = 0x00001802
+Comment = SP_CLASS_MAGIC
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ
+Value = 0x00000002
+Comment = SP_CLASS_MAPOBJ
+
+[SP_CLASS]
+Name = SP_CLASS_PLAYER
+Value = 0x00001102
+Comment = SP_CLASS_PLAYER
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_11TREE
+Value = 0x00010002
+Comment = 樹木植物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_12FLOWER
+Value = 0x00020002
+Comment = 花草植物
+Label = 光源
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_13PLANT
+Value = 0x00030002
+Comment = 其他植物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_21COMMONOBJ
+Value = 0x00040002
+Comment = 普通雜物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_22LIGHTOBJ
+Value = 0x00050002
+Comment = 光明雜物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_23DARKOBJ
+Value = 0x00060002
+Comment = 黑暗雜物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_24CHAOSOBJ
+Value = 0x00070002
+Comment = 渾沌雜物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_25EARTHOBJ
+Value = 0x00080002
+Comment = 大地雜物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_31ACTIONOBJ
+Value = 0x00090002
+Comment = 動態物件
+
+[SP_EVENT]
+Name = SP_EVENT_ACT_FADEOUT
+Value = 0x00000002
+Comment = SP_EVENT_ACT_FADEOUT
+
+[SP_EVENT]
+Name = SP_EVENT_ACT_NO_SHADOW
+Value = 0x00000004
+Comment = SP_EVENT_ACT_NO_SHADOW
+
+[SP_EVENT]
+Name = SP_EVENT_ACT_REMOVE
+Value = 0x00000003
+Comment = SP_EVENT_ACT_REMOVE
+
+[SP_EVENT]
+Name = SP_EVENT_ACT_WAIT
+Value = 0x00000001
+Comment = SP_EVENT_ACT_WAIT
+
+
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_DISTURB
+Value = 0x00020000
+Comment = SP_ATTRIB_DISTURB
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_HITTEST
+Value = 0x00200000
+Comment = SP_ATTRIB_HITTEST
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_SHADOW
+Value = 0x00400000
+Comment = SP_ATTRIB_SHADOW
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_STATIC
+Value = 0x00100000
+Comment = SP_ATTRIB_STATIC
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_ZBUFFER1
+Value = 0x00040000
+Comment = SP_ATTRIB_ZBUFFER1
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_ZBUFFER2
+Value = 0x00080000
+Comment = SP_ATTRIB_ZBUFFER2
+
+
+
+[OBJECT]
+Name = 土巨靈怒吼 光球
+Sequence = 101
+Space = 25, 80, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_MAGIC
+Directory = \magic\001
+Sprite = Wait, #5, S117001-1, S117002-2, S117003-3
+Sprite = Bomb, nullshp, !magic001Bomb, SCROVER
+
+
+[OBJECT]
+Name = 土巨靈怒吼 小閃電
+Sequence = 102
+Space = 0, 0, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\001
+Sprite = Wait, #4, G1001, G1002, G1003, G1004
+
+
+[OBJECT]
+Name = 土巨靈怒吼 八卦光線
+Sequence = 103
+Space = 0, 0, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\001
+Sprite = Wait, #10, 16b10001, 16b10002, 16b10003, 16b10004, 16b10005, 16b10006, 16b10007, 16b10008
+
+
+[OBJECT]
+Name = 土巨靈怒吼 爆炸
+Sequence = 104
+Space = 0, 0, 0
+BaseBias = 0x29, 0x4bf, 2
+Flags = SP_ATTRIB_BIAS, SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\001
+Sprite = Wait, #4, a010301, a010302, a010303, a010304, a010305, a010306, SCROVER
+
+
+[OBJECT]
+Name = 土巨靈怒吼 腳底震波(黃41)
+Sequence = 105
+Space = 0, 0, 0
+BaseBias = 0x29, 0xa7ff, 2
+Flags = SP_ATTRIB_BIAS, SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\001
+Sprite = Wait, #4, N01a0000, N01a0001, N01a0002, N01a0003, N01a0004, N01a0005, N01a0006, N01a0007, N01a0008
+Sprite = Wait2, #4, N01a0005, N01a0006, N01a0007, N01a0008
+Sprite = Wait3, #4, N01a0000, N01a0001, N01a0002, N01a0003, N01a0004, N01a0005, N01a0006, N01a0007, N01a0008, SCROVER
+
+
+[OBJECT]
+Name = 土巨靈怒吼 光圈
+Sequence = 106
+Space = 4, 80, 0
+MiscAttrib = 11
+BaseBias = 0x35, 0xafe3, 2
+Flags = SP_ATTRIB_TABLE, SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\001
+Sprite = Wait, #6, S51, SCROVER
+
+
+[OBJECT]
+Name = 土巨靈怒吼 土堆
+Sequence = 107
+Space = 0, 0, 0
+Process = SP_CLASS_EFFECT
+Directory = \magic\001
+Sprite = Wait, #1, 56a0001, 56a0002, 56a0003, 56a0004, 56a0005, 56a0006, 56a0007, 56a0008, 56a0009, #2, 56a0010, 56a0011, 56a0012, 56a0013, 56a0014, 56a0015, 56a0016, #3, SCROVER
+
+
+[OBJECT]
+Name = 土巨靈怒吼 煙
+Sequence = 108
+Space = 0, 0, 0
+Flags = SP_ATTRIB_ALPHA
+Process = SP_CLASS_EFFECT
+Directory = \magic\001
+Sprite = Wait, 01, SCROVER
+Sprite = Wait1, 02
+Sprite = Wait2, 03
+
+
+[OBJECT]
+Name = 土巨靈怒吼 煙霧
+Sequence = 109
+Space = 0, 0, 0
+Level = 0
+MiscAttrib = 12
+BaseBias = 0xe11f, 0xffff, 160
+Flags = SP_ATTRIB_BIAS, SP_ATTRIB_SMOKE, SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\001
+Sprite = Wait, #10, smk0011, smk0029, smk0042, smk0057, smk0068, smk0073
+
+
+[OBJECT]
+Name = 土巨靈怒吼 土粒
+Sequence = 110
+Space = 0, 0, 0
+Process = SP_CLASS_EFFECT
+Directory = \magic\001
+Sprite = Wait, #1, 56b, SCROVER
+
+
+[OBJECT]
+Name = 土巨靈怒吼 光線
+Sequence = 111
+Space = 16, 80, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\001
+Sprite = Wait, #4, 1230001, SCROVER
+
+
+[OBJECT]
+Name = 全體祝福 魔法陣
+Sequence = 112
+Space = 0, 0, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\009
+Sprite = Wait, #4, 127a, SCROVER
+
+
+[OBJECT]
+Name = 全體祝福 藍色光
+Sequence = 113
+Space = 0, 0, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\009
+Sprite = Wait, #7, b01, b02, b03, b04
+
+
+[OBJECT]
+Name = 全體祝福 藍光束
+Sequence = 114
+Space = 0, 0, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\009
+Sprite = Wait, #10, 13c1
+
+
+[OBJECT]
+Name = 全體祝福 黃落葉
+Sequence = 115
+Space = 0, 0, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\009\y
+Sprite = Wait, #8, g0001, g0002, g0004, g0006, g0008, g0010, g0012, g0014, g0016, g0018, g0020, g0024, g0026, g0028, g0030, g0032, g0034, g0036, g0038, g0040
+
+
+[OBJECT]
+Name = 全體祝福 綠落葉
+Sequence = 116
+Space = 0, 0, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\009\g
+Sprite = Wait, #8, g0001, g0002, g0004, g0006, g0008, g0010, g0012, g0014, g0016, g0018, g0020, g0024, g0026, g0028, g0030, g0032, g0034, g0036, g0038, g0040
+
+
+[OBJECT]
+Name = 全體祝福 粉紅落葉
+Sequence = 117
+Space = 0, 0, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\009\r
+Sprite = Wait, #8, g0001, g0002, g0004, g0006, g0008, g0010, g0012, g0014, g0016, g0018, g0020, g0024, g0026, g0028, g0030, g0032, g0034, g0036, g0038, g0040
+
+
+[OBJECT]
+Name = 全體祝福 花片效果
+Sequence = 118
+Space = 0, 0, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\009
+Sprite = Wait, #4, 1190001, 1190002, 1190003, 1190004, 1190005
+
+
+[OBJECT]
+Name = 全體祝福 藍色煙火
+Sequence = 119
+Space = 4, 80, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\009
+Sprite = Wait, g20001, #4, g20002, g20003, g20004, g20005, g20006, g20007, g20008, g20009, g20010, g20011, g20012, g20013, g20014, g20015, g20016, SCROVER
+Sprite = Red, g30001, #4, g30002, g30003, g30004, g30005, g30006, g30007, g30008, g30009, g30010, g30011, g30012, g30013, g30014, g30015, SCROVER
+Sprite = Purple, G50001, #4, G50002, G50003, G50004, G50005, G50006, G50007, G50008, G50009, G50010, G50011, G50012, G50013, G50014, G50015, G50016, SCROVER
+Sprite = Yellow, g40001, #4, g40002, g40003, g40004, g40005, g40006, g40007, g40008, g40009, g40010, g40011, g40012, g40013, g40014, g40015, SCROVER
+Sprite = Green, g60001, #4, g60002, g60003, g60004, g60005, g60006, g60007, g60008, g60009, g60010, g60011, g60012, g60013, g60014, g60015, g60016, SCROVER
+
+
+[OBJECT]
+Name = 流星雨 藍色光環
+Sequence = 120
+Space = 0, 0, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\006
+Sprite = Wait, s128, #9999, SCROVER
+
+
+[OBJECT]
+Name = 流星雨 紅光點
+Sequence = 121
+Space = 0, 0, 0
+BaseBias = 0xd18, 0xfff9, 8
+Flags = SP_ATTRIB_TABLE, SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\006
+Sprite = Wait, #9999, 002
+
+
+[OBJECT]
+Name = 流星雨 藍光點
+Sequence = 122
+Space = 0, 0, 0
+Flags = SP_ATTRIB_TABLE, SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\006
+Sprite = Wait, #9999, 001
+
+
+[OBJECT]
+Name = 流星雨 流星
+Sequence = 123
+Space = 16, 80, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\006
+Sprite = Wait, 22b
+
+
+[OBJECT]
+Name = 流星雨 震波(藍)
+Sequence = 124
+Space = 0, 0, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\006
+Sprite = Wait, #4, N01a0000, N01a0001, N01a0002, N01a0003, N01a0004, N01a0005, N01a0006, N01a0007, N01a0008
+Sprite = Wait2, #4, N01a0005, N01a0006, N01a0007, N01a0008
+Sprite = Wait3, #4, N01a0000, N01a0001, N01a0002, N01a0003, N01a0004, N01a0005, N01a0006, N01a0007, N01a0008, SCROVER
+
+
+[OBJECT]
+Name = 流星雨 煙霧
+Sequence = 125
+Space = 0, 0, 0
+Flags = SP_ATTRIB_SMOKE, SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\006
+Sprite = Wait, #4, N040001, N040002, N040003, N040004, N040005, N040006, N040007, SCROVER
+
+
+[OBJECT]
+Name = 流星雨 光點
+Sequence = 126
+Space = 0, 0, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\006
+Sprite = Wait, m138_1
+
+
+[OBJECT]
+Name = 流星雨 光點(十字藍)
+Sequence = 127
+Space = 0, 0, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\006
+Sprite = Wait, #6, 012
+
+
+[OBJECT]
+Name = 聖光術 腳底光環(藍)
+Sequence = 128
+Space = 0, 0, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\004
+Sprite = Wait, S85
+
+
+[OBJECT]
+Name = 聖光術 光罩
+Sequence = 129
+Space = 4, 80, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\004
+Sprite = Wait, #6, S73, SCROVER
+
+
+[OBJECT]
+Name = 聖光術 爆炸(黃)
+Sequence = 130
+Space = 50, 80, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\004
+Sprite = Wait, #5, 08c0001, 08c0002, 08c0003, 08c0004, 08c0005, 08c0006, SCROVER
+
+
+[OBJECT]
+Name = 聖光術 金色光圈
+Sequence = 131
+Space = 0, 0, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\004
+Sprite = Wait, #6, 37b1, SCROVER
+
+
+[OBJECT]
+Name = 聖光術 金色光線(16方向)
+Sequence = 132
+Space = 16, 80, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\004
+Sprite = Wait, #4, 1230001**, SCROVER
+
+
+[OBJECT]
+Name = 聖光術 黃色小光
+Sequence = 133
+Space = 0, 0, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\004
+Sprite = Wait, c042
+
+
+[OBJECT]
+Name = 聖光術 黃色光球
+Sequence = 134
+Space = 0, 0, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\004
+Sprite = Wait, 26c0001
+
+
+[OBJECT]
+Name = 聖光術 黃色亮點
+Sequence = 135
+Space = 0, 0, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\004
+Sprite = Wait, #3, 08c1, SCROVER
+
+
+[OBJECT]
+Name = 護身咒 黃色閃光
+Sequence = 136
+Space = 0, 0, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\008
+Sprite = Wait, #8, c071, c072
+
+
+[OBJECT]
+Name = 護身咒 旋轉光環
+Sequence = 137
+Space = 16, 80, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\008
+Sprite = Wait, #5, 22a0001, 22a0002, 22a0003, 22a0004, 22a0005, 22a0006, 22a0007, 22a0008
+
+
+[OBJECT]
+Name = 護身咒 藍色亮點
+Sequence = 138
+Space = 0, 0, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\008
+Sprite = Wait, #2, 02c, SCROVER
+
+
+[OBJECT]
+Name = 護身咒 藍色光線
+Sequence = 139
+Space = 4, 80, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\008
+Sprite = Wait, #2, s310001**, SCROVER
+
+
+[OBJECT]
+Name = 護身咒 十字光芒
+Sequence = 140
+Space = 0, 0, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\008
+Sprite = Wait, #10, 13c0001, nullshp, 13c0001
+
+
+[OBJECT]
+Name = 護身咒 光環
+Sequence = 141
+Space = 0, 0, 0
+Flags = SP_ATTRIB_WHITELIGHT
+Process = SP_CLASS_EFFECT
+Directory = \magic\008
+Sprite = Wait, 127aNew
+
+[OBJECT]
+Name = 時限數字-1
+Sequence = 64201
+Process = SP_CLASS_BASE
+Directory = \game\02\LimiteNum
+Sprite = Wait, w016_31
+
+[OBJECT]
+Name = 時限數字-2
+Sequence = 64202
+Process = SP_CLASS_BASE
+Directory = \game\02\LimiteNum
+Sprite = Wait, w016_32
+
+[OBJECT]
+Name = 時限數字-3
+Sequence = 64203
+Process = SP_CLASS_BASE
+Directory = \game\02\LimiteNum
+Sprite = Wait, w016_33
+
+[OBJECT]
+Name = 時限數字-4
+Sequence = 64204
+Process = SP_CLASS_BASE
+Directory = \game\02\LimiteNum
+Sprite = Wait, w016_34
+
+[OBJECT]
+Name = 時限數字-5
+Sequence = 64205
+Process = SP_CLASS_BASE
+Directory = \game\02\LimiteNum
+Sprite = Wait, w016_35
+
+[OBJECT]
+Name = 時限數字-6
+Sequence = 64206
+Process = SP_CLASS_BASE
+Directory = \game\02\LimiteNum
+Sprite = Wait, w016_36
+
+[OBJECT]
+Name = 時限數字-7
+Sequence = 64207
+Process = SP_CLASS_BASE
+Directory = \game\02\LimiteNum
+Sprite = Wait, w016_37
+
+[OBJECT]
+Name = 時限數字-8
+Sequence = 64208
+Process = SP_CLASS_BASE
+Directory = \game\02\LimiteNum
+Sprite = Wait, w016_38
+
+[OBJECT]
+Name = 時限數字-9
+Sequence = 64209
+Process = SP_CLASS_BASE
+Directory = \game\02\LimiteNum
+Sprite = Wait, w016_39
+
+[OBJECT]
+Name = 時限數字-0
+Sequence = 64210
+Process = SP_CLASS_BASE
+Directory = \game\02\LimiteNum
+Sprite = Wait, w016_30
+
+[OBJECT]
+Name = 賓果數字-1
+Sequence = 64211
+Process = SP_CLASS_BASE
+Directory = \game\02\Num
+Sprite = Wait, w018-02
+
+[OBJECT]
+Name = 賓果數字-2
+Sequence = 64212
+Process = SP_CLASS_BASE
+Directory = \game\02\Num
+Sprite = Wait, w018-03
+
+[OBJECT]
+Name = 賓果數字-3
+Sequence = 64213
+Process = SP_CLASS_BASE
+Directory = \game\02\Num
+Sprite = Wait, w018-26
+
+[OBJECT]
+Name = 賓果數字-4
+Sequence = 64214
+Process = SP_CLASS_BASE
+Directory = \game\02\Num
+Sprite = Wait, w018-04
+
+[OBJECT]
+Name = 賓果數字-5
+Sequence = 64215
+Process = SP_CLASS_BASE
+Directory = \game\02\Num
+Sprite = Wait, w018-05
+
+[OBJECT]
+Name = 賓果數字-6
+Sequence = 64216
+Process = SP_CLASS_BASE
+Directory = \game\02\Num
+Sprite = Wait, w018-06
+
+[OBJECT]
+Name = 賓果數字-7
+Sequence = 64217
+Process = SP_CLASS_BASE
+Directory = \game\02\Num
+Sprite = Wait, w018-07
+
+[OBJECT]
+Name = 賓果數字-8
+Sequence = 64218
+Process = SP_CLASS_BASE
+Directory = \game\02\Num
+Sprite = Wait, w018-08
+
+[OBJECT]
+Name = 賓果數字-9
+Sequence = 64219
+Process = SP_CLASS_BASE
+Directory = \game\02\Num
+Sprite = Wait, w018-09
+
+[OBJECT]
+Name = 賓果數字-10
+Sequence = 64220
+Process = SP_CLASS_BASE
+Directory = \game\02\Num
+Sprite = Wait, w018-10
+
+[OBJECT]
+Name = 賓果數字-11
+Sequence = 64221
+Process = SP_CLASS_BASE
+Directory = \game\02\Num
+Sprite = Wait, w018-11
+
+[OBJECT]
+Name = 賓果數字-12
+Sequence = 64222
+Process = SP_CLASS_BASE
+Directory = \game\02\Num
+Sprite = Wait, w018-12
+
+[OBJECT]
+Name = 賓果數字-13
+Sequence = 64223
+Process = SP_CLASS_BASE
+Directory = \game\02\Num
+Sprite = Wait, w018-13
+
+[OBJECT]
+Name = 賓果數字-14
+Sequence = 64224
+Process = SP_CLASS_BASE
+Directory = \game\02\Num
+Sprite = Wait, w018-14
+
+[OBJECT]
+Name = 賓果數字-15
+Sequence = 64225
+Process = SP_CLASS_BASE
+Directory = \game\02\Num
+Sprite = Wait, w018-15
+
+[OBJECT]
+Name = 賓果數字-16
+Sequence = 64226
+Process = SP_CLASS_BASE
+Directory = \game\02\Num
+Sprite = Wait, w018-16
+
+[OBJECT]
+Name = 賓果數字-17
+Sequence = 64227
+Process = SP_CLASS_BASE
+Directory = \game\02\Num
+Sprite = Wait, w018-17
+
+[OBJECT]
+Name = 賓果數字-18
+Sequence = 64228
+Process = SP_CLASS_BASE
+Directory = \game\02\Num
+Sprite = Wait, w018-18
+
+[OBJECT]
+Name = 賓果數字-19
+Sequence = 64229
+Process = SP_CLASS_BASE
+Directory = \game\02\Num
+Sprite = Wait, w018-19
+
+[OBJECT]
+Name = 賓果數字-20
+Sequence = 64230
+Process = SP_CLASS_BASE
+Directory = \game\02\Num
+Sprite = Wait, w018-20
+
+[OBJECT]
+Name = 賓果數字-21
+Sequence = 64231
+Process = SP_CLASS_BASE
+Directory = \game\02\Num
+Sprite = Wait, w018-21
+
+[OBJECT]
+Name = 賓果數字-22
+Sequence = 64232
+Process = SP_CLASS_BASE
+Directory = \game\02\Num
+Sprite = Wait, w018-22
+
+[OBJECT]
+Name = 賓果數字-23
+Sequence = 64233
+Process = SP_CLASS_BASE
+Directory = \game\02\Num
+Sprite = Wait, w018-23
+
+[OBJECT]
+Name = 賓果數字-24
+Sequence = 64234
+Process = SP_CLASS_BASE
+Directory = \game\02\Num
+Sprite = Wait, w018-24
+
+[OBJECT]
+Name = 賓果數字-25
+Sequence = 64235
+Process = SP_CLASS_BASE
+Directory = \game\02\Num
+Sprite = Wait, w018-25
+
+[OBJECT]
+Name = 勝利小人
+Sequence = 64236
+Process = SP_CLASS_BASE
+Directory = \game\02\Win
+Sprite = Wait, w019-06, #16, w019-07, #8, w019-08, w019-07, w019-08, w019-07, w019-08
+
+[OBJECT]
+Name = 勝利文字
+Sequence = 64237
+Flags = SP_ATTRIB_ALPHA
+Process = SP_CLASS_BASE
+Directory = \game\02\Win
+Sprite = Wait, w019-33, #8, w019-34
+
+[OBJECT]
+Name = 失敗小人
+Sequence = 64238
+Process = SP_CLASS_BASE
+Directory = \game\02\Lose
+Sprite = Wait, w019-10, #24, w019-11, #12, w019-12, w019-13
+
+[OBJECT]
+Name = 失敗文字
+Sequence = 64239
+Flags = SP_ATTRIB_ALPHA
+Process = SP_CLASS_BASE
+Directory = \game\02\Lose
+Sprite = Wait, w019-35, #8, w019-36
+
+[OBJECT]
+Name = 平手小人
+Sequence = 64240
+Process = SP_CLASS_BASE
+Directory = \game\02\Draw
+Sprite = Wait, w019-21, #16, w019-22, #12, w019-23, w019-22, w019-23, w019-22, w019-23
+
+[OBJECT]
+Name = 平手文字
+Sequence = 64241
+Flags = SP_ATTRIB_ALPHA
+Process = SP_CLASS_BASE
+Directory = \game\02\Draw
+Sprite = Wait, w019-31, #8, w019-32
+
+[OBJECT]
+Name = 圈選數字小頭
+Sequence = 64242
+Process = SP_CLASS_BASE
+Directory = \game\02
+Sprite = Wait, #25, w018-27, w018-28
+
+[OBJECT]
+Name = 圈選外框
+Sequence = 64243
+Process = SP_CLASS_BASE
+Directory = \game\02
+Sprite = Wait, #20, frame, nullshp, frame, nullshp, frame, SCROVER
+
+[OBJECT]
+Name = 小黑子
+Sequence = 64244
+Process = SP_CLASS_BASE
+Directory = \game\04
+Sprite = Wait, w019-04, #60, w019-040, #8, w019-04
+
+[OBJECT]
+Name = 小白子
+Sequence = 64245
+Process = SP_CLASS_BASE
+Directory = \game\04
+Sprite = Wait, w019-05, #60, w019-050, #8, w019-05
+
+[OBJECT]
+Name = 大黑子
+Sequence = 64246
+Process = SP_CLASS_BASE
+Directory = \game\04
+Sprite = Wait, w019-020, #60, w019-021, #8, w019-020
+
+[OBJECT]
+Name = 大白子
+Sequence = 64247
+Process = SP_CLASS_BASE
+Directory = \game\04
+Sprite = Wait, w019-030, #60, w019-031, #8, w019-030
+
+

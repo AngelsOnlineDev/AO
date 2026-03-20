@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<root>
+	<語系 語系="繁體中文"/>
+	<文字檔>
+		<load>setting\big5\string.xml</load>
+		<load>setting\big5\msg.xml</load>
+	</文字檔>
+	<物件定義檔>
+		<load>setting\common.obd</load>
+		<load>setting\mapobj.obd</load>
+		<load>setting\char.obd</load>
+		<load>setting\house.obd</load>
+		<load>setting\server.obd</load>
+		<load>setting\npc.obd</load>
+		<load>setting\effect.obd</load>
+		<load>setting\m01.obd</load>
+		<load>setting\m02.obd</load>
+	</物件定義檔>
+	<視窗定義檔>
+		<load>setting\globalwnd.xml</load>
+		<load>setting\itemicon.xml</load>
+		<load>setting\skillicon.xml</load>
+		<load>setting\big5\testwnd.xml</load>
+		<load>setting\big5\wnd01.xml</load>
+		<load>setting\big5\wnd02.xml</load>
+		<load>setting\big5\wnd03.xml</load>
+		<load>setting\big5\wnd04.xml</load>
+		<load>setting\big5\wnd05.xml</load>
+		<load>setting\faceicon.xml</load>
+		<load>setting\peticon.xml</load>
+		<load>setting\cardicon.xml</load>
+	</視窗定義檔>
+	<場景定義檔 load="setting\big5\stage.xml"/>
+	<npc定義檔>
+		<load>setting\big5\npc.xml</load>
+		<load>setting\big5\monster.xml</load>
+	</npc定義檔>
+	<投資品定義檔 load="setting\big5\investitem.xml"/>
+	<道具定義檔 load="setting\big5\item.xml"/>
+	<商城定義檔 load="setting\big5\mall.xml"/>
+	<套裝定義檔 load="setting\big5\itemset.xml"/>
+	<寶石效果定義檔 load="setting\big5\jeweleffect.xml"/>
+	<藏寶圖定義檔 load="setting\big5\treasuremap.xml"/>
+	<魔法定義檔 load="setting\big5\magic.xml"/>
+	<技能定義檔 load="setting\big5\skill.xml"/>
+	<物產定義檔 load="setting\big5\material.xml"/>
+	<任務定義檔 load="setting\big5\quest.xml"/>
+	<製作定義檔 load="setting\big5\make.xml"/>
+	<掉寶定義檔 load="setting\big5\drop.xml"/>
+	<紙娃娃定義檔 load="setting\big5\doll.xml"/>
+	<職業定義檔 load="setting\big5\class.xml"/>
+	<組合定義檔 load="setting\big5\adv.xml"/>
+	<佈景主題定義檔 load="setting\big5\theme.xml"/>
+	<文字保留過濾檔 load="setting\big5\strfilter.xml"/>
+	<寵物定義檔 load="setting\big5\pet.xml"/>
+	<寵物屬性檔 load="setting\big5\petattrib.xml"/>
+	<寵物反應類別檔 load="setting\big5\petaspect.xml"/>
+	<寵物技能階級檔 load="setting\big5\petskill.xml"/>
+	<社團貢獻物資 load="setting\big5\guild_contrib.xml"/>
+	<卡片定義檔 load="setting\big5\card.xml"/>
+	<套卡定義檔 load="setting\big5\cardset.xml"/>
+	<訂單定義檔 load="setting\big5\order.xml"/>
+	<script>
+		<load>script\system.so</load>
+		<load>script\magic.so</load>
+		<load>script\effect.so</load>
+		<load>script\stage.so</load>
+		<load>script\logo.so</load>
+		<load>script\game.so</load>
+		<load>script\autosupply.so</load>		
+	</script>
+	<mscript>
+		<load>mscript\npcai.so</load>
+		<load>mscript\system.so</load>
+	</mscript>	
+	<字型 編號="1" 英文字型="font\eng12.fnt" 英文字型種類="FONT_BIT4" 雙位元字型="font\cht12.fnt" 雙位元字型種類="FONT_BIT4"/>
+	<字型 編號="2" 英文字型="font\eng16.fnt" 英文字型種類="FONT_BIT4" 雙位元字型="font\cht16.fnt" 雙位元字型種類="FONT_BIT4"/>
+	<字型 編號="3" 英文字型="font\a" 英文字型種類="FONT_SHAPE" 英文字型寬="6" 英文字型高="9"/>
+	<字型 編號="4" 英文字型="font\b" 英文字型種類="FONT_SHAPE" 英文字型寬="6" 英文字型高="9"/>
+	<字型 編號="5" 英文字型="font\c" 英文字型種類="FONT_SHAPE" 英文字型寬="12" 英文字型高="18"/>
+
+	<!-- 
+	<spevent name="惡魔翅膀活動" start="2007-04-12 00:00:00" end="2007-05-22 12:00:00" script="mscript\sp02.so" on_create="sp02_create" on_drop="sp02_drop" on_gather="sp02_gather" on_destroy="sp02_destroy" msg="setting\big5\sp02msg.xml"/>
+	<spevent name="經驗掉寶金錢加倍活動" start="2007-04-16 00:00:00" end="2007-04-24 12:00:00" script="mscript\sp03.so" on_create="sp03_create" on_destroy="sp03_destroy" msg="setting\big5\sp03msg.xml"/>
+	<spevent name="惡魔翅膀活動" start="2007-04-12 00:00:00" end="2007-05-22 12:00:00" script="mscript\sp02.so" on_create="sp02_create" on_drop="sp02_drop" on_gather="sp02_gather" on_destroy="sp02_destroy" msg="setting\big5\spmsg.xml"/>
+	<spevent name="大陸探勘活動" start="2007-04-12 00:00:00" end="2007-05-09 12:00:00" script="mscript\sp04.so" on_create="sp04_create" on_destroy="sp04_destroy"/>	
+	<spevent name="端午節活動祕境"   start="2007-05-22 00:00:00" end="2007-06-29 12:00:00" script="mscript\sp06.so" on_create="sp06_create2" on_destroy="sp06_destroy2" msg="setting\big5\spmsg.xml"/>
+	 <spevent name="羅盤掉寶活動"   start="2007-07-2 00:00:00" end="2007-08-03 12:00:00" script="mscript\sp08.so" on_create="sp08_create" on_destroy="sp08_destroy" msg="setting\big5\spmsg.xml"/>
+	 -->
+	 <spevent name="情人節"   start="2007-08-13 12:00:00" end="2007-09-07 10:00:00" script="mscript\sp15.so" on_create="sp15_create2" on_destroy="sp15_destroy2" msg="setting\big5\spmsg.xml"/>
+	 <spevent name="傑克與金蛋"   start="2007-08-24 00:00:00" end="2007-09-28 10:00:00" script="mscript\sp17.so" on_create="sp17_create" on_destroy="sp17_destroy" on_drop="sp17_drop" on_gather="sp17_gather"/>
+	 <spevent name="傑克與金蛋2"   start="2007-09-28 12:00:00" end="2007-10-05 10:00:00" script="mscript\sp17.so" on_create="sp17_create2" on_destroy="sp17_destroy2"/>
+
+	<spevent name="台灣中秋節活動1" start="2007-09-18 00:00:00" end="2007-10-02 10:00:00" script="mscript\sp19.so" on_create="sp19_create1" on_destroy="sp19_destroy1" on_update="sp19_update1" on_drop="sp19_drop1" on_gather="sp19_gather1" msg="setting\big5\spmsg.xml"/>
+	<spevent name="台灣中秋節活動2" start="2007-10-02 10:00:01" end="2007-10-09 10:00:00" script="mscript\sp19.so" on_create="sp19_create2" on_destroy="sp19_destroy2" msg="setting\big5\spmsg.xml"/>		 
+	 
+	<DEFINE 繁體中文="0" 簡體中文="1" 日文="2" FONT_SHAPE="1" FONT_BITMASK="2" FONT_BITMAP="4" FONT_SYSTEM="8" FONT_BIT4="16"/>
+	<ALIAS string="文字檔" object="物件定義檔" window="視窗定義檔" stage="場景定義檔" npc="npc定義檔" item="道具定義檔" mall="商城定義檔" mat="物產定義檔" magic="魔法定義檔" skill="技能定義檔" quest="任務定義檔" make="製作定義檔" drop="掉寶定義檔" doll="紙娃娃定義檔" class="職業定義檔" adv="組合定義檔" theme="佈景主題定義檔" filter="文字保留過濾檔" itemset="套裝定義檔" treasuremap="藏寶圖定義檔" jeweleffect="寶石效果定義檔" pet="寵物定義檔" petattrib="寵物屬性檔" petaspect="寵物反應類別檔" petskill="寵物技能階級檔" investitem="投資品定義檔" gcontrib="社團貢獻物資" card="卡片定義檔" cardset="套卡定義檔" order="訂單定義檔"/>
+	<ALIAS font="字型" charset="語系" id="編號" englishfont="英文字型" englishtype="英文字型種類" chinesefont="雙位元字型" chinesetype="雙位元字型種類" englishwidth="英文字型寬" englishheight="英文字型高"/>
+</root>

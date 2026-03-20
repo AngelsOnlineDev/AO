@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<root>
+	<script file="script\global.l"/>
+
+	<script file="script\system.l"/>
+	<script file="script\main.l"/>
+	<script file="script\command.l"/>
+	<script file="script\charinfo.l"/>
+	<script file="script\chat.l"/>
+	<script file="script\quickcmd.l"/>
+	<script file="script\message.l"/>
+	<script file="script\equip.l"/>	
+	<script file="script\game01.l"/>
+	<script file="script\game02.l"/>
+	<script file="script\game03.l"/>
+	<script file="script\game04.l"/>
+	<script file="script\emotion.l"/>
+	<script file="script\item.l"/>
+	<script file="script\trade.l"/>
+	<script file="script\sale.l"/>
+	<script file="script\friend.l"/>
+	<script file="script\mail.l"/>
+	<script file="script\group.l"/>
+	<script file="script\adtrade.l"/>
+	<script file="script\safepwd.l"/>
+	<script file="script\dead.l"/>
+	<script file="script\gather.l"/>
+	<script file="script\quest.l"/>
+	<script file="script\skills.l"/>	
+	<script file="script\make.l"/>
+	<script file="script\bank.l"/>
+	<script file="script\repair.l"/>
+	<script file="script\petinfo.l"/>
+	<script file="script\guild.l"/>
+	<script file="script\sys.l"/>
+	<script file="script\captcha.l"/>
+	<script file="script\mall.l"/>
+	<script file="script\pvp.l"/>
+	<script file="script\marry.l"/>
+	<script file="script\autofight.l"/>
+	<script file="script\autoassist.l"/>
+	<script file="script\autopet.l"/>
+	<script file="script\autoother.l"/>
+	<script file="script\autosupply.l"/>
+	<script file="script\card.l"/>
+</root>

@@ -1,0 +1,773 @@
+﻿<?xml version="1.0"?>
+<root>
+	<INCLUDE file="setting\wnddef.xml"/>
+	<!-- 技能圖示 -->
+	<icon id="10501" dir="\skill\" normal="s01" focus="normal" down="normal" disable="normal"/>
+	<icon id="10502" dir="\skill\" normal="s02" focus="normal" down="normal" disable="normal"/>
+	<icon id="10503" dir="\skill\" normal="s03" focus="normal" down="normal" disable="normal"/>
+	<icon id="10504" dir="\skill\" normal="s04" focus="normal" down="normal" disable="normal"/>
+	<icon id="10505" dir="\skill\" normal="s05" focus="normal" down="normal" disable="normal"/>
+	<icon id="10506" dir="\skill\" normal="s06" focus="normal" down="normal" disable="normal"/>
+	<icon id="10507" dir="\skill\" normal="s07" focus="normal" down="normal" disable="normal"/>
+	<icon id="10508" dir="\skill\" normal="s08" focus="normal" down="normal" disable="normal"/>
+	<icon id="10509" dir="\skill\" normal="s09" focus="normal" down="normal" disable="normal"/>
+	<icon id="10510" dir="\skill\" normal="s10" focus="normal" down="normal" disable="normal"/>
+	<icon id="10511" dir="\skill\" normal="s11" focus="normal" down="normal" disable="normal"/>
+	<icon id="10512" dir="\skill\" normal="s12" focus="normal" down="normal" disable="normal"/>
+	<icon id="10513" dir="\skill\" normal="s13" focus="normal" down="normal" disable="normal"/>
+	<icon id="10514" dir="\skill\" normal="s14" focus="normal" down="normal" disable="normal"/>
+	<icon id="10515" dir="\skill\" normal="s15" focus="normal" down="normal" disable="normal"/>
+	<icon id="10516" dir="\skill\" normal="s16" focus="normal" down="normal" disable="normal"/>
+	<icon id="10517" dir="\skill\" normal="s17" focus="normal" down="normal" disable="normal"/>
+	<icon id="10518" dir="\skill\" normal="s18" focus="normal" down="normal" disable="normal"/>
+	<icon id="10519" dir="\skill\" normal="s19" focus="normal" down="normal" disable="normal"/>
+	<icon id="10520" dir="\skill\" normal="s20" focus="normal" down="normal" disable="normal"/>
+	<icon id="10521" dir="\skill\" normal="s21" focus="normal" down="normal" disable="normal"/>
+	<icon id="10522" dir="\skill\" normal="s22" focus="normal" down="normal" disable="normal"/>
+	<icon id="10523" dir="\skill\" normal="s23" focus="normal" down="normal" disable="normal"/>
+	<icon id="10524" dir="\skill\" normal="s24" focus="normal" down="normal" disable="normal"/>
+	<icon id="10525" dir="\skill\" normal="s25" focus="normal" down="normal" disable="normal"/>
+	<icon id="10526" dir="\skill\" normal="s26" focus="normal" down="normal" disable="normal"/>
+	<icon id="10527" dir="\skill\" normal="s27" focus="normal" down="normal" disable="normal"/>
+	<icon id="10528" dir="\skill\" normal="s28" focus="normal" down="normal" disable="normal"/>
+	<icon id="10529" dir="\skill\" normal="s29" focus="normal" down="normal" disable="normal"/>
+	<icon id="10530" dir="\skill\" normal="s30" focus="normal" down="normal" disable="normal"/>
+	<icon id="10531" dir="\skill\" normal="s31" focus="normal" down="normal" disable="normal"/>
+	<icon id="10532" dir="\skill\" normal="s32" focus="normal" down="normal" disable="normal"/>
+	<icon id="10533" dir="\skill\" normal="s33" focus="normal" down="normal" disable="normal"/>
+	<icon id="10534" dir="\skill\" normal="s34" focus="normal" down="normal" disable="normal"/>
+
+	<!-- 法術/道具圖示 -->
+	<icon id="10551" dir="\skill\" normal="m068" focus="normal" down="normal" disable="normal"/>
+	<icon id="10552" dir="\skill\" normal="m017" focus="normal" down="normal" disable="normal"/>
+	<icon id="10553" dir="\skill\" normal="m001" focus="normal" down="normal" disable="normal"/>
+	<icon id="10554" dir="\skill\" normal="m171" focus="normal" down="normal" disable="normal"/>
+	<icon id="10555" dir="\skill\" normal="m023" focus="normal" down="normal" disable="normal"/>
+	<icon id="10556" dir="\skill\" normal="m127" focus="normal" down="normal" disable="normal"/>
+	<icon id="10557" dir="\skill\" normal="m052" focus="normal" down="normal" disable="normal"/>
+	<icon id="10558" dir="\skill\" normal="m015" focus="normal" down="normal" disable="normal"/>
+	<icon id="10559" dir="\skill\" normal="m056" focus="normal" down="normal" disable="normal"/>
+	<icon id="10560" dir="\skill\" normal="m014" focus="normal" down="normal" disable="normal"/>
+	<icon id="10561" dir="\skill\" normal="m128" focus="normal" down="normal" disable="normal"/>
+	<icon id="10562" dir="\skill\" normal="m018" focus="normal" down="normal" disable="normal"/>
+	<icon id="10563" dir="\skill\" normal="m126" focus="normal" down="normal" disable="normal"/>
+	<icon id="10564" dir="\skill\" normal="m061" focus="normal" down="normal" disable="normal"/>
+	<icon id="10565" dir="\skill\" normal="m129" focus="normal" down="normal" disable="normal"/>
+	<icon id="10566" dir="\skill\" normal="m065" focus="normal" down="normal" disable="normal"/>
+	<icon id="10567" dir="\skill\" normal="m051" focus="normal" down="normal" disable="normal"/>
+	<icon id="10568" dir="\skill\" normal="m083" focus="normal" down="normal" disable="normal"/>
+	<icon id="10569" dir="\skill\" normal="m063" focus="normal" down="normal" disable="normal"/>
+	<icon id="10570" dir="\skill\" normal="m073" focus="normal" down="normal" disable="normal"/>
+	<icon id="10571" dir="\skill\" normal="m075" focus="normal" down="normal" disable="normal"/>
+	<icon id="10572" dir="\skill\" normal="m010" focus="normal" down="normal" disable="normal"/>
+	<icon id="10573" dir="\skill\" normal="m124" focus="normal" down="normal" disable="normal"/>
+	<icon id="10574" dir="\skill\" normal="m046" focus="normal" down="normal" disable="normal"/>
+	<icon id="10575" dir="\skill\" normal="m034" focus="normal" down="normal" disable="normal"/>
+	<icon id="10576" dir="\skill\" normal="m074" focus="normal" down="normal" disable="normal"/>
+	<icon id="10577" dir="\skill\" normal="m009_1" focus="normal" down="normal" disable="normal"/>
+	<icon id="10578" dir="\skill\" normal="m003" focus="normal" down="normal" disable="normal"/>
+	<icon id="10579" dir="\skill\" normal="m009_2" focus="normal" down="normal" disable="normal"/>
+	<icon id="10580" dir="\skill\" normal="m041" focus="normal" down="normal" disable="normal"/>
+	<icon id="10581" dir="\skill\" normal="m123" focus="normal" down="normal" disable="normal"/>
+	<icon id="10582" dir="\skill\" normal="m009_3" focus="normal" down="normal" disable="normal"/>
+	<icon id="10583" dir="\skill\" normal="m020" focus="normal" down="normal" disable="normal"/>
+	<icon id="10584" dir="\skill\" normal="m082" focus="normal" down="normal" disable="normal"/>
+	<icon id="10585" dir="\skill\" normal="m051" focus="normal" down="normal" disable="normal"/>
+	<icon id="10586" dir="\skill\" normal="m021" focus="normal" down="normal" disable="normal"/>
+	<icon id="10587" dir="\skill\" normal="m070" focus="normal" down="normal" disable="normal"/>
+	<icon id="10588" dir="\skill\" normal="m170" focus="normal" down="normal" disable="normal"/>
+	<icon id="10589" dir="\skill\" normal="m071" focus="normal" down="normal" disable="normal"/>
+	<icon id="10590" dir="\skill\" normal="m011" focus="normal" down="normal" disable="normal"/>
+	<icon id="10591" dir="\skill\" normal="m120" focus="normal" down="normal" disable="normal"/>
+	<icon id="10592" dir="\skill\" normal="m080" focus="normal" down="normal" disable="normal"/>
+	<icon id="10593" dir="\skill\" normal="m130" focus="normal" down="normal" disable="normal"/>
+	<icon id="10594" dir="\skill\" normal="m007" focus="normal" down="normal" disable="normal"/>
+	<icon id="10595" dir="\skill\" normal="m012" focus="normal" down="normal" disable="normal"/>
+	<icon id="10596" dir="\skill\" normal="m045" focus="normal" down="normal" disable="normal"/>
+	<icon id="10597" dir="\skill\" normal="m036" focus="normal" down="normal" disable="normal"/>
+	<icon id="10598" dir="\skill\" normal="m008" focus="normal" down="normal" disable="normal"/>
+	<icon id="10599" dir="\skill\" normal="m031" focus="normal" down="normal" disable="normal"/>
+	<icon id="10600" dir="\skill\" normal="m062" focus="normal" down="normal" disable="normal"/>
+	<icon id="10601" dir="\skill\" normal="m027" focus="normal" down="normal" disable="normal"/>
+	<icon id="10602" dir="\skill\" normal="m044" focus="normal" down="normal" disable="normal"/>
+	<icon id="10603" dir="\skill\" normal="m051" focus="normal" down="normal" disable="normal"/>
+	<icon id="10604" dir="\skill\" normal="m019" focus="normal" down="normal" disable="normal"/>
+	<icon id="10605" dir="\skill\" normal="m066" focus="normal" down="normal" disable="normal"/>
+	<icon id="10606" dir="\skill\" normal="m029" focus="normal" down="normal" disable="normal"/>
+	<icon id="10607" dir="\skill\" normal="m064" focus="normal" down="normal" disable="normal"/>
+	<icon id="10608" dir="\skill\" normal="m048" focus="normal" down="normal" disable="normal"/>
+	<icon id="10609" dir="\skill\" normal="m050" focus="normal" down="normal" disable="normal"/>
+	<icon id="10610" dir="\skill\" normal="m067" focus="normal" down="normal" disable="normal"/>
+	<icon id="10611" dir="\skill\" normal="m132" focus="normal" down="normal" disable="normal"/>
+	<icon id="10612" dir="\skill\" normal="m069" focus="normal" down="normal" disable="normal"/>
+	<icon id="10613" dir="\skill\" normal="m030" focus="normal" down="normal" disable="normal"/>
+	<icon id="10614" dir="\skill\" normal="m039_1" focus="normal" down="normal" disable="normal"/>
+	<icon id="10615" dir="\skill\" normal="m037" focus="normal" down="normal" disable="normal"/>
+	<icon id="10616" dir="\skill\" normal="m125" focus="normal" down="normal" disable="normal"/>
+	<icon id="10617" dir="\skill\" normal="m039_2" focus="normal" down="normal" disable="normal"/>
+	<icon id="10618" dir="\skill\" normal="m038" focus="normal" down="normal" disable="normal"/>
+	<icon id="10619" dir="\skill\" normal="m042" focus="normal" down="normal" disable="normal"/>
+	<icon id="10620" dir="\skill\" normal="m039_3" focus="normal" down="normal" disable="normal"/>
+	<icon id="10621" dir="\skill\" normal="m051" focus="normal" down="normal" disable="normal"/>
+	<icon id="10622" dir="\skill\" normal="m026" focus="normal" down="normal" disable="normal"/>	
+	<icon id="10623" dir="\skill\" normal="m136" focus="normal" down="normal" disable="normal"/>
+	<icon id="10624" dir="\skill\" normal="m133" focus="normal" down="normal" disable="normal"/>
+	<icon id="10625" dir="\skill\" normal="m146" focus="normal" down="normal" disable="normal"/>
+	<icon id="10626" dir="\skill\" normal="m148" focus="normal" down="normal" disable="normal"/>
+	<icon id="10627" dir="\skill\" normal="m162" focus="normal" down="normal" disable="normal"/>
+	<icon id="10628" dir="\skill\" normal="m145" focus="normal" down="normal" disable="normal"/>
+	<icon id="10629" dir="\skill\" normal="m149" focus="normal" down="normal" disable="normal"/>
+	<icon id="10630" dir="\skill\" normal="m135" focus="normal" down="normal" disable="normal"/>
+	<icon id="10631" dir="\skill\" normal="m142" focus="normal" down="normal" disable="normal"/>
+	<icon id="10632" dir="\skill\" normal="m134" focus="normal" down="normal" disable="normal"/>
+	<icon id="10633" dir="\skill\" normal="m151" focus="normal" down="normal" disable="normal"/>
+	<icon id="10634" dir="\skill\" normal="m143" focus="normal" down="normal" disable="normal"/>
+	<icon id="10635" dir="\skill\" normal="m153" focus="normal" down="normal" disable="normal"/>
+	<icon id="10636" dir="\skill\" normal="m164" focus="normal" down="normal" disable="normal"/>
+	<icon id="10637" dir="\skill\" normal="m154" focus="normal" down="normal" disable="normal"/>
+	<icon id="10638" dir="\skill\" normal="m139" focus="normal" down="normal" disable="normal"/>
+	<icon id="10639" dir="\skill\" normal="m167" focus="normal" down="normal" disable="normal"/>
+	<icon id="10640" dir="\skill\" normal="m138" focus="normal" down="normal" disable="normal"/>
+	<icon id="10641" dir="\skill\" normal="m141" focus="normal" down="normal" disable="normal"/>
+	<icon id="10642" dir="\skill\" normal="m175" focus="normal" down="normal" disable="normal"/>
+	<icon id="10643" dir="\skill\" normal="m172" focus="normal" down="normal" disable="normal"/>
+	<icon id="10644" dir="\skill\" normal="m173" focus="normal" down="normal" disable="normal"/>
+	<icon id="10645" dir="\skill\" normal="m178" focus="normal" down="normal" disable="normal"/>
+	<icon id="10646" dir="\skill\" normal="m179" focus="normal" down="normal" disable="normal"/>
+	<icon id="10647" dir="\skill\" normal="m177" focus="normal" down="normal" disable="normal"/>
+	<icon id="10648" dir="\skill\" normal="m180" focus="normal" down="normal" disable="normal"/>
+	<icon id="10649" dir="\skill\" normal="m157" focus="normal" down="normal" disable="normal"/>
+	<icon id="10650" dir="\skill\" normal="m181" focus="normal" down="normal" disable="normal"/>
+	<icon id="10651" dir="\skill\" normal="m155" focus="normal" down="normal" disable="normal"/>
+	<icon id="10652" dir="\skill\" normal="m156" focus="normal" down="normal" disable="normal"/>
+	<icon id="10653" dir="\skill\" normal="m147" focus="normal" down="normal" disable="normal"/>
+	<icon id="10654" dir="\skill\" normal="m158" focus="normal" down="normal" disable="normal"/>
+	<icon id="10655" dir="\skill\" normal="m165" focus="normal" down="normal" disable="normal"/>
+	<icon id="10656" dir="\skill\" normal="m168" focus="normal" down="normal" disable="normal"/>
+	<icon id="10657" dir="\skill\" normal="m176" focus="normal" down="normal" disable="normal"/>
+	<icon id="10658" dir="\skill\" normal="m137" focus="normal" down="normal" disable="normal"/>
+	<icon id="10659" dir="\skill\" normal="m140" focus="normal" down="normal" disable="normal"/>
+	<icon id="10660" dir="\skill\" normal="m150" focus="normal" down="normal" disable="normal"/>
+	<icon id="10661" dir="\skill\" normal="m152" focus="normal" down="normal" disable="normal"/>
+	<icon id="10662" dir="\skill\" normal="m159" focus="normal" down="normal" disable="normal"/>
+	<icon id="10663" dir="\skill\" normal="m169" focus="normal" down="normal" disable="normal"/>
+	<icon id="10664" dir="\skill\" normal="m160" focus="normal" down="normal" disable="normal"/>
+	<icon id="10665" dir="\skill\" normal="m144" focus="normal" down="normal" disable="normal"/>
+	<icon id="10666" dir="\skill\" normal="m163" focus="normal" down="normal" disable="normal"/>
+	<icon id="10667" dir="\skill\" normal="m161" focus="normal" down="normal" disable="normal"/>
+	<icon id="10668" dir="\skill\" normal="m166" focus="normal" down="normal" disable="normal"/>
+	<icon id="10669" dir="\skill\" normal="m999" focus="normal" down="normal" disable="normal"/>
+	<icon id="10670" dir="\skill\" normal="m999" focus="normal" down="normal" disable="normal"/>	
+	<icon id="10671" dir="\skill\" normal="m999" focus="normal" down="normal" disable="normal"/>
+	<icon id="10672" dir="\skill\" normal="m999" focus="normal" down="normal" disable="normal"/>
+	<icon id="10673" dir="\skill\" normal="m999" focus="normal" down="normal" disable="normal"/>
+	<icon id="10674" dir="\skill\" normal="m999" focus="normal" down="normal" disable="normal"/>
+	<icon id="10675" dir="\skill\" normal="m999" focus="normal" down="normal" disable="normal"/>
+	<icon id="10676" dir="\skill\" normal="m999" focus="normal" down="normal" disable="normal"/>
+	<icon id="10677" dir="\skill\" normal="m999" focus="normal" down="normal" disable="normal"/>
+	<icon id="10678" dir="\skill\" normal="m999" focus="normal" down="normal" disable="normal"/>
+	<icon id="10679" dir="\skill\" normal="m999" focus="normal" down="normal" disable="normal"/>
+	<icon id="10680" dir="\skill\" normal="m999" focus="normal" down="normal" disable="normal"/>
+	<icon id="10681" dir="\skill\" normal="m999" focus="normal" down="normal" disable="normal"/>
+	<icon id="10682" dir="\skill\" normal="m999" focus="normal" down="normal" disable="normal"/>
+	<icon id="10683" dir="\skill\" normal="m999" focus="normal" down="normal" disable="normal"/>
+	<icon id="10684" dir="\skill\" normal="m999" focus="normal" down="normal" disable="normal"/>
+	<icon id="10685" dir="\skill\" normal="m999" focus="normal" down="normal" disable="normal"/>
+	<icon id="10686" dir="\skill\" normal="m999" focus="normal" down="normal" disable="normal"/>
+	<icon id="10687" dir="\skill\" normal="m999" focus="normal" down="normal" disable="normal"/>
+	<icon id="10688" dir="\skill\" normal="m999" focus="normal" down="normal" disable="normal"/>
+	<icon id="10689" dir="\skill\" normal="m999" focus="normal" down="normal" disable="normal"/>
+	<icon id="10690" dir="\skill\" normal="m999" focus="normal" down="normal" disable="normal"/>
+	<icon id="10691" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10692" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10693" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10694" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10695" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10696" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10697" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10698" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10699" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10700" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10701" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10702" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10703" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10704" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10705" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10706" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10707" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10708" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10709" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10710" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10711" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10712" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10713" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10714" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10715" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10716" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10717" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10718" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10719" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10720" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10721" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10722" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10723" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10724" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10725" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10726" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+
+        <icon id="10727" dir="\skill\" normal="sitem475" focus="normal" down="normal" disable="normal" basebias="0x23" basecolor="0xcb2b" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+        <icon id="10728" dir="\skill\" normal="sitem475" focus="normal" down="normal" disable="normal" basebias="0x34" basecolor="0xe3ce" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+
+        <icon id="10729" dir="\skill\" normal="m052" focus="normal" down="normal" disable="normal"/>
+        <icon id="10730" dir="\skill\" normal="m001" focus="normal" down="normal" disable="normal"/>
+        <icon id="10731" dir="\skill\" normal="m145" focus="normal" down="normal" disable="normal" basebias="0x35" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+        <icon id="10732" dir="\skill\" normal="m150" focus="normal" down="normal" disable="normal" basebias="0x29" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="10733" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10734" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10735" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+	<icon id="10736" dir="\skill\" normal="" focus="normal" down="normal" disable="normal"/>
+
+	<icon id="10737" dir="\skill\" normal="m001" focus="normal" down="normal" disable="normal"/>
+	<icon id="10738" dir="\skill\" normal="m010" focus="normal" down="normal" disable="normal"/>
+
+        <icon id="10739" dir="\skill\" normal="m183" focus="normal" down="normal" disable="normal"/>
+        <icon id="10740" dir="\skill\" normal="m184" focus="normal" down="normal" disable="normal"/>
+        <icon id="10741" dir="\skill\" normal="m185" focus="normal" down="normal" disable="normal"/>
+        <icon id="10742" dir="\skill\" normal="m186" focus="normal" down="normal" disable="normal"/>
+        <icon id="10743" dir="\skill\" normal="m187" focus="normal" down="normal" disable="normal"/>
+        <icon id="10744" dir="\skill\" normal="m188" focus="normal" down="normal" disable="normal"/>
+        <icon id="10745" dir="\skill\" normal="m189" focus="normal" down="normal" disable="normal"/>
+        <icon id="10746" dir="\skill\" normal="m190" focus="normal" down="normal" disable="normal"/>
+
+        <icon id="10747" dir="\skill\" normal="m191" focus="normal" down="normal" disable="normal"/>
+        <icon id="10748" dir="\skill\" normal="m192" focus="normal" down="normal" disable="normal"/>
+        <icon id="10749" dir="\skill\" normal="m193" focus="normal" down="normal" disable="normal"/>
+        <icon id="10750" dir="\skill\" normal="m193" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x1" maskcolor="0x0" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+        <icon id="10751" dir="\skill\" normal="m193" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0xf725" maskcolor="0x0" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+
+        <icon id="10752" dir="\skill\" normal="sm195" focus="normal" down="normal" disable="normal"/>
+        <icon id="10753" dir="\skill\" normal="sitem203" focus="normal" down="normal" disable="normal"/>
+        <icon id="10754" dir="\skill\" normal="sm194" focus="normal" down="normal" disable="normal"/>
+        <icon id="10755" dir="\skill\" normal="sitem198" focus="normal" down="normal" disable="normal"/>
+        <icon id="10756" dir="\skill\" normal="sitem199" focus="normal" down="normal" disable="normal"/>
+        <icon id="10757" dir="\skill\" normal="sitem936" focus="normal" down="normal" disable="normal"/>
+        <icon id="10758" dir="\skill\" normal="sitem936" focus="normal" down="normal" disable="normal"/>
+
+        <icon id="10759" dir="\skill\" normal="sm196" focus="normal" down="normal" disable="normal"/>
+
+        <icon id="10760" dir="\skill\" normal="sm197" focus="normal" down="normal" disable="normal"/>
+        <icon id="10761" dir="\skill\" normal="sm197" focus="normal" down="normal" disable="normal"/>
+        <icon id="10762" dir="\skill\" normal="sm197" focus="normal" down="normal" disable="normal"/>
+        <icon id="10763" dir="\skill\" normal="sm197" focus="normal" down="normal" disable="normal"/>
+        <icon id="10764" dir="\skill\" normal="sm197" focus="normal" down="normal" disable="normal"/>
+        <icon id="10765" dir="\skill\" normal="sm198" focus="normal" down="normal" disable="normal"/>
+        <icon id="10766" dir="\skill\" normal="m186" focus="normal" down="normal" disable="normal" basebias="0x1" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+        <icon id="10767" dir="\skill\" normal="m186" focus="normal" down="normal" disable="normal" basebias="0x3200a" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="10768" dir="\skill\" normal="m069" focus="normal" down="normal" disable="normal" basebias="0x10338" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="10769" dir="\skill\" normal="m162" focus="normal" down="normal" disable="normal" basebias="0x5043d" basecolor="0xfffc" baserange="134" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="10770" dir="\skill\" normal="m001" focus="normal" down="normal" disable="normal" basebias="0x6f909" basecolor="0x755a" baserange="130" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+
+        <icon id="10771" dir="\skill\" normal="sm199" focus="normal" down="normal" disable="normal"/>
+        <icon id="10772" dir="\skill\" normal="sm200" focus="normal" down="normal" disable="normal"/>
+        <icon id="10773" dir="\skill\" normal="sitem140" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0xf30713" maskcolor="0xf3a6" maskrange="154">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+
+        <icon id="10774" dir="\skill\" normal="sm201" focus="normal" down="normal" disable="normal"/>
+        <icon id="10775" dir="\skill\" normal="sm202" focus="normal" down="normal" disable="normal"/>
+
+        <icon id="10776" dir="\skill\" normal="m196" focus="normal" down="normal" disable="normal"/>
+        <icon id="10777" dir="\skill\" normal="m197" focus="normal" down="normal" disable="normal"/>
+        <icon id="10778" dir="\skill\" normal="m198" focus="normal" down="normal" disable="normal"/>
+        <icon id="10779" dir="\skill\" normal="m199" focus="normal" down="normal" disable="normal"/>
+        <icon id="10780" dir="\skill\" normal="m200" focus="normal" down="normal" disable="normal"/>
+        <icon id="10781" dir="\skill\" normal="m201" focus="normal" down="normal" disable="normal"/>
+        <icon id="10782" dir="\skill\" normal="m202" focus="normal" down="normal" disable="normal"/>
+        <icon id="10783" dir="\skill\" normal="m203" focus="normal" down="normal" disable="normal"/>
+        <icon id="10784" dir="\skill\" normal="m204" focus="normal" down="normal" disable="normal"/>
+        <icon id="10785" dir="\skill\" normal="m205" focus="normal" down="normal" disable="normal"/>
+        <icon id="10786" dir="\skill\" normal="m206" focus="normal" down="normal" disable="normal"/>
+        <icon id="10787" dir="\skill\" normal="m207" focus="normal" down="normal" disable="normal"/>
+        <icon id="10788" dir="\skill\" normal="m208" focus="normal" down="normal" disable="normal"/>
+        <icon id="10789" dir="\skill\" normal="m209" focus="normal" down="normal" disable="normal"/>
+        <icon id="10790" dir="\skill\" normal="m210" focus="normal" down="normal" disable="normal"/>
+        <icon id="10791" dir="\skill\" normal="m211" focus="normal" down="normal" disable="normal"/>
+        <icon id="10792" dir="\skill\" normal="m212" focus="normal" down="normal" disable="normal"/>
+        <icon id="10793" dir="\skill\" normal="sm220" focus="normal" down="normal" disable="normal" basebias="0x50e39" basecolor="0xe920" baserange="129" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+        <icon id="10794" dir="\skill\" normal="sm221" focus="normal" down="normal" disable="normal" basebias="0xa05" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">		<attrib ICON_ATTRIB_BIAS=""/>	</icon>
+        <icon id="10795" dir="\skill\" normal="sm221" focus="normal" down="normal" disable="normal" basebias="0x519" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">		<attrib ICON_ATTRIB_BIAS=""/>	</icon>
+        <icon id="10796" dir="\skill\" normal="sm221" focus="normal" down="normal" disable="normal" basebias="0x529" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">		<attrib ICON_ATTRIB_BIAS=""/>	</icon>
+        <icon id="10797" dir="\skill\" normal="sm222" focus="normal" down="normal" disable="normal" basebias="0xf404" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">
+  <attrib ICON_ATTRIB_BIAS=""/> </icon>
+        <icon id="10798" dir="\skill\" normal="sm222" focus="normal" down="normal" disable="normal" basebias="0x3f430" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">
+  <attrib ICON_ATTRIB_BIAS=""/> </icon>
+        <icon id="10799" dir="\skill\" normal="sm222" focus="normal" down="normal" disable="normal" basebias="0xf90b" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">
+  <attrib ICON_ATTRIB_BIAS=""/> </icon>
+        <icon id="10800" dir="\skill\" normal="sm222" focus="normal" down="normal" disable="normal" basebias="0x3f43d" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">
+  <attrib ICON_ATTRIB_BIAS=""/> </icon>
+        <icon id="10801" dir="\skill\" normal="sm222" focus="normal" down="normal" disable="normal" basebias="0x3f327" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">
+  <attrib ICON_ATTRIB_BIAS=""/>
+ </icon>
+        <icon id="10802" dir="\skill\" normal="sitem232" focus="normal" down="normal" disable="normal"/>
+
+        <icon id="10803" dir="\skill\" normal="sitem232" focus="normal" down="normal" disable="normal"/>
+        <icon id="10804" dir="\skill\" normal="sitem232" focus="normal" down="normal" disable="normal"/>
+        <icon id="10805" dir="\skill\" normal="sitem232" focus="normal" down="normal" disable="normal"/>
+        <icon id="10806" dir="\skill\" normal="sitem232" focus="normal" down="normal" disable="normal"/>
+        <icon id="10807" dir="\skill\" normal="sitem232" focus="normal" down="normal" disable="normal"/>
+        <icon id="10808" dir="\skill\" normal="sitem232" focus="normal" down="normal" disable="normal"/>
+        <icon id="10809" dir="\skill\" normal="sitem232" focus="normal" down="normal" disable="normal"/>
+        <icon id="10810" dir="\skill\" normal="sitem232" focus="normal" down="normal" disable="normal"/>
+        <icon id="10811" dir="\skill\" normal="sm231" focus="normal" down="normal" disable="normal"/>
+        <icon id="10812" dir="\skill\" normal="sm231" focus="normal" down="normal" disable="normal"/>
+
+        <icon id="10813" dir="\skill\" normal="sm232" focus="normal" down="normal" disable="normal" basebias="0x3e" basecolor="0x5d5d" baserange="130" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+        <icon id="10814" dir="\skill\" normal="sm233" focus="normal" down="normal" disable="normal" basebias="0xfefb27" basecolor="0xcac6" baserange="129" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+        <icon id="10815" dir="\skill\" normal="sm234" focus="normal" down="normal" disable="normal" basebias="0xf300" basecolor="0x0" baserange="140" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+        <icon id="10816" dir="\skill\" normal="sm234" focus="normal" down="normal" disable="normal" basebias="0xf331" basecolor="0x0" baserange="140" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+
+	<!-- 法術/道具小圖示 -->
+	<icon id="11001" dir="\skill\" normal="sm068" focus="normal" down="normal" disable="normal"/>
+	<icon id="11002" dir="\skill\" normal="sm017" focus="normal" down="normal" disable="normal"/>
+	<icon id="11003" dir="\skill\" normal="sm001" focus="normal" down="normal" disable="normal"/>
+	<icon id="11004" dir="\skill\" normal="sm171" focus="normal" down="normal" disable="normal"/>
+	<icon id="11005" dir="\skill\" normal="sm023" focus="normal" down="normal" disable="normal"/>
+	<icon id="11006" dir="\skill\" normal="sm127" focus="normal" down="normal" disable="normal"/>
+	<icon id="11007" dir="\skill\" normal="sm052" focus="normal" down="normal" disable="normal"/>
+	<icon id="11008" dir="\skill\" normal="sm137" focus="normal" down="normal" disable="normal"/>
+	<icon id="11009" dir="\skill\" normal="sm056" focus="normal" down="normal" disable="normal"/>
+	<icon id="11010" dir="\skill\" normal="sm014" focus="normal" down="normal" disable="normal"/>
+	<icon id="11011" dir="\skill\" normal="sm128" focus="normal" down="normal" disable="normal"/>
+	<icon id="11012" dir="\skill\" normal="sm018" focus="normal" down="normal" disable="normal"/>
+	<icon id="11013" dir="\skill\" normal="sm126" focus="normal" down="normal" disable="normal"/>
+	<icon id="11014" dir="\skill\" normal="sm061" focus="normal" down="normal" disable="normal"/>
+	<icon id="11015" dir="\skill\" normal="sm129" focus="normal" down="normal" disable="normal"/>
+	<icon id="11016" dir="\skill\" normal="sm065" focus="normal" down="normal" disable="normal"/>
+	<icon id="11017" dir="\skill\" normal="sm051" focus="normal" down="normal" disable="normal"/>
+	<icon id="11018" dir="\skill\" normal="sm083" focus="normal" down="normal" disable="normal"/>
+	<icon id="11019" dir="\skill\" normal="sm063" focus="normal" down="normal" disable="normal"/>
+	<icon id="11020" dir="\skill\" normal="sm073" focus="normal" down="normal" disable="normal"/>
+	<icon id="11021" dir="\skill\" normal="sm075" focus="normal" down="normal" disable="normal"/>
+	<icon id="11022" dir="\skill\" normal="sm010" focus="normal" down="normal" disable="normal"/>
+	<icon id="11023" dir="\skill\" normal="sm124" focus="normal" down="normal" disable="normal"/>
+	<icon id="11024" dir="\skill\" normal="sm046" focus="normal" down="normal" disable="normal"/>
+	<icon id="11025" dir="\skill\" normal="sm034" focus="normal" down="normal" disable="normal"/>
+	<icon id="11026" dir="\skill\" normal="sm074" focus="normal" down="normal" disable="normal"/>
+	<icon id="11027" dir="\skill\" normal="sm009_1" focus="normal" down="normal" disable="normal"/>
+	<icon id="11028" dir="\skill\" normal="sm003" focus="normal" down="normal" disable="normal"/>
+	<icon id="11029" dir="\skill\" normal="sm009_2" focus="normal" down="normal" disable="normal"/>
+	<icon id="11030" dir="\skill\" normal="sm041" focus="normal" down="normal" disable="normal"/>
+	<icon id="11031" dir="\skill\" normal="sm123" focus="normal" down="normal" disable="normal"/>
+	<icon id="11032" dir="\skill\" normal="sm009_3" focus="normal" down="normal" disable="normal"/>
+	<icon id="11033" dir="\skill\" normal="sm020" focus="normal" down="normal" disable="normal"/>
+	<icon id="11034" dir="\skill\" normal="sm082" focus="normal" down="normal" disable="normal"/>
+	<icon id="11035" dir="\skill\" normal="sm051" focus="normal" down="normal" disable="normal"/>
+	<icon id="11036" dir="\skill\" normal="sm021" focus="normal" down="normal" disable="normal"/>
+	<icon id="11037" dir="\skill\" normal="sm070" focus="normal" down="normal" disable="normal"/>
+	<icon id="11038" dir="\skill\" normal="sm170" focus="normal" down="normal" disable="normal"/>
+	<icon id="11039" dir="\skill\" normal="sm071" focus="normal" down="normal" disable="normal"/>
+	<icon id="11040" dir="\skill\" normal="sm011" focus="normal" down="normal" disable="normal"/>
+	<icon id="11041" dir="\skill\" normal="sm120" focus="normal" down="normal" disable="normal"/>
+	<icon id="11042" dir="\skill\" normal="sm080" focus="normal" down="normal" disable="normal"/>
+	<icon id="11043" dir="\skill\" normal="sm130" focus="normal" down="normal" disable="normal"/>
+	<icon id="11044" dir="\skill\" normal="sm007" focus="normal" down="normal" disable="normal"/>
+	<icon id="11045" dir="\skill\" normal="sm012" focus="normal" down="normal" disable="normal"/>
+	<icon id="11046" dir="\skill\" normal="sm045" focus="normal" down="normal" disable="normal"/>
+	<icon id="11047" dir="\skill\" normal="sm036" focus="normal" down="normal" disable="normal"/>
+	<icon id="11048" dir="\skill\" normal="sm008" focus="normal" down="normal" disable="normal"/>
+	<icon id="11049" dir="\skill\" normal="sm031" focus="normal" down="normal" disable="normal"/>
+	<icon id="11050" dir="\skill\" normal="sm062" focus="normal" down="normal" disable="normal"/>
+	<icon id="11051" dir="\skill\" normal="sm027" focus="normal" down="normal" disable="normal"/>
+	<icon id="11052" dir="\skill\" normal="sm044" focus="normal" down="normal" disable="normal"/>
+	<icon id="11053" dir="\skill\" normal="sm051" focus="normal" down="normal" disable="normal"/>
+	<icon id="11054" dir="\skill\" normal="sm019" focus="normal" down="normal" disable="normal"/>
+	<icon id="11055" dir="\skill\" normal="sm066" focus="normal" down="normal" disable="normal"/>
+	<icon id="11056" dir="\skill\" normal="sm029" focus="normal" down="normal" disable="normal"/>
+	<icon id="11057" dir="\skill\" normal="sm064" focus="normal" down="normal" disable="normal"/>
+	<icon id="11058" dir="\skill\" normal="sm048" focus="normal" down="normal" disable="normal"/>
+	<icon id="11059" dir="\skill\" normal="sm050" focus="normal" down="normal" disable="normal"/>
+	<icon id="11060" dir="\skill\" normal="sm067" focus="normal" down="normal" disable="normal"/>
+	<icon id="11061" dir="\skill\" normal="sm132" focus="normal" down="normal" disable="normal"/>
+	<icon id="11062" dir="\skill\" normal="sm069" focus="normal" down="normal" disable="normal"/>
+	<icon id="11063" dir="\skill\" normal="sm030" focus="normal" down="normal" disable="normal"/>
+	<icon id="11064" dir="\skill\" normal="sm039_1" focus="normal" down="normal" disable="normal"/>
+	<icon id="11065" dir="\skill\" normal="sm037" focus="normal" down="normal" disable="normal"/>
+	<icon id="11066" dir="\skill\" normal="sm125" focus="normal" down="normal" disable="normal"/>
+	<icon id="11067" dir="\skill\" normal="sm039_2" focus="normal" down="normal" disable="normal"/>
+	<icon id="11068" dir="\skill\" normal="sm038" focus="normal" down="normal" disable="normal"/>
+	<icon id="11069" dir="\skill\" normal="sm042" focus="normal" down="normal" disable="normal"/>
+	<icon id="11070" dir="\skill\" normal="sm039_3" focus="normal" down="normal" disable="normal"/>
+	<icon id="11071" dir="\skill\" normal="sm051" focus="normal" down="normal" disable="normal"/>
+	<icon id="11072" dir="\skill\" normal="sm026" focus="normal" down="normal" disable="normal"/>
+	<icon id="11073" dir="\skill\" normal="sm136" focus="normal" down="normal" disable="normal"/>
+	<icon id="11074" dir="\skill\" normal="sm133" focus="normal" down="normal" disable="normal"/>
+	<icon id="11075" dir="\skill\" normal="sm146" focus="normal" down="normal" disable="normal"/>
+	<icon id="11076" dir="\skill\" normal="sm148" focus="normal" down="normal" disable="normal"/>
+	<icon id="11077" dir="\skill\" normal="sm162" focus="normal" down="normal" disable="normal"/>
+	<icon id="11078" dir="\skill\" normal="sm145" focus="normal" down="normal" disable="normal"/>
+	<icon id="11079" dir="\skill\" normal="sm149" focus="normal" down="normal" disable="normal"/>
+	<icon id="11080" dir="\skill\" normal="sm135" focus="normal" down="normal" disable="normal"/>
+	<icon id="11081" dir="\skill\" normal="sm142" focus="normal" down="normal" disable="normal"/>
+	<icon id="11082" dir="\skill\" normal="sm134" focus="normal" down="normal" disable="normal"/>
+	<icon id="11083" dir="\skill\" normal="sm151" focus="normal" down="normal" disable="normal"/>
+	<icon id="11084" dir="\skill\" normal="sm143" focus="normal" down="normal" disable="normal"/>
+	<icon id="11085" dir="\skill\" normal="sm153" focus="normal" down="normal" disable="normal"/>
+	<icon id="11086" dir="\skill\" normal="sm164" focus="normal" down="normal" disable="normal"/>
+	<icon id="11087" dir="\skill\" normal="sm154" focus="normal" down="normal" disable="normal"/>
+	<icon id="11088" dir="\skill\" normal="sm139" focus="normal" down="normal" disable="normal"/>
+	<icon id="11089" dir="\skill\" normal="sm167" focus="normal" down="normal" disable="normal"/>
+	<icon id="11090" dir="\skill\" normal="sm138" focus="normal" down="normal" disable="normal"/>
+	<icon id="11091" dir="\skill\" normal="sm141" focus="normal" down="normal" disable="normal"/>
+	<icon id="11092" dir="\skill\" normal="sm175" focus="normal" down="normal" disable="normal"/>
+	<icon id="11093" dir="\skill\" normal="sm172" focus="normal" down="normal" disable="normal"/>
+	<icon id="11094" dir="\skill\" normal="sm173" focus="normal" down="normal" disable="normal"/>
+	<icon id="11095" dir="\skill\" normal="sm178" focus="normal" down="normal" disable="normal"/>
+	<icon id="11096" dir="\skill\" normal="sm179" focus="normal" down="normal" disable="normal"/>
+	<icon id="11097" dir="\skill\" normal="sm177" focus="normal" down="normal" disable="normal"/>
+	<icon id="11098" dir="\skill\" normal="sm180" focus="normal" down="normal" disable="normal"/>
+	<icon id="11099" dir="\skill\" normal="sm157" focus="normal" down="normal" disable="normal"/>
+	<icon id="11100" dir="\skill\" normal="sm181" focus="normal" down="normal" disable="normal"/>
+	<icon id="11101" dir="\skill\" normal="sm155" focus="normal" down="normal" disable="normal"/>
+	<icon id="11102" dir="\skill\" normal="sm156" focus="normal" down="normal" disable="normal"/>
+	<icon id="11103" dir="\skill\" normal="sm147" focus="normal" down="normal" disable="normal"/>
+	<icon id="11104" dir="\skill\" normal="sm158" focus="normal" down="normal" disable="normal"/>
+	<icon id="11105" dir="\skill\" normal="sm165" focus="normal" down="normal" disable="normal"/>
+	<icon id="11106" dir="\skill\" normal="sm168" focus="normal" down="normal" disable="normal"/>
+	<icon id="11107" dir="\skill\" normal="sm176" focus="normal" down="normal" disable="normal"/>
+	<icon id="11108" dir="\skill\" normal="sm999" focus="normal" down="normal" disable="normal"/>
+	<icon id="11109" dir="\skill\" normal="sm140" focus="normal" down="normal" disable="normal"/>
+	<icon id="11110" dir="\skill\" normal="sm150" focus="normal" down="normal" disable="normal"/>
+	<icon id="11111" dir="\skill\" normal="sm152" focus="normal" down="normal" disable="normal"/>
+	<icon id="11112" dir="\skill\" normal="sm159" focus="normal" down="normal" disable="normal"/>
+	<icon id="11113" dir="\skill\" normal="sm169" focus="normal" down="normal" disable="normal"/>
+	<icon id="11114" dir="\skill\" normal="sm160" focus="normal" down="normal" disable="normal"/>
+	<icon id="11115" dir="\skill\" normal="sm144" focus="normal" down="normal" disable="normal"/>
+	<icon id="11116" dir="\skill\" normal="sm163" focus="normal" down="normal" disable="normal"/>
+	<icon id="11117" dir="\skill\" normal="sm161" focus="normal" down="normal" disable="normal"/>
+	<icon id="11118" dir="\skill\" normal="sm166" focus="normal" down="normal" disable="normal"/>
+	<icon id="11119" dir="\skill\" normal="sitem204" focus="normal" down="normal" disable="normal"/>
+	<icon id="11120" dir="\skill\" normal="sitem651" focus="normal" down="normal" disable="normal"/>
+	<icon id="11121" dir="\skill\" normal="sitem206" focus="normal" down="normal" disable="normal"/>
+	<icon id="11122" dir="\skill\" normal="sitem273" focus="normal" down="normal" disable="normal"/>
+	<icon id="11123" dir="\skill\" normal="sitem205" focus="normal" down="normal" disable="normal"/>
+	<icon id="11124" dir="\skill\" normal="sitem208" focus="normal" down="normal" disable="normal"/>
+	<icon id="11125" dir="\skill\" normal="sitem496" focus="normal" down="normal" disable="normal"/>
+	<icon id="11126" dir="\skill\" normal="sitem273" focus="normal" down="normal" disable="normal"/>
+	<icon id="11127" dir="\skill\" normal="sitem495" focus="normal" down="normal" disable="normal"/>
+	<icon id="11128" dir="\skill\" normal="sitem497" focus="normal" down="normal" disable="normal"/>
+	<icon id="11129" dir="\skill\" normal="sitem896" focus="normal" down="normal" disable="normal"/>
+	<icon id="11130" dir="\skill\" normal="sitem897" focus="normal" down="normal" disable="normal"/>
+	<icon id="11131" dir="\skill\" normal="sitem898" focus="normal" down="normal" disable="normal"/>
+	<icon id="11132" dir="\skill\" normal="sitem899" focus="normal" down="normal" disable="normal"/>
+	<icon id="11133" dir="\skill\" normal="sitem649" focus="normal" down="normal" disable="normal"/>
+	<icon id="11134" dir="\skill\" normal="sitem650" focus="normal" down="normal" disable="normal"/> 
+	<icon id="11135" dir="\skill\" normal="sitem652" focus="normal" down="normal" disable="normal"/> 
+	<icon id="11136" dir="\skill\" normal="sitem653" focus="normal" down="normal" disable="normal"/> 
+	<icon id="11137" dir="\skill\" normal="sitem936" focus="normal" down="normal" disable="normal"/>
+	<icon id="11138" dir="\skill\" normal="sitem937" focus="normal" down="normal" disable="normal"/>
+	<icon id="11139" dir="\skill\" normal="sitem938" focus="normal" down="normal" disable="normal"/>
+	<icon id="11140" dir="\skill\" normal="sitem939" focus="normal" down="normal" disable="normal"/>
+	<icon id="11141" dir="\skill\" normal="sitem144" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x70508" maskcolor="0xceb9" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon> 
+	<icon id="11142" dir="\skill\" normal="sitem144" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x70510" maskcolor="0x6c4c" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="11143" dir="\skill\" normal="sitem144" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x70302" maskcolor="0x7c8e" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="11144" dir="\skill\" normal="sitem144" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x70322" maskcolor="0x0" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="11145" dir="\skill\" normal="sitem145" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x70508" maskcolor="0x9592" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="11146" dir="\skill\" normal="sitem145" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x70511" maskcolor="0x538a" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/> </icon>
+	<icon id="11147" dir="\skill\" normal="sitem145" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x70302" maskcolor="0x852f" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="11148" dir="\skill\" normal="sitem145" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x70322" maskcolor="0xd779" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="11149" dir="\skill\" normal="sitem156" focus="normal" down="normal" disable="normal" basebias="0x3f63a" basecolor="0x0" baserange="144"><attrib ICON_ATTRIB_BIAS=""/> </icon>
+	<icon id="11150" dir="\skill\" normal="sitem144" focus="normal" down="normal" disable="normal" basebias="0x3e83f" basecolor="0x0" baserange="160" maskbias="0x40a19" maskcolor="0x0" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+        <icon id="11151" dir="\skill\" normal="sitem475" focus="normal" down="normal" disable="normal"/>
+        <icon id="11152" dir="\skill\" normal="sitem476" focus="normal" down="normal" disable="normal"/>
+        <icon id="11153" dir="\skill\" normal="sitem472" focus="normal" down="normal" disable="normal" basebias="0xf90025" basecolor="0xe920" baserange="4" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+        <icon id="11154" dir="\skill\" normal="sitem473" focus="normal" down="normal" disable="normal"/>
+        <icon id="11155" dir="\skill\" normal="sitem474" focus="normal" down="normal" disable="normal" basebias="0xf8020f" basecolor="0xe920" baserange="4" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+        <icon id="11156" dir="\skill\" normal="sitem995" focus="normal" down="normal" disable="normal" basebias="0xfc002f" basecolor="0xe920" baserange="2" maskbias="0x0" maskcolor="0x0" maskrange="0">
+  <attrib ICON_ATTRIB_BIAS="" /> 
+  </icon>
+        <icon id="11157" dir="\skill\" normal="sitem996" focus="normal" down="normal" disable="normal" basebias="0xf80013" basecolor="0xe920" baserange="2" maskbias="0x0" maskcolor="0x0" maskrange="0">
+  <attrib ICON_ATTRIB_BIAS="" /> 
+  </icon>
+        <icon id="11158" dir="\skill\" normal="sitem475" focus="normal" down="normal" disable="normal" basebias="0xfd0701" basecolor="0xccee" baserange="139" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+        <icon id="11159" dir="\skill\" normal="sitem998" focus="normal" down="normal" disable="normal" basebias="0xfe0026" basecolor="0xe920" baserange="2" maskbias="0x0" maskcolor="0x0" maskrange="0">
+  <attrib ICON_ATTRIB_BIAS="" />
+  	</icon>
+        <icon id="11160" dir="\skill\" normal="sitem999" focus="normal" down="normal" disable="normal"/>
+        <icon id="11161" dir="\skill\" normal="sitem140" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0xfa070b" maskcolor="0xf3a6" maskrange="26">
+  <attrib ICON_ATTRIB_BIAS="" /> 
+  </icon>
+        <icon id="11162" dir="\skill\" normal="sitem140" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x10007" maskcolor="0xfe09" maskrange="160">
+  <attrib ICON_ATTRIB_BIAS="" /> 
+  </icon>
+	<icon id="11163" dir="\skill\" normal="sitem892" focus="normal" down="normal" disable="normal"/>
+	<icon id="11164" dir="\skill\" normal="sitem894" focus="normal" down="normal" disable="normal"/>
+	<icon id="11165" dir="\skill\" normal="sitem892" focus="normal" down="normal" disable="normal"  maskbias="0x10a0a" maskcolor="0x0" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="11166" dir="\skill\" normal="sitem892" focus="normal" down="normal" disable="normal" maskbias="0x21" maskcolor="0x0" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="11167" dir="\skill\" normal="sitem892" focus="normal" down="normal" disable="normal" maskbias="0x10514" maskcolor="0x0" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="11168" dir="\skill\" normal="sitem892" focus="normal" down="normal" disable="normal" maskbias="0x10534" maskcolor="0x0" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="11169" dir="\skill\" normal="sitem892" focus="normal" down="normal" disable="normal" maskbias="0x20807" maskcolor="0x0" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="11170" dir="\skill\" normal="sitem892" focus="normal" down="normal" disable="normal" maskbias="0x20300" maskcolor="0x0" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="11171" dir="\skill\" normal="sitem894" focus="normal" down="normal" disable="normal" maskbias="0x1806" maskcolor="0x0" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="11172" dir="\skill\" normal="sitem894" focus="normal" down="normal" disable="normal" maskbias="0xfc0a03" maskcolor="0x0" maskrange="32">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="11173" dir="\skill\" normal="sitem894" focus="normal" down="normal" disable="normal" maskbias="0xa00" maskcolor="0x0" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="11174" dir="\skill\" normal="sitem894" focus="normal" down="normal" disable="normal" maskbias="0x508" maskcolor="0x0" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="11175" dir="\skill\" normal="sitem894" focus="normal" down="normal" disable="normal" maskbias="0x1e83f" maskcolor="0x0" maskrange="160">
+<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+	<icon id="11176" dir="\skill\" normal="sitem894" focus="normal" down="normal" disable="normal" basebias="0x10210" basecolor="0x5bc4" baserange="136" maskbias="0x10a04" maskcolor="0x0" maskrange="160">
+	<attrib ICON_ATTRIB_BIAS=""/>
+</icon>
+
+        <icon id="11177" dir="\skill\" normal="sitem475" focus="normal" down="normal" disable="normal" basebias="0x23" basecolor="0xcb2b" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+        <icon id="11178" dir="\skill\" normal="sitem475" focus="normal" down="normal" disable="normal" basebias="0x34" basecolor="0xe3ce" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+
+        <icon id="11179" dir="\skill\" normal="sm052" focus="normal" down="normal" disable="normal"/>
+        <icon id="11180" dir="\skill\" normal="sm001" focus="normal" down="normal" disable="normal"/>
+        <icon id="11181" dir="\skill\" normal="sm145" focus="normal" down="normal" disable="normal" basebias="0x35" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+        <icon id="11182" dir="\skill\" normal="sm150" focus="normal" down="normal" disable="normal" basebias="0x29" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="11183" dir="\skill\" normal="sitem893" focus="normal" down="normal" disable="normal" maskbias="0x10021" maskcolor="0x0" maskrange="160">
+
+	<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="11184" dir="\skill\" normal="sitem893" focus="normal" down="normal" disable="normal" maskbias="0x1050a" maskcolor="0x0" maskrange="160">
+
+	<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="11185" dir="\skill\" normal="sitem893" focus="normal" down="normal" disable="normal"/>
+	<icon id="11186" dir="\skill\" normal="sitem893" focus="normal" down="normal" disable="normal" maskbias="0x201" maskcolor="0x0" maskrange="160">
+
+	<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+
+	<icon id="11187" dir="\skill\" normal="sm182" focus="normal" down="normal" disable="normal" basebias="0xe13d" basecolor="0x2945" baserange="134" maskbias="0xf70902" maskcolor="0x5475" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="11188" dir="\skill\" normal="sm182" focus="normal" down="normal" disable="normal" basebias="0x6" basecolor="0x2945" baserange="160" maskbias="0xc000a" maskcolor="0x9b69" maskrange="133">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+
+        <icon id="11189" dir="\skill\" normal="sm183" focus="normal" down="normal" disable="normal"/>
+        <icon id="11190" dir="\skill\" normal="sm184" focus="normal" down="normal" disable="normal"/>
+        <icon id="11191" dir="\skill\" normal="sm185" focus="normal" down="normal" disable="normal"/>
+        <icon id="11192" dir="\skill\" normal="sm186" focus="normal" down="normal" disable="normal"/>
+        <icon id="11193" dir="\skill\" normal="sm187" focus="normal" down="normal" disable="normal"/>
+        <icon id="11194" dir="\skill\" normal="sm188" focus="normal" down="normal" disable="normal"/>
+        <icon id="11195" dir="\skill\" normal="sm189" focus="normal" down="normal" disable="normal"/>
+        <icon id="11196" dir="\skill\" normal="sm190" focus="normal" down="normal" disable="normal"/>
+
+        <icon id="11197" dir="\skill\" normal="sm191" focus="normal" down="normal" disable="normal"/>
+        <icon id="11198" dir="\skill\" normal="sm192" focus="normal" down="normal" disable="normal"/>
+        <icon id="11199" dir="\skill\" normal="sm193" focus="normal" down="normal" disable="normal"/>
+        <icon id="11200" dir="\skill\" normal="sm193" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x1" maskcolor="0x0" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+        <icon id="11201" dir="\skill\" normal="sm193" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0xf725" maskcolor="0x0" maskrange="160">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+
+        <icon id="11202" dir="\skill\" normal="sm195" focus="normal" down="normal" disable="normal" basebias="0x33" basecolor="0x0" baserange="158" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+        <icon id="11203" dir="\skill\" normal="sitem203" focus="normal" down="normal" disable="normal" basebias="0x8" basecolor="0x0" baserange="32" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+        <icon id="11204" dir="\skill\" normal="sm194" focus="normal" down="normal" disable="normal" basebias="0x1e" basecolor="0x0" baserange="32" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+        <icon id="11205" dir="\skill\" normal="sitem198" focus="normal" down="normal" disable="normal" basebias="0x80020" basecolor="0x0" baserange="32" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+        <icon id="11206" dir="\skill\" normal="sitem199" focus="normal" down="normal" disable="normal" basebias="0x50008" basecolor="0x0" baserange="32" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="11207" dir="\skill\" normal="sitem936" focus="normal" down="normal" disable="normal" basebias="0xe100" basecolor="0x6ac7" baserange="134" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="11208" dir="\skill\" normal="sitem936" focus="normal" down="normal" disable="normal" basebias="0xe7002d" basecolor="0x6ac7" baserange="134" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+
+        <icon id="11209" dir="\skill\" normal="sm196" focus="normal" down="normal" disable="normal"/>
+
+        <icon id="11210" dir="\skill\" normal="sm197" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x7" maskcolor="0x0" maskrange="160">		<attrib ICON_ATTRIB_BIAS=""/>	</icon>
+        <icon id="11211" dir="\skill\" normal="sm197" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x21" maskcolor="0x0" maskrange="160">		<attrib ICON_ATTRIB_BIAS=""/>	</icon>
+        <icon id="11212" dir="\skill\" normal="sm197" focus="normal" down="normal" disable="normal"/>
+        <icon id="11213" dir="\skill\" normal="sm197" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x20028" maskcolor="0x0" maskrange="160">		<attrib ICON_ATTRIB_BIAS=""/>	</icon>
+        <icon id="11214" dir="\skill\" normal="sm197" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x1" maskcolor="0x0" maskrange="160">		<attrib ICON_ATTRIB_BIAS=""/>	</icon>
+        <icon id="11215" dir="\skill\" normal="sm198" focus="normal" down="normal" disable="normal"/>
+        <icon id="11216" dir="\skill\" normal="sm186" focus="normal" down="normal" disable="normal" basebias="0x1" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+        <icon id="11217" dir="\skill\" normal="sm186" focus="normal" down="normal" disable="normal" basebias="0x3200a" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="11218" dir="\skill\" normal="sm069" focus="normal" down="normal" disable="normal" basebias="0x10338" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="11219" dir="\skill\" normal="sm162" focus="normal" down="normal" disable="normal" basebias="0x5043d" basecolor="0xfffc" baserange="134" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+	<icon id="11220" dir="\skill\" normal="sm001" focus="normal" down="normal" disable="normal" basebias="0x6f909" basecolor="0x755a" baserange="130" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+
+        <icon id="11221" dir="\skill\" normal="sm199" focus="normal" down="normal" disable="normal"/>
+        <icon id="11222" dir="\skill\" normal="sm200" focus="normal" down="normal" disable="normal"/>
+        <icon id="11223" dir="\skill\" normal="sitem140" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0xf30713" maskcolor="0xf3a6" maskrange="154">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+
+        <icon id="11224" dir="\skill\" normal="sm201" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0x1106" maskcolor="0x0" maskrange="160">		<attrib ICON_ATTRIB_BIAS=""/>	</icon>
+        <icon id="11225" dir="\skill\" normal="sm202" focus="normal" down="normal" disable="normal" basebias="0x0" basecolor="0x0" baserange="0" maskbias="0xf1406" maskcolor="0x2945" maskrange="160">		<attrib ICON_ATTRIB_BIAS=""/>	</icon>
+
+        <icon id="11226" dir="\skill\" normal="sm203" focus="normal" down="normal" disable="normal"/>
+        <icon id="11227" dir="\skill\" normal="sm204" focus="normal" down="normal" disable="normal"/>
+        <icon id="11228" dir="\skill\" normal="sm205" focus="normal" down="normal" disable="normal"/>
+        <icon id="11229" dir="\skill\" normal="sm206" focus="normal" down="normal" disable="normal"/>
+        <icon id="11230" dir="\skill\" normal="sm207" focus="normal" down="normal" disable="normal"/>
+        <icon id="11231" dir="\skill\" normal="sm208" focus="normal" down="normal" disable="normal"/>
+        <icon id="11232" dir="\skill\" normal="sm209" focus="normal" down="normal" disable="normal"/>
+        <icon id="11233" dir="\skill\" normal="sm210" focus="normal" down="normal" disable="normal"/>
+        <icon id="11234" dir="\skill\" normal="sm211" focus="normal" down="normal" disable="normal"/>
+        <icon id="11235" dir="\skill\" normal="sm212" focus="normal" down="normal" disable="normal"/>
+        <icon id="11236" dir="\skill\" normal="sm213" focus="normal" down="normal" disable="normal"/>
+        <icon id="11237" dir="\skill\" normal="sm214" focus="normal" down="normal" disable="normal"/>
+        <icon id="11238" dir="\skill\" normal="sm215" focus="normal" down="normal" disable="normal"/>
+        <icon id="11239" dir="\skill\" normal="sm216" focus="normal" down="normal" disable="normal"/>
+        <icon id="11240" dir="\skill\" normal="sm217" focus="normal" down="normal" disable="normal"/>
+        <icon id="11241" dir="\skill\" normal="sm218" focus="normal" down="normal" disable="normal"/>
+        <icon id="11242" dir="\skill\" normal="sm219" focus="normal" down="normal" disable="normal"/>
+        <icon id="11243" dir="\skill\" normal="sm220" focus="normal" down="normal" disable="normal" basebias="0x50e39" basecolor="0xe920" baserange="129" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+
+        <icon id="11244" dir="\skill\" normal="sm221" focus="normal" down="normal" disable="normal" basebias="0xa05" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">		<attrib ICON_ATTRIB_BIAS=""/>	</icon>
+        <icon id="11245" dir="\skill\" normal="sm221" focus="normal" down="normal" disable="normal" basebias="0x519" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">		<attrib ICON_ATTRIB_BIAS=""/>	</icon>
+        <icon id="11246" dir="\skill\" normal="sm221" focus="normal" down="normal" disable="normal" basebias="0x529" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">		<attrib ICON_ATTRIB_BIAS=""/>	</icon>
+
+        <icon id="11247" dir="\skill\" normal="sm222" focus="normal" down="normal" disable="normal" basebias="0xf404" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">
+  <attrib ICON_ATTRIB_BIAS=""/> </icon>
+        <icon id="11248" dir="\skill\" normal="sm222" focus="normal" down="normal" disable="normal" basebias="0x3f430" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">
+  <attrib ICON_ATTRIB_BIAS=""/> </icon>
+        <icon id="11249" dir="\skill\" normal="sm222" focus="normal" down="normal" disable="normal" basebias="0xf90b" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">
+  <attrib ICON_ATTRIB_BIAS=""/> </icon>
+        <icon id="11250" dir="\skill\" normal="sm222" focus="normal" down="normal" disable="normal" basebias="0x3f43d" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">
+  <attrib ICON_ATTRIB_BIAS=""/> </icon>
+        <icon id="11251" dir="\skill\" normal="sm222" focus="normal" down="normal" disable="normal" basebias="0x3f327" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">
+  <attrib ICON_ATTRIB_BIAS=""/>
+ </icon>
+        <icon id="11252" dir="\skill\" normal="sitem232" focus="normal" down="normal" disable="normal"/>
+
+        <icon id="11253" dir="\skill\" normal="sm223" focus="normal" down="normal" disable="normal"/>
+        <icon id="11254" dir="\skill\" normal="sm224" focus="normal" down="normal" disable="normal" basebias="0x10" basecolor="0x0" baserange="32" maskbias="0x0" maskcolor="0x0" maskrange="1">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+        <icon id="11255" dir="\skill\" normal="sm225" focus="normal" down="normal" disable="normal" basebias="0xfbf600" basecolor="0x0" baserange="32" maskbias="0xfbf600" maskcolor="0x0" maskrange="32">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+        <icon id="11256" dir="\skill\" normal="sm226" focus="normal" down="normal" disable="normal" basebias="0x4f600" basecolor="0x0" baserange="32" maskbias="0x4f600" maskcolor="0x0" maskrange="32">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+        <icon id="11257" dir="\skill\" normal="sm227" focus="normal" down="normal" disable="normal"/>
+        <icon id="11258" dir="\skill\" normal="sm228" focus="normal" down="normal" disable="normal"/>
+        <icon id="11259" dir="\skill\" normal="sm229" focus="normal" down="normal" disable="normal"/>
+        <icon id="11260" dir="\skill\" normal="sm230" focus="normal" down="normal" disable="normal"/>
+        <icon id="11261" dir="\skill\" normal="sm231" focus="normal" down="normal" disable="normal" basebias="0x21" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">		<attrib ICON_ATTRIB_BIAS=""/>	</icon>
+        <icon id="11262" dir="\skill\" normal="sm231" focus="normal" down="normal" disable="normal" basebias="0x2" basecolor="0x0" baserange="160" maskbias="0x0" maskcolor="0x0" maskrange="0">		<attrib ICON_ATTRIB_BIAS=""/>	</icon>
+        <icon id="11263" dir="\skill\" normal="sm232" focus="normal" down="normal" disable="normal" basebias="0x3e" basecolor="0x5d5d" baserange="130" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+        <icon id="11264" dir="\skill\" normal="sm233" focus="normal" down="normal" disable="normal" basebias="0xfefb27" basecolor="0xcac6" baserange="129" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+        <icon id="11265" dir="\skill\" normal="sm234" focus="normal" down="normal" disable="normal" basebias="0xf300" basecolor="0x0" baserange="140" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+        <icon id="11266" dir="\skill\" normal="sm234" focus="normal" down="normal" disable="normal" basebias="0xf331" basecolor="0x0" baserange="140" maskbias="0x0" maskcolor="0x0" maskrange="0">
+		<attrib ICON_ATTRIB_BIAS=""/>
+	</icon>
+
+</root>

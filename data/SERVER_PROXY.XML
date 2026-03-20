@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+	<伺服器 名稱="Hestia" 編號="16" 選擇="100" ip="127.0.0.1" port="16768" 分流="2" fip="127.0.0.1" fport="21238" tip = "Pegasus+Chronos+Pandora"/>
+
+	<ALIAS name="名稱" select="選擇" id="編號" server="伺服器" patch="更新伺服器" subset="分流"/>
+</root>

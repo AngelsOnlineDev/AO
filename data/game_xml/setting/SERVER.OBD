@@ -1,0 +1,5329 @@
+#include server.obd
+
+[SYSTEM]
+ShapeDir = shape
+SoundDir = sound
+SpriteDir = shape
+BgPath = 
+BgColor = 0x0
+DelayUnit = 60
+UseDefault = 2
+UseDefine = 2
+MinSize = 131072
+MaxSize = 10485760
+Mirror = 1
+
+
+[DEFINE]
+#define SP_NUMBER_MAX				0x7fffffff
+
+#define SP_EVENT_ACT_WAIT                       0x00000001	//SP_EVENT_ACT_WAIT
+#define SP_EVENT_ACT_FADEOUT                    0x00000002	//SP_EVENT_ACT_FADEOUT
+#define SP_EVENT_ACT_REMOVE                     0x00000003	//SP_EVENT_ACT_REMOVE
+#define SP_EVENT_ACT_NO_SHADOW                  0x00000004	//SP_EVENT_ACT_NO_SHADOW
+
+#define SERV_CLASS_BASE                         0x80000001	//伺服器一般物件
+#define SERV_CLASS_CHAROBJ                      0x80000002	//伺服器角色物件
+#define SERV_CLASS_ITEMOBJ                      0x80000003	//伺服器道具物件
+#define SERV_CLASS_STATIC                       0x80000004	//伺服器靜態物件
+#define SERV_CLASS_GEN                          0x80000005	//伺服器怪物產生器
+#define SERV_CLASS_TIMER                        0x80000006	//伺服器計時器物件
+#define SERV_CLASS_PLAYEROBJ                    0x80000102	//伺服器玩家物件
+#define SERV_CLASS_MATOBJ                       0x80000104	//伺服器物產物件
+#define SERV_CLASS_NPCOBJ                       0x80000202	//伺服器NPC物件
+#define SERV_CLASS_TREASUREOBJ                  0x80000204	//伺服器寶箱物件
+#define SERV_CLASS_TOWERBASEOBJ                 0x80000404	//伺服器防禦塔地基物件
+#define SERV_CLASS_PETOBJ                       0x80010202	//伺服器寵物物件
+#define SERV_CLASS_TOTEMOBJ                     0x80020202	//伺服器圖騰物件
+#define SP_CLASS_BASE                           0x00000001	//SP_CLASS_BASE
+#define SP_CLASS_MAPOBJ                         0x00000002	//SP_CLASS_MAPOBJ
+#define SP_CLASS_CHAROBJ                        0x00000102	//SP_CLASS_CHAROBJ
+#define SP_CLASS_HOUSEIN                        0x00000202	//SP_CLASS_HOUSEIN
+#define SP_CLASS_HOUSEOUT                       0x00000402	//SP_CLASS_HOUSEOUT
+#define SP_CLASS_EFFECT                         0x00000802	//SP_CLASS_EFFECT
+#define SP_CLASS_PLAYER                         0x00001102	//SP_CLASS_PLAYER
+#define SP_CLASS_MAGIC                          0x00001802	//SP_CLASS_MAGIC
+#define SP_CLASS_MAPOBJ_11TREE                  0x00010002	//樹木植物
+#define SP_CLASS_HOUSEIN_COMMON                 0x00010202	//共用屋內
+#define SP_CLASS_HOUSEOUT_COMMON                0x00010402	//共用屋外
+#define SP_CLASS_MAPOBJ_12FLOWER                0x00020002	//花草植物
+#define SP_CLASS_HOUSEIN_LIGHT                  0x00020202	//光明屋內
+#define SP_CLASS_HOUSEOUT_LIGHT                 0x00020402	//光明屋外
+#define SP_CLASS_MAPOBJ_13PLANT                 0x00030002	//其他植物
+#define SP_CLASS_HOUSEIN_DARK                   0x00030202	//黑暗屋內
+#define SP_CLASS_HOUSEOUT_DARK                  0x00030402	//黑暗屋外
+#define SP_CLASS_MAPOBJ_21COMMONOBJ             0x00040002	//普通雜物
+#define SP_CLASS_HOUSEIN_CHAOS                  0x00040202	//渾沌屋內
+#define SP_CLASS_HOUSEOUT_CHAOS                 0x00040402	//渾沌屋外
+#define SP_CLASS_MAPOBJ_22LIGHTOBJ              0x00050002	//光明雜物
+#define SP_CLASS_HOUSEIN_EARTH                  0x00050202	//大地屋內
+#define SP_CLASS_HOUSEOUT_EARTH                 0x00050402	//大地屋外
+#define SP_CLASS_MAPOBJ_23DARKOBJ               0x00060002	//黑暗雜物
+#define SP_CLASS_MAPOBJ_24CHAOSOBJ              0x00070002	//渾沌雜物
+#define SP_CLASS_MAPOBJ_25EARTHOBJ              0x00080002	//大地雜物
+#define SP_CLASS_MAPOBJ_31ACTIONOBJ             0x00090002	//動態物件
+
+#define SP_ATTRIB_DISTURB                       0x00020000	//SP_ATTRIB_DISTURB
+#define SP_ATTRIB_ZBUFFER1                      0x00040000	//SP_ATTRIB_ZBUFFER1
+#define SP_ATTRIB_ZBUFFER2                      0x00080000	//SP_ATTRIB_ZBUFFER2
+#define SP_ATTRIB_STATIC                        0x00100000	//SP_ATTRIB_STATIC
+#define SP_ATTRIB_HITTEST                       0x00200000	//SP_ATTRIB_HITTEST
+#define SP_ATTRIB_SHADOW                        0x00400000	//SP_ATTRIB_SHADOW
+#define SP_ATTRIB_MIRROR                        0x00800000	//SP_ATTRIB_MIRROR
+#define SP_ATTRIB_BOMBALL                       0x01000000	//SP_ATTRIB_BOMBALL
+#define SP_ATTRIB_HIDE                          0x02000000	//SP_ATTRIB_HIDE
+
+#define SP_ATTRIB_ALPHA                         0x00000001	//Alpha
+#define SP_ATTRIB_MIXER                         0x00000002	//混色
+#define SP_ATTRIB_WHITELIGHT                    0x00000004	//加色
+#define SP_ATTRIB_DARKLIGHT                     0x00000008	//減色
+#define SP_ATTRIB_OUTLINE                       0x00000010	//外框
+#define SP_ATTRIB_FLASH                         0x00000020	//Flash效果
+#define SP_ATTRIB_SMOKE                         0x00000040	//Smoke效果
+#define SP_ATTRIB_WATER                         0x00000080	//Water效果
+#define SP_ATTRIB_SINGLE                        0x00000100	//單色
+#define SP_ATTRIB_GLASS                         0x00000200	//玻璃色
+#define SP_ATTRIB_GRAY                          0x00000400	//灰階
+#define SP_ATTRIB_TABLE                         0x00001000	//表格
+#define SP_ATTRIB_BIAS                          0x00002000	//換色
+
+
+[SP_CLASS]
+Name = SERV_CLASS_BASE
+Value = 0x80000001
+Comment = 伺服器一般物件
+
+[SP_CLASS]
+Name = SERV_CLASS_CHAROBJ
+Value = 0x80000002
+Comment = 伺服器角色物件
+
+[SP_CLASS]
+Name = SERV_CLASS_GEN
+Value = 0x80000005
+Comment = 伺服器怪物產生器
+Label = 物件
+Label = 時間
+Label = 數量
+Label = 位置
+Label = 事件
+Label = 路徑
+Label = 範圍
+Label = 對話
+
+[SP_CLASS]
+Name = SERV_CLASS_ITEMOBJ
+Value = 0x80000003
+Comment = 伺服器道具物件
+
+[SP_CLASS]
+Name = SERV_CLASS_MATOBJ
+Value = 0x80000104
+Comment = 伺服器物產物件
+
+[SP_CLASS]
+Name = SERV_CLASS_NPCOBJ
+Value = 0x80000202
+Comment = 伺服器NPC物件
+Label = 路徑
+Label = 重生
+
+[SP_CLASS]
+Name = SERV_CLASS_PETOBJ
+Value = 0x80010202
+Comment = 伺服器寵物物件
+
+[SP_CLASS]
+Name = SERV_CLASS_PLAYEROBJ
+Value = 0x80000102
+Comment = 伺服器玩家物件
+
+[SP_CLASS]
+Name = SERV_CLASS_STATIC
+Value = 0x80000004
+Comment = 伺服器靜態物件
+
+[SP_CLASS]
+Name = SERV_CLASS_TIMER
+Value = 0x80000006
+Comment = 伺服器計時器物件
+Label = 開關
+Label = 時間
+Label = 次數
+Label = 自動關
+Label = 延遲
+
+[SP_CLASS]
+Name = SERV_CLASS_TOTEMOBJ
+Value = 0x80020202
+Comment = 伺服器圖騰物件
+
+[SP_CLASS]
+Name = SERV_CLASS_TOWERBASEOBJ
+Value = 0x80000404
+Comment = 伺服器防禦塔地基物件
+
+[SP_CLASS]
+Name = SERV_CLASS_TREASUREOBJ
+Value = 0x80000204
+Comment = 伺服器寶箱物件
+
+[SP_CLASS]
+Name = SP_CLASS_BASE
+Value = 0x00000001
+Comment = SP_CLASS_BASE
+
+[SP_CLASS]
+Name = SP_CLASS_CHAROBJ
+Value = 0x00000102
+Comment = SP_CLASS_CHAROBJ
+
+[SP_CLASS]
+Name = SP_CLASS_EFFECT
+Value = 0x00000802
+Comment = SP_CLASS_EFFECT
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEIN
+Value = 0x00000202
+Comment = SP_CLASS_HOUSEIN
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEIN_CHAOS
+Value = 0x00040202
+Comment = 渾沌屋內
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEIN_COMMON
+Value = 0x00010202
+Comment = 共用屋內
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEIN_DARK
+Value = 0x00030202
+Comment = 黑暗屋內
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEIN_EARTH
+Value = 0x00050202
+Comment = 大地屋內
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEIN_LIGHT
+Value = 0x00020202
+Comment = 光明屋內
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEOUT
+Value = 0x00000402
+Comment = SP_CLASS_HOUSEOUT
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEOUT_CHAOS
+Value = 0x00040402
+Comment = 渾沌屋外
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEOUT_COMMON
+Value = 0x00010402
+Comment = 共用屋外
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEOUT_DARK
+Value = 0x00030402
+Comment = 黑暗屋外
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEOUT_EARTH
+Value = 0x00050402
+Comment = 大地屋外
+
+[SP_CLASS]
+Name = SP_CLASS_HOUSEOUT_LIGHT
+Value = 0x00020402
+Comment = 光明屋外
+
+[SP_CLASS]
+Name = SP_CLASS_MAGIC
+Value = 0x00001802
+Comment = SP_CLASS_MAGIC
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ
+Value = 0x00000002
+Comment = SP_CLASS_MAPOBJ
+Label = 光源
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_11TREE
+Value = 0x00010002
+Comment = 樹木植物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_12FLOWER
+Value = 0x00020002
+Comment = 花草植物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_13PLANT
+Value = 0x00030002
+Comment = 其他植物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_21COMMONOBJ
+Value = 0x00040002
+Comment = 普通雜物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_22LIGHTOBJ
+Value = 0x00050002
+Comment = 光明雜物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_23DARKOBJ
+Value = 0x00060002
+Comment = 黑暗雜物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_24CHAOSOBJ
+Value = 0x00070002
+Comment = 渾沌雜物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_25EARTHOBJ
+Value = 0x00080002
+Comment = 大地雜物
+
+[SP_CLASS]
+Name = SP_CLASS_MAPOBJ_31ACTIONOBJ
+Value = 0x00090002
+Comment = 動態物件
+
+[SP_CLASS]
+Name = SP_CLASS_PLAYER
+Value = 0x00001102
+Comment = SP_CLASS_PLAYER
+
+
+
+[SP_EVENT]
+Name = SP_EVENT_ACT_FADEOUT
+Value = 0x00000002
+Comment = SP_EVENT_ACT_FADEOUT
+
+[SP_EVENT]
+Name = SP_EVENT_ACT_NO_SHADOW
+Value = 0x00000004
+Comment = SP_EVENT_ACT_NO_SHADOW
+
+[SP_EVENT]
+Name = SP_EVENT_ACT_REMOVE
+Value = 0x00000003
+Comment = SP_EVENT_ACT_REMOVE
+
+[SP_EVENT]
+Name = SP_EVENT_ACT_WAIT
+Value = 0x00000001
+Comment = SP_EVENT_ACT_WAIT
+
+
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_BOMBALL
+Value = 0x01000000
+Comment = SP_ATTRIB_BOMBALL
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_DISTURB
+Value = 0x00020000
+Comment = SP_ATTRIB_DISTURB
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_HIDE
+Value = 0x02000000
+Comment = SP_ATTRIB_HIDE
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_HITTEST
+Value = 0x00200000
+Comment = SP_ATTRIB_HITTEST
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_MIRROR
+Value = 0x00800000
+Comment = SP_ATTRIB_MIRROR
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_SHADOW
+Value = 0x00400000
+Comment = SP_ATTRIB_SHADOW
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_STATIC
+Value = 0x00100000
+Comment = SP_ATTRIB_STATIC
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_ZBUFFER1
+Value = 0x00040000
+Comment = SP_ATTRIB_ZBUFFER1
+
+[SP_GAME_ATTRIB]
+Name = SP_ATTRIB_ZBUFFER2
+Value = 0x00080000
+Comment = SP_ATTRIB_ZBUFFER2
+
+
+
+[OBJECT]
+Name = 測試STATIC
+Sequence = 60001
+Space = 80, 100, 15
+BaseBias = 0x110004, 0xffdf, 160
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_ALPHA, SP_ATTRIB_BIAS
+Process = SERV_CLASS_STATIC
+Directory = \stage\27
+Sprite = Wait, 27-042-1U1, #8, 27-042-1U2, 27-042-1U3, 27-042-1U4, 27-042-1U5, 27-042-1U6, 27-042-1U7, 27-042-1U8
+
+
+[OBJECT]
+Name = 測試TIMER
+Sequence = 60002
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_TIMER
+Sprite = Wait, ptag, SCROVER
+
+
+[OBJECT]
+Name = 測試GEN
+Sequence = 60003
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \stage\21
+Sprite = Wait, 21-004-8U0, SCROVER
+
+
+[OBJECT]
+Name = 測試MAT
+Sequence = 60004
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\21
+Sprite = Wait, 21-011-1U0, SCROVER
+
+
+[OBJECT]
+Name = TAG01
+Sequence = 60005
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_STATIC
+Sprite = Wait, ptag, SCROVER
+
+
+[OBJECT]
+Name = 物產-05魚(淺藍)
+Sequence = 60006
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-1U1, #8, 27-024-1U2, 27-024-1U3
+
+
+[OBJECT]
+Name = 物產-05魚(淺藍)
+Sequence = 60007
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-2U1, #8, 27-024-2U2, 27-024-2U3
+
+
+[OBJECT]
+Name = 物產-05魚(淺藍)
+Sequence = 60008
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-3U1, #8, 27-024-3U2, 27-024-3U3
+
+
+[OBJECT]
+Name = 物產-05魚(淺藍)
+Sequence = 60009
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-4U1, #8, 27-024-4U2, 27-024-4U3
+
+
+[OBJECT]
+Name = 物產-01小型礦(錫礦)
+Sequence = 60010
+BaseBias = 0x4001a, 0x52ed, 130
+MaskBias = 0x20204, 0xac27, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-030-1U1, #10, 27-030-1U2, 27-030-1U3, 27-030-1U4
+
+
+[OBJECT]
+Name = 物產-01中型礦(錫礦)
+Sequence = 60011
+BaseBias = 0x4001a, 0x52ed, 130
+MaskBias = 0x40204, 0x736a, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-031-1U1, #10, 27-031-1U2, 27-031-1U3, 27-031-1U4
+
+
+[OBJECT]
+Name = 物產-01大型礦(錫礦)
+Sequence = 60012
+BaseBias = 0x4001a, 0x52ac, 130
+MaskBias = 0x20204, 0xf5c6, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-032-1U1, #10, 27-032-1U2, 27-032-1U3, 27-032-1U4
+
+
+[OBJECT]
+Name = 物產-02橫斷木(亮棕)
+Sequence = 60013
+BaseBias = 0x5003e, 0x738b, 4
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-033-1U1, #16, 27-033-1U2, 27-033-1U3
+
+
+[OBJECT]
+Name = 物產-02細斷木(亮棕)
+Sequence = 60014
+BaseBias = 0x5003e, 0x738b, 4
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-034-1U1, #16, 27-034-1U2, 27-034-1U3
+
+
+[OBJECT]
+Name = 物產-02粗斷木(亮棕)
+Sequence = 60015
+BaseBias = 0x5003e, 0x5287, 4
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-035-1U1, #16, 27-035-1U2, 27-035-1U3
+
+
+[OBJECT]
+Name = 物產-乳牛01
+Sequence = 60016
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-036-1U1, #16, 27-036-1U2, 27-036-1U2, #60, 27-036-1U1, #16, 27-036-1U2, 27-036-1U2, #60, 27-036-1U3, #60
+
+
+[OBJECT]
+Name = 物產-乳牛02
+Sequence = 60017
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-036-2U1, #30, 27-036-2U2, 27-036-2U3, 27-036-2U3, #100
+
+
+[OBJECT]
+Name = 物產-乳牛03
+Sequence = 60018
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-036-3U1, #16, 27-036-3U2, 27-036-3U3, 27-036-3U3, #120, 27-036-3U2, #20, 27-036-3U3, 27-036-3U1, #60
+
+
+[OBJECT]
+Name = 物產-乳牛04
+Sequence = 60019
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-036-4U1, #16, 27-036-4U2, 27-036-4U3, 27-036-4U3, #120, 27-036-4U2, #16
+
+
+[OBJECT]
+Name = 物產-乳牛05
+Sequence = 60020
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-036-5U1, #12, 27-036-5U2, 27-036-5U3, 27-036-5U3, #60, 27-036-5U2, #16, 27-036-5U1, #16
+
+
+[OBJECT]
+Name = 物產-綿牛01
+Sequence = 60021
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-037-1U1, #16, 27-037-1U2, 27-037-1U3
+
+
+[OBJECT]
+Name = 物產-綿牛02
+Sequence = 60022
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-037-2U1, #16, 27-037-2U2, 27-037-2U3
+
+
+[OBJECT]
+Name = 物產-綿牛03
+Sequence = 60023
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-037-3U1, #16, 27-037-3U2, 27-037-3U3
+
+
+[OBJECT]
+Name = 物產-綿牛04
+Sequence = 60024
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-037-4U1, #16, 27-037-4U2, 27-037-4U3
+
+
+[OBJECT]
+Name = 物產-綿牛05
+Sequence = 60025
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-037-5U1, #16, 27-037-5U2, 27-037-5U3
+
+
+[OBJECT]
+Name = 物產-母雞01
+Sequence = 60026
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-038-1U3, #120, 27-038-1U1, #12, 27-038-1U2, 27-038-1U2, #60, 27-038-1U1, #12, 27-038-1U2, 27-038-1U2, #60
+
+
+[OBJECT]
+Name = 物產-母雞02
+Sequence = 60027
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-038-2U1, #12, 27-038-2U2, 27-038-2U1, 27-038-2U2, 27-038-2U2, #60, 27-038-2U3, #12, 27-038-2U2, 27-038-2U2, #60, 27-038-2U1, #12, 27-038-2U2
+
+
+[OBJECT]
+Name = 物產-母雞03
+Sequence = 60028
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-038-3U1, #12, 27-038-3U2, 27-038-3U3, 27-038-3U3, #60, 27-038-3U1, #12, 27-038-3U2
+
+
+[OBJECT]
+Name = 物產-母雞04
+Sequence = 60029
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-038-4U3, #120, 27-038-4U1, #12, 27-038-4U2, 27-038-4U1, 27-038-4U1, #12, 27-038-4U2
+
+
+[OBJECT]
+Name = 物產-母雞05
+Sequence = 60030
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-038-5U1, #12, 27-038-5U2, 27-038-5U2, #60, 27-038-5U1, #12, 27-038-5U2, 27-038-5U3
+
+
+[OBJECT]
+Name = 物產-03彎彎花(紅)
+Sequence = 60031
+MaskBias = 0x20422, 0x7d5a, 2
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-039-1U1, #12, 27-039-1U2, 27-039-1U3
+
+
+[OBJECT]
+Name = 物產-03喇叭花(紅)
+Sequence = 60032
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-040-1U1, #18, 27-040-1U2, 27-040-1U3
+
+
+[OBJECT]
+Name = 物產-03蓮霧花(紅)
+Sequence = 60033
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-041-1U1, #16, 27-041-1U2, 27-041-1U3
+
+
+[OBJECT]
+Name = TAG02
+Sequence = 60034
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_STATIC
+Sprite = Wait, ptag2, SCROVER
+
+
+[OBJECT]
+Name = TAG03
+Sequence = 60035
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_STATIC
+Sprite = Wait, ptag3, SCROVER
+
+
+[OBJECT]
+Name = TAG04
+Sequence = 60036
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_STATIC
+Sprite = Wait, ptag4, SCROVER
+
+
+[OBJECT]
+Name = TAG05
+Sequence = 60037
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_STATIC
+Sprite = Wait, ptag5, SCROVER
+
+
+[OBJECT]
+Name = TAG06
+Sequence = 60038
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_STATIC
+Sprite = Wait, ptag6, SCROVER
+
+
+[OBJECT]
+Name = 人型系雕像01
+Sequence = 60039
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-152-1U0, SCROVER
+
+
+[OBJECT]
+Name = 人型系雕像02
+Sequence = 60040
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-152-2U0, SCROVER
+
+
+[OBJECT]
+Name = 動物系雕像01
+Sequence = 60041
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-152-3U0, SCROVER
+
+
+[OBJECT]
+Name = 動物系雕像02
+Sequence = 60042
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-152-4U0, SCROVER
+
+
+[OBJECT]
+Name = 植物系雕像01
+Sequence = 60043
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-152-5U0, SCROVER
+
+
+[OBJECT]
+Name = 植物系雕像02
+Sequence = 60044
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-152-6U0, SCROVER
+
+
+[OBJECT]
+Name = 能量系雕像01
+Sequence = 60045
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-152-7U0, SCROVER
+
+
+[OBJECT]
+Name = 能量系雕像02
+Sequence = 60046
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-152-8U0, SCROVER
+
+
+[OBJECT]
+Name = 不死系雕像01
+Sequence = 60047
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-152-9U0, SCROVER
+
+
+[OBJECT]
+Name = 不死系雕像02
+Sequence = 60048
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-152-AU0, SCROVER
+
+
+[OBJECT]
+Name = 惡魔系雕像01
+Sequence = 60049
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-152-BU0, SCROVER
+
+
+[OBJECT]
+Name = 惡魔系雕像02
+Sequence = 60050
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-152-CU0, SCROVER
+
+
+[OBJECT]
+Name = 光明雕像
+Sequence = 60051
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-106-1U0, SCROVER
+
+
+[OBJECT]
+Name = 黑暗雕像
+Sequence = 60052
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-105-1U0, SCROVER
+
+
+[OBJECT]
+Name = 鋼鐵雕像
+Sequence = 60053
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-107-1U0, SCROVER
+
+
+[OBJECT]
+Name = 百獸雕像
+Sequence = 60054
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-108-1U0, SCROVER
+
+
+[OBJECT]
+Name = 生病老母雞
+Sequence = 60055
+BaseBias = 0xff0a06, 0xe449, 2
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_BIAS
+Process = SERV_CLASS_STATIC
+Directory = \stage\27
+Sprite = Wait, #8, 27-038-2U1, #12, 27-038-2U2, 27-038-2U1, 27-038-2U2, 27-038-2U2, #60, 27-038-2U3, #12, 27-038-2U2, 27-038-2U2, #60, 27-038-2U1, #12, 27-038-2U2
+
+
+[OBJECT]
+Name = 武器-打鐵覘01
+Sequence = 60056
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-005-2U0, SCROVER
+
+
+[OBJECT]
+Name = 武器-打鐵覘02
+Sequence = 60057
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-005-4U0, SCROVER
+
+
+[OBJECT]
+Name = 武器-融鐵爐01(X)
+Sequence = 60058
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-022-1U0, SCROVER
+
+
+[OBJECT]
+Name = 武器-融鐵爐02(X)
+Sequence = 60059
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-022-4U0, SCROVER
+
+
+[OBJECT]
+Name = 工藝-機械組01
+Sequence = 60060
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-006-1U0, SCROVER
+
+
+[OBJECT]
+Name = 工藝-機械組02
+Sequence = 60061
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-006-4U0, SCROVER
+
+
+[OBJECT]
+Name = 工藝-磨沙輪01(X)
+Sequence = 60062
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-010-1U0, SCROVER
+
+
+[OBJECT]
+Name = 工藝-磨沙輪02(X)
+Sequence = 60063
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-010-3U0, SCROVER
+
+
+[OBJECT]
+Name = 裁縫-紡紗輪01
+Sequence = 60064
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-008-2U0, SCROVER
+
+
+[OBJECT]
+Name = 裁縫-紡紗輪02
+Sequence = 60065
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-008-4U0, SCROVER
+
+
+[OBJECT]
+Name = 裁縫-織布機01
+Sequence = 60066
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-009-1U0, SCROVER
+
+
+[OBJECT]
+Name = 裁縫-織布機02
+Sequence = 60067
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-009-2U0, SCROVER
+
+
+[OBJECT]
+Name = 烹飪-廚具組01
+Sequence = 60068
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-021-2U0, SCROVER
+
+
+[OBJECT]
+Name = 烹飪-廚具組02
+Sequence = 60069
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-021-4U0, SCROVER
+
+
+[OBJECT]
+Name = 煉金-試管架01(X)
+Sequence = 60070
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-033-1U0, SCROVER
+
+
+[OBJECT]
+Name = 煉金-試管架02(X)
+Sequence = 60071
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-033-2U0, SCROVER
+
+
+[OBJECT]
+Name = 煉金-試管架03(X)
+Sequence = 60072
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-033-3U0, SCROVER
+
+
+[OBJECT]
+Name = 煉金-試管架04(X)
+Sequence = 60073
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-033-4U0, SCROVER
+
+
+[OBJECT]
+Name = 物產-05魚(紅)
+Sequence = 60074
+MaskBias = 0x50621, 0x871d, 2
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-1U1, #8, 27-024-1U2, 27-024-1U3
+
+
+[OBJECT]
+Name = 物產-05魚(紅)
+Sequence = 60075
+MaskBias = 0x50621, 0x4cd8, 2
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-3U1, #8, 27-024-3U2, 27-024-3U3
+
+
+[OBJECT]
+Name = 物產-05魚(黃)
+Sequence = 60076
+BaseBias = 0x82f, 0x7c12, 130
+MaskBias = 0x29, 0x3c57, 2
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-1U1, #8, 27-024-1U2, 27-024-1U3
+
+
+[OBJECT]
+Name = 物產-05魚(黃)
+Sequence = 60077
+BaseBias = 0x82f, 0x7c12, 130
+MaskBias = 0x29, 0x7e3b, 2
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-3U1, #8, 27-024-3U2, 27-024-3U3
+
+
+[OBJECT]
+Name = 防具-融鐵爐01(X)
+Sequence = 60078
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-022-5U0, SCROVER
+
+
+[OBJECT]
+Name = 防具-融鐵爐02(X)
+Sequence = 60079
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-022-6U0, SCROVER
+
+
+[OBJECT]
+Name = 物產-04小型獸穴(灰)
+Sequence = 60080
+BaseBias = 0xfbf50f, 0xac4a, 130
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-046-1U1, #12, 27-046-1U2, 27-046-1U3
+
+
+[OBJECT]
+Name = 物產-05小海藻(褐)
+Sequence = 60081
+BaseBias = 0xff0305, 0x43e6, 138
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-049-2U1, #16, 27-049-2U2, 27-049-2U3
+
+
+[OBJECT]
+Name = 物產-03蓮霧花(紫)
+Sequence = 60082
+MaskBias = 0xf62e, 0xfe71, 6
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-041-1U1, #16, 27-041-1U2, 27-041-1U3
+
+
+[OBJECT]
+Name = 物產-03幸運草(青綠)
+Sequence = 60083
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-043-1U1, #10, 27-043-1U2, 27-043-1U3
+
+
+[OBJECT]
+Name = 物產-03玉米草(黃)
+Sequence = 60084
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-044-1U1, #12, 27-044-1U2, 27-044-1U3
+
+
+[OBJECT]
+Name = 物產-03蝴蝶草(橘)
+Sequence = 60085
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-045-1U1, #12, 27-045-1U2, 27-045-1U3
+
+
+[OBJECT]
+Name = 物產-04小型獸穴(棕)
+Sequence = 60086
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-046-1U1, #12, 27-046-1U2, 27-046-1U3
+
+
+[OBJECT]
+Name = 物產-04中型獸穴(棕)
+Sequence = 60087
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-047-1U1, #12, 27-047-1U2, 27-047-1U3
+
+
+[OBJECT]
+Name = 物產-04大型獸穴(棕)
+Sequence = 60088
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-048-1U1, #12, 27-048-1U2, 27-048-1U3, 27-048-1U4, 27-048-1U5, 27-048-1U6
+
+
+[OBJECT]
+Name = 物產-淺褐綿羊01
+Sequence = 60089
+MaskBias = 0xfe0705, 0xffdf, 160
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-037-4U1, #16, 27-037-4U2, 27-037-4U3
+
+
+[OBJECT]
+Name = 物產-淺褐綿羊02
+Sequence = 60090
+MaskBias = 0xfe0705, 0xffdf, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-037-2U1, #16, 27-037-2U2, 27-037-2U3
+
+
+[OBJECT]
+Name = 物產-淺褐綿羊03
+Sequence = 60091
+MaskBias = 0xfe0705, 0xffdf, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-037-5U1, #16, 27-037-5U2, 27-037-5U3
+
+
+[OBJECT]
+Name = 藍色寶箱
+Sequence = 60092
+BaseBias = 0xff0020, 0x836a, 160
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1, SP_ATTRIB_BIAS
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-101-1U0, SCROVER
+
+
+[OBJECT]
+Name = 書本
+Sequence = 60093
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-058-1U0, SCROVER
+
+
+[OBJECT]
+Name = 火盆
+Sequence = 60094
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-053-1U0, SCROVER
+
+
+[OBJECT]
+Name = 骷髏堆
+Sequence = 60095
+BaseBias = 0x23f, 0xef5c, 130
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1, SP_ATTRIB_BIAS
+Process = SERV_CLASS_STATIC
+Directory = \stage\23
+Sprite = Wait, 23-010-4U0, SCROVER
+
+
+[OBJECT]
+Name = 機械碎片
+Sequence = 60096
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1, SP_ATTRIB_BIAS
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-144-9U0, SCROVER
+
+
+[OBJECT]
+Name = 墓碑
+Sequence = 60097
+BaseBias = 0x3a, 0xdeb9, 130
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1, SP_ATTRIB_BIAS
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-012-5U0, SCROVER
+
+
+[OBJECT]
+Name = 骷髏堆
+Sequence = 60098
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\23
+Sprite = Wait, 23-014-4U0, SCROVER
+
+
+[OBJECT]
+Name = 骨頭圖騰
+Sequence = 60099
+BaseBias = 0x90d08, 0x39e9, 149
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1, SP_ATTRIB_BIAS
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-002-3U0, SCROVER
+
+
+[OBJECT]
+Name = 物產-01小型礦(鐵礦)
+Sequence = 60100
+BaseBias = 0x40225, 0x634e, 130
+MaskBias = 0x20e, 0xb488, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-030-1U1, #10, 27-030-1U2, 27-030-1U3, 27-030-1U4
+
+
+[OBJECT]
+Name = 物產-02細斷木(橙)
+Sequence = 60101
+BaseBias = 0x10306, 0x738b, 132
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-034-1U1, #16, 27-034-1U2, 27-034-1U3
+
+
+[OBJECT]
+Name = 物產-03彎彎花(黃)
+Sequence = 60102
+MaskBias = 0x20421, 0x4a76, 10
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-039-1U1, #12, 27-039-1U2, 27-039-1U3
+
+
+[OBJECT]
+Name = 物產-03幸運草(綠)
+Sequence = 60103
+BaseBias = 0xfc0036, 0x1f47, 32
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-043-1U1, #10, 27-043-1U2, 27-043-1U3
+
+
+[OBJECT]
+Name = 物產-04小型獸穴(褐)
+Sequence = 60104
+BaseBias = 0xfbff00, 0xac4a, 2
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-046-1U1, #12, 27-046-1U2, 27-046-1U3
+
+
+[OBJECT]
+Name = 物產-05小海藻(綠)
+Sequence = 60105
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-049-2U1, #20, 27-049-2U2, 27-049-2U3
+
+
+[OBJECT]
+Name = 物產-05中海藻(綠)
+Sequence = 60106
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-049-1U1, #20, 27-049-1U2, 27-049-1U3
+
+
+[OBJECT]
+Name = 物產-05大海藻(綠)
+Sequence = 60107
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-049-3U1, #16, 27-049-3U1, 27-049-3U2, 27-049-3U3, 27-049-3U2
+
+
+[OBJECT]
+Name = 物產-05小海藻(黃)
+Sequence = 60108
+BaseBias = 0xfd0b, 0x4c07, 133
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-049-2U1, #16, 27-049-2U2, 27-049-2U3
+
+
+[OBJECT]
+Name = 物產-01小型礦(晶鋼礦)
+Sequence = 60109
+BaseBias = 0x1003a, 0x52ed, 130
+MaskBias = 0x2080a, 0xac27, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-030-1U1, #10, 27-030-1U2, 27-030-1U3, 27-030-1U4
+
+
+[OBJECT]
+Name = 物產-01小型礦(銅礦)
+Sequence = 60110
+BaseBias = 0x40409, 0x52ed, 130
+MaskBias = 0xfc0625, 0xac27, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-030-1U1, #10, 27-030-1U2, 27-030-1U3, 27-030-1U4
+
+
+[OBJECT]
+Name = 物產-02細斷木(金)
+Sequence = 60111
+BaseBias = 0x20600, 0x8bec, 9
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-034-1U1, #16, 27-034-1U2, 27-034-1U3
+
+
+[OBJECT]
+Name = 物產-02細斷木(紅)
+Sequence = 60112
+BaseBias = 0xff02, 0x9c4d, 132
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-034-1U1, #16, 27-034-1U2, 27-034-1U3
+
+
+[OBJECT]
+Name = 物產-03彎彎花(紫)
+Sequence = 60113
+MaskBias = 0x2040d, 0x52b6, 12
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-039-1U1, #12, 27-039-1U2, 27-039-1U3
+
+
+[OBJECT]
+Name = 物產-03彎彎花(藍)
+Sequence = 60114
+MaskBias = 0x20407, 0x7d5a, 2
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-039-1U1, #12, 27-039-1U2, 27-039-1U3
+
+
+[OBJECT]
+Name = 物產-03幸運草(黃)
+Sequence = 60115
+BaseBias = 0xfc080a, 0x1f47, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-043-1U1, #10, 27-043-1U2, 27-043-1U3
+
+
+[OBJECT]
+Name = 物產-03幸運草(褐)
+Sequence = 60116
+BaseBias = 0xfc0007, 0x1f47, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-043-1U1, #10, 27-043-1U2, 27-043-1U3
+
+
+[OBJECT]
+Name = 物產-04小型獸穴(咖啡)
+Sequence = 60117
+BaseBias = 0xfb0808, 0xac4a, 130
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-046-1U1, #12, 27-046-1U2, 27-046-1U3
+
+
+[OBJECT]
+Name = 物產-04小型獸穴(綠)
+Sequence = 60118
+BaseBias = 0xfb050d, 0xac4a, 130
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-046-1U1, #12, 27-046-1U2, 27-046-1U3
+
+
+[OBJECT]
+Name = 物產-05魚(淺綠)
+Sequence = 60119
+BaseBias = 0x82f, 0x7c12, 130
+MaskBias = 0x3c, 0x7e3b, 2
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-3U1, #8, 27-024-3U2, 27-024-3U3
+
+
+[OBJECT]
+Name = 物產-01中型礦(鐵礦)
+Sequence = 60120
+BaseBias = 0x40225, 0x52ed, 130
+MaskBias = 0x2020e, 0x736a, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-031-1U1, #10, 27-031-1U2, 27-031-1U3, 27-031-1U4
+
+
+[OBJECT]
+Name = 物產-01中型礦(晶鋼礦)
+Sequence = 60121
+BaseBias = 0x1003a, 0x6bb0, 130
+MaskBias = 0x2050a, 0xc4a8, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-031-1U1, #10, 27-031-1U2, 27-031-1U3, 27-031-1U4
+
+
+[OBJECT]
+Name = 物產-01中型礦(銅礦)
+Sequence = 60122
+BaseBias = 0x40409, 0x52cd, 130
+MaskBias = 0x20226, 0x736a, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-031-1U1, #10, 27-031-1U2, 27-031-1U3, 27-031-1U4
+
+
+[OBJECT]
+Name = 物產-02橫斷木(紅)
+Sequence = 60123
+BaseBias = 0xff02, 0x6b29, 132
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-033-1U1, #16, 27-033-1U2, 27-033-1U3
+
+
+[OBJECT]
+Name = 物產-02橫斷木(金)
+Sequence = 60124
+BaseBias = 0x20600, 0x6b2a, 9
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-033-1U1, #16, 27-033-1U2, 27-033-1U3
+
+
+[OBJECT]
+Name = 物產-02橫斷木(橙)
+Sequence = 60125
+BaseBias = 0x10306, 0x736b, 132
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-033-1U1, #16, 27-033-1U2, 27-033-1U3
+
+
+[OBJECT]
+Name = 物產-03喇叭花(黃)
+Sequence = 60126
+MaskBias = 0x407, 0xb266, 10
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-040-1U1, #18, 27-040-1U2, 27-040-1U3
+
+
+[OBJECT]
+Name = 物產-03喇叭花(紫)
+Sequence = 60127
+MaskBias = 0x2e, 0x9a05, 6
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-040-1U1, #18, 27-040-1U2, 27-040-1U3
+
+
+[OBJECT]
+Name = 物產-03喇叭花(藍)
+Sequence = 60128
+MaskBias = 0xfb28, 0x9a05, 5
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-040-1U1, #18, 27-040-1U2, 27-040-1U3
+
+
+[OBJECT]
+Name = 物產-03玉米草(紅)
+Sequence = 60129
+MaskBias = 0xfc3a, 0x9bc6, 10
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-044-1U1, #12, 27-044-1U2, 27-044-1U3
+
+
+[OBJECT]
+Name = 物產-03玉米草(紫)
+Sequence = 60130
+MaskBias = 0xfc28, 0xac67, 9
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-044-1U1, #12, 27-044-1U2, 27-044-1U3
+
+
+[OBJECT]
+Name = 物產-03玉米草(綠)
+Sequence = 60131
+MaskBias = 0xfc0c, 0xacea, 10
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-044-1U1, #12, 27-044-1U2, 27-044-1U3
+
+
+[OBJECT]
+Name = 物產-04中型獸穴(紫)
+Sequence = 60132
+BaseBias = 0xf830, 0xbcec, 130
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-047-1U1, #12, 27-047-1U2, 27-047-1U3
+
+
+[OBJECT]
+Name = 物產-04中型獸穴(綠)
+Sequence = 60133
+BaseBias = 0xfd050d, 0xbccc, 130
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-047-1U1, #12, 27-047-1U2, 27-047-1U3
+
+
+[OBJECT]
+Name = 物產-04中型獸穴(褐)
+Sequence = 60134
+BaseBias = 0xfb0007, 0xbcec, 130
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-047-1U1, #12, 27-047-1U2, 27-047-1U3
+
+
+[OBJECT]
+Name = 物產-05中海藻(黃)
+Sequence = 60135
+BaseBias = 0x20c09, 0x758a, 132
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-049-1U1, #20, 27-049-1U2, 27-049-1U3
+
+
+[OBJECT]
+Name = 物產-05中海藻(褐)
+Sequence = 60136
+BaseBias = 0xff0305, 0x45a8, 138
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-049-1U1, #20, 27-049-1U2, 27-049-1U3
+
+
+[OBJECT]
+Name = 物產-05中海藻(紅)
+Sequence = 60137
+BaseBias = 0x4fd00, 0x758a, 132
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-049-1U1, #20, 27-049-1U2, 27-049-1U3
+
+
+[OBJECT]
+Name = 物產-05魚(深紫)
+Sequence = 60138
+BaseBias = 0xfe08, 0x73f2, 130
+MaskBias = 0x310, 0xae19, 2
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-1U1, #8, 27-024-1U2, 27-024-1U3
+
+
+[OBJECT]
+Name = 物產-05魚(深紫)
+Sequence = 60139
+BaseBias = 0x8, 0x7bf2, 130
+MaskBias = 0x30f, 0x7e3b, 2
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-3U1, #8, 27-024-3U2, 27-024-3U3
+
+
+[OBJECT]
+Name = 物產-05魚(深藍)
+Sequence = 60140
+BaseBias = 0x20008, 0x73f2, 130
+MaskBias = 0x329, 0x44b8, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-1U1, #8, 27-024-1U2, 27-024-1U3
+
+
+[OBJECT]
+Name = 物產-05魚(深藍)
+Sequence = 60141
+BaseBias = 0x20008, 0x7c13, 130
+MaskBias = 0x329, 0x6d59, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-3U1, #8, 27-024-3U2, 27-024-3U3
+
+
+[OBJECT]
+Name = 物產-05魚(淺紫)
+Sequence = 60142
+BaseBias = 0x82f, 0x7c12, 130
+MaskBias = 0x2fc15, 0x3c57, 2
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-1U1, #8, 27-024-1U2, 27-024-1U3
+
+
+[OBJECT]
+Name = 物產-05魚(淺紫)
+Sequence = 60143
+BaseBias = 0x82f, 0x7c12, 130
+MaskBias = 0x2fc15, 0x7e3b, 2
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-3U1, #8, 27-024-3U2, 27-024-3U3
+
+
+[OBJECT]
+Name = 物產-05魚(深綠)
+Sequence = 60144
+BaseBias = 0x82f, 0x7c12, 130
+MaskBias = 0x239, 0x3c57, 32
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-1U1, #8, 27-024-1U2, 27-024-1U3
+
+
+[OBJECT]
+Name = 物產-05魚(深綠)
+Sequence = 60145
+BaseBias = 0x82f, 0x7c12, 130
+MaskBias = 0x239, 0x7e3b, 32
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-3U1, #8, 27-024-3U2, 27-024-3U3
+
+
+[OBJECT]
+Name = 土堆
+Sequence = 60146
+BaseBias = 0xff30, 0x7b89, 130
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1, SP_ATTRIB_BIAS
+Process = SERV_CLASS_STATIC
+Directory = \stage\22
+Sprite = Wait, 22-021-7U0, SCROVER
+
+
+[OBJECT]
+Name = 裁縫-紡紗輪02-鐵輪
+Sequence = 60147
+BaseBias = 0xfef620, 0xac0b, 2
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_BIAS
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-008-4U0, SCROVER
+
+
+[OBJECT]
+Name = 裁縫-織布機01-鐵輪
+Sequence = 60148
+BaseBias = 0xfef620, 0xa3aa, 2
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_BIAS
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-009-1U0, SCROVER
+
+
+[OBJECT]
+Name = 神秘雕像
+Sequence = 60149
+BaseBias = 0xff1f, 0xef7b, 136
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1, SP_ATTRIB_BIAS
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-003-1U0, SCROVER
+
+
+[OBJECT]
+Name = 枯黃的花朵
+Sequence = 60150
+BaseBias = 0xfb0909, 0x4be6, 146
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1, SP_ATTRIB_BIAS
+Process = SERV_CLASS_STATIC
+Directory = \stage\21
+Sprite = Wait, 21-032-1U0, SCROVER
+
+
+[OBJECT]
+Name = 損壞的圖騰
+Sequence = 60151
+BaseBias = 0x38, 0x63d0, 130
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1, SP_ATTRIB_BIAS
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-022-1U0, SCROVER
+
+
+[OBJECT]
+Name = 書櫃
+Sequence = 60152
+BaseBias = 0x38, 0x63d0, 130
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1, SP_ATTRIB_BIAS
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-092-1U0, SCROVER
+
+
+[OBJECT]
+Name = 寶箱
+Sequence = 60153
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_TREASUREOBJ
+Directory = \stage\27
+Sprite = Wait, w062_01, SCROVER
+Sprite = Dead, w062_02, SCROVER
+
+
+[OBJECT]
+Name = 石板墓碑
+Sequence = 60154
+BaseBias = 0x38, 0x63d0, 130
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1, SP_ATTRIB_BIAS
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-011-5U0, SCROVER
+
+
+[OBJECT]
+Name = 阿斯莫德傳點
+Sequence = 60155
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-031-1U0, SCROVER
+
+
+[OBJECT]
+Name = 祭壇
+Sequence = 60156
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-069-1U0, SCROVER
+
+
+[OBJECT]
+Name = 地板專用
+Sequence = 60157
+Space = 30, 30, 30
+BaseBias = 0x35, 0x744, 2
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_HITTEST, SP_ATTRIB_BIAS
+Process = SERV_CLASS_STATIC
+Sprite = Wait, ptag2, SCROVER
+
+
+[OBJECT]
+Name = 物產-01大型礦(銅礦)
+Sequence = 60158
+BaseBias = 0x40409, 0x4a6b, 130
+MaskBias = 0x10126, 0xcce6, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-032-1U1, #10, 27-032-1U2, 27-032-1U3, 27-032-1U4
+
+
+[OBJECT]
+Name = 物產-01大型礦(鐵礦)
+Sequence = 60159
+BaseBias = 0x40225, 0x52cd, 130
+MaskBias = 0xfc020f, 0xe5c7, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-032-1U1, #10, 27-032-1U2, 27-032-1U3, 27-032-1U4
+
+
+[OBJECT]
+Name = 物產-01大型礦(晶鋼礦)
+Sequence = 60160
+BaseBias = 0x1003a, 0x52ac, 130
+MaskBias = 0xa, 0xf5c6, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-032-1U1, #10, 27-032-1U2, 27-032-1U3, 27-032-1U4
+
+
+[OBJECT]
+Name = 物產-01大型礦(黑曜岩礦)
+Sequence = 60161
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-032-1U1, #10, 27-032-1U2, 27-032-1U3, 27-032-1U4
+
+
+[OBJECT]
+Name = 物產-01小型礦(黑曜岩礦)
+Sequence = 60162
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-030-1U1, #10, 27-030-1U2, 27-030-1U3, 27-030-1U4
+
+
+[OBJECT]
+Name = 物產-01中型礦(黑曜岩礦)
+Sequence = 60163
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-031-1U1, #10, 27-031-1U2, 27-031-1U3, 27-031-1U4
+
+
+[OBJECT]
+Name = 物產-01中型礦(幻銀礦)
+Sequence = 60164
+BaseBias = 0x6ff20, 0x52ed, 131
+MaskBias = 0x70023, 0x736a, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-031-1U1, #10, 27-031-1U2, 27-031-1U3, 27-031-1U4
+
+
+[OBJECT]
+Name = 物產-01小型礦(幻銀礦)
+Sequence = 60165
+BaseBias = 0x6ff20, 0x634e, 131
+MaskBias = 0x30023, 0xb488, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-030-1U1, #10, 27-030-1U2, 27-030-1U3, 27-030-1U4
+
+
+[OBJECT]
+Name = 物產-01大型礦(幻銀礦)
+Sequence = 60166
+BaseBias = 0x6ff20, 0x52ac, 131
+MaskBias = 0xff0022, 0xf5c6, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-032-1U1, #10, 27-032-1U2, 27-032-1U3, 27-032-1U4
+
+
+[OBJECT]
+Name = 物產-05大海藻(紅)
+Sequence = 60167
+BaseBias = 0x2fb00, 0x4de8, 132
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-049-3U1, #16, 27-049-3U1, 27-049-3U2, 27-049-3U3, 27-049-3U2
+
+
+[OBJECT]
+Name = 物產-04小型獸穴(黃)
+Sequence = 60168
+BaseBias = 0xfd000a, 0xac6a, 130
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-046-1U1, #12, 27-046-1U2, 27-046-1U3
+
+
+[OBJECT]
+Name = 物產-04大型獸穴(綠)
+Sequence = 60169
+BaseBias = 0xfe030d, 0xbd0d, 133
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-048-1U1, #12, 27-048-1U2, 27-048-1U3, 27-048-1U4, 27-048-1U5, 27-048-1U6
+
+
+[OBJECT]
+Name = 物產-04大型獸穴(暗紅)
+Sequence = 60170
+BaseBias = 0xff0003, 0xc52d, 133
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-048-1U1, #12, 27-048-1U2, 27-048-1U3, 27-048-1U4, 27-048-1U5, 27-048-1U6
+
+
+[OBJECT]
+Name = 物產-04大型獸穴(褐)
+Sequence = 60171
+BaseBias = 0xfe0206, 0xc52d, 138
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-048-1U1, #12, 27-048-1U2, 27-048-1U3, 27-048-1U4, 27-048-1U5, 27-048-1U6
+
+
+[OBJECT]
+Name = 物產-04大型獸穴(黃)
+Sequence = 60172
+BaseBias = 0xfe000a, 0xbced, 133
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-048-1U1, #12, 27-048-1U2, 27-048-1U3, 27-048-1U4, 27-048-1U5, 27-048-1U6
+
+
+[OBJECT]
+Name = 物產-04大型獸穴(灰)
+Sequence = 60173
+BaseBias = 0xfef50f, 0xc52d, 130
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-048-1U1, #12, 27-048-1U2, 27-048-1U3, 27-048-1U4, 27-048-1U5, 27-048-1U6
+
+
+[OBJECT]
+Name = 物產-04小型獸穴(暗紅)
+Sequence = 60174
+BaseBias = 0xfb0004, 0xac4a, 130
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-046-1U1, #12, 27-046-1U2, 27-046-1U3
+
+
+[OBJECT]
+Name = 物產-04中型獸穴(藍)
+Sequence = 60175
+BaseBias = 0xf825, 0xbcec, 130
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-047-1U1, #12, 27-047-1U2, 27-047-1U3
+
+
+[OBJECT]
+Name = 物產-02粗斷木(紅)
+Sequence = 60176
+BaseBias = 0xff02, 0x5287, 132
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-035-1U1, #16, 27-035-1U2, 27-035-1U3
+
+
+[OBJECT]
+Name = 物產-02粗斷木(金)
+Sequence = 60177
+BaseBias = 0x20600, 0x5287, 9
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-035-1U1, #16, 27-035-1U2, 27-035-1U3
+
+
+[OBJECT]
+Name = 物產-02粗斷木(橙)
+Sequence = 60178
+BaseBias = 0x10306, 0xacad, 132
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-035-1U1, #16, 27-035-1U2, 27-035-1U3
+
+
+[OBJECT]
+Name = 物產-02粗斷木(白)
+Sequence = 60179
+BaseBias = 0x1f808, 0xa48d, 133
+MaskBias = 0xff00, 0x0, 0
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-035-1U1, #16, 27-035-1U2, 27-035-1U3
+
+
+[OBJECT]
+Name = 物產-02粗斷木(綠)
+Sequence = 60180
+BaseBias = 0xe, 0xa48d, 133
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-035-1U1, #16, 27-035-1U2, 27-035-1U3
+
+
+[OBJECT]
+Name = 物產-02細斷木(綠)
+Sequence = 60181
+BaseBias = 0xe, 0x732a, 133
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-034-1U1, #16, 27-034-1U2, 27-034-1U3
+
+
+[OBJECT]
+Name = 物產-02細斷木(白)
+Sequence = 60182
+BaseBias = 0x1f808, 0xaccf, 133
+MaskBias = 0xff00, 0x0, 0
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-034-1U1, #16, 27-034-1U2, 27-034-1U3
+
+
+[OBJECT]
+Name = 物產-02橫斷木(白)
+Sequence = 60183
+BaseBias = 0x1f808, 0x73ac, 133
+MaskBias = 0xff00, 0x0, 0
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-033-1U1, #16, 27-033-1U2, 27-033-1U3
+
+
+[OBJECT]
+Name = 物產-05魚(深藍)
+Sequence = 60184
+BaseBias = 0x8, 0x8cb4, 130
+MaskBias = 0x329, 0x4498, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-4U1, #8, 27-024-4U2, 27-024-4U3
+
+
+[OBJECT]
+Name = 物產-02橫斷木(綠)
+Sequence = 60185
+BaseBias = 0xe, 0x6309, 133
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-033-1U1, #16, 27-033-1U2, 27-033-1U3
+
+
+[OBJECT]
+Name = 物產-05魚(深藍)
+Sequence = 60186
+BaseBias = 0x8, 0x7c33, 130
+MaskBias = 0x329, 0x4c97, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-2U1, #8, 27-024-2U2, 27-024-2U3
+
+
+[OBJECT]
+Name = 物產-05魚(深綠)
+Sequence = 60187
+BaseBias = 0x82f, 0x8cb4, 130
+MaskBias = 0x239, 0x4498, 32
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-4U1, #8, 27-024-4U2, 27-024-4U3
+
+
+[OBJECT]
+Name = 物產-05魚(深綠)
+Sequence = 60188
+BaseBias = 0x82f, 0x7c33, 130
+MaskBias = 0x239, 0x54b7, 32
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-2U1, #8, 27-024-2U2, 27-024-2U3
+
+
+[OBJECT]
+Name = 物產-05魚(黃)
+Sequence = 60189
+BaseBias = 0x82f, 0x7c33, 130
+MaskBias = 0x29, 0x5519, 2
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-2U1, #8, 27-024-2U2, 27-024-2U3
+
+
+[OBJECT]
+Name = 物產-05魚(黃)
+Sequence = 60190
+BaseBias = 0x82f, 0x8494, 130
+MaskBias = 0x29, 0x4498, 2
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-4U1, #8, 27-024-4U2, 27-024-4U3
+
+
+[OBJECT]
+Name = 物產-05魚(紅)
+Sequence = 60191
+MaskBias = 0x50621, 0x5519, 2
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-2U1, #8, 27-024-2U2, 27-024-2U3
+
+
+[OBJECT]
+Name = 物產-05魚(紅)
+Sequence = 60192
+MaskBias = 0x50621, 0x4477, 2
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-4U1, #8, 27-024-4U2, 27-024-4U3
+
+
+[OBJECT]
+Name = 物產-05魚(淺紫)
+Sequence = 60193
+BaseBias = 0x82f, 0x8494, 130
+MaskBias = 0x2fc15, 0x4477, 2
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-4U1, #8, 27-024-4U2, 27-024-4U3
+
+
+[OBJECT]
+Name = 物產-05魚(淺紫)
+Sequence = 60194
+BaseBias = 0x82f, 0x7c33, 130
+MaskBias = 0x2fc15, 0x6d9a, 2
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-2U1, #8, 27-024-2U2, 27-024-2U3
+
+
+[OBJECT]
+Name = 物產-05魚(淺綠)
+Sequence = 60195
+BaseBias = 0x82f, 0x73f2, 130
+MaskBias = 0x3c, 0x76bc, 2
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-1U1, #8, 27-024-1U2, 27-024-1U3
+
+
+[OBJECT]
+Name = 物產-05魚(淺綠)
+Sequence = 60196
+BaseBias = 0x82f, 0x8494, 130
+MaskBias = 0x3c, 0x54f9, 2
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-4U1, #8, 27-024-4U2, 27-024-4U3
+
+
+[OBJECT]
+Name = 物產-05魚(淺綠)
+Sequence = 60197
+BaseBias = 0x82f, 0x7c33, 130
+MaskBias = 0x3c, 0x54b7, 2
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-2U1, #8, 27-024-2U2, 27-024-2U3
+
+
+[OBJECT]
+Name = 物產-05魚(深紫)
+Sequence = 60198
+BaseBias = 0x8, 0x7c33, 130
+MaskBias = 0x30f, 0x5519, 2
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-2U1, #8, 27-024-2U2, 27-024-2U3
+
+
+[OBJECT]
+Name = 物產-05魚(深紫)
+Sequence = 60199
+BaseBias = 0x8, 0x8494, 130
+MaskBias = 0x30f, 0x4477, 2
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS, SP_ATTRIB_MIXER
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-024-4U1, #8, 27-024-4U2, 27-024-4U3
+
+
+[OBJECT]
+Name = 物產-02粗斷木(土)
+Sequence = 60200
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-035-1U1, #16, 27-035-1U2, 27-035-1U3
+
+
+[OBJECT]
+Name = 物產-02橫斷木(土)
+Sequence = 60201
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-033-1U1, #16, 27-033-1U2, 27-033-1U3
+
+
+[OBJECT]
+Name = 物產-04小型獸穴(白)
+Sequence = 60202
+BaseBias = 0x2f50f, 0xac4a, 130
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-046-1U1, #12, 27-046-1U2, 27-046-1U3
+
+
+[OBJECT]
+Name = 物產-04小型獸穴(粉紅)
+Sequence = 60203
+BaseBias = 0x2fd03, 0xac4a, 130
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-046-1U1, #12, 27-046-1U2, 27-046-1U3
+
+
+[OBJECT]
+Name = 物產-04大型獸穴(白)
+Sequence = 60204
+BaseBias = 0x2f40f, 0xc52d, 133
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-048-1U1, #12, 27-048-1U2, 27-048-1U3, 27-048-1U4, 27-048-1U5, 27-048-1U6
+
+
+[OBJECT]
+Name = 物產-04中型獸穴(粉紅)
+Sequence = 60205
+BaseBias = 0x2fd03, 0xbcec, 130
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-047-1U1, #12, 27-047-1U2, 27-047-1U3
+
+
+[OBJECT]
+Name = 物產-04大型獸穴(咖啡)
+Sequence = 60206
+BaseBias = 0x408, 0xc52d, 133
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-048-1U1, #12, 27-048-1U2, 27-048-1U3, 27-048-1U4, 27-048-1U5, 27-048-1U6
+
+
+[OBJECT]
+Name = 物產-04中型獸穴(暗紅)
+Sequence = 60207
+BaseBias = 0xfb0004, 0xc56e, 130
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-047-1U1, #12, 27-047-1U2, 27-047-1U3
+
+
+[OBJECT]
+Name = 物產-04中型獸穴(黃)
+Sequence = 60208
+BaseBias = 0xfd000a, 0x0, 130
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-047-1U1, #12, 27-047-1U2, 27-047-1U3
+
+
+[OBJECT]
+Name = 物產-05大海藻(褐)
+Sequence = 60209
+BaseBias = 0x1fc05, 0x5627, 138
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-049-3U1, #16, 27-049-3U1, 27-049-3U2, 27-049-3U3, 27-049-3U2
+
+
+[OBJECT]
+Name = 物產-05大海藻(黃)
+Sequence = 60210
+BaseBias = 0xfd0b, 0x4d27, 133
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-049-3U1, #16, 27-049-3U1, 27-049-3U2, 27-049-3U3, 27-049-3U2
+
+
+[OBJECT]
+Name = 物產-05小海藻(紅)
+Sequence = 60211
+BaseBias = 0x4fd00, 0x4c07, 132
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-049-2U1, #16, 27-049-2U2, 27-049-2U3
+
+
+[OBJECT]
+Name = 物產-05小海藻(藍綠)
+Sequence = 60212
+BaseBias = 0x2001e, 0x658b, 138
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-049-2U1, #16, 27-049-2U2, 27-049-2U3
+
+
+[OBJECT]
+Name = 物產-05大海藻(藍綠)
+Sequence = 60213
+BaseBias = 0x2001e, 0x5e27, 138
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-049-3U1, #16, 27-049-3U1, 27-049-3U2, 27-049-3U3, 27-049-3U2
+
+
+[OBJECT]
+Name = 物產-05大海藻(藍)
+Sequence = 60214
+BaseBias = 0x2fe26, 0x568a, 138
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-049-3U1, #16, 27-049-3U1, 27-049-3U2, 27-049-3U3, 27-049-3U2
+
+
+[OBJECT]
+Name = 物產-05小海藻(藍)
+Sequence = 60215
+BaseBias = 0x2fe26, 0x3c06, 138
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-049-2U1, #16, 27-049-2U2, 27-049-2U3
+
+
+[OBJECT]
+Name = 物產-05中海藻(藍綠)
+Sequence = 60216
+BaseBias = 0x2001e, 0x45a8, 138
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-049-1U1, #20, 27-049-1U2, 27-049-1U3
+
+
+[OBJECT]
+Name = 物產-05中海藻(藍)
+Sequence = 60217
+BaseBias = 0x2fe26, 0x45a8, 138
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-049-1U1, #20, 27-049-1U2, 27-049-1U3
+
+
+[OBJECT]
+Name = 物產-03蓮霧花(黃)
+Sequence = 60218
+MaskBias = 0x20407, 0xfcab, 10
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-041-1U1, #16, 27-041-1U2, 27-041-1U3
+
+
+[OBJECT]
+Name = 物產-03蓮霧花(橘)
+Sequence = 60219
+MaskBias = 0x20004, 0xfd0b, 10
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-041-1U1, #16, 27-041-1U2, 27-041-1U3
+
+
+[OBJECT]
+Name = 物產-03蓮霧花(藍)
+Sequence = 60220
+MaskBias = 0xfe24, 0x91e5, 138
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-041-1U1, #16, 27-041-1U2, 27-041-1U3
+
+
+[OBJECT]
+Name = 物產-03喇叭花(橘)
+Sequence = 60221
+MaskBias = 0x20004, 0xdb07, 10
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-040-1U1, #18, 27-040-1U2, 27-040-1U3
+
+
+[OBJECT]
+Name = 物產-03彎彎花(橘)
+Sequence = 60222
+MaskBias = 0x2041e, 0x7d5a, 8
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-039-1U1, #12, 27-039-1U2, 27-039-1U3
+
+
+[OBJECT]
+Name = 物產-03蓮霧花(白)
+Sequence = 60223
+MaskBias = 0xec21, 0xca65, 248
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-041-1U1, #16, 27-041-1U2, 27-041-1U3
+
+
+[OBJECT]
+Name = 物產-03喇叭花(白)
+Sequence = 60224
+MaskBias = 0xec11, 0xdb48, 148
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-040-1U1, #18, 27-040-1U2, 27-040-1U3
+
+
+[OBJECT]
+Name = 物產-03彎彎花(白)
+Sequence = 60225
+MaskBias = 0xec21, 0x7d5a, 20
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-039-1U1, #12, 27-039-1U2, 27-039-1U3
+
+
+[OBJECT]
+Name = 物產-03蝴蝶草(黃)
+Sequence = 60226
+MaskBias = 0x80a, 0xc304, 130
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-045-1U1, #12, 27-045-1U2, 27-045-1U3
+
+
+[OBJECT]
+Name = 物產-03蝴蝶草(紫)
+Sequence = 60227
+MaskBias = 0x834, 0xcb45, 130
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-045-1U1, #12, 27-045-1U2, 27-045-1U3
+
+
+[OBJECT]
+Name = 物產-03蝴蝶草(紅)
+Sequence = 60228
+MaskBias = 0x802, 0xc304, 130
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-045-1U1, #12, 27-045-1U2, 27-045-1U3
+
+
+[OBJECT]
+Name = 物產-03蝴蝶草(藍)
+Sequence = 60229
+MaskBias = 0x821, 0xcb45, 130
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-045-1U1, #12, 27-045-1U2, 27-045-1U3
+
+
+[OBJECT]
+Name = 物產-03蝴蝶草(綠)
+Sequence = 60230
+MaskBias = 0x10010, 0xcb45, 130
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-045-1U1, #12, 27-045-1U2, 27-045-1U3
+
+
+[OBJECT]
+Name = 物產-03玉米草(藍)
+Sequence = 60231
+MaskBias = 0xfc20, 0x9c27, 138
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-044-1U1, #12, 27-044-1U2, 27-044-1U3
+
+
+[OBJECT]
+Name = 物產-03玉米草(橘)
+Sequence = 60232
+MaskBias = 0xfd05, 0x9c27, 138
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-044-1U1, #12, 27-044-1U2, 27-044-1U3
+
+
+[OBJECT]
+Name = 物產-03幸運草(藍)
+Sequence = 60233
+BaseBias = 0x1f, 0x1669, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-043-1U1, #10, 27-043-1U2, 27-043-1U3
+
+
+[OBJECT]
+Name = 物產-03幸運草(白)
+Sequence = 60234
+BaseBias = 0x3e234, 0x166a, 138
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-043-1U1, #10, 27-043-1U2, 27-043-1U3
+
+
+[OBJECT]
+Name = 物產-02細斷木(土)
+Sequence = 60235
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-034-1U1, #16, 27-034-1U2, 27-034-1U3
+
+
+[OBJECT]
+Name = 防禦塔地基
+Sequence = 60236
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_TOWERBASEOBJ
+Directory = \stage\24
+Sprite = Wait, 24-156-1U0, SCROVER
+
+
+[OBJECT]
+Name = 聖光圖騰
+Sequence = 60237
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_TOTEMOBJ
+Directory = \stage\24
+Sprite = Wait, 24-106-1U0, SCROVER
+
+
+[OBJECT]
+Name = 和風圖騰
+Sequence = 60238
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_TOTEMOBJ
+Directory = \stage\24
+Sprite = Wait, 24-108-1U0, SCROVER
+
+
+[OBJECT]
+Name = 鐵輪圖騰
+Sequence = 60239
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_TOTEMOBJ
+Directory = \stage\24
+Sprite = Wait, 24-107-1U0, SCROVER
+
+
+[OBJECT]
+Name = 永夜圖騰
+Sequence = 60240
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_TOTEMOBJ
+Directory = \stage\24
+Sprite = Wait, 24-105-1U0, SCROVER
+
+
+[OBJECT]
+Name = 隱形NPC
+Sequence = 60241
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_NPCOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-038-2U1, #12
+
+
+[OBJECT]
+Name = 物產-03蝴蝶草(黃)
+Sequence = 60242
+BaseBias = 0xb0427, 0x14a3, 160
+MaskBias = 0x40607, 0xc304, 130
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-045-1U1, #12, 27-045-1U2, 27-045-1U3
+
+
+[OBJECT]
+Name = 物產-01中型礦(PVP前哨戰用)
+Sequence = 60243
+BaseBias = 0xfe0831, 0x52cd, 160
+MaskBias = 0x3041c, 0xb467, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-031-1U1, #10, 27-031-1U2, 27-031-1U3, 27-031-1U4
+
+
+[OBJECT]
+Name = 靜態-測試書櫃
+Sequence = 60244
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-092-1U0, SCROVER
+
+
+[OBJECT]
+Name = 靜態-公佈欄1
+Sequence = 60245
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-015-4U0, SCROVER
+
+
+[OBJECT]
+Name = 物產-01大型礦(黑銀礦)
+Sequence = 60246
+BaseBias = 0xf8e30e, 0x52ac, 160
+MaskBias = 0xf8e905, 0xf5c6, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-032-1U1, #10, 27-032-1U2, 27-032-1U3, 27-032-1U4
+
+
+[OBJECT]
+Name = 物產-01小型礦(黑銀礦)
+Sequence = 60247
+BaseBias = 0xf8e30e, 0x634e, 160
+MaskBias = 0xf8e905, 0xb488, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-030-1U1, #10, 27-030-1U2, 27-030-1U3, 27-030-1U4
+
+
+[OBJECT]
+Name = 物產-01中型礦(黑銀礦)
+Sequence = 60248
+BaseBias = 0xf8e30e, 0x52ed, 160
+MaskBias = 0xf8e905, 0x736a, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-031-1U1, #10, 27-031-1U2, 27-031-1U3, 27-031-1U4
+
+
+[OBJECT]
+Name = 物產-01大型礦(黃金礦)
+Sequence = 60249
+BaseBias = 0x61209, 0x0, 160
+MaskBias = 0xff000b, 0xf5c6, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-032-1U1, #10, 27-032-1U2, 27-032-1U3, 27-032-1U4
+
+
+[OBJECT]
+Name = 物產-01小型礦(黃金礦)
+Sequence = 60250
+BaseBias = 0x61209, 0x634e, 160
+MaskBias = 0xff000b, 0xb488, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-030-1U1, #10, 27-030-1U2, 27-030-1U3, 27-030-1U4
+
+
+[OBJECT]
+Name = 物產-01中型礦(黃金礦)
+Sequence = 60251
+BaseBias = 0x61209, 0x52ed, 160
+MaskBias = 0xff000b, 0x736a, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-031-1U1, #10, 27-031-1U2, 27-031-1U3, 27-031-1U4
+
+
+[OBJECT]
+Name = 物產-02粗斷木(黑紅)
+Sequence = 60252
+BaseBias = 0xfb0600, 0x5287, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-035-1U1, #16, 27-035-1U2, 27-035-1U3
+
+
+[OBJECT]
+Name = 物產-02細斷木(黑紅)
+Sequence = 60253
+BaseBias = 0xfb0600, 0x9c4d, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-034-1U1, #16, 27-034-1U2, 27-034-1U3
+
+
+[OBJECT]
+Name = 物產-02橫斷木(黑紅)
+Sequence = 60254
+BaseBias = 0xfb0600, 0x6b29, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-033-1U1, #16, 27-033-1U2, 27-033-1U3
+
+
+[OBJECT]
+Name = 物產-02粗斷木(銀)
+Sequence = 60255
+BaseBias = 0x8f708, 0xa48d, 160
+MaskBias = 0xff00, 0x0, 0
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-035-1U1, #16, 27-035-1U2, 27-035-1U3
+
+
+[OBJECT]
+Name = 物產-02細斷木(銀)
+Sequence = 60256
+BaseBias = 0x8f708, 0xaccf, 160
+MaskBias = 0xff00, 0x0, 0
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-034-1U1, #16, 27-034-1U2, 27-034-1U3
+
+
+[OBJECT]
+Name = 物產-02橫斷木(銀)
+Sequence = 60257
+BaseBias = 0x8f708, 0x0, 160
+MaskBias = 0xff00, 0x0, 0
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-033-1U1, #16, 27-033-1U2, 27-033-1U3
+
+
+[OBJECT]
+Name = 物產-03蓮霧花(黑紅)
+Sequence = 60258
+BaseBias = 0xf7e400, 0x0, 160
+MaskBias = 0xfd1c01, 0x0, 2
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-041-1U1, #16, 27-041-1U2, 27-041-1U3
+
+
+[OBJECT]
+Name = 物產-03蝴蝶草(粉紅)
+Sequence = 60259
+BaseBias = 0x4f700, 0x0, 160
+MaskBias = 0x15f401, 0xc304, 130
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-045-1U1, #12, 27-045-1U2, 27-045-1U3
+
+
+[OBJECT]
+Name = 物產-04小型獸穴(藍綠)
+Sequence = 60260
+BaseBias = 0xf60d20, 0xac4a, 160
+MaskBias = 0xfff601, 0x0, 32
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-046-1U1, #12, 27-046-1U2, 27-046-1U3
+
+
+[OBJECT]
+Name = 物產-04中型獸穴(藍綠)
+Sequence = 60261
+BaseBias = 0xf60d20, 0xc56e, 160
+MaskBias = 0xfff601, 0x0, 32
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-047-1U1, #12, 27-047-1U2, 27-047-1U3
+
+
+[OBJECT]
+Name = 物產-04大型獸穴(藍綠)
+Sequence = 60262
+BaseBias = 0xfcff20, 0x0, 160
+MaskBias = 0xfff601, 0x0, 32
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-048-1U1, #12, 27-048-1U2, 27-048-1U3, 27-048-1U4, 27-048-1U5, 27-048-1U6
+
+
+[OBJECT]
+Name = 物產-04中型獸穴(灰銀)
+Sequence = 60263
+BaseBias = 0xf8e603, 0xbcec, 160
+MaskBias = 0x3073e, 0x0, 32
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-047-1U1, #12, 27-047-1U2, 27-047-1U3
+
+
+[OBJECT]
+Name = 物產-04小型獸穴(灰銀)
+Sequence = 60264
+BaseBias = 0xf8e603, 0xac4a, 160
+MaskBias = 0x3073e, 0x0, 32
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-046-1U1, #12, 27-046-1U2, 27-046-1U3
+
+
+[OBJECT]
+Name = 物產-04大型獸穴(灰銀)
+Sequence = 60265
+BaseBias = 0xf8e603, 0x0, 160
+MaskBias = 0x4073e, 0x0, 32
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-048-1U1, #12, 27-048-1U2, 27-048-1U3, 27-048-1U4, 27-048-1U5, 27-048-1U6
+
+
+[OBJECT]
+Name = 物產-05大海藻(灰)
+Sequence = 60266
+BaseBias = 0xf7f305, 0x5627, 138
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-049-3U1, #16, 27-049-3U1, 27-049-3U2, 27-049-3U3, 27-049-3U2
+
+
+[OBJECT]
+Name = 物產-05中海藻(灰)
+Sequence = 60267
+BaseBias = 0xf7f305, 0x4ce6, 138
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-049-1U1, #20, 27-049-1U2, 27-049-1U3
+
+
+[OBJECT]
+Name = 物產-05小海藻(灰)
+Sequence = 60268
+BaseBias = 0xf7f305, 0x658b, 138
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-049-2U1, #16, 27-049-2U2, 27-049-2U3
+
+
+[OBJECT]
+Name = 物產-05大海藻(橘黃)
+Sequence = 60269
+BaseBias = 0xff0b06, 0x5627, 138
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-049-3U1, #16, 27-049-3U1, 27-049-3U2, 27-049-3U3, 27-049-3U2
+
+
+[OBJECT]
+Name = 物產-05小海藻(橘黃)
+Sequence = 60270
+BaseBias = 0xff0b06, 0x658b, 138
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-049-2U1, #16, 27-049-2U2, 27-049-2U3
+
+
+[OBJECT]
+Name = 物產-05中海藻(橘黃)
+Sequence = 60271
+BaseBias = 0xff0b06, 0x4ce6, 138
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-049-1U1, #20, 27-049-1U2, 27-049-1U3
+
+
+[OBJECT]
+Name = 靜態-資料片門01關
+Sequence = 60272
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-035-1U0, SCROVER
+
+
+[OBJECT]
+Name = 靜態-資料片門01開
+Sequence = 60273
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-035-2U0, SCROVER
+
+
+[OBJECT]
+Name = 靜態-資料片門02關
+Sequence = 60274
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-035-3U0, SCROVER
+
+
+[OBJECT]
+Name = 靜態-資料片門02開
+Sequence = 60275
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-035-4U0, SCROVER
+
+
+[OBJECT]
+Name = 靜態-資料片門03關
+Sequence = 60276
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-035-5U0, SCROVER
+
+
+[OBJECT]
+Name = 靜態-資料片門03開
+Sequence = 60277
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-035-6U0, SCROVER
+
+
+[OBJECT]
+Name = 靜態-資料片門04關
+Sequence = 60278
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-035-7U0, SCROVER
+
+
+[OBJECT]
+Name = 靜態-資料片門04開
+Sequence = 60279
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-035-8U0, SCROVER
+
+
+[OBJECT]
+Name = 靜態-資料片門05關
+Sequence = 60280
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-035-9U0, SCROVER
+
+
+[OBJECT]
+Name = 靜態-資料片門05開
+Sequence = 60281
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-035-AU0, SCROVER
+
+
+[OBJECT]
+Name = 靜態-資料片門06關
+Sequence = 60282
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-037-2U0, SCROVER
+
+
+[OBJECT]
+Name = 靜態-資料片門06開
+Sequence = 60283
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-037-1U0, SCROVER
+
+
+[OBJECT]
+Name = 鏡射巨門-迷宮門灰關
+Sequence = 60284
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-038-1U0, SCROVER
+
+
+[OBJECT]
+Name = 鏡射巨門-迷宮門灰開
+Sequence = 60285
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1, SP_ATTRIB_ZBUFFER2
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-038-2U0, SCROVER
+
+
+[OBJECT]
+Name = 鏡射巨門-迷宮門紅關
+Sequence = 60286
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-038-3U0, SCROVER
+
+
+[OBJECT]
+Name = 鏡射巨門-迷宮門紅開
+Sequence = 60287
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1, SP_ATTRIB_ZBUFFER2
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-038-4U0, SCROVER
+
+
+[OBJECT]
+Name = 鏡射巨門-迷宮門綠關
+Sequence = 60288
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-038-5U0, SCROVER
+
+
+[OBJECT]
+Name = 鏡射巨門-迷宮門綠開
+Sequence = 60289
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1, SP_ATTRIB_ZBUFFER2
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-038-6U0, SCROVER
+
+
+[OBJECT]
+Name = 鏡射巨門-迷宮門黃關
+Sequence = 60290
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-038-7U0, SCROVER
+
+
+[OBJECT]
+Name = 鏡射巨門-迷宮門黃開
+Sequence = 60291
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1, SP_ATTRIB_ZBUFFER2
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-038-8U0, SCROVER
+
+
+[OBJECT]
+Name = 鏡射巨門-迷宮門藍關
+Sequence = 60292
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-038-9U0, SCROVER
+
+
+[OBJECT]
+Name = 鏡射巨門-迷宮門藍開
+Sequence = 60293
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1, SP_ATTRIB_ZBUFFER2
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-038-AU0, SCROVER
+
+
+[OBJECT]
+Name = 鏡射巨門-迷宮門門框
+Sequence = 60294
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-038-BU0, SCROVER
+
+
+[OBJECT]
+Name = 鏡射巨門-惡魔門開
+Sequence = 60295
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-038-CU0, SCROVER
+
+
+[OBJECT]
+Name = 鏡射巨門-惡魔門關
+Sequence = 60296
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-038-DU0, SCROVER
+
+
+[OBJECT]
+Name = 鏡射巨門-石門開
+Sequence = 60297
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-038-EU0, SCROVER
+
+
+[OBJECT]
+Name = 鏡射巨門-石門關
+Sequence = 60298
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-038-FU0, SCROVER
+
+
+[OBJECT]
+Name = 門開關火炬
+Sequence = 60299
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-052-2U0, SCROVER
+
+
+[OBJECT]
+Name = 小迷宮門開關
+Sequence = 60300
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-094-3U0, SCROVER
+
+
+[OBJECT]
+Name = 門開關火不給點
+Sequence = 60301
+Process = SERV_CLASS_STATIC
+Sprite = Wait, nullshp, SCROVER
+
+
+[OBJECT]
+Name = 副本2小火黃色
+Sequence = 60302
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST
+Process = SERV_CLASS_STATIC
+Directory = \stage\27\015
+Sprite = Wait, #3, 15c1001, #8, 15c1002, 15c1003, 15c1004, 15c1005, 15c1006, 15c1007, 15c1008
+
+
+[OBJECT]
+Name = 牽制封印
+Sequence = 60303
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-163-1U0, SCROVER
+
+
+[OBJECT]
+Name = 宮殿水盆
+Sequence = 60304
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-164-1U0, SCROVER
+
+
+[OBJECT]
+Name = 大型地板點
+Sequence = 60305
+Space = 80, 100, 15
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_HITTEST, SP_ATTRIB_ALPHA
+Process = SERV_CLASS_STATIC
+Directory = \stage\27
+Sprite = Wait, 27-042-1U1, #8
+
+
+[OBJECT]
+Name = 木色寶箱
+Sequence = 60306
+Flags = SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-101-1U0, SCROVER
+
+
+[OBJECT]
+Name = 副本2小藍火（上升）
+Sequence = 60307
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST
+Process = SERV_CLASS_STATIC
+Directory = \stage\27
+Sprite = Wait, #3, 27-053-1U1, #8, 27-053-1U2, 27-053-1U3, 27-053-1U4, 27-053-1U5, 27-053-1U6, 27-053-1U7, 27-053-1U8
+
+
+[OBJECT]
+Name = 副本1用火盆
+Sequence = 60308
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_ZBUFFER1
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-053-1U0, SCROVER
+
+
+[OBJECT]
+Name = 物產-01大型礦(藍隕礦)
+Sequence = 60309
+BaseBias = 0xfb0a23, 0x52ac, 160
+MaskBias = 0xfbf623, 0xf5c6, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-032-1U1, #10, 27-032-1U2, 27-032-1U3, 27-032-1U4
+
+
+[OBJECT]
+Name = 物產-01中型礦(藍隕礦)
+Sequence = 60310
+BaseBias = 0xfb0a23, 0x52ed, 160
+MaskBias = 0xfbf623, 0x736a, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-031-1U1, #10, 27-031-1U2, 27-031-1U3, 27-031-1U4
+
+
+[OBJECT]
+Name = 物產-01小型礦(藍隕礦)
+Sequence = 60311
+BaseBias = 0xfb0a23, 0x634e, 160
+MaskBias = 0xfbf623, 0xb488, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-030-1U1, #10, 27-030-1U2, 27-030-1U3, 27-030-1U4
+
+
+[OBJECT]
+Name = 物產-01大型礦(紫核礦)
+Sequence = 60312
+BaseBias = 0xfa093f, 0x0, 160
+MaskBias = 0xfaf33b, 0xf5c6, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-032-1U1, #10, 27-032-1U2, 27-032-1U3, 27-032-1U4
+
+
+[OBJECT]
+Name = 物產-01中型礦(紫核礦)
+Sequence = 60313
+BaseBias = 0xfa093f, 0x52ed, 160
+MaskBias = 0xfaf33b, 0x736a, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-031-1U1, #10, 27-031-1U2, 27-031-1U3, 27-031-1U4
+
+
+[OBJECT]
+Name = 物產-01小型礦(紫核礦)
+Sequence = 60314
+BaseBias = 0xfa093f, 0x634e, 160
+MaskBias = 0xfaf33b, 0xb488, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-030-1U1, #10, 27-030-1U2, 27-030-1U3, 27-030-1U4
+
+
+[OBJECT]
+Name = 物產-02粗斷木(藍沈木)
+Sequence = 60315
+BaseBias = 0xfe0325, 0x5287, 160
+MaskBias = 0xafa25, 0x95ee, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-035-1U1, #16, 27-035-1U2, 27-035-1U3
+
+
+[OBJECT]
+Name = 物產-02橫斷木(藍沈木)
+Sequence = 60316
+BaseBias = 0xfe0325, 0x6b29, 160
+MaskBias = 0xafa25, 0xbe73, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-033-1U1, #16, 27-033-1U2, 27-033-1U3
+
+
+[OBJECT]
+Name = 物產-02細斷木(藍沈木)
+Sequence = 60317
+BaseBias = 0xfe0325, 0x9c4d, 160
+MaskBias = 0xafa25, 0x868d, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-034-1U1, #16, 27-034-1U2, 27-034-1U3
+
+
+[OBJECT]
+Name = 物產-02粗斷木(黑死木)
+Sequence = 60318
+BaseBias = 0xfbf524, 0x5287, 160
+MaskBias = 0xfeec25, 0x95ee, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-035-1U1, #16, 27-035-1U2, 27-035-1U3
+
+
+[OBJECT]
+Name = 物產-02橫斷木(黑死木)
+Sequence = 60319
+BaseBias = 0xfbf524, 0x6b29, 160
+MaskBias = 0xfeec25, 0xbe73, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-033-1U1, #16, 27-033-1U2, 27-033-1U3
+
+
+[OBJECT]
+Name = 物產-02細斷木(黑死木)
+Sequence = 60320
+BaseBias = 0xfbf524, 0x9c4d, 160
+MaskBias = 0xfeec25, 0x868d, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-034-1U1, #16, 27-034-1U2, 27-034-1U3
+
+
+[OBJECT]
+Name = 物產-04大型獸穴(青彩獸穴)
+Sequence = 60321
+BaseBias = 0x2fe0c, 0x0, 160
+MaskBias = 0xfd030e, 0x0, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-048-1U1, #12, 27-048-1U2, 27-048-1U3, 27-048-1U4, 27-048-1U5, 27-048-1U6
+
+
+[OBJECT]
+Name = 物產-04中型獸穴(青彩獸穴)
+Sequence = 60322
+BaseBias = 0x2fe0c, 0xc56e, 160
+MaskBias = 0xfd030e, 0x0, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-047-1U1, #12, 27-047-1U2, 27-047-1U3
+
+
+[OBJECT]
+Name = 物產-04小型獸穴(青彩獸穴)
+Sequence = 60323
+BaseBias = 0x2fe0c, 0xac4a, 160
+MaskBias = 0xfd030e, 0x0, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-046-1U1, #12, 27-046-1U2, 27-046-1U3
+
+
+[OBJECT]
+Name = 物產-04大型獸穴(鬱藍獸穴)
+Sequence = 60324
+BaseBias = 0xfcff25, 0x0, 160
+MaskBias = 0xfff724, 0x0, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-048-1U1, #12, 27-048-1U2, 27-048-1U3, 27-048-1U4, 27-048-1U5, 27-048-1U6
+
+
+[OBJECT]
+Name = 物產-04中型獸穴(鬱藍獸穴)
+Sequence = 60325
+BaseBias = 0xfcff25, 0xc56e, 160
+MaskBias = 0xfff724, 0x0, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-047-1U1, #12, 27-047-1U2, 27-047-1U3
+
+
+[OBJECT]
+Name = 物產-04小型獸穴(鬱藍獸穴)
+Sequence = 60326
+BaseBias = 0xfcff25, 0xac4a, 160
+MaskBias = 0xfff724, 0x0, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-046-1U1, #12, 27-046-1U2, 27-046-1U3
+
+
+[OBJECT]
+Name = 物產-03玉米草(日光海草)
+Sequence = 60327
+BaseBias = 0x10b0b, 0x0, 160
+MaskBias = 0xf80b09, 0x9c27, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-044-1U1, #12, 27-044-1U2, 27-044-1U3
+
+
+[OBJECT]
+Name = 物產-03蝴蝶草(月光海草)
+Sequence = 60328
+BaseBias = 0xc2007, 0x0, 160
+MaskBias = 0x9020a, 0xc304, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_SHADOW, SP_ATTRIB_BIAS
+Process = SERV_CLASS_MATOBJ
+Directory = \stage\27
+Sprite = Wait, #8, 27-045-1U1, #12, 27-045-1U2, 27-045-1U3
+
+
+[OBJECT]
+Name = 海底破門01-01
+Sequence = 60329
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-040-JU0, SCROVER
+
+
+[OBJECT]
+Name = 海底破門01-02
+Sequence = 60330
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-040-KU0, SCROVER
+
+
+[OBJECT]
+Name = 海底破門01-03
+Sequence = 60331
+Flags = SP_ATTRIB_STATIC, SP_ATTRIB_ZBUFFER2
+Process = SERV_CLASS_STATIC
+Directory = \stage\26
+Sprite = Wait, 26-041-3U0, SCROVER
+
+
+[OBJECT]
+Name = 祕海副本水晶1
+Sequence = 60332
+ZoomX = 0.5
+ZoomY = 0.5
+BaseBias = 0xa, 0x55d9, 148
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_ZBUFFER1, SP_ATTRIB_BIAS
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-165-2U0, SCROVER
+
+
+[OBJECT]
+Name = 祕海副本水晶2
+Sequence = 60333
+ZoomX = 0.5
+ZoomY = 0.5
+BaseBias = 0xf6f10a, 0x4d9a, 148
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_ZBUFFER1, SP_ATTRIB_BIAS
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-165-2U0, SCROVER
+
+
+[OBJECT]
+Name = 廢棄機器人1
+Sequence = 60334
+BaseBias = 0xf40b, 0x4dd7, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_ZBUFFER1, SP_ATTRIB_BIAS
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-172-6U0, SCROVER
+
+
+[OBJECT]
+Name = 廢棄機器人2
+Sequence = 60335
+BaseBias = 0xf40b, 0x3cb4, 160
+Flags = SP_ATTRIB_DISTURB, SP_ATTRIB_HITTEST, SP_ATTRIB_ZBUFFER1, SP_ATTRIB_BIAS
+Process = SERV_CLASS_STATIC
+Directory = \stage\24
+Sprite = Wait, 24-172-7U0, SCROVER
+
+
+[OBJECT]
+Name = 怪物-M001
+Sequence = 60701
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m001\
+Sprite = Wait, w017
+SpriteFile = Wait, 42001_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M002
+Sequence = 60702
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m002\
+Sprite = Wait, w017
+SpriteFile = Wait, 42002_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M003
+Sequence = 60703
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m003\
+Sprite = Wait, w017
+SpriteFile = Wait, 42003_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M004
+Sequence = 60704
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m004\
+Sprite = Wait, w017
+SpriteFile = Wait, 42004_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M005
+Sequence = 60705
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m005\
+Sprite = Wait, w017
+SpriteFile = Wait, 42005_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M006
+Sequence = 60706
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m006\
+Sprite = Wait, w017
+SpriteFile = Wait, 42006_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M007
+Sequence = 60707
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m007\
+Sprite = Wait, w017
+SpriteFile = Wait, 42007_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M008
+Sequence = 60708
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m008\
+Sprite = Wait, w017
+SpriteFile = Wait, 42008_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M009
+Sequence = 60709
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m009\
+Sprite = Wait, w017
+SpriteFile = Wait, 42009_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M010
+Sequence = 60710
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m010\
+Sprite = Wait, w017
+SpriteFile = Wait, 42010_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M011
+Sequence = 60711
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m011\
+Sprite = Wait, w017
+SpriteFile = Wait, 42011_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M012
+Sequence = 60712
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m012\
+Sprite = Wait, w017
+SpriteFile = Wait, 42012_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M013
+Sequence = 60713
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m013\
+Sprite = Wait, w017
+SpriteFile = Wait, 42013_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M014
+Sequence = 60714
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m014\
+Sprite = Wait, w017
+SpriteFile = Wait, 42014_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M015
+Sequence = 60715
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m015\
+Sprite = Wait, w017
+SpriteFile = Wait, 42015_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M016
+Sequence = 60716
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m016\
+Sprite = Wait, w017
+SpriteFile = Wait, 42016_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M017
+Sequence = 60717
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m017\
+Sprite = Wait, w017
+SpriteFile = Wait, 42017_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M018
+Sequence = 60718
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m018\
+Sprite = Wait, w017
+SpriteFile = Wait, 42018_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M019
+Sequence = 60719
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m019\
+Sprite = Wait, w017
+SpriteFile = Wait, 42019_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M020
+Sequence = 60720
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m020\
+Sprite = Wait, w017
+SpriteFile = Wait, 42020_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M021
+Sequence = 60721
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m021\
+Sprite = Wait, w017
+SpriteFile = Wait, 42021_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M022
+Sequence = 60722
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m022\
+Sprite = Wait, w017
+SpriteFile = Wait, 42022_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M023
+Sequence = 60723
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m023\
+Sprite = Wait, w017
+SpriteFile = Wait, 42023_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M024
+Sequence = 60724
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m024\
+Sprite = Wait, w017
+SpriteFile = Wait, 42024_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M025
+Sequence = 60725
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m025\
+Sprite = Wait, w017
+SpriteFile = Wait, 42025_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M026
+Sequence = 60726
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m026\
+Sprite = Wait, w017
+SpriteFile = Wait, 42026_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M027
+Sequence = 60727
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m027\
+Sprite = Wait, w017
+SpriteFile = Wait, 42027_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M028
+Sequence = 60728
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m028\
+Sprite = Wait, w017
+SpriteFile = Wait, 42028_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M029
+Sequence = 60729
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m029\
+Sprite = Wait, w017
+SpriteFile = Wait, 42029_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M030
+Sequence = 60730
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m030\
+Sprite = Wait, w017
+SpriteFile = Wait, 42030_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M031
+Sequence = 60731
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m031\
+Sprite = Wait, w017
+SpriteFile = Wait, 42031_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M032
+Sequence = 60732
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m032\
+Sprite = Wait, w017
+SpriteFile = Wait, 42032_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M033
+Sequence = 60733
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m033\
+Sprite = Wait, w017
+SpriteFile = Wait, 42033_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M034
+Sequence = 60734
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m034\
+Sprite = Wait, w017
+SpriteFile = Wait, 42034_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M035
+Sequence = 60735
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m035\
+Sprite = Wait, w017
+SpriteFile = Wait, 42035_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M036
+Sequence = 60736
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m036\
+Sprite = Wait, w017
+SpriteFile = Wait, 42036_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M037
+Sequence = 60737
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m037\
+Sprite = Wait, w017
+SpriteFile = Wait, 42037_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M038
+Sequence = 60738
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m038\
+Sprite = Wait, w017
+SpriteFile = Wait, 42038_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M039
+Sequence = 60739
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m039\
+Sprite = Wait, w017
+SpriteFile = Wait, 42039_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M040
+Sequence = 60740
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m040\
+Sprite = Wait, w017
+SpriteFile = Wait, 42040_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M041
+Sequence = 60741
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m041\
+Sprite = Wait, w017
+SpriteFile = Wait, 42041_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M042
+Sequence = 60742
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m042\
+Sprite = Wait, w017
+SpriteFile = Wait, 42042_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M043
+Sequence = 60743
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m043\
+Sprite = Wait, w017
+SpriteFile = Wait, 42043_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M044
+Sequence = 60744
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m044\
+Sprite = Wait, w017
+SpriteFile = Wait, 42044_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M045
+Sequence = 60745
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m045\
+Sprite = Wait, w017
+SpriteFile = Wait, 42045_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M046
+Sequence = 60746
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m046\
+Sprite = Wait, w017
+SpriteFile = Wait, 42046_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M047
+Sequence = 60747
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m047\
+Sprite = Wait, w017
+SpriteFile = Wait, 42047_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M048
+Sequence = 60748
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m048\
+Sprite = Wait, w017
+SpriteFile = Wait, 42048_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M049
+Sequence = 60749
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m049\
+Sprite = Wait, w017
+SpriteFile = Wait, 42049_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M050
+Sequence = 60750
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m050\
+Sprite = Wait, w017
+SpriteFile = Wait, 42050_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M051
+Sequence = 60751
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m051\
+Sprite = Wait, w017
+SpriteFile = Wait, 42051_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M052
+Sequence = 60752
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m052\
+Sprite = Wait, w017
+SpriteFile = Wait, 42052_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M053
+Sequence = 60753
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m053\
+Sprite = Wait, w017
+SpriteFile = Wait, 42053_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M054
+Sequence = 60754
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m054\
+Sprite = Wait, w017
+SpriteFile = Wait, 42054_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M055
+Sequence = 60755
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m055\
+Sprite = Wait, w017
+SpriteFile = Wait, 42055_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M056
+Sequence = 60756
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m056\
+Sprite = Wait, w017
+SpriteFile = Wait, 42056_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M057
+Sequence = 60757
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m057\
+Sprite = Wait, w017
+SpriteFile = Wait, 42057_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M058
+Sequence = 60758
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m058\
+Sprite = Wait, w017
+SpriteFile = Wait, 42058_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M059
+Sequence = 60759
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m059\
+Sprite = Wait, w017
+SpriteFile = Wait, 42059_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M060
+Sequence = 60760
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m060\
+Sprite = Wait, w017
+SpriteFile = Wait, 42060_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M061
+Sequence = 60761
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m061\
+Sprite = Wait, w017
+SpriteFile = Wait, 42061_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M062
+Sequence = 60762
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m062\
+Sprite = Wait, w017
+SpriteFile = Wait, 42062_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M063
+Sequence = 60763
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m063\
+Sprite = Wait, w017
+SpriteFile = Wait, 42063_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M064
+Sequence = 60764
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m064\
+Sprite = Wait, w017
+SpriteFile = Wait, 42064_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M065
+Sequence = 60765
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m065\
+Sprite = Wait, w017
+SpriteFile = Wait, 42065_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M066
+Sequence = 60766
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m066\
+Sprite = Wait, w017
+SpriteFile = Wait, 42066_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M067
+Sequence = 60767
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m067\
+Sprite = Wait, w017
+SpriteFile = Wait, 42067_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M068
+Sequence = 60768
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m068\
+Sprite = Wait, w017
+SpriteFile = Wait, 42068_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M069
+Sequence = 60769
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m069\
+Sprite = Wait, w017
+SpriteFile = Wait, 42069_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M070
+Sequence = 60770
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m070\
+Sprite = Wait, w017
+SpriteFile = Wait, 42070_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M071
+Sequence = 60771
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m071\
+Sprite = Wait, w017
+SpriteFile = Wait, 42071_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M072
+Sequence = 60772
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m072\
+Sprite = Wait, w017
+SpriteFile = Wait, 42072_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M073
+Sequence = 60773
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m073\
+Sprite = Wait, w017
+SpriteFile = Wait, 42073_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M074
+Sequence = 60774
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m074\
+Sprite = Wait, w017
+SpriteFile = Wait, 42074_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M075
+Sequence = 60775
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m075\
+Sprite = Wait, w017
+SpriteFile = Wait, 42075_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M076
+Sequence = 60776
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m076\
+Sprite = Wait, w017
+SpriteFile = Wait, 42076_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M077
+Sequence = 60777
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m077\
+Sprite = Wait, w017
+SpriteFile = Wait, 42077_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M078
+Sequence = 60778
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m078\
+Sprite = Wait, w017
+SpriteFile = Wait, 42078_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M079
+Sequence = 60779
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m079\
+Sprite = Wait, w017
+SpriteFile = Wait, 42079_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M080
+Sequence = 60780
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m080\
+Sprite = Wait, w017
+SpriteFile = Wait, 42080_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M081
+Sequence = 60781
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m081\
+Sprite = Wait, w017
+SpriteFile = Wait, 42081_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M082
+Sequence = 60782
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m082\
+Sprite = Wait, w017
+SpriteFile = Wait, 42082_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M083
+Sequence = 60783
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m083\
+Sprite = Wait, w017
+SpriteFile = Wait, 42083_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M084
+Sequence = 60784
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m084\
+Sprite = Wait, w017
+SpriteFile = Wait, 42084_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M085
+Sequence = 60785
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m085\
+Sprite = Wait, w017
+SpriteFile = Wait, 42085_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M086
+Sequence = 60786
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m086\
+Sprite = Wait, w017
+SpriteFile = Wait, 42086_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M087
+Sequence = 60787
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m087\
+Sprite = Wait, w017
+SpriteFile = Wait, 42087_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M088
+Sequence = 60788
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m088\
+Sprite = Wait, w017
+SpriteFile = Wait, 42088_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M089
+Sequence = 60789
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m089\
+Sprite = Wait, w017
+SpriteFile = Wait, 42089_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M090
+Sequence = 60790
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m090\
+Sprite = Wait, w017
+SpriteFile = Wait, 42090_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M092
+Sequence = 60792
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m092\
+Sprite = Wait, w017
+SpriteFile = Wait, 42092_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M093
+Sequence = 60793
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m093\
+Sprite = Wait, w017
+SpriteFile = Wait, 42093_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M094
+Sequence = 60794
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m094\
+Sprite = Wait, w017
+SpriteFile = Wait, 42094_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M095
+Sequence = 60795
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m095\
+Sprite = Wait, w017
+SpriteFile = Wait, 42095_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M101
+Sequence = 60801
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m037
+Sprite = Wait, w017
+SpriteFile = Wait, 42101_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M102
+Sequence = 60802
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m102\
+Sprite = Wait, w017
+SpriteFile = Wait, 42102_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M103
+Sequence = 60803
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m103\
+Sprite = Wait, w017
+SpriteFile = Wait, 42103_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M104
+Sequence = 60804
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m104\
+Sprite = Wait, w017
+SpriteFile = Wait, 42104_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M105
+Sequence = 60805
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m105\
+Sprite = Wait, w017
+SpriteFile = Wait, 42105_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M140
+Sequence = 60840
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m140\
+Sprite = Wait, w017
+SpriteFile = Wait, 42140_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M141
+Sequence = 60841
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m141\
+Sprite = Wait, w017
+SpriteFile = Wait, 42141_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M145
+Sequence = 60845
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m145\
+Sprite = Wait, w017
+SpriteFile = Wait, 42145_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M147
+Sequence = 60847
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m147\
+Sprite = Wait, w017
+SpriteFile = Wait, 42147_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M148
+Sequence = 60848
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m148\
+Sprite = Wait, w017
+SpriteFile = Wait, 42148_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M149
+Sequence = 60849
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m149\
+Sprite = Wait, w017
+SpriteFile = Wait, 42149_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M209
+Sequence = 60909
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m209\
+Sprite = Wait, w017
+SpriteFile = Wait, 42209_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M210
+Sequence = 60910
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m210\
+Sprite = Wait, w017
+SpriteFile = Wait, 42210_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M211
+Sequence = 60911
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m211\
+Sprite = Wait, w017
+SpriteFile = Wait, 42211_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M272
+Sequence = 60972
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m272\
+Sprite = Wait, w017
+SpriteFile = Wait, 42272_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M273
+Sequence = 60973
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m273\
+Sprite = Wait, w017
+SpriteFile = Wait, 42273_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M274
+Sequence = 60974
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m274\
+Sprite = Wait, w017
+SpriteFile = Wait, 42274_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M275
+Sequence = 60975
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m275\
+Sprite = Wait, w017
+SpriteFile = Wait, 42275_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M276
+Sequence = 60976
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m276\
+Sprite = Wait, w017
+SpriteFile = Wait, 42276_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M277
+Sequence = 60977
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m277\
+Sprite = Wait, w017
+SpriteFile = Wait, 42277_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M278
+Sequence = 60978
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m278\
+Sprite = Wait, w017
+SpriteFile = Wait, 42278_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M279
+Sequence = 60979
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m279\
+Sprite = Wait, w017
+SpriteFile = Wait, 42279_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M280
+Sequence = 60980
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m280\
+Sprite = Wait, w017
+SpriteFile = Wait, 42280_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M281
+Sequence = 60981
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m281\
+Sprite = Wait, w017
+SpriteFile = Wait, 42281_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M282
+Sequence = 60982
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m282\
+Sprite = Wait, w017
+SpriteFile = Wait, 42282_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M283
+Sequence = 60983
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m283\
+Sprite = Wait, w017
+SpriteFile = Wait, 42283_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M284
+Sequence = 60984
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m284\
+Sprite = Wait, w017
+SpriteFile = Wait, 42284_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M285
+Sequence = 60985
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m285\
+Sprite = Wait, w017
+SpriteFile = Wait, 42285_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M286
+Sequence = 60986
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m286\
+Sprite = Wait, w017
+SpriteFile = Wait, 42286_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M287
+Sequence = 60987
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m287\
+Sprite = Wait, w017
+SpriteFile = Wait, 42287_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M288
+Sequence = 60988
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m288\
+Sprite = Wait, w017
+SpriteFile = Wait, 42288_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M289
+Sequence = 60989
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m289\
+Sprite = Wait, w017
+SpriteFile = Wait, 42289_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M290
+Sequence = 60990
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m290\
+Sprite = Wait, w017
+SpriteFile = Wait, 42290_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M291
+Sequence = 60991
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m291\
+Sprite = Wait, w017
+SpriteFile = Wait, 42291_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M377
+Sequence = 61077
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m377\
+Sprite = Wait, w017
+SpriteFile = Wait, 42377_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M378
+Sequence = 61078
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m378\
+Sprite = Wait, w017
+SpriteFile = Wait, 42378_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M379
+Sequence = 61079
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m379\
+Sprite = Wait, w017
+SpriteFile = Wait, 42379_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M380
+Sequence = 61080
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m380\
+Sprite = Wait, w017
+SpriteFile = Wait, 42380_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M381
+Sequence = 61081
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m381\
+Sprite = Wait, w017
+SpriteFile = Wait, 42381_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M382
+Sequence = 61082
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m382\
+Sprite = Wait, w017
+SpriteFile = Wait, 42382_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M383
+Sequence = 61083
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m383\
+Sprite = Wait, w017
+SpriteFile = Wait, 42383_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M384
+Sequence = 61084
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m384\
+Sprite = Wait, w017
+SpriteFile = Wait, 42384_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M385
+Sequence = 61085
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m385\
+Sprite = Wait, w017
+SpriteFile = Wait, 42385_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M386
+Sequence = 61086
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m386\
+Sprite = Wait, w017
+SpriteFile = Wait, 42386_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M387
+Sequence = 61087
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m387\
+Sprite = Wait, w017
+SpriteFile = Wait, 42387_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M388
+Sequence = 61088
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m388\
+Sprite = Wait, w017
+SpriteFile = Wait, 42388_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M389
+Sequence = 61089
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m389\
+Sprite = Wait, w017
+SpriteFile = Wait, 42389_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M390
+Sequence = 61090
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m390\
+Sprite = Wait, w017
+SpriteFile = Wait, 42390_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M391
+Sequence = 61091
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m391\
+Sprite = Wait, w017
+SpriteFile = Wait, 42391_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M392
+Sequence = 61092
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m392\
+Sprite = Wait, w017
+SpriteFile = Wait, 42392_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M393
+Sequence = 61093
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m393\
+Sprite = Wait, w017
+SpriteFile = Wait, 42393_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M394
+Sequence = 61094
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m394\
+Sprite = Wait, w017
+SpriteFile = Wait, 42394_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M395
+Sequence = 61095
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m395\
+Sprite = Wait, w017
+SpriteFile = Wait, 42395_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M396
+Sequence = 61096
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m396\
+Sprite = Wait, w017
+SpriteFile = Wait, 42396_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M397
+Sequence = 61097
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m397\
+Sprite = Wait, w017
+SpriteFile = Wait, 42397_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M398
+Sequence = 61098
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m398\
+Sprite = Wait, w017
+SpriteFile = Wait, 42398_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M399
+Sequence = 61099
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m399\
+Sprite = Wait, w017
+SpriteFile = Wait, 42399_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M400
+Sequence = 61100
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m400\
+Sprite = Wait, w017
+SpriteFile = Wait, 42400_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M401
+Sequence = 61101
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m401\
+Sprite = Wait, w017
+SpriteFile = Wait, 42401_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M402
+Sequence = 61102
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m402\
+Sprite = Wait, w017
+SpriteFile = Wait, 42402_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M403
+Sequence = 61103
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m403\
+Sprite = Wait, w017
+SpriteFile = Wait, 42403_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M404
+Sequence = 61104
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m404\
+Sprite = Wait, w017
+SpriteFile = Wait, 42404_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M405
+Sequence = 61105
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m405\
+Sprite = Wait, w017
+SpriteFile = Wait, 42405_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M406
+Sequence = 61106
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m406\
+Sprite = Wait, w017
+SpriteFile = Wait, 42406_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M407
+Sequence = 61107
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m407\
+Sprite = Wait, w017
+SpriteFile = Wait, 42407_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M408
+Sequence = 61108
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m408\
+Sprite = Wait, w017
+SpriteFile = Wait, 42408_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M409
+Sequence = 61109
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m409\
+Sprite = Wait, w017
+SpriteFile = Wait, 42409_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M410
+Sequence = 61110
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m410\
+Sprite = Wait, w017
+SpriteFile = Wait, 42410_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M411
+Sequence = 61111
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m411\
+Sprite = Wait, w017
+SpriteFile = Wait, 42411_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M412
+Sequence = 61112
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m412\
+Sprite = Wait, w017
+SpriteFile = Wait, 42412_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M413
+Sequence = 61113
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m413\
+Sprite = Wait, w017
+SpriteFile = Wait, 42413_Wait.spr
+
+
+[OBJECT]
+Name = 怪物-M414
+Sequence = 61114
+Flags = SP_ATTRIB_HIDE, SP_ATTRIB_STATIC
+Process = SERV_CLASS_GEN
+Directory = \mon\m414\
+Sprite = Wait, w017
+SpriteFile = Wait, 42414_Wait.spr
+

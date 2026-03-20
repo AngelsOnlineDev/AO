@@ -1,0 +1,3932 @@
+<?xml version="1.0"?>
+<root>
+	<INCLUDE file="setting\wnddef.xml"/>
+	<window class="WND_CLASS_DLG_1" range="450,50,300,230" id="1141" title="Bingo" fcolor="104" font="1" puzzle9="1001">
+		<style wsVisible="" wsMoveable="" wsPuzzle=""/>
+		<child>1142</child>
+		<child>1143</child>
+		<child>1144</child>
+		<child>1145</child>
+		<child>1146</child>
+		<child>1147</child>
+		<child>1148</child>
+		<child>1149</child>
+		<child>1150</child>
+		<OnClose>MiniGame_OnClose</OnClose>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="1142" range="177,186,23,15" icon="1159" tooltip="10040" tooltext="PageUp">
+		<style wsVisible="" wsDisable=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="1143" range="205,186,23,15" icon="1160" appdata="1151" tooltip="10040" tooltext="PageDown">
+		<style wsVisible=""/>
+		<OnCommand>OnChangePage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="1144" range="233,186,23,15" icon="1161" tooltip="10040" tooltext="Enter the game">
+		<style wsVisible=""/>
+		<OnCommand>MiniGame02_OnStart</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="1145" range="261,186,23,15" icon="1162" tooltip="10040" tooltext="Quit the game">
+		<style wsVisible=""/>
+		<OnCommand>MiniGame_OnLeave</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="1146" range="272,170,1,12" title="1/4" fcolor="103" font="1">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="1147" range="170,10,0,12" title="Bingo" fcolor="103" font="1">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="1148" range="170,25,1,60" title="When the game starts, numbers from 1 to 25 are assigned at random in a 5 x 5 grid. Then the two sides will begin to play." fcolor="103" font="1" lines="4" words="20">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="1149" range="170,85,0,90" title="Each side will take turns drawing numbers from 1 to 25 at random, until one player completes a line with five numbers in a vertical, horizontal or diagonal row and wins the prize." fcolor="103" font="1" lines="6" words="20">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="1150" range="3,10,165,168" icon="1146">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_DLG_1" range="450,50,300,230" id="1151" title="Bingo" fcolor="104" font="1" puzzle9="1001">
+		<style wsVisible="" wsMoveable="" wsPuzzle=""/>
+		<child>1152</child>
+		<child>1153</child>
+		<child>1154</child>
+		<child>1155</child>
+		<child>1156</child>
+		<child>1157</child>
+		<child>1158</child>
+		<child>1159</child>
+		<child>1160</child>
+		<child>1161</child>
+		<child>1162</child>
+		<child>1163</child>
+		<OnClose>MiniGame_OnClose</OnClose>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="1152" range="177,186,23,15" icon="1159" appdata="1141" tooltip="10040" tooltext="PageUp">
+		<style wsVisible=""/>
+		<OnCommand>OnChangePage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="1153" range="205,186,23,15" icon="1160" appdata="1164" tooltip="10040" tooltext="PageDown">
+		<style wsVisible=""/>
+		<OnCommand>OnChangePage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="1154" range="233,186,23,15" icon="1161" tooltip="10040" tooltext="Enter the game">
+		<style wsVisible=""/>
+		<OnCommand>MiniGame02_OnStart</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="1155" range="261,186,23,15" icon="1162" tooltip="10040" tooltext="Quit the game">
+		<style wsVisible=""/>
+		<OnCommand>MiniGame_OnLeave</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="1156" range="272,170,1,12" title="2/4" fcolor="103" font="1">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="1157" range="170,10,0,12" title="Game indication:" fcolor="103" font="1">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="1158" range="170,23,1,39" title="The game includes two phases: Preparation and Play." fcolor="103" font="1" lines="3" words="20">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="1159" range="170,62,0,12" title="Preparation phase:" fcolor="103" font="1">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="1160" range="170,75,1,27" title="1. Display numbers from 1 to 25 in the A area." fcolor="103" font="1" lines="2" words="20">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="1161" range="170,102,1,39" title="2. Select any blank in the B Area, and set the numbers of the A area from 1 to 25 in the B area in order." fcolor="103" font="1" lines="3" words="20">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="1162" range="170,141,1,27" title="3. Then press &quot;F&quot; to confirm. Play begins!" fcolor="103" font="1" lines="2" words="20">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="1163" range="3,10,165,168" icon="1147">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_DLG_1" range="450,50,300,230" id="1164" title="Bingo" fcolor="104" font="1" puzzle9="1001">
+		<style wsVisible="" wsMoveable="" wsPuzzle=""/>
+		<child>1165</child>
+		<child>1166</child>
+		<child>1167</child>
+		<child>1168</child>
+		<child>1169</child>
+		<child>1170</child>
+		<child>1171</child>
+		<child>1172</child>
+		<child>1173</child>
+		<child>1174</child>
+		<OnClose>MiniGame_OnClose</OnClose>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="1165" range="177,186,23,15" icon="1159" appdata="1151" tooltip="10040" tooltext="PageUp">
+		<style wsVisible=""/>
+		<OnCommand>OnChangePage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="1166" range="205,186,23,15" icon="1160" appdata="1175" tooltip="10040" tooltext="PageDown">
+		<style wsVisible=""/>
+		<OnCommand>OnChangePage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="1167" range="233,186,23,15" icon="1161" tooltip="10040" tooltext="Enter the game">
+		<style wsVisible=""/>
+		<OnCommand>MiniGame02_OnStart</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="1168" range="261,186,23,15" icon="1162" tooltip="10040" tooltext="Quit the game">
+		<style wsVisible=""/>
+		<OnCommand>MiniGame_OnLeave</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="1169" range="272,170,1,12" title="3/4" fcolor="103" font="1">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="1170" range="170,10,0,12" title="Fight Phase:" fcolor="103" font="1">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="1171" range="170,24,1,42" title="1. Draw numbers: The two sides take turns drawing numbers in the B area." fcolor="103" font="1" lines="3" words="20">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="1172" range="170,66,1,42" title="2. Make a line: Five numbers should be lined up in a vertical, horizontal or diagonal row." fcolor="103" font="1" lines="3" words="20">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="1173" range="170,108,1,30" title="3. Winning condition: Whoever completes a line with five numbers is the winner." fcolor="103" font="1" lines="2" words="20">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="1174" range="3,10,165,168" icon="1147">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_DLG_1" range="450,50,300,230" id="1175" title="Bingo" fcolor="104" font="1" puzzle9="1001">
+		<style wsVisible="" wsMoveable="" wsPuzzle=""/>
+		<child>1176</child>
+		<child>1177</child>
+		<child>1178</child>
+		<child>1179</child>
+		<child>1180</child>
+		<child>1181</child>
+		<child>1182</child>
+		<child>1183</child>
+		<child>1184</child>
+		<child>1185</child>
+		<child>1186</child>
+		<OnClose>MiniGame_OnClose</OnClose>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="1176" range="177,186,23,15" icon="1159" appdata="1164" tooltip="10040" tooltext="PageUp">
+		<style wsVisible=""/>
+		<OnCommand>OnChangePage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="1177" range="205,186,23,15" icon="1160" tooltip="10040" tooltext="PageDown">
+		<style wsVisible="" wsDisable=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="1178" range="233,186,23,15" icon="1161" tooltip="10040" tooltext="Enter the game">
+		<style wsVisible=""/>
+		<OnCommand>MiniGame02_OnStart</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="1179" range="261,186,23,15" icon="1162" tooltip="10040" tooltext="Quit the game">
+		<style wsVisible=""/>
+		<OnCommand>MiniGame_OnLeave</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="1180" range="272,170,1,12" title="4/4" fcolor="103" font="1">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="1181" range="170,10,0,12" title="Operation Orders:" fcolor="103" font="1">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="1182" range="170,23,1,30" title="1. Restore Order C: Put the numbers of the A area back to the previous arrangement." fcolor="103" font="1" lines="2" words="20">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="1183" range="170,53,1,30" title="2. Clear Order D: Clear all numbers in B area." fcolor="103" font="1" lines="2" words="20">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="1184" range="170,83,1,42" title="3. Auto-arranged E: All numbers in B area are assigned at random" fcolor="103" font="1" lines="3" words="20">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="1185" range="170,125,1,42" title="4. Confirm Order F: After confirmation, then the fight begins." fcolor="103" font="1" lines="3" words="20">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="1186" range="3,10,165,168" icon="1147">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_DLG_1" range="450,50,281,293" id="1101" fcolor="104" title="Bingo" font="1" icon="1101">
+		<style wsVisible="" wsMoveable=""/>
+		<child>1121</child>
+		<child>1122</child>
+		<child>1123</child>
+		<child>1124</child>
+		<child>1125</child>
+		<child>1126</child>
+		<child>1102</child>
+		<child>1103</child>
+		<child>1104</child>
+		<child>1105</child>
+		<child>1106</child>
+		<child>1107</child>
+		<child>1108</child>
+		<child>1109</child>
+		<child>1110</child>
+		<child>1111</child>
+		<child>1112</child>
+		<child>1113</child>
+		<child>1114</child>
+		<child>1116</child>
+		<child>1117</child>
+		<child>1118</child>
+		<child>1119</child>
+		<child>1120</child>
+		<child>1127</child>
+		<child>1128</child>
+		<child>1129</child>
+		<OnClose>MiniGame_OnClose</OnClose>
+	</window>
+	<color id="1101" normal="195,195,195,128" focus="160,160,160,128" down="128,128,128,128" disable="195,195,195,128"/>
+	<color id="1102" normal="255,0,0" focus="255,0,0" down="255,0,0" disable="255,0,0"/>
+	<icon id="1101" dir="\game\02\" normal="w018-01" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<icon id="1110" dir="\game\02\LimiteNum" normal="w016_30" focus="normal" down="normal" disable="normal"/>
+	<icon id="1111" dir="\game\02\LimiteNum" normal="w016_31" focus="normal" down="normal" disable="normal"/>
+	<icon id="1112" dir="\game\02\LimiteNum" normal="w016_32" focus="normal" down="normal" disable="normal"/>
+	<icon id="1113" dir="\game\02\LimiteNum" normal="w016_33" focus="normal" down="normal" disable="normal"/>
+	<icon id="1114" dir="\game\02\LimiteNum" normal="w016_34" focus="normal" down="normal" disable="normal"/>
+	<icon id="1115" dir="\game\02\LimiteNum" normal="w016_35" focus="normal" down="normal" disable="normal"/>
+	<icon id="1116" dir="\game\02\LimiteNum" normal="w016_36" focus="normal" down="normal" disable="normal"/>
+	<icon id="1117" dir="\game\02\LimiteNum" normal="w016_37" focus="normal" down="normal" disable="normal"/>
+	<icon id="1118" dir="\game\02\LimiteNum" normal="w016_38" focus="normal" down="normal" disable="normal"/>
+	<icon id="1119" dir="\game\02\LimiteNum" normal="w016_39" focus="normal" down="normal" disable="normal"/>
+	<icon id="1120" dir="\game\02" normal="nullshp" focus="normal" down="normal" disable="normal"/>
+	<icon id="1121" dir="\game\02\Num" normal="w018-02" focus="normal" down="normal" disable="normal"/>
+	<icon id="1122" dir="\game\02\Num" normal="w018-03" focus="normal" down="normal" disable="normal"/>
+	<icon id="1123" dir="\game\02\Num" normal="w018-26" focus="normal" down="normal" disable="normal"/>
+	<icon id="1124" dir="\game\02\Num" normal="w018-04" focus="normal" down="normal" disable="normal"/>
+	<icon id="1125" dir="\game\02\Num" normal="w018-05" focus="normal" down="normal" disable="normal"/>
+	<icon id="1126" dir="\game\02\Num" normal="w018-06" focus="normal" down="normal" disable="normal"/>
+	<icon id="1127" dir="\game\02\Num" normal="w018-07" focus="normal" down="normal" disable="normal"/>
+	<icon id="1128" dir="\game\02\Num" normal="w018-08" focus="normal" down="normal" disable="normal"/>
+	<icon id="1129" dir="\game\02\Num" normal="w018-09" focus="normal" down="normal" disable="normal"/>
+	<icon id="1130" dir="\game\02\Num" normal="w018-10" focus="normal" down="normal" disable="normal"/>
+	<icon id="1131" dir="\game\02\Num" normal="w018-11" focus="normal" down="normal" disable="normal"/>
+	<icon id="1132" dir="\game\02\Num" normal="w018-12" focus="normal" down="normal" disable="normal"/>
+	<icon id="1133" dir="\game\02\Num" normal="w018-13" focus="normal" down="normal" disable="normal"/>
+	<icon id="1134" dir="\game\02\Num" normal="w018-14" focus="normal" down="normal" disable="normal"/>
+	<icon id="1135" dir="\game\02\Num" normal="w018-15" focus="normal" down="normal" disable="normal"/>
+	<icon id="1136" dir="\game\02\Num" normal="w018-16" focus="normal" down="normal" disable="normal"/>
+	<icon id="1137" dir="\game\02\Num" normal="w018-17" focus="normal" down="normal" disable="normal"/>
+	<icon id="1138" dir="\game\02\Num" normal="w018-18" focus="normal" down="normal" disable="normal"/>
+	<icon id="1139" dir="\game\02\Num" normal="w018-19" focus="normal" down="normal" disable="normal"/>
+	<icon id="1140" dir="\game\02\Num" normal="w018-20" focus="normal" down="normal" disable="normal"/>
+	<icon id="1141" dir="\game\02\Num" normal="w018-21" focus="normal" down="normal" disable="normal"/>
+	<icon id="1142" dir="\game\02\Num" normal="w018-22" focus="normal" down="normal" disable="normal"/>
+	<icon id="1143" dir="\game\02\Num" normal="w018-23" focus="normal" down="normal" disable="normal"/>
+	<icon id="1144" dir="\game\02\Num" normal="w018-24" focus="normal" down="normal" disable="normal"/>
+	<icon id="1145" dir="\game\02\Num" normal="w018-25" focus="normal" down="normal" disable="normal"/>
+	<icon id="1146" dir="\game\02\" normal="help1" focus="normal" down="normal" disable="normal"/>
+	<icon id="1147" dir="\game\02\" normal="help2" focus="normal" down="normal" disable="normal"/>
+	<icon id="1148" dir="\game\02\Draw" normal="w019-21 #16 w019-22 #12 w019-23 w019-22 w019-23 w019-22 w019-23" focus="normal" down="normal" disable="normal"/>
+	<icon id="1149" dir="\game\02\Draw" normal="w019-31 #8 w019-32" focus="normal" down="normal" disable="normal"/>
+	<icon id="1150" dir="\game\02\Win" normal="w019-06 #16 w019-07 #8 w019-08 w019-07 w019-08 w019-07 w019-08" focus="normal" down="normal" disable="normal"/>
+	<icon id="1151" dir="\game\02\Win" normal="w019-33 #8 w019-34" focus="normal" down="normal" disable="normal"/>
+	<icon id="1152" dir="\game\02\Lose" normal="w019-10 #24 w019-11 #12 w019-12 w019-13" focus="normal" down="normal" disable="normal"/>
+	<icon id="1153" dir="\game\02\Lose" normal="w019-35 #8 w019-36" focus="normal" down="normal" disable="normal"/>
+	<icon id="1154" dir="\game\02\" normal="btn067_n" focus="btn067_f" down="btn067_d" disable="normal"/>
+	<icon id="1155" dir="\game\02\" normal="btn069_n" focus="btn069_f" down="btn069_d" disable="normal"/>
+	<icon id="1156" dir="\game\02\" normal="btn068_n" focus="btn068_f" down="btn068_d" disable="normal"/>
+	<icon id="1157" dir="\game\02\" normal="btn042_n" focus="btn042_f" down="btn042_d" disable="normal"/>
+	<icon id="1158" dir="\game\02\" normal="btn063_n" focus="btn063_f" down="btn063_d" disable="normal"/>
+	<icon id="1159" dir="\game\02\" normal="btn062_n" focus="btn062_f" down="btn062_d" disable="normal"/>
+	<icon id="1160" dir="\game\02\" normal="btn064_n" focus="btn064_f" down="btn064_d" disable="normal"/>
+	<icon id="1161" dir="\game\02\" normal="btn065_n" focus="btn065_f" down="btn065_d" disable="normal"/>
+	<icon id="1162" dir="\game\02\" normal="btn066_n" focus="btn066_f" down="btn066_d" disable="normal"/>
+	<icon id="1181" dir="\game\02\" normal="w006_01" focus="normal" down="normal" disable="normal"/>
+	<icon id="1182" dir="\game\02\" normal="w006_02" focus="normal" down="normal" disable="normal"/>
+	<icon id="1183" dir="\game\02\" normal="w006_03" focus="normal" down="normal" disable="normal"/>
+	<icon id="1184" dir="\game\02\" normal="w006_04" focus="normal" down="normal" disable="normal"/>
+	<icon id="1185" dir="\game\02\" normal="w006_05" focus="normal" down="normal" disable="normal"/>
+	<icon id="1186" dir="\game\02\" normal="w006_06" focus="normal" down="normal" disable="normal"/>
+	<icon id="1187" dir="\game\02\" normal="w006_07" focus="normal" down="normal" disable="normal"/>
+	<icon id="1188" dir="\game\02\" normal="w006_08" focus="normal" down="normal" disable="normal"/>
+	<icon id="1189" dir="\game\02\" normal="w006_09" focus="normal" down="normal" disable="normal"/>
+	<window class="WND_CLASS_STATIC" range="35,7,89,12" id="1102" fcolor="103" font="1" title="">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="150,7,89,12" id="1103" fcolor="103" font="1" title="">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="34,21,12,12" id="1104" fcolor="103" font="1" title="00">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="63,21,12,12" id="1105" fcolor="103" font="1" title="00">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="93,21,12,12" id="1106" fcolor="103" font="1" title="00">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="148,21,12,12" id="1107" fcolor="103" font="1" title="00">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="178,21,12,12" id="1108" fcolor="103" font="1" title="00">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="208,21,12,12" id="1109" fcolor="103" font="1" title="00">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="214,157,26,18" id="1110" icon="1156" tooltip="10040" tooltext="Recover">
+		<style wsVisible="" wsDisable=""/>
+		<OnCommand>MiniGame02_OnBack</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="214,179,26,18" id="1111" icon="1157" tooltip="10040" tooltext="Clear">
+		<style wsVisible="" wsDisable=""/>
+		<OnCommand>MiniGame02_OnClearAllNum</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="214,201,26,18" id="1112" icon="1158" tooltip="10040" tooltext="Auto-arranged">
+		<style wsVisible="" wsDisable=""/>
+		<OnCommand>MiniGame02_OnAutoSelectNum</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="214,223,26,18" id="1113" icon="1154" tooltip="10040" tooltext="Confirm">
+		<style wsVisible="" wsDisable=""/>
+		<OnCommand>MiniGame02_OnSendStart</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" range="5,252,200,18" id="1114" fcolor="103" font="1" title="Waiting for the other's response">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="36,22,72,12" id="1116" fcolor="103" font="1" title="W    L    D">
+		<style wsVisible="" ssVCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="151,22,72,12" id="1117" fcolor="103" font="1" title="W    L    D">
+		<style wsVisible="" ssVCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="17,19,18,15" id="1118" icon="1110">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="250,19,18,15" id="1119" icon="1110">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="226,61,36,36" id="1120" icon="1121">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="240,30,106,159" id="1121" icon="1148">
+	</window>
+	<window class="WND_CLASS_STATIC" range="0,0,170,170" id="1122" icon="1149">
+	</window>
+	<window class="WND_CLASS_STATIC" range="240,30,106,159" id="1123" icon="1150">
+	</window>
+	<window class="WND_CLASS_STATIC" range="0,0,170,170" id="1124" icon="1151">
+	</window>
+	<window class="WND_CLASS_STATIC" range="240,70,106,159" id="1125" icon="1152">
+	</window>
+	<window class="WND_CLASS_STATIC" range="0,0,170,170" id="1126" icon="1153">
+	</window>
+	<window class="WND_CLASS_BUTTON" range="210,249,23,15" id="1127" icon="1154">
+		<OnCommand>MiniGame02_OnContinue_Ok</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="240,249,23,15" id="1128" icon="1155">
+		<OnCommand>MiniGame02_OnContinue_Leave</OnCommand>
+	</window>
+	<window class="WND_CLASS_CUSTOM" range="10,43,190,190" id="1129" bcolor="1102">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_DLG_1" range="450,50,289,329" id="8001" fcolor="104" title="Othello Stones" font="1" icon="8001">
+		<style wsVisible="" wsMoveable=""/>
+		<child>8002</child>
+		<child>8003</child>
+		<child>8004</child>
+		<child>8005</child>
+		<child>8006</child>
+		<child>8007</child>
+		<child>8008</child>
+		<child>8009</child>
+		<child>8010</child>
+		<child>8011</child>
+		<child>8012</child>
+		<child>8013</child>
+		<child>8014</child>
+		<child>8015</child>
+		<child>8016</child>
+		<child>8017</child>
+		<child>8018</child>
+		<child>8019</child>
+		<OnClose>MiniGame_OnClose</OnClose>
+	</window>
+	<window class="WND_CLASS_STATIC" range="35,7,89,12" id="8002" fcolor="103" font="1" title="">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="150,7,89,12" id="8003" fcolor="103" font="1" title="">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="34,21,12,12" id="8004" fcolor="103" font="1" title="00">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="63,21,12,12" id="8005" fcolor="103" font="1" title="00">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="93,21,12,12" id="8006" fcolor="103" font="1" title="00">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="148,21,12,12" id="8007" fcolor="103" font="1" title="00">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="178,21,12,12" id="8008" fcolor="103" font="1" title="00">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="208,21,12,12" id="8009" fcolor="103" font="1" title="00">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="5,287,200,18" id="8010" fcolor="103" font="1" title="Waiting for the other's response">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="36,22,72,12" id="8011" fcolor="103" font="1" title="W    L    D">
+		<style wsVisible="" ssVCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="151,22,72,12" id="8012" fcolor="103" font="1" title="W    L    D">
+		<style wsVisible="" ssVCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="17,19,18,15" id="8013" icon="8002">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" range="250,19,18,15" id="8014" icon="8003">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_CUSTOM" range="15,48,215,215" id="8015" bcolor="1102">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="248,232,26,18" id="8016" icon="8006" tooltip="10040" tooltext="Pass">
+		<style wsVisible="" wsDisable=""/>
+		<OnCommand>MiniGame04_OnPass</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="248,254,26,18" id="8017" icon="8007" tooltip="10040" tooltext="Surrender">
+		<style wsVisible="" wsDisable=""/>
+		<OnCommand>MiniGame04_OnSurrender</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="210,284,23,15" id="8018" icon="1154">
+		<OnCommand>MiniGame04_OnContinue_Ok</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" range="240,284,23,15" id="8019" icon="1155">
+		<OnCommand>MiniGame04_OnContinue_Leave</OnCommand>
+	</window>
+	<icon id="8001" dir="\game\04\" normal="w019-38" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<icon id="8002" dir="\game\04\" normal="w019-02" focus="normal" down="normal" disable="normal"/>
+	<icon id="8003" dir="\game\04\" normal="w019-03" focus="normal" down="normal" disable="normal"/>
+	<icon id="8004" dir="\game\04\" normal="w019-020 #12 w019-021" focus="normal" down="normal" disable="normal"/>
+	<icon id="8005" dir="\game\04\" normal="w019-030 #12 w019-031" focus="normal" down="normal" disable="normal"/>
+	<icon id="8006" dir="\game\04\" normal="btn070_n" focus="btn070_f" down="btn070_d" disable="normal"/>
+	<icon id="8007" dir="\game\04\" normal="btn061_n" focus="btn061_f" down="btn061_d" disable="normal"/>
+	<icon id="8008" dir="\game\04\" normal="help04_1" focus="normal" down="normal" disable="normal"/>
+	<icon id="8009" dir="\game\04\" normal="help04_2" focus="normal" down="normal" disable="normal"/>
+	<icon id="8010" dir="\game\04\" normal="help04_3" focus="normal" down="normal" disable="normal"/>
+	<icon id="8011" dir="\game\04\" normal="help04_4" focus="normal" down="normal" disable="normal"/>
+	<window class="WND_CLASS_DLG_1" range="450,50,300,230" id="8041" title="Othello Stones" fcolor="104" font="1" puzzle9="1001">
+		<style wsVisible="" wsMoveable="" wsPuzzle=""/>
+		<child>8042</child>
+		<child>8043</child>
+		<child>8044</child>
+		<child>8045</child>
+		<child>8046</child>
+		<child>8047</child>
+		<child>8048</child>
+		<child>8049</child>
+		<child>8050</child>
+		<OnClose>MiniGame_OnClose</OnClose>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="8042" range="177,186,23,15" icon="1159" tooltip="10040" tooltext="Previous">
+		<style wsVisible="" wsDisable=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="8043" range="205,186,23,15" icon="1160" appdata="8051" tooltip="10040" tooltext="Next">
+		<style wsVisible=""/>
+		<OnCommand>OnChangePage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="8044" range="233,186,23,15" icon="1161" tooltip="10040" tooltext="Enter">
+		<style wsVisible=""/>
+		<OnCommand>MiniGame04_OnStart</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="8045" range="261,186,23,15" icon="1162" tooltip="10040" tooltext="Exit">
+		<style wsVisible=""/>
+		<OnCommand>MiniGame_OnLeave</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="8046" range="272,170,1,12" title="1/5" fcolor="103" font="1">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="8047" range="170,10,0,12" title="Othello Stones" fcolor="103" font="1">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="8048" range="170,24,1,70" title="Othello Stones was originated by Englishman in the late 19th century. It is also called Anti-chess, Apple Chess and Reversi." fcolor="103" font="1" lines="5" words="20">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="8049" range="170,94,0,84" title="It is a board game for two players, played on a 8×8 grid. Each player uses black or white stones to attempt to capture the opponent's stones by surrounding them. Whoever has the most stones at the end of the game wins." fcolor="103" font="1" lines="6" words="20">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="8050" range="3,10,165,168" icon="8008">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_DLG_1" range="450,50,300,230" id="8051" title="Othello Stones" fcolor="104" font="1" puzzle9="1001">
+		<style wsVisible="" wsMoveable="" wsPuzzle=""/>
+		<child>8052</child>
+		<child>8053</child>
+		<child>8054</child>
+		<child>8055</child>
+		<child>8056</child>
+		<child>8057</child>
+		<child>8058</child>
+		<child>8059</child>
+		<child>8060</child>
+		<child>8061</child>
+		<OnClose>MiniGame_OnClose</OnClose>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="8052" range="177,186,23,15" icon="1159" appdata="8041" tooltip="10040" tooltext="Previous">
+		<style wsVisible=""/>
+		<OnCommand>OnChangePage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="8053" range="205,186,23,15" icon="1160" appdata="8062" tooltip="10040" tooltext="Next">
+		<style wsVisible=""/>
+		<OnCommand>OnChangePage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="8054" range="233,186,23,15" icon="1161" tooltip="10040" tooltext="Enter">
+		<style wsVisible=""/>
+		<OnCommand>MiniGame04_OnStart</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="8055" range="261,186,23,15" icon="1162" tooltip="10040" tooltext="Exit">
+		<style wsVisible=""/>
+		<OnCommand>MiniGame_OnLeave</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="8056" range="272,170,1,12" title="2/5" fcolor="103" font="1">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="8057" range="170,10,0,12" title="Game indication:" fcolor="103" font="1">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="8058" range="170,24,1,28" title="1. The player with black stones goes first." fcolor="103" font="1" lines="2" words="20">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="8059" range="170,52,0,28" title="2. In the first round, the black stone player moves first, and then alternate turns later." fcolor="103" font="1" lines="2" words="20">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="8060" range="170,80,0,42" title="3. The players alternate turns, with each left clicking the target location to add an additional stone to the board of the A area." fcolor="103" font="1" lines="3" words="20">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="8061" range="3,10,165,168" icon="8009">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_DLG_1" range="450,50,300,230" id="8062" title="Othello Stones" fcolor="104" font="1" puzzle9="1001">
+		<style wsVisible="" wsMoveable="" wsPuzzle=""/>
+		<child>8063</child>
+		<child>8064</child>
+		<child>8065</child>
+		<child>8066</child>
+		<child>8067</child>
+		<child>8068</child>
+		<child>8069</child>
+		<child>8070</child>
+		<child>8071</child>
+		<OnClose>MiniGame_OnClose</OnClose>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="8063" range="177,186,23,15" icon="1159" appdata="8051" tooltip="10040" tooltext="Previous">
+		<style wsVisible=""/>
+		<OnCommand>OnChangePage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="8064" range="205,186,23,15" icon="1160" appdata="8072" tooltip="10040" tooltext="Next">
+		<style wsVisible=""/>
+		<OnCommand>OnChangePage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="8065" range="233,186,23,15" icon="1161" tooltip="10040" tooltext="Enter">
+		<style wsVisible=""/>
+		<OnCommand>MiniGame04_OnStart</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="8066" range="261,186,23,15" icon="1162" tooltip="10040" tooltext="Exit">
+		<style wsVisible=""/>
+		<OnCommand>MiniGame_OnLeave</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="8067" range="272,170,1,12" title="3/5" fcolor="103" font="1">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="8068" range="170,10,1,70" title="There must be at least one of your stones in a vertical, horizontal or diagonal row. Others are all the opponent's stones." fcolor="103" font="1" lines="5" words="20">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="8069" range="170,80,0,42" title="5. The opponent's stones that you have surrounded become yours." fcolor="103" font="1" lines="3" words="20">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="8070" range="170,122,0,42" title="As the left cutline, the black stones can be placed in [C4]、[D3]、[E6]、[F5]." fcolor="103" font="1" lines="3" words="20">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="8071" range="3,10,165,168" icon="8010">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_DLG_1" range="450,50,300,230" id="8072" title="Othello Stones" fcolor="104" font="1" puzzle9="1001">
+		<style wsVisible="" wsMoveable="" wsPuzzle=""/>
+		<child>8073</child>
+		<child>8074</child>
+		<child>8075</child>
+		<child>8076</child>
+		<child>8077</child>
+		<child>8078</child>
+		<child>8079</child>
+		<child>8080</child>
+		<child>8081</child>
+		<OnClose>MiniGame_OnClose</OnClose>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="8073" range="177,186,23,15" icon="1159" appdata="8062" tooltip="10040" tooltext="Previous">
+		<style wsVisible=""/>
+		<OnCommand>OnChangePage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="8074" range="205,186,23,15" icon="1160" appdata="8082" tooltip="10040" tooltext="Next">
+		<style wsVisible=""/>
+		<OnCommand>OnChangePage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="8075" range="233,186,23,15" icon="1161" tooltip="10040" tooltext="Enter">
+		<style wsVisible=""/>
+		<OnCommand>MiniGame04_OnStart</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="8076" range="261,186,23,15" icon="1162" tooltip="10040" tooltext="Exit">
+		<style wsVisible=""/>
+		<OnCommand>MiniGame_OnLeave</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="8077" range="272,170,1,12" title="4/5" fcolor="103" font="1">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="8078" range="170,10,1,56" title="7. If you have no grid to place a stone, you can pass your turn, and then it's the opponent's turn." fcolor="103" font="1" lines="4" words="20">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="8079" range="170,66,0,42" title="8. When one player loses all his stones, or the entire board if filled, the round is over." fcolor="103" font="1" lines="3" words="20">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="8080" range="170,108,0,28" title="9. Whoever owns the most stones at the end of the game wins. " fcolor="103" font="1" lines="2" words="20">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="8081" range="3,10,165,168" icon="8011">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_DLG_1" range="450,50,300,230" id="8082" title="Othello Stones" fcolor="104" font="1" puzzle9="1001">
+		<style wsVisible="" wsMoveable="" wsPuzzle=""/>
+		<child>8083</child>
+		<child>8084</child>
+		<child>8085</child>
+		<child>8086</child>
+		<child>8087</child>
+		<child>8088</child>
+		<child>8089</child>
+		<child>8090</child>
+		<child>8091</child>
+		<OnClose>MiniGame_OnClose</OnClose>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="8083" range="177,186,23,15" icon="1159" appdata="8072" tooltip="10040" tooltext="Previous">
+		<style wsVisible=""/>
+		<OnCommand>OnChangePage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="8084" range="205,186,23,15" icon="1160" tooltip="10040" tooltext="Next">
+		<style wsVisible="" wsDisable=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="8085" range="233,186,23,15" icon="1161" tooltip="10040" tooltext="Enter">
+		<style wsVisible=""/>
+		<OnCommand>MiniGame04_OnStart</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="8086" range="261,186,23,15" icon="1162" tooltip="10040" tooltext="Exit">
+		<style wsVisible=""/>
+		<OnCommand>MiniGame_OnLeave</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="8087" range="272,170,1,12" title="5/5" fcolor="103" font="1">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="8088" range="170,10,0,12" title="Operation Orders:" fcolor="103" font="1">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="8089" range="170,24,0,42" title="1. Pass (B):  When you have no grid to place a stone, press &quot;Pass&quot;. Then it's the opponent's turn." fcolor="103" font="1" lines="3" words="20">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="8090" range="170,66,0,42" title="2. Surrender: Press &quot;Surrender&quot; button to give up and end this round." fcolor="103" font="1" lines="3" words="20">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="8091" range="3,10,165,168" icon="8009">
+		<style wsVisible=""/>
+	</window>
+	<!-- 情緒符號介面 縮小 -->
+	<window class="WND_CLASS_DLG_1" range="450,50,157,67" id="3001" title="Emotes" fcolor="104" font="1" icon="3001">
+		<style wsVisible="" wsMoveable=""/>
+		<child>3002</child>
+		<child>3003</child>
+		<child>3004</child>
+		<child>3005</child>
+		<child>3006</child>
+	</window>
+	<!-- 情緒符號按鈕(放大) -->
+	<window class="WND_CLASS_BUTTON" id="3002" range="130,2,17,30" icon="3002" appdata="3011">
+		<style wsVisible=""/>
+		<OnCommand>OnEmotionChaSize</OnCommand>
+	</window>
+	<!-- 情緒符號熱鍵(Alt+1) -->
+	<window class="WND_CLASS_BUTTON" id="3003" range="5,5,30,30" tooltip="10040">
+		<style wsVisible="" wsDrop="" wsDrag=""/>
+		<OnDrag>OnDragQuickEmo</OnDrag>
+		<OnDrop>OnDropQuickEmo</OnDrop>
+		<OnDropX>OnDropXQuickEmo</OnDropX>
+		<OnCommandEx>OnUseQuickEmo</OnCommandEx>
+	</window>
+	<!-- 情緒符號熱鍵(Alt+2) -->
+	<window class="WND_CLASS_BUTTON" id="3004" range="37,5,30,30" tooltip="10040">
+		<style wsVisible="" wsDrop="" wsDrag=""/>
+		<OnDrag>OnDragQuickEmo</OnDrag>
+		<OnDrop>OnDropQuickEmo</OnDrop>
+		<OnDropX>OnDropXQuickEmo</OnDropX>
+		<OnCommandEx>OnUseQuickEmo</OnCommandEx>
+	</window>
+	<!-- 情緒符號熱鍵(Alt+3) -->
+	<window class="WND_CLASS_BUTTON" id="3005" range="69,5,30,30" tooltip="10040">
+		<style wsVisible="" wsDrop="" wsDrag=""/>
+		<OnDrag>OnDragQuickEmo</OnDrag>
+		<OnDrop>OnDropQuickEmo</OnDrop>
+		<OnDropX>OnDropXQuickEmo</OnDropX>
+		<OnCommandEx>OnUseQuickEmo</OnCommandEx>
+	</window>
+	<!-- 情緒符號熱鍵(Alt+4) -->
+	<window class="WND_CLASS_BUTTON" id="3006" range="101,5,30,30" tooltip="10040">
+		<style wsVisible="" wsDrop="" wsDrag=""/>
+		<OnDrag>OnDragQuickEmo</OnDrag>
+		<OnDrop>OnDropQuickEmo</OnDrop>
+		<OnDropX>OnDropXQuickEmo</OnDropX>
+		<OnCommandEx>OnUseQuickEmo</OnCommandEx>
+	</window>
+	<!-- 情緒符號介面 放大 -->
+	<window class="WND_CLASS_DLG_1" range="450,50,157,165" id="3011" title="Emotes" fcolor="104" font="1" icon="3011">
+		<style wsVisible="" wsMoveable=""/>
+		<child>3012</child>
+		<child>3003</child>
+		<child>3004</child>
+		<child>3005</child>
+		<child>3006</child>
+		<child>3017</child>
+	</window>
+	<!-- 情緒符號按鈕(縮小) -->
+	<window class="WND_CLASS_BUTTON" id="3012" range="130,2,17,30" icon="3012" appdata="3001">
+		<style wsVisible=""/>
+		<OnCommand>OnEmotionChaSize</OnCommand>
+	</window>
+	<!-- 情緒符號列表 -->
+	<window class="WND_CLASS_LIST" id="3017" range="5,47,122,90" cols="4" rows="3" gapx="6" gapy="6" tpos="1,1" tooltip="10040">
+		<style wsVisible="" lsVScroll="" wsDrag=""/>
+		<child>3018</child>
+		<OnDrag>OnDragEmo</OnDrag>
+		<OnCommandEx>OnUseEmo</OnCommandEx>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="3018" range="129,-3,9,90" uicon="131" dicon="132" ticon="133" urange="0,0,9,10" drange="0,86,9,10" trange="0,10,9,76" thumbmin="8">
+		<style wsVisible="" csVScroll="" csSimple=""/>
+	</window>
+	<!-- 情緒符號底圖 按鈕 -->
+	<icon id="3001" dir="\wnd01\" normal="w022_02" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/><!-- 情緒符號底圖(縮小) -->
+	</icon>
+	<icon id="3002" dir="\wnd01\" normal="btn072_n" focus="btn072_f" down="btn072_d" disable="normal"/><!-- 情緒符號按鈕(放大) -->
+	<icon id="3011" dir="\wnd01\" normal="w022_01" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/><!-- 情緒符號底圖(放大) -->
+	</icon>
+	<icon id="3012" dir="\wnd01\" normal="btn073_n" focus="btn073_f" down="btn073_d" disable="normal"/><!-- 情緒符號按鈕(縮小) -->
+	<!-- 情緒符號小圖示 -->
+	<icon id="4001" dir="\emot\" normal="em001" focus="normal" down="normal" disable="normal"/>
+	<icon id="4002" dir="\emot\" normal="em002" focus="normal" down="normal" disable="normal"/>
+	<icon id="4003" dir="\emot\" normal="em003" focus="normal" down="normal" disable="normal"/>
+	<icon id="4004" dir="\emot\" normal="em004" focus="normal" down="normal" disable="normal"/>
+	<icon id="4005" dir="\emot\" normal="em005" focus="normal" down="normal" disable="normal"/>
+	<icon id="4006" dir="\emot\" normal="em006" focus="normal" down="normal" disable="normal"/>
+	<icon id="4007" dir="\emot\" normal="em007" focus="normal" down="normal" disable="normal"/>
+	<icon id="4008" dir="\emot\" normal="em008" focus="normal" down="normal" disable="normal"/>
+	<icon id="4009" dir="\emot\" normal="em009" focus="normal" down="normal" disable="normal"/>
+	<icon id="4010" dir="\emot\" normal="em010" focus="normal" down="normal" disable="normal"/>
+	<icon id="4011" dir="\emot\" normal="em011" focus="normal" down="normal" disable="normal"/>
+	<icon id="4012" dir="\emot\" normal="em012" focus="normal" down="normal" disable="normal"/>
+	<icon id="4013" dir="\emot\" normal="em013" focus="normal" down="normal" disable="normal"/>
+	<icon id="4014" dir="\emot\" normal="em014" focus="normal" down="normal" disable="normal"/>
+	<icon id="4015" dir="\emot\" normal="em015" focus="normal" down="normal" disable="normal"/>
+	<icon id="4016" dir="\emot\" normal="em016" focus="normal" down="normal" disable="normal"/>
+	<icon id="4017" dir="\emot\" normal="em017" focus="normal" down="normal" disable="normal"/>
+	<icon id="4018" dir="\emot\" normal="em018" focus="normal" down="normal" disable="normal"/>
+	<icon id="4019" dir="\emot\" normal="em019" focus="normal" down="normal" disable="normal"/>
+	<icon id="4020" dir="\emot\" normal="em020" focus="normal" down="normal" disable="normal"/>
+	<icon id="4021" dir="\emot\" normal="em021" focus="normal" down="normal" disable="normal"/>
+	<icon id="4022" dir="\emot\" normal="em022" focus="normal" down="normal" disable="normal"/>
+	<icon id="4023" dir="\emot\" normal="em023" focus="normal" down="normal" disable="normal"/>
+	<icon id="4024" dir="\emot\" normal="em024" focus="normal" down="normal" disable="normal"/>
+	<icon id="4025" dir="\emot\" normal="em025" focus="normal" down="normal" disable="normal"/>
+	<icon id="4026" dir="\emot\" normal="em026" focus="normal" down="normal" disable="normal"/>
+	<icon id="4027" dir="\emot\" normal="em027" focus="normal" down="normal" disable="normal"/>
+	<icon id="4028" dir="\emot\" normal="em028" focus="normal" down="normal" disable="normal"/>
+	<icon id="4029" dir="\emot\" normal="em029" focus="normal" down="normal" disable="normal"/>
+	<icon id="4030" dir="\emot\" normal="em030" focus="normal" down="normal" disable="normal"/>
+	<icon id="4031" dir="\emot\" normal="em031" focus="normal" down="normal" disable="normal"/>
+	<icon id="4032" dir="\emot\" normal="em032" focus="normal" down="normal" disable="normal"/>
+	<icon id="4033" dir="\emot\" normal="em033" focus="normal" down="normal" disable="normal"/>
+	<icon id="4034" dir="\emot\" normal="em034" focus="normal" down="normal" disable="normal"/>
+	<icon id="4035" dir="\emot\" normal="em035" focus="normal" down="normal" disable="normal"/>
+	<icon id="4036" dir="\emot\" normal="em036" focus="normal" down="normal" disable="normal"/>
+	<icon id="4037" dir="\emot\" normal="em037" focus="normal" down="normal" disable="normal"/>
+	<icon id="4038" dir="\emot\" normal="em038" focus="normal" down="normal" disable="normal"/>
+	<icon id="4039" dir="\emot\" normal="em039" focus="normal" down="normal" disable="normal"/>
+	<icon id="4040" dir="\emot\" normal="em040" focus="normal" down="normal" disable="normal"/>
+	<icon id="4041" dir="\emot\" normal="em041" focus="normal" down="normal" disable="normal"/>
+	<icon id="4042" dir="\emot\" normal="em042" focus="normal" down="normal" disable="normal"/>
+	<icon id="4043" dir="\emot\" normal="em043" focus="normal" down="normal" disable="normal"/>
+	<icon id="4044" dir="\emot\" normal="em044" focus="normal" down="normal" disable="normal"/>
+	<icon id="4045" dir="\emot\" normal="em045" focus="normal" down="normal" disable="normal"/>
+	<!-- 物品欄 -->
+	<window class="WND_CLASS_DLG_1" range="450,50,200,259" id="3031" title="Prop" fcolor="104" font="1" icon="3031">
+		<style wsVisible="" wsMoveable=""/>
+		<child>3101</child>
+		<child>3102</child>
+		<child>3103</child>
+		<child>3104</child>
+		<child>3105</child>
+		<child>3106</child>
+		<child>3107</child>
+		<child>3108</child>
+		<child>3109</child>
+		<child>3110</child>
+		<child>3111</child>
+		<child>3112</child>
+		<child>3113</child>
+		<child>3114</child>
+		<child>3115</child>
+		<child>3116</child>
+		<child>3117</child>
+		<child>3118</child>
+		<child>3119</child>
+		<child>3120</child>
+		<child>3121</child>
+		<child>3122</child>
+		<child>3123</child>
+		<child>3124</child>
+		<child>3125</child>
+		<child>3034</child>
+		<child>3035</child>
+		<child>3036</child>
+		<child>3037</child>
+		<child>3060</child>
+		<child>3038</child>
+		<child>3039</child>
+		<child>3040</child>
+	</window>
+	<!-- 道具按鈕的樣版 -->
+	<template class="WND_CLASS_ITEMBUTTON" id="3101" tooltip="10041" tooldelay="5" fcolor="103" font="3" tpos="0,26">
+		<style wsVisible="" wsDrag="" wsDrop="" bsRight=""/>
+		<OnDrag>OnDragCharItem</OnDrag>
+		<OnDrop>OnDropCharItem</OnDrop>
+		<OnCommandEx>OnUseCharItem</OnCommandEx>
+	</template>
+	<window id="3101" range="2,2,36,36" derive="3101"/>
+	<window id="3102" range="40,2,36,36" derive="3101"/>
+	<window id="3103" range="78,2,36,36" derive="3101"/>
+	<window id="3104" range="116,2,36,36" derive="3101"/>
+	<window id="3105" range="154,2,36,36" derive="3101"/>
+	<window id="3106" range="2,40,36,36" derive="3101"/>
+	<window id="3107" range="40,40,36,36" derive="3101"/>
+	<window id="3108" range="78,40,36,36" derive="3101"/>
+	<window id="3109" range="116,40,36,36" derive="3101"/>
+	<window id="3110" range="154,40,36,36" derive="3101"/>
+	<window id="3111" range="2,78,36,36" derive="3101"/>
+	<window id="3112" range="40,78,36,36" derive="3101"/>
+	<window id="3113" range="78,78,36,36" derive="3101"/>
+	<window id="3114" range="116,78,36,36" derive="3101"/>
+	<window id="3115" range="154,78,36,36" derive="3101"/>
+	<window id="3116" range="2,116,36,36" derive="3101"/>
+	<window id="3117" range="40,116,36,36" derive="3101"/>
+	<window id="3118" range="78,116,36,36" derive="3101"/>
+	<window id="3119" range="116,116,36,36" derive="3101"/>
+	<window id="3120" range="154,116,36,36" derive="3101"/>
+	<window id="3121" range="2,154,36,36" derive="3101"/>
+	<window id="3122" range="40,154,36,36" derive="3101"/>
+	<window id="3123" range="78,154,36,36" derive="3101"/>
+	<window id="3124" range="116,154,36,36" derive="3101"/>
+	<window id="3125" range="154,154,36,36" derive="3101"/>
+	<!-- 金錢 -->
+	<window class="WND_CLASS_STATIC" range="25,195,62,14" id="3034" title="0" fcolor="105" font="1">
+		<style wsVisible="" ssVCenter="" ssRight=""/>
+	</window>
+	<!-- 負重 -->
+	<window class="WND_CLASS_PROGRESS" range="128,196,57,12" id="3035" picon="3035" font="1" fcolor="103" tooltip="10041">
+		<style wsVisible="" psHorizontal="" psShowPos=""/>
+	</window>
+	<icon id="3035" dir="\wnd01\" normal="w032_01" focus="normal" down="normal" disable="normal"/>
+	<!-- 金錢按鈕 -->
+	<window class="WND_CLASS_BUTTON" id="3036" range="6,195,17,17" icon="3036" tooltip="10040" tooltext="Keep it in warehouse">
+		<style wsVisible=""/>
+		<OnCommand>OnShowSplitMoneyWnd</OnCommand>
+	</window>
+	<!-- 銷毀物品按鈕 -->
+	<window class="WND_CLASS_BUTTON" id="3037" range="6,214,26,18" icon="1157" tooltip="10040" tooltext="Drag the item here to delete">
+		<style wsVisible="" wsDrop=""/>
+		<OnDrop>OnDestroyItem</OnDrop>
+	</window>
+	<!-- 背包按鈕 -->
+	<window class="WND_CLASS_BUTTON" id="3060" range="67,214,26,18" icon="3060" tooltip="10040" tooltext="Backpack">
+		<style wsVisible=""/>
+		<OnCommand>OnOpenPackageInterface</OnCommand>
+	</window>
+	<!-- 裝備按鈕 -->
+	<window class="WND_CLASS_BUTTON" id="3038" range="98,214,26,18" icon="3038" tooltip="10040" tooltext="Gear[Alt+E]">
+		<style wsVisible=""/>
+		<OnCommand>OnOpenEquipInterface</OnCommand>
+	</window>
+	<!-- 交易按鈕 -->
+	<window class="WND_CLASS_BUTTON" id="3039" range="129,214,26,18" icon="3039" tooltip="10040" tooltext="Trade[Alt+T]">
+		<style wsVisible=""/>
+		<!--<OnCommand>OnOpenTradeInterface</OnCommand>-->
+		<OnCommand>OnTrade_Invite</OnCommand>
+	</window>
+	<!-- 擺攤按鈕 -->
+	<window class="WND_CLASS_BUTTON" id="3040" range="160,214,26,18" icon="3040" tooltip="10040" tooltext="Set a stall">
+		<style wsVisible=""/>
+		<OnCommand>OnOpenSaleInterface</OnCommand>
+	</window>
+	<!-- 物品欄底圖 按鈕 -->
+	<!-- 物品欄底圖 -->
+	<icon id="3031" dir="\wnd01\" normal="w011_1" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<!-- 物品格子 -->
+	<icon id="3032" dir="\wnd01\" normal="w011_2" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<!-- 背包格子 -->
+	<icon id="3033" dir="\wnd01\" normal="w011_3" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<icon id="3036" dir="\wnd01\" normal="btn041_n" focus="btn041_f" down="btn041_d" disable="btn041_b"/><!-- 金錢按鈕 -->
+	<icon id="3038" dir="\wnd01\" normal="btn043_n" focus="btn043_f" down="btn043_d" disable="normal"/><!-- 裝備按鈕 -->
+	<icon id="3039" dir="\wnd01\" normal="btn044_n" focus="btn044_f" down="btn044_d" disable="normal"/><!-- 交易按鈕 -->
+	<icon id="3040" dir="\wnd01\" normal="btn045_n" focus="btn045_f" down="btn045_d" disable="normal"/><!-- 擺攤按鈕 -->
+	<icon id="3060" dir="\wnd01\" normal="btn115_n" focus="btn115_f" down="btn115_d" disable="normal"/><!-- 背包按鈕 -->
+	<!-- 金錢調整 -->
+	<window class="WND_CLASS_BASE" range="450,50,150,54" id="3041" puzzle1="1181" puzzle2="1182" puzzle3="1183" puzzle4="1184" puzzle5="1185" puzzle6="1186" puzzle7="1187" puzzle8="1188" puzzle9="1189">
+		<style wsVisible="" wsMoveable="" wsPuzzle=""/>
+		<child>3043</child>
+		<child>3044</child>
+		<child>3046</child>
+		<child>3047</child>
+		<child>3048</child>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3043" range="32,8,14,14" icon="3043">
+		<style wsVisible=""/><!-- < -->
+		<OnCommand>OnGiveMoney_Decrease1</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3044" range="104,8,14,14" icon="3044">
+		<style wsVisible=""/><!-- > -->
+		<OnCommand>OnGiveMoney_Increase1</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3046" range="45,28,26,18" icon="1154">
+		<style wsVisible=""/><!-- √ -->
+		<OnCommand>OnGiveMoney_Ok</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3047" range="79,28,26,18" icon="1155">
+		<style wsVisible=""/><!-- ╳ -->
+		<OnCommand>OnGiveMoney_Cancel</OnCommand>
+	</window>
+	<window class="WND_CLASS_EDIT" id="3048" range="50,8,50,14" icon="3048" fcolor="105" font="1" tpos="1, 1" limit="7">
+		<style wsVisible="" esNumber=""/>
+	</window>
+	<!-- 金錢調整 按鈕 -->
+	<icon id="3042" dir="\wnd01\" normal="btn058_n" focus="btn058_f" down="btn058_d" disable="normal"/><!-- << -->
+	<icon id="3043" dir="\wnd01\" normal="btn057_n" focus="btn057_f" down="btn057_d" disable="normal"/><!-- < -->
+	<icon id="3044" dir="\wnd01\" normal="btn059_n" focus="btn059_f" down="btn059_d" disable="normal"/><!-- > -->
+	<icon id="3045" dir="\wnd01\" normal="btn060_n" focus="btn060_f" down="btn060_d" disable="normal"/><!-- >> -->
+	<icon id="3048" dir="\wnd01\" normal="w024_02" focus="normal" down="normal" disable="normal"/><!-- 空白輸入欄(短) -->
+	<!-- 銷毀物品 -->
+	<window class="WND_CLASS_BASE" range="450,50,150,52" id="3051" puzzle1="1181" puzzle2="1182" puzzle3="1183" puzzle4="1184" puzzle5="1185" puzzle6="1186" puzzle7="1187" puzzle8="1188" puzzle9="1189">
+		<style wsVisible="" wsMoveable="" wsPuzzle="" wsPopup="" wsAutoClose=""/>
+		<child>3052</child>
+		<child>3053</child>
+		<child>3054</child>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3052" range="20,8,110,12" title="Destroy this?" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3053" range="45,26,26,18" icon="1154">
+		<style wsVisible=""/><!-- √ -->
+		<OnCommand>OnDestroyItem_Ok</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3054" range="79,26,26,18" icon="1155">
+		<style wsVisible=""/><!-- ╳ -->
+		<OnCommand>OnDestroyItem_Cancel</OnCommand>
+	</window>
+	<!-- 交易介面 -->
+	<window class="WND_CLASS_DLG_1" range="0,0,176,242" id="3061" title="Trade" fcolor="104" font="1" icon="3061">
+		<style wsVisible="" wsMoveable=""/>
+		<child>3070</child>
+		<child>3065</child>
+		<child>3069</child>
+		<child>3072</child>
+		<OnClose>OnTrade_Cancel</OnClose>
+	</window>
+	<window class="WND_CLASS_BASE" id="3065" range="0,0,1,1">
+		<style wsVisible=""/>
+		<child>3062</child>
+		<child>3064</child>
+		<child>3755</child>
+		<child>3756</child>
+		<child>3757</child>
+		<child>3758</child>
+		<child>3759</child>
+		<child>3760</child>
+		<child>3761</child>
+		<child>3762</child>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3062" range="5,3,74,14" fcolor="103" font="1" title="">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/><!-- 交易對象姓名 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3064" range="99,3,62,14" fcolor="103" font="1" title="0">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/><!-- 交易金額 -->
+	</window>
+	<window class="WND_CLASS_ITEMBUTTON" id="3755" fcolor="103" range="2,20,36,36" font="3" tpos="0,26" tooltip="10041">
+		<style wsVisible="" ssRight=""/>
+	</window>
+	<window class="WND_CLASS_ITEMBUTTON" id="3756" fcolor="103" range="40,20,36,36" font="3" tpos="0,26" tooltip="10041">
+		<style wsVisible="" ssRight=""/>
+	</window>
+	<window class="WND_CLASS_ITEMBUTTON" id="3757" fcolor="103" range="78,20,36,36" font="3" tpos="0,26" tooltip="10041">
+		<style wsVisible="" ssRight=""/>
+	</window>
+	<window class="WND_CLASS_ITEMBUTTON" id="3758" fcolor="103" range="116,20,36,36" font="3" tpos="0,26" tooltip="10041">
+		<style wsVisible="" ssRight=""/>
+	</window>
+	<window class="WND_CLASS_ITEMBUTTON" id="3759" fcolor="103" range="2,58,36,36" font="3" tpos="0,26" tooltip="10041">
+		<style wsVisible="" ssRight=""/>
+	</window>
+	<window class="WND_CLASS_ITEMBUTTON" id="3760" fcolor="103" range="40,58,36,36" font="3" tpos="0,26" tooltip="10041">
+		<style wsVisible="" ssRight=""/>
+	</window>
+	<window class="WND_CLASS_ITEMBUTTON" id="3761" fcolor="103" range="78,58,36,36" font="3" tpos="0,26" tooltip="10041">
+		<style wsVisible="" ssRight=""/>
+	</window>
+	<window class="WND_CLASS_ITEMBUTTON" id="3762" fcolor="103" range="116,58,36,36" font="3" tpos="0,26" tooltip="10041">
+		<style wsVisible="" ssRight=""/>
+	</window>
+	<window class="WND_CLASS_BASE" id="3069" range="0,0,1,1">
+		<style wsVisible=""/>
+		<child>3066</child>
+		<child>3067</child>
+		<child>3068</child>
+		<child>3763</child>
+		<child>3764</child>
+		<child>3765</child>
+		<child>3766</child>
+		<child>3767</child>
+		<child>3768</child>
+		<child>3769</child>
+		<child>3770</child>
+		<child>3071</child>
+		<child>3073</child>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3066" range="5,100,74,14" fcolor="103" font="1" title="">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/><!-- 自己姓名 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3067" range="81,99,17,17" icon="3036" tooltip="10040" tooltext="Pay the other side">
+		<style wsVisible=""/><!-- 金錢按鈕 -->
+		<OnCommand>OnTrade_Money</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3068" range="99,100,62,14" fcolor="105" font="1" title="0">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/><!-- 交易金額 -->
+	</window>
+	<template class="WND_CLASS_ITEMBUTTON" id="3763" tooltip="10041" fcolor="103" font="3" tpos="0,26">
+		<style wsVisible="" wsDrop="" ssRight=""/>
+		<OnDrop>OnTrade_Drop</OnDrop>
+	</template>
+	<window id="3763" range="2,117,36,36" derive="3763"/>
+	<window id="3764" range="40,117,36,36" derive="3763"/>
+	<window id="3765" range="78,117,36,36" derive="3763"/>
+	<window id="3766" range="116,117,36,36" derive="3763"/>
+	<window id="3767" range="2,155,36,36" derive="3763"/>
+	<window id="3768" range="40,155,36,36" derive="3763"/>
+	<window id="3769" range="78,155,36,36" derive="3763"/>
+	<window id="3770" range="116,155,36,36" derive="3763"/>
+	<window class="WND_CLASS_BASE" id="3070" range="6,197,48,18" icon="3070">
+		<style wsVisible=""/><!-- 燈號 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3071" range="80,197,26,18" icon="1154" check="3072" tooltip="10040" tooltext="Confirm">
+		<style wsVisible="" bsCheck=""/><!-- 確認物品 -->
+		<OnCommand>OnTrade_Confirm</OnCommand>
+	</window>
+	<icon id="3072" dir="\game\02\" normal="btn067_d" focus="normal" down="normal" disable="normal"/>
+	<window class="WND_CLASS_BUTTON" id="3072" range="108,197,26,18" icon="1155" tooltip="10040" tooltext="Cancel">
+		<style wsVisible=""/><!-- 結束交易 -->
+		<OnCommand>OnTrade_Cancel</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3073" range="136,197,26,18" icon="3039" check="3073" tooltip="10040" tooltext="Trade completed">
+		<style wsVisible="" wsDisable="" bsCheck=""/><!-- 完成交易 -->
+		<OnCommand>OnTrade_Trade</OnCommand>
+	</window>
+	<icon id="3073" dir="\wnd01\" normal="btn044_d" focus="normal" down="normal" disable="normal"/><!-- 交易按鈕 -->
+	<!-- 交易介面底圖 按鈕 -->
+	<icon id="3061" dir="\wnd01\" normal="w023_01" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<icon id="3070" dir="\wnd01\" normal="w023_02" focus="normal" down="normal" disable="normal"/><!-- 燈號-暗 -->
+	<icon id="3071" dir="\wnd01\" normal="w023_03" focus="normal" down="normal" disable="normal"/><!-- 燈號-亮 -->
+	<window class="WND_CLASS_BASE" id="3074" range="0,0,150,76" puzzle1="1081" puzzle2="1082" puzzle3="1083" puzzle4="1084" puzzle5="1085" puzzle6="1086" puzzle7="1087" puzzle8="1088" puzzle9="1089">
+		<style wsVisible="" wsPuzzle=""/>
+		<child>3075</child>
+		<child>3076</child>
+		<child>3077</child>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="3075" range="9,8,1,36" title="" fcolor="103" font="1" lines="3" words="22">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3076" range="45,50,26,18" icon="1093">
+		<style wsVisible=""/>
+		<OnCommand>OnTradeInvite_OK</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3077" range="79,50,26,18" icon="1094">
+		<style wsVisible=""/>
+		<OnCommand>OnTradeInvite_Cancel</OnCommand>
+	</window>
+	<!-- 交易金額設定視窗 -->
+	<window class="WND_CLASS_BASE" range="0,0,150,52" id="3131" puzzle1="1181" puzzle2="1182" puzzle3="1183" puzzle4="1184" puzzle5="1185" puzzle6="1186" puzzle7="1187" puzzle8="1188" puzzle9="1189">
+		<style wsVisible="" wsPopup="" wsAutoClose="" wsPuzzle=""/>
+		<child>3132</child>
+		<child>3133</child>
+		<child>3134</child>
+		<child>3135</child>
+		<child>3136</child>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3132" range="21,8,1,1" title="Sum" fcolor="103" font="1">
+		<style wsVisible=""/><!-- 單價 -->
+	</window>
+	<window class="WND_CLASS_EDIT" id="3133" range="63,7,50,14" icon="3048" fcolor="105" font="1" tpos="1, 1" limit="8" appdata="3134">
+		<style wsVisible="" esNumber="" esHCenter=""/>
+		<OnEditChange>OnTrade_Money_Edit</OnEditChange>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="3134" range="47,7,1,1" uicon="3618" dicon="3620" urange="0,0,14,14" drange="68,0,14,14" appdata="3133">
+		<style wsVisible="" csHScroll="" csSimple=""/>
+		<OnScroll>OnTrade_Money_Scroll</OnScroll>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3135" range="45,26,26,18" icon="1154">
+		<style wsVisible=""/><!-- √ -->
+		<OnCommand>OnTrade_Money_OK</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3136" range="79,26,26,18" icon="1155">
+		<style wsVisible=""/><!-- ╳ -->
+		<OnCommand>OnTrade_Money_Cancel</OnCommand>
+	</window>
+	<!-- 擺攤介面(賣方) -->
+	<window class="WND_CLASS_DLG_1" range="0,0,273,259" id="3081" title="Set a stall" fcolor="104" font="1" icon="3081">
+		<style wsVisible="" wsMoveable=""/>
+		<child>3084</child>
+		<child>3085</child>
+		<child>3100</child>
+		<child>3775</child>
+		<child>3086</child>
+		<child>3087</child>
+		<child>3088</child>
+		<child>3089</child>
+		<child>3082</child>
+		<child>3096</child>
+		<OnClose>OnSaleListSave</OnClose>
+	</window>
+	<window class="WND_CLASS_SALELIST" id="3082" range="2,2,252,188" cols="1" rows="5" gapx="0" gapy="2" fcolor="103" font="3" bcolor="3082" tooltip="10041">
+		<style wsVisible="" lsVScroll="" lsCheck="" lsSCheck="" wsDrop=""/><!-- 販賣頁LIST -->
+		<child>3083</child>
+		<OnDrop>OnDropSellSaleList</OnDrop>
+	</window>
+	<color id="3082" normal="255,255,255, 0" focus="0,255,255, 1" down="255,84,70, 1" disable="0,255,255, 0"/>
+	<window class="WND_CLASS_SCROLLBAR" id="3083" range="253,-1,9,188" uicon="131" dicon="132" ticon="133" urange="0,0,9,10" drange="0,180,9,10" trange="0,10,9,170" thumbmin="8">
+		<style csVScroll="" csSimple=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3084" range="8,192,32,16" icon="3085" title="Vend" fcolor="103" font="1">
+		<style wsVisible="" bsHCenter="" bsVCenter=""/><!-- 販賣切頁 -->
+		<OnCommand>OnSale_ChaPage_Sale</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3085" range="46,192,32,16" icon="3084" title="Pur." fcolor="103" font="1">
+		<style wsVisible="" bsHCenter="" bsVCenter=""/><!-- 收購切頁 -->
+		<OnCommand>OnSale_ChaPage_Buy</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3100" range="8,214,26,18" icon="1155" tooltip="10040" tooltext="Delete vended item">
+		<style wsVisible=""/><!-- 販賣 刪除 -->
+		<OnCommand>OnDelSaleItem</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3775" range="8,214,26,18" icon="1155" tooltip="10040" tooltext="Delete purchased item">
+		<!-- 收購 刪除 -->
+		<OnCommand>OnDelSaleItemEx</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3086" range="171,214,26,18" icon="3086" tooltip="10040" tooltext="Hawk">
+		<style wsVisible=""/><!-- 叫賣 -->
+		<OnCommand>OnOpenSaleWords</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3087" range="202,214,26,18" icon="3087" tooltip="10040" tooltext="Set a stall">
+		<style wsVisible=""/><!-- 擺攤 -->
+		<OnCommand>OnStartSale</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3088" range="233,214,26,18" icon="3088" tooltip="10040" tooltext="Close a stall">
+		<style wsVisible=""/><!-- 收攤 -->
+		<OnCommand>OnCloseSale</OnCommand>
+	</window>
+	<window class="WND_CLASS_SALELIST" id="3089" range="2,2,252,188" cols="1" rows="5" gapx="0" gapy="2" fcolor="103" font="3" bcolor="3082" tooltip="10041">
+		<style lsVScroll="" lsCheck="" lsSCheck="" wsDrop=""/><!-- 收購頁LIST -->
+		<child>3090</child>
+		<OnDrop>OnDropBuySaleList</OnDrop>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="3090" range="253,-1,9,188" uicon="131" dicon="132" ticon="133" urange="0,0,9,10" drange="0,180,9,10" trange="0,10,9,170" thumbmin="8">
+		<style csVScroll="" csSimple=""/>
+	</window>
+	<!-- 擺攤介面底圖 按鈕 -->
+	<icon id="3081" dir="\wnd01\" normal="w074_01" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<icon id="3082" dir="\wnd01\" normal="w012_1" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<icon id="3084" dir="\wnd01\" normal="btn056_n" focus="btn056_f" down="btn056_f" disable="normal"/><!-- 空白切頁 -->
+	<icon id="3085" dir="\wnd01\" normal="btn056_d" focus="normal" down="normal" disable="normal"/><!-- 點選切頁狀態 -->
+	<icon id="3086" dir="\wnd01\" normal="btn053_n" focus="btn053_f" down="btn053_d" disable="normal"/><!-- 叫賣 -->
+	<icon id="3087" dir="\wnd01\" normal="btn054_n" focus="btn054_f" down="btn054_d" disable="normal"/><!-- 擺攤 -->
+	<icon id="3088" dir="\wnd01\" normal="btn055_n" focus="btn055_f" down="btn055_d" disable="normal"/><!-- 收攤 -->
+	<!-- 叫賣介面 -->
+	<window class="WND_CLASS_BASE" id="3091" range="0,0,150,68" puzzle1="1081" puzzle2="1082" puzzle3="1083" puzzle4="1084" puzzle5="1085" puzzle6="1086" puzzle7="1087" puzzle8="1088" puzzle9="1089">
+		<style wsVisible="" wsPuzzle="" wsMoveable="" wsAutoClose="" wsPopup=""/>
+		<child>3092</child>
+		<child>3093</child>
+		<child>3094</child>
+		<child>3095</child>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3092" range="12,8,24,12" title="Hawk" fcolor="103" font="1">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_MEDIT" id="3093" range="40,8,102,28" icon="3093" fcolor="105" font="1" tpos="1, 1" lines="2" words="16">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3094" range="45,42,26,18" icon="1154">
+		<style wsVisible=""/><!-- √ -->
+		<OnCommand>OnSaleWords_Ok</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3095" range="79,42,26,18" icon="1155">
+		<style wsVisible=""/><!-- ╳ -->
+		<OnCommand>OnSale_Cancel</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3096" range="87,196,1,1" fcolor="103" font="1"><!-- 倒數格數時間 -->
+		<style wsVisible=""/>
+	</window>
+	<icon id="3093" dir="\wnd01\" normal="w024_01" focus="normal" down="normal" disable="normal"/><!-- 文字輸入(兩行) -->
+	<!-- Mail介面3201~ -->
+	<window class="WND_CLASS_BASE" range="0,0,1,1" id="3201">
+		<child>3205</child>
+		<child>3206</child>
+		<child>3207</child>
+	</window>
+	<window class="WND_CLASS_BASE" id="3205" range="0,0,267,368" icon="3205"><!-- 收件夾頁 -->
+		<style wsVisible=""/>
+		<child>3271</child>
+		<child>3272</child>
+		<child>3273</child>
+		<child>3211</child>
+		<child>3212</child>
+		<child>3213</child>
+		<child>3214</child>
+		<child>3216</child>
+		<child>3217</child>
+		<child>3218</child>
+		<child>3219</child>
+		<child>3220</child>
+		<child>3221</child>
+		<child>3222</child>
+		<child>3223</child>
+		<child>3224</child>
+		<child>3225</child>
+		<child>3226</child>
+		<child>3227</child>
+		<child>3228</child>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3211" range="7,6,70,18" workrange="0,0,56,18" title="Sender" fcolor="104" font="1" tooltip="10040" tooltext="Sender List" icon="3211" appdata="3211">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/><!-- 寄件者 -->
+		<OnCommand>OnSortMailList</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3212" range="82,6,118,18" workrange="0,0,104,18" title="Theme" fcolor="104" font="1" tooltip="10040" tooltext="Theme List" icon="3212" appdata="3212">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/><!-- 主旨 -->
+		<OnCommand>OnSortMailList</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3213" range="205,6,55,18" workrange="0,0,41,18" title="Date" fcolor="104" font="1" tooltip="10040" tooltext="Date List" icon="3213" appdata="3213">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/><!-- 日期 -->
+		<OnCommand>OnSortMailList</OnCommand>
+	</window>
+	<window class="WND_CLASS_LIST" id="3214" range="6,28,245,129" cols="3" rows="10" gapx="60" gapy="1" tpos="1,0" bcolor="3082" fcolor="103" font="1" tooltip="10040" appdata="3214">
+		<style wsVisible="" lsVCenter="" lsVScroll="" lsCheck="" lsSCheck="" lsReport=""/><!-- 收件LIST -->
+		<child>3215</child>
+		<OnCommand>OnSelectMail</OnCommand>
+		<OnTooltip>OnShowListTooltip</OnTooltip>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="3215" range="246,-1,9,129" uicon="131" dicon="132" ticon="133" urange="0,0,9,10" drange="0,121,9,10" trange="0,10,9,111" thumbmin="8">
+		<style wsVisible="" csVScroll="" csSimple=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3216" range="3,168,36,15" title="Sender" fcolor="103" font="1">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3217" range="43,168,221,12" title="" fcolor="103" font="1">
+		<style wsVisible=""/><!-- 寄件者名 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3218" range="3,183,36,15" title="Theme" fcolor="103" font="1">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3219" range="43,183,221,12" title="" fcolor="103" font="1">
+		<style wsVisible=""/><!-- 主旨內文 -->
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="3220" range="7,202,245,115" workrange="1,1,245,115" title="" fcolor="105" font="1" lines="8" words="40">
+		<style wsVisible="" bsVCenter=""/>
+		<child>3229</child>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="3229" range="250,-2,9,115" uicon="131" dicon="132" ticon="133" urange="0,0,9,10" drange="0,108,9,10" trange="0,10,9,98" thumbmin="8">
+		<style wsVisible="" csVScroll="" csSimple=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3221" range="9,326,26,18" tooltip="10040" tooltext="Reply" icon="3221" appdata="3221">
+		<style wsVisible=""/><!-- 回復 -->
+		<OnCommand>OnMailCommand</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3222" range="40,326,26,18" tooltip="10040" tooltext="Forward" icon="3222" appdata="3222">
+		<style wsVisible=""/><!-- 轉寄 -->
+		<OnCommand>OnMailCommand</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3223" range="71,326,26,18" tooltip="10040" tooltext="Save" icon="3223" appdata="3223">
+		<style wsVisible=""/><!-- 儲存 -->
+		<OnCommand>OnMailCommand</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3224" range="102,326,26,18" tooltip="10040" tooltext="Blackllist" icon="3224" appdata="3224">
+		<style wsVisible=""/><!-- 黑名 -->
+		<OnCommand>OnMailCommand</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3225" range="133,326,26,18" tooltip="10040" tooltext="Delete" icon="3225" appdata="3225">
+		<style wsVisible=""/><!-- 刪除 -->
+		<OnCommand>OnDelMailConfirm</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3226" range="170,326,26,18" tooltip="10040" tooltext="Receive a letter" icon="3226" appdata="3226">
+		<style wsVisible=""/><!-- 切換收信 -->
+		<OnCommand>OnReceivePage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3227" range="201,326,26,18" tooltip="10040" tooltext="Write a letter" icon="3227" appdata="3227">
+		<style wsVisible=""/><!-- 切換寫信 -->
+		<OnCommand>OnWritePage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3228" range="232,326,26,18" tooltip="10040" tooltext="Sender backup" icon="3228" appdata="3228">
+		<style wsVisible=""/><!-- 切換寄件備份 -->
+		<OnCommand>OnBackupPage</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3271" range="63,11,8,8" icon="3271"><!-- 寄件者排序圖示 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3272" range="186,11,8,8" icon="3271"><!-- 主旨排序圖示 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3273" range="247,11,8,8" icon="3271"><!-- 日期排序圖示 -->
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_BASE" id="3206" range="0,0,267,368" icon="3206"><!-- 寄信頁 -->
+		<style wsVisible=""/>
+		<child>3231</child>
+		<child>3232</child>
+		<child>3233</child>
+		<child>3234</child>
+		<child>3235</child>
+		<child>3236</child>
+		<child>3237</child>
+		<child>3238</child>
+		<child>3239</child>
+		<child>3240</child>
+		<child>3241</child>
+		<child>3242</child>
+		<child>3243</child>
+		<child>3226</child>
+		<child>3227</child>
+		<child>3228</child>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3231" range="3,3,43,18" icon="3231" title="To" fcolor="103" font="1" appdata="3231">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/><!-- 收件者 -->
+		<OnCommand>OnCreateReceWnd</OnCommand>
+	</window>
+	<window class="WND_CLASS_EDIT" id="3232" range="49,4,214,16" title="" fcolor="105" font="1" tpos="1, 1" limit="12">
+		<style wsVisible="" esVCenter="" esCanPaste=""/><!-- 收件者名 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3233" range="3,23,43,18" icon="3231" title="CC" fcolor="103" font="1" appdata="3233">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/><!-- 副本 -->
+		<OnCommand>OnCreateCopyWnd</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3234" range="49,24,214,16" title="" fcolor="105" font="1">
+		<style wsVisible="" ssVCenter=""/><!-- 副本名 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3235" range="6,46,36,15" title="Theme" fcolor="103" font="1">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_EDIT" id="3236" range="49,44,214,16" title="" fcolor="105" font="1" tpos="1, 1" limit="32">
+		<style wsVisible="" esVCenter="" esCanPaste=""/><!-- 主旨內文 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3237" range="50,65,72,15" title="Money for CC" fcolor="103" font="1">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3238" range="126,65,49,12" title="0" fcolor="103" font="1">
+		<style wsVisible="" ssRight=""/><!-- 副本所需金錢數量 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3239" range="180,65,72,15" title="Save mail" fcolor="103" font="1">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3240" range="252,64,12,12" icon="1120" check="3240" appdata="3240">
+		<style wsVisible="" bsCheck=""/><!-- 保留寄件備份選擇按鈕 -->
+	</window>
+	<window class="WND_CLASS_MEDIT" id="3241" range="12,87,243,224" fcolor="105" font="1" tpos="1, 1" lines="16" words="40">
+		<style wsVisible="" esWantReturn=""/><!-- 內文 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3242" range="102,326,26,18" tooltip="10040" tooltext="Send off" icon="3242" appdata="3242">
+		<style wsVisible=""/><!-- 寄出 -->
+		<OnCommand>OnMailCommand</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3243" range="133,326,26,18" tooltip="10040" tooltext="Clear" icon="3243" appdata="3243">
+		<style wsVisible=""/><!-- 清除 -->
+		<OnCommand>OnMailCommand</OnCommand>
+	</window>
+	<window class="WND_CLASS_BASE" id="3207" range="0,0,267,368" icon="3205"><!-- 寄件備份頁 -->
+		<child>3274</child>
+		<child>3275</child>
+		<child>3276</child>
+		<child>3251</child>
+		<child>3252</child>
+		<child>3253</child>
+		<child>3254</child>
+		<child>3256</child>
+		<child>3257</child>
+		<child>3258</child>
+		<child>3259</child>
+		<child>3260</child>
+		<child>3261</child>
+		<child>3262</child>
+		<child>3226</child>
+		<child>3227</child>
+		<child>3228</child>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3251" range="7,6,70,18" workrange="0,0,56,18" title="To" fcolor="104" font="1" tooltip="10040" tooltext="Receiver List" icon="3211" appdata="3251">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/><!-- 收 件 者 -->
+		<OnCommand>OnSortMailList</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3252" range="82,6,118,18" workrange="0,0,104,18" title="Theme" fcolor="104" font="1" tooltip="10040" tooltext="Theme List" icon="3212" appdata="3252">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/><!-- 主旨 -->
+		<OnCommand>OnSortMailList</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3253" range="205,6,56,18" workrange="0,0,41,18" title="Date" fcolor="104" font="1" tooltip="10040" tooltext="Date List" icon="3213" appdata="3253">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/><!-- 日期 -->
+		<OnCommand>OnSortMailList</OnCommand>
+	</window>
+	<window class="WND_CLASS_LIST" id="3254" range="6,28,245,129" cols="3" rows="10" gapx="60" gapy="1" tpos="1,1" bcolor="3082" fcolor="103" font="1" tooltip="10040" appdata="3254">
+		<style wsVisible="" lsVCenter="" lsVScroll="" lsCheck="" lsSCheck="" lsReport=""/><!-- 收件LIST -->
+		<child>3255</child>
+		<OnCommand>OnSelectMail</OnCommand>
+		<OnTooltip>OnShowListTooltip</OnTooltip>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="3255" range="246,-1,9,129" uicon="131" dicon="132" ticon="133" urange="0,0,9,10" drange="0,121,9,10" trange="0,10,9,111" thumbmin="8">
+		<style wsVisible="" csVScroll="" csSimple=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3256" range="3,168,36,15" title="To" fcolor="103" font="1">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3257" range="41,168,221,12" title="" fcolor="103" font="1">
+		<style wsVisible=""/><!-- 收件者名 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3258" range="3,183,36,15" title="Theme" fcolor="103" font="1">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3259" range="41,183,221,12" title="" fcolor="103" font="1">
+		<style wsVisible=""/><!-- 主旨內文 -->
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="3260" range="7,202,245,115" workrange="1,1,245,115" title="" fcolor="105" font="1" lines="8" words="40">
+		<style wsVisible=""/>
+		<child>3263</child>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="3263" range="250,-2,9,115" uicon="131" dicon="132" ticon="133" urange="0,0,9,10" drange="0,108,9,10" trange="0,10,9,98" thumbmin="8">
+		<style wsVisible="" csVScroll="" csSimple=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3261" range="102,326,26,18" tooltip="10040" tooltext="Save" icon="3223" appdata="3261">
+		<style wsVisible=""/><!-- 儲存 -->
+		<OnCommand>OnMailCommand</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3262" range="133,326,26,18" tooltip="10040" tooltext="Delete" icon="3225" appdata="3262">
+		<style wsVisible=""/><!-- 刪除 -->
+		<OnCommand>OnDelMailConfirm</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3274" range="63,11,8,8" icon="3271"><!-- 寄件者排序圖示 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3275" range="186,11,8,8" icon="3271"><!-- 主旨排序圖示 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3276" range="247,11,8,8" icon="3271"><!-- 日期排序圖示 -->
+		<style wsVisible=""/>
+	</window>
+	<!-- 確認刪除信件 -->
+	<window class="WND_CLASS_BASE" range="450,50,150,52" id="3281" puzzle1="1181" puzzle2="1182" puzzle3="1183" puzzle4="1184" puzzle5="1185" puzzle6="1186" puzzle7="1187" puzzle8="1188" puzzle9="1189">
+		<style wsVisible="" wsMoveable="" wsPuzzle="" wsAutoClose="" wsPopup=""/>
+		<child>3282</child>
+		<child>3283</child>
+		<child>3284</child>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3282" range="27,8,96,12" title="Are you sure you want to delete the letter?" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3283" range="45,26,26,18" icon="1154" appdata="3283">
+		<style wsVisible=""/><!-- √ -->
+		<OnCommand>OnDelMail_Ok</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3284" range="79,26,26,18" icon="1155">
+		<style wsVisible=""/><!-- ╳ -->
+		<OnCommand>OnDelMail_Cancel</OnCommand>
+	</window>
+	<!-- 確認加入黑名單 -->
+	<window class="WND_CLASS_BASE" range="450,50,150,68" id="3291" puzzle1="1181" puzzle2="1182" puzzle3="1183" puzzle4="1184" puzzle5="1185" puzzle6="1186" puzzle7="1187" puzzle8="1188" puzzle9="1189">
+		<style wsVisible="" wsMoveable="" wsPuzzle="" wsAutoClose="" wsPopup=""/>
+		<child>3292</child>
+		<child>3293</child>
+		<child>3294</child>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="3292" range="27,8,96,28" title="1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10" fcolor="103" font="1" lines="2" words="20">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3293" range="45,41,26,18" icon="1154" appdata="3293">
+		<style wsVisible=""/><!-- √ -->
+		<OnCommand>OnAddMib_Ok</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3294" range="79,41,26,18" icon="1155">
+		<style wsVisible=""/><!-- ╳ -->
+		<OnCommand>OnAddMib_Cancel</OnCommand>
+	</window>
+	<!-- 副本 -->
+	<window class="WND_CLASS_BASE" range="0,0,262,246" id="3301" icon="3208">
+		<style wsVisible="" wsMoveable="" wsPopup="" wsAutoClose=""/>
+		<child>3302</child>
+		<child>3303</child>
+		<child>3304</child>
+		<child>3305</child>
+		<child>3307</child>
+		<child>3309</child>
+		<child>3310</child>
+		<child>3311</child>
+		<child>3312</child>
+		<child>3313</child>
+		<child>3314</child>
+		<child>3316</child>
+		<child>3317</child>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3302" range="69,6,72,12" title="Money for CC" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3303" range="143,6,50,12" title="0" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter="" ssRight=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3304" range="33,25,50,12" title="Contact" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_LIST" id="3305" range="8,40,87,168" cols="1" rows="13" gapx="0" gapy="2" tpos="1,0" fcolor="103" font="1" bcolor="3082">
+		<style wsVisible="" lsVScroll="" lsCheck="" lsSCheck=""/><!-- 好友LIST -->
+		<child>3306</child>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="3306" range="90,-3,9,168" uicon="131" dicon="132" ticon="133" urange="0,0,9,10" drange="0,164,9,10" trange="0,10,9,154" thumbmin="8">
+		<style wsVisible="" csVScroll="" csSimple=""/>
+	</window>
+	<window class="WND_CLASS_LIST" id="3307" range="8,40,90,168" cols="1" rows="13" gapx="0" gapy="2" tpos="1,1" fcolor="103" font="1" bcolor="3082">
+		<style lsVScroll="" lsCheck="" lsSCheck=""/><!-- 組織LIST -->
+		<child>3308</child>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="3308" range="90,-3,9,168" uicon="131" dicon="132" ticon="133" urange="0,0,9,10" drange="0,164,9,10" trange="0,10,9,154" thumbmin="8">
+		<style wsVisible="" csVScroll="" csSimple=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3309" range="10,210,32,15" title="Pal" fcolor="103" font="1" icon="3085" appdata="3309">
+		<style wsVisible="" bsHCenter="" bsVCenter=""/><!-- 好友切頁 -->
+		<OnCommand>OnChangeCopyPage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3310" range="48,210,32,15" title="CMNT" fcolor="103" font="1" icon="3084" appdata="3310">
+		<style wsVisible="" bsHCenter="" bsVCenter=""/><!-- 組織切頁 -->
+		<OnCommand>OnChangeCopyPage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3311" range="118,70,26,18" icon="3311" tooltip="10040" tooltext="Join" appdata="3311">
+		<style wsVisible=""/><!-- 加入副本 -->
+		<OnCommand>OnMailCommand</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3312" range="117,151,26,18" icon="2323" tooltip="10040" tooltext="Delete" appdata="3312">
+		<style wsVisible=""/><!-- 由副本中移除 -->
+		<OnCommand>OnMailCommand</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3313" range="181,25,50,12" title="CC List" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_LIST" id="3314" range="156,40,87,168" cols="1" rows="13" gapx="0" gapy="2" tpos="1,0" fcolor="103" font="1" bcolor="3082">
+		<style wsVisible="" lsVScroll="" lsCheck="" lsSCheck=""/><!-- 副本名單LIST -->
+		<child>3315</child>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="3315" range="90,-3,9,168" uicon="131" dicon="132" ticon="133" urange="0,0,9,10" drange="0,164,9,10" trange="0,10,9,154" thumbmin="8">
+		<style wsVisible="" csVScroll="" csSimple=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3316" range="100,220,26,18" icon="1154" tooltip="10040" tooltext="Confirm" appdata="3316">
+		<style wsVisible=""/><!-- √ -->
+		<OnCommand>OnCpoy_OK</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3317" range="134,220,26,18" icon="1155" tooltip="10040" tooltext="Cancel">
+		<style wsVisible=""/><!-- ╳ -->
+		<OnCommand>OnCpoy_Cancel</OnCommand>
+	</window>
+	<!-- 收件者 -->
+	<window class="WND_CLASS_BASE" range="0,0,262,246" id="3331" icon="3208">
+		<style wsVisible="" wsMoveable="" wsPopup="" wsAutoClose=""/>
+		<child>3334</child>
+		<child>3335</child>
+		<child>3337</child>
+		<child>3339</child>
+		<child>3340</child>
+		<child>3341</child>
+		<child>3342</child>
+		<child>3343</child>
+		<child>3344</child>
+		<child>3346</child>
+		<child>3347</child>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3334" range="33,25,50,12" title="Contact" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_LIST" id="3335" range="8,40,87,168" cols="1" rows="13" gapx="0" gapy="2" tpos="1,0" fcolor="103" font="1" bcolor="3082">
+		<style wsVisible="" lsVScroll="" lsCheck="" lsSCheck=""/><!-- 好友LIST -->
+		<child>3336</child>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="3336" range="90,-3,9,168" uicon="131" dicon="132" ticon="133" urange="0,0,9,10" drange="0,164,9,10" trange="0,10,9,154" thumbmin="8">
+		<style wsVisible="" csVScroll="" csSimple=""/>
+	</window>
+	<window class="WND_CLASS_LIST" id="3337" range="8,40,90,168" cols="1" rows="13" gapx="0" gapy="2" tpos="1,1" fcolor="103" font="1">
+		<style lsVScroll="" lsCheck="" lsSCheck=""/><!-- 組織LIST -->
+		<child>3338</child>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="3338" range="90,-3,9,168" uicon="131" dicon="132" ticon="133" urange="0,0,9,10" drange="0,164,9,10" trange="0,10,9,154" thumbmin="8">
+		<style wsVisible="" csVScroll="" csSimple=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3339" range="10,210,32,15" title="Pal" fcolor="103" font="1" icon="3085" appdata="3339">
+		<style wsVisible="" bsHCenter="" bsVCenter=""/><!-- 好友切頁 -->
+		<OnCommand>OnChangeRecePage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3340" range="48,210,32,15" title="CMNT" fcolor="103" font="1" icon="3084" appdata="3340">
+		<style wsVisible="" bsHCenter="" bsVCenter=""/><!-- 組織切頁 -->
+		<OnCommand>OnChangeRecePage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3341" range="118,70,26,18" icon="3311" tooltip="10040" tooltext="Join" appdata="3341">
+		<style wsVisible=""/><!-- 加入收件者 -->
+		<OnCommand>OnMailCommand</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3342" range="117,151,26,18" icon="2323" tooltip="10040" tooltext="Delete" appdata="3342">
+		<style wsVisible=""/><!-- 由收件者中移除 -->
+		<OnCommand>OnMailCommand</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3343" range="181,25,50,12" title="To" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_LIST" id="3344" range="156,40,87,168" cols="1" rows="13" gapx="0" gapy="2" tpos="1,0" fcolor="103" font="1" bcolor="3082">
+		<style wsVisible="" lsVScroll="" lsCheck="" lsSCheck=""/><!-- 收件者LIST -->
+		<child>3345</child>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="3345" range="90,-3,9,168" uicon="131" dicon="132" ticon="133" urange="0,0,9,10" drange="0,164,9,10" trange="0,10,9,154" thumbmin="8">
+		<style wsVisible="" csVScroll="" csSimple=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3346" range="100,220,26,18" icon="1154" tooltip="10040" tooltext="Confirm" appdata="3346">
+		<style wsVisible=""/><!-- √ -->
+		<OnCommand>OnRece_OK</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3347" range="134,220,26,18" icon="1155" tooltip="10040" tooltext="Cancel">
+		<style wsVisible=""/><!-- ╳ -->
+		<OnCommand>OnRece_Cancel</OnCommand>
+	</window>
+	<!-- 未閱讀信件圖示 -->
+	<window class="WND_CLASS_BASE" range="70,0,20,17" id="3351">
+		<style wsVisible=""/>
+		<child>3352</child>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3352" range="0,0,20,17" icon="3352" appdata="3352">
+		<style wsVisible=""/>
+		<OnCommand>OnClickUnreadMail</OnCommand>
+	</window>
+	<icon id="3352" dir="\wnd01\" normal="w066_01,#12,w066_02" focus="normal" down="normal" disable="normal"/>
+	<!-- 信件介面底圖 按鈕 -->
+	<icon id="3205" dir="\wnd01\" normal="w027_02" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/><!-- 收件頁,寄件備份頁 -->
+	</icon>
+	<icon id="3206" dir="\wnd01\" normal="w027_04" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/><!-- 寄信頁 -->
+	</icon>
+	<icon id="3208" dir="\wnd01\" normal="w027_03" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/><!-- 好友組織頁 -->
+	</icon>
+	<icon id="3211" dir="\wnd01\" normal="btn112_n" focus="btn112_f" down="btn112_d" disable="normal"/><!-- 寄件者 -->
+	<icon id="3212" dir="\wnd01\" normal="btn113_n" focus="btn113_f" down="btn113_d" disable="normal"/><!-- 主旨 -->
+	<icon id="3213" dir="\wnd01\" normal="btn111_n" focus="btn111_f" down="btn111_d" disable="normal"/><!-- 時間 -->
+	<icon id="3221" dir="\wnd01\" normal="btn101_n" focus="btn101_f" down="btn101_d" disable="normal"/><!-- 回覆 -->
+	<icon id="3222" dir="\wnd01\" normal="btn102_n" focus="btn102_f" down="btn102_d" disable="normal"/><!-- 轉寄 -->
+	<icon id="3223" dir="\wnd01\" normal="btn103_n" focus="btn103_f" down="btn103_d" disable="normal"/><!-- 儲存 -->
+	<icon id="3224" dir="\wnd01\" normal="btn104_n" focus="btn104_f" down="btn104_d" disable="normal"/><!-- 黑名 -->
+	<icon id="3225" dir="\wnd01\" normal="btn042_n" focus="btn042_f" down="btn042_d" disable="btn042_b"/><!-- 刪除 -->
+	<icon id="3226" dir="\wnd01\" normal="btn098_n" focus="btn098_f" down="btn098_d" disable="normal"/><!-- 收信 -->
+	<icon id="3227" dir="\wnd01\" normal="btn099_n" focus="btn099_f" down="btn099_d" disable="btn099_b"/><!-- 寄信 -->
+	<icon id="3228" dir="\wnd01\" normal="btn100_n" focus="btn100_f" down="btn100_d" disable="normal"/><!-- 備份 -->
+	<icon id="3231" dir="\wnd01\" normal="btn095_n" focus="btn095_f" down="btn095_d" disable="btn095_b"/><!-- 收件者,副本 -->
+	<icon id="3240" dir="\wnd01\" normal="w015_3" focus="normal" down="normal" disable="normal"/><!-- 保留寄件備份 -->
+	<icon id="3242" dir="\wnd01\" normal="btn096_n" focus="btn096_f" down="btn096_d" disable="normal"/><!-- 寄出 -->
+	<icon id="3243" dir="\wnd01\" normal="btn097_n" focus="btn097_f" down="btn097_d" disable="normal"/><!-- 清除 -->
+	<icon id="3271" dir="\wnd01\" normal="w027_05" focus="normal" down="normal" disable="normal"/><!-- 排序圖示(由小到大) -->
+	<icon id="3272" dir="\wnd01\" normal="w027_06" focus="normal" down="normal" disable="normal"/><!-- 排序圖示(由大到小) -->
+	<icon id="3311" dir="\wnd01\" normal="btn092_n" focus="btn092_f" down="btn092_d" disable="normal"/><!-- 加入副本名單 -->
+	<!-- 背包介面 5格(1行) -->
+	<window class="WND_CLASS_DLG_1" range="450,50,200,64" id="3401" title="Backpack" fcolor="104" font="1" icon="3403">
+		<style wsVisible="" wsMoveable=""/>
+		<child>3801</child>
+		<child>3802</child>
+		<child>3803</child>
+		<child>3804</child>
+		<child>3805</child>
+	</window>
+	<!-- 背包格 -->
+	<icon id="3401" dir="\wnd01\" normal="w011_3" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<!-- 背包格X -->
+	<icon id="3402" dir="\wnd01\" normal="w011_4" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<!-- 5格包底圖 -->
+	<icon id="3403" dir="\wnd01\" normal="w031_01" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<!-- 背包介面 10格(2行) -->
+	<window class="WND_CLASS_DLG_1" range="450,50,200,102" id="3407" title="Backpack" fcolor="104" font="1" icon="3407">
+		<style wsVisible="" wsMoveable=""/>
+		<child>3801</child>
+		<child>3802</child>
+		<child>3803</child>
+		<child>3804</child>
+		<child>3805</child>
+		<child>3806</child>
+		<child>3807</child>
+		<child>3808</child>
+		<child>3809</child>
+		<child>3810</child>
+	</window>
+	<!-- 10格包底圖 -->
+	<icon id="3407" dir="\wnd01\" normal="w031_02" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<!-- 背包介面 15格(3行) -->
+	<window class="WND_CLASS_DLG_1" range="450,50,200,140" id="3418" title="Backpack" fcolor="104" font="1" icon="3418">
+		<style wsVisible="" wsMoveable=""/>
+		<child>3801</child>
+		<child>3802</child>
+		<child>3803</child>
+		<child>3804</child>
+		<child>3805</child>
+		<child>3806</child>
+		<child>3807</child>
+		<child>3808</child>
+		<child>3809</child>
+		<child>3810</child>
+		<child>3811</child>
+		<child>3812</child>
+		<child>3813</child>
+		<child>3814</child>
+		<child>3815</child>
+	</window>
+	<!-- 15格包底圖 -->
+	<icon id="3418" dir="\wnd01\" normal="w031_03" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<!-- 背包介面 20格(4行) -->
+	<window class="WND_CLASS_DLG_1" range="450,50,200,178" id="3434" title="Backpack" fcolor="104" font="1" icon="3434">
+		<style wsVisible="" wsMoveable=""/>
+		<child>3801</child>
+		<child>3802</child>
+		<child>3803</child>
+		<child>3804</child>
+		<child>3805</child>
+		<child>3806</child>
+		<child>3807</child>
+		<child>3808</child>
+		<child>3809</child>
+		<child>3810</child>
+		<child>3811</child>
+		<child>3812</child>
+		<child>3813</child>
+		<child>3814</child>
+		<child>3815</child>
+		<child>3816</child>
+		<child>3817</child>
+		<child>3818</child>
+		<child>3819</child>
+		<child>3820</child>
+	</window>
+	<!-- 20格包底圖 -->
+	<icon id="3434" dir="\wnd01\" normal="w031_04" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<!-- 背包介面 25格(5行) -->
+	<window class="WND_CLASS_DLG_1" range="450,50,200,216" id="3455" title="Backpack" fcolor="104" font="1" icon="3455">
+		<style wsVisible="" wsMoveable=""/>
+		<child>3801</child>
+		<child>3802</child>
+		<child>3803</child>
+		<child>3804</child>
+		<child>3805</child>
+		<child>3806</child>
+		<child>3807</child>
+		<child>3808</child>
+		<child>3809</child>
+		<child>3810</child>
+		<child>3811</child>
+		<child>3812</child>
+		<child>3813</child>
+		<child>3814</child>
+		<child>3815</child>
+		<child>3816</child>
+		<child>3817</child>
+		<child>3818</child>
+		<child>3819</child>
+		<child>3820</child>
+		<child>3821</child>
+		<child>3822</child>
+		<child>3823</child>
+		<child>3824</child>
+		<child>3825</child>
+	</window>
+	<!-- 25格包底圖 -->
+	<icon id="3455" dir="\wnd01\" normal="w031_05" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<!-- 背包介面 30格(6行) -->
+	<window class="WND_CLASS_DLG_1" range="450,50,200,254" id="3456" title="Backpack" fcolor="104" font="1" icon="3456">
+		<style wsVisible="" wsMoveable=""/>
+		<child>3801</child>
+		<child>3802</child>
+		<child>3803</child>
+		<child>3804</child>
+		<child>3805</child>
+		<child>3806</child>
+		<child>3807</child>
+		<child>3808</child>
+		<child>3809</child>
+		<child>3810</child>
+		<child>3811</child>
+		<child>3812</child>
+		<child>3813</child>
+		<child>3814</child>
+		<child>3815</child>
+		<child>3816</child>
+		<child>3817</child>
+		<child>3818</child>
+		<child>3819</child>
+		<child>3820</child>
+		<child>3821</child>
+		<child>3822</child>
+		<child>3823</child>
+		<child>3824</child>
+		<child>3825</child>
+		<child>3826</child>
+		<child>3827</child>
+		<child>3828</child>
+		<child>3829</child>
+		<child>3830</child>
+	</window>
+	<!-- 30格包底圖 -->
+	<icon id="3456" dir="\wnd01\" normal="w031_06" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<!-- 背包介面 35格(7行) -->
+	<window class="WND_CLASS_DLG_1" range="450,50,200,292" id="3457" title="Backpack" fcolor="104" font="1" icon="3457">
+		<style wsVisible="" wsMoveable=""/>
+		<child>3801</child>
+		<child>3802</child>
+		<child>3803</child>
+		<child>3804</child>
+		<child>3805</child>
+		<child>3806</child>
+		<child>3807</child>
+		<child>3808</child>
+		<child>3809</child>
+		<child>3810</child>
+		<child>3811</child>
+		<child>3812</child>
+		<child>3813</child>
+		<child>3814</child>
+		<child>3815</child>
+		<child>3816</child>
+		<child>3817</child>
+		<child>3818</child>
+		<child>3819</child>
+		<child>3820</child>
+		<child>3821</child>
+		<child>3822</child>
+		<child>3823</child>
+		<child>3824</child>
+		<child>3825</child>
+		<child>3826</child>
+		<child>3827</child>
+		<child>3828</child>
+		<child>3829</child>
+		<child>3830</child>
+		<child>3831</child>
+		<child>3832</child>
+		<child>3833</child>
+		<child>3834</child>
+		<child>3835</child>
+	</window>
+	<!-- 35格包底圖 -->
+	<icon id="3457" dir="\wnd01\" normal="w031_07" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<!-- 背包介面 40格(8行) -->
+	<window class="WND_CLASS_DLG_1" range="450,50,200,330" id="3458" title="Backpack" fcolor="104" font="1" icon="3458">
+		<style wsVisible="" wsMoveable=""/>
+		<child>3801</child>
+		<child>3802</child>
+		<child>3803</child>
+		<child>3804</child>
+		<child>3805</child>
+		<child>3806</child>
+		<child>3807</child>
+		<child>3808</child>
+		<child>3809</child>
+		<child>3810</child>
+		<child>3811</child>
+		<child>3812</child>
+		<child>3813</child>
+		<child>3814</child>
+		<child>3815</child>
+		<child>3816</child>
+		<child>3817</child>
+		<child>3818</child>
+		<child>3819</child>
+		<child>3820</child>
+		<child>3821</child>
+		<child>3822</child>
+		<child>3823</child>
+		<child>3824</child>
+		<child>3825</child>
+		<child>3826</child>
+		<child>3827</child>
+		<child>3828</child>
+		<child>3829</child>
+		<child>3830</child>
+		<child>3831</child>
+		<child>3832</child>
+		<child>3833</child>
+		<child>3834</child>
+		<child>3835</child>
+		<child>3836</child>
+		<child>3837</child>
+		<child>3838</child>
+		<child>3839</child>
+		<child>3840</child>
+	</window>
+	<!-- 40格包底圖 -->
+	<icon id="3458" dir="\wnd01\" normal="w031_08" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<!-- 背包介面 45格(9行) -->
+	<window class="WND_CLASS_DLG_1" range="450,50,200,368" id="3459" title="Backpack" fcolor="104" font="1" icon="3459">
+		<style wsVisible="" wsMoveable=""/>
+		<child>3801</child>
+		<child>3802</child>
+		<child>3803</child>
+		<child>3804</child>
+		<child>3805</child>
+		<child>3806</child>
+		<child>3807</child>
+		<child>3808</child>
+		<child>3809</child>
+		<child>3810</child>
+		<child>3811</child>
+		<child>3812</child>
+		<child>3813</child>
+		<child>3814</child>
+		<child>3815</child>
+		<child>3816</child>
+		<child>3817</child>
+		<child>3818</child>
+		<child>3819</child>
+		<child>3820</child>
+		<child>3821</child>
+		<child>3822</child>
+		<child>3823</child>
+		<child>3824</child>
+		<child>3825</child>
+		<child>3826</child>
+		<child>3827</child>
+		<child>3828</child>
+		<child>3829</child>
+		<child>3830</child>
+		<child>3831</child>
+		<child>3832</child>
+		<child>3833</child>
+		<child>3834</child>
+		<child>3835</child>
+		<child>3836</child>
+		<child>3837</child>
+		<child>3838</child>
+		<child>3839</child>
+		<child>3840</child>
+		<child>3841</child>
+		<child>3842</child>
+		<child>3843</child>
+		<child>3844</child>
+		<child>3845</child>
+	</window>
+	<!-- 45格包底圖 -->
+	<icon id="3459" dir="\wnd01\" normal="w031_09" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<!-- 背包介面 50格(10行) -->
+	<window class="WND_CLASS_DLG_1" range="450,50,200,406" id="3460" title="Backpack" fcolor="104" font="1" icon="3460">
+		<style wsVisible="" wsMoveable=""/>
+		<child>3801</child>
+		<child>3802</child>
+		<child>3803</child>
+		<child>3804</child>
+		<child>3805</child>
+		<child>3806</child>
+		<child>3807</child>
+		<child>3808</child>
+		<child>3809</child>
+		<child>3810</child>
+		<child>3811</child>
+		<child>3812</child>
+		<child>3813</child>
+		<child>3814</child>
+		<child>3815</child>
+		<child>3816</child>
+		<child>3817</child>
+		<child>3818</child>
+		<child>3819</child>
+		<child>3820</child>
+		<child>3821</child>
+		<child>3822</child>
+		<child>3823</child>
+		<child>3824</child>
+		<child>3825</child>
+		<child>3826</child>
+		<child>3827</child>
+		<child>3828</child>
+		<child>3829</child>
+		<child>3830</child>
+		<child>3831</child>
+		<child>3832</child>
+		<child>3833</child>
+		<child>3834</child>
+		<child>3835</child>
+		<child>3836</child>
+		<child>3837</child>
+		<child>3838</child>
+		<child>3839</child>
+		<child>3840</child>
+		<child>3841</child>
+		<child>3842</child>
+		<child>3843</child>
+		<child>3844</child>
+		<child>3845</child>
+		<child>3846</child>
+		<child>3847</child>
+		<child>3848</child>
+		<child>3849</child>
+		<child>3850</child>
+	</window>
+	<!-- 50格包底圖 -->
+	<icon id="3460" dir="\wnd01\" normal="w031_10" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<!-- 廣告刊登買賣物品 -->
+	<window class="WND_CLASS_DLG_1" range="0,50,798,492" id="3501" title="Advertise for items" fcolor="104" font="1">
+		<style wsVisible="" wsMoveable=""/>
+		<child>3502</child>
+		<child>3503</child>
+		<child>3511</child>
+		<child>3551</child>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3502" range="9,443,32,15" title="Item" fcolor="103" font="1" icon="3085">
+		<style wsVisible="" bsHCenter="" bsVCenter=""/><!-- 物品切頁 -->
+		<OnCommand>OnADTrade_ChaPage_Item</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3503" range="47,443,32,15" title="Hawk" fcolor="103" font="1" icon="3084">
+		<style wsVisible="" bsHCenter="" bsVCenter=""/><!-- 叫賣切頁 -->
+		<OnCommand>OnADTrade_ChaPage_Player</OnCommand>
+	</window>
+	<!-- 廣告刊登買賣物品(物品頁) -->
+	<window class="WND_CLASS_BASE" range="0,0,790,468" id="3511" icon="3511">
+		<style wsVisible=""/>
+		<child>3512</child>
+		<child>3513</child>
+		<child>3514</child>
+		<child>3515</child>
+		<child>3516</child>
+		<child>3517</child>
+		<child>3518</child>
+		<child>3519</child>
+		<child>3520</child>
+		<child>3521</child>
+		<child>3522</child>
+		<child>3523</child>
+		<child>3524</child>
+		<child>3525</child>
+		<child>3526</child>
+		<child>3527</child>
+		<child>3528</child>
+		<child>3529</child>
+		<child>3530</child>
+		<child>3531</child>
+		<child>3532</child>
+		<child>3533</child>
+		<child>3534</child>
+		<child>3535</child>
+		<child>3536</child>
+		<child>3537</child>
+		<child>3538</child>
+		<child>3539</child>
+		<child>3540</child>
+		<child>3541</child>
+		<child>3542</child>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3512" range="8,8,30,14" title="Hawk" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter=""/><!-- 叫賣 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3513" range="43,8,193,14" title="1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter=""/><!-- 叫賣 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3514" range="8,23,30,14" title="Seller" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter=""/><!-- 賣家 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3515" range="43,23,74,14" title="1,2,3,4,5,6" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter=""/><!-- 賣家 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3516" range="148,23,30,14" title="Coordinates" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter=""/><!-- 座標 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3517" range="185,23,50,14" title="1,2,3,4" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter=""/><!-- 座標 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3518" range="330,13,26,18" icon="3516">
+		<style wsVisible=""/><!-- 密語 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3519" range="361,13,26,18" icon="3519">
+		<style wsVisible=""/><!-- 寄信 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3520" range="407,17,45,12" icon="3520" check="3521" appdata="0">
+		<style wsVisible="" bsRadio="" bsRadioBegin=""/>
+		<OnCommand>OnADTrade_Item_BuyType</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3522" range="421,15,24,14" title="Vend" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter=""/><!-- 販賣 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3521" range="455,17,45,12" icon="3520" check="3521" appdata="1">
+		<style wsVisible="" bsRadio="" bsRadioEnd=""/>
+		<OnCommand>OnADTrade_Item_BuyType</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3542" range="469,15,24,14" title="Purchase" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter=""/><!-- 收購 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3523" range="503,15,48,14" title="Item category" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter=""/><!-- 物品類別 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3524" range="554,15,50,14" title="Recipe" fcolor="105" font="1">
+		<style wsVisible="" ssHCenter="" ssVCenter=""/><!-- 物品類別 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3525" range="605,15,14,14" icon="3522">
+		<style wsVisible=""/><!-- ↓ -->
+		<OnCommand>OnADTrade_Item_ItemType</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3526" range="627,15,48,14" title="Lvl limitation" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter=""/><!-- 等級限制 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3527" range="678,15,50,14" title="Lvl 30`40" fcolor="105" font="1">
+		<style wsVisible="" ssHCenter="" ssVCenter=""/><!-- 等級限制 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3528" range="729,15,14,14" icon="3522">
+		<style wsVisible=""/><!-- ↓ -->
+		<OnCommand>OnADTrade_Item_SelectLV</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3529" range="753,13,26,18" icon="3529">
+		<style wsVisible=""/><!-- 查詢 -->
+		<OnCommand>OnADTrade_Item_Search</OnCommand>
+	</window>
+	<window class="WND_CLASS_LIST" id="3530" range="6,41,783,381" cols="4" rows="10" gapx="4" gapy="1" tpos="1,1" bcolor="102" fcolor="103" font="1">
+		<style wsVisible="" lsVCenter="" lsCheck="" lsSCheck="" lsReport=""/><!-- 物品LIST -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3541" range="678,427,24,14" title="Page" fcolor="103" font="1">
+		<style wsVisible="" ssHCenter="" ssVCenter=""/><!-- 頁數 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3531" range="703,427,14,14" icon="3043">
+		<style wsVisible=""/><!-- ← -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3532" range="718,427,50,14" title="1" fcolor="105" font="1">
+		<style wsVisible="" ssHCenter="" ssVCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3533" range="769,427,14,14" icon="3044">
+		<style wsVisible=""/><!-- → -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3534" range="476,450,50,14" title="0" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter="" ssRight=""/><!-- 金錢 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3535" range="554,449,58,14">
+		<style wsVisible="" ssVCenter="" ssRight=""/><!-- 負重 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3536" range="626,449,24,14" title="Qty." fcolor="103" font="1">
+		<style wsVisible="" ssVCenter=""/><!-- 數量 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3537" range="652,449,14,14" icon="3043">
+		<style wsVisible=""/><!-- ← -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3538" range="667,449,50,14" title="0" fcolor="105" font="1">
+		<style wsVisible="" ssHCenter="" ssVCenter=""/><!-- 數量 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3539" range="718,449,14,14" icon="3044">
+		<style wsVisible=""/><!-- → -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3540" range="757,447,26,18" icon="1154">
+		<style wsVisible=""/><!-- 確定 -->
+	</window>
+	<!-- 廣告刊登買賣物品(叫賣頁) -->
+	<window class="WND_CLASS_BASE" range="0,0,790,468" id="3551" icon="3551">
+		<child>3552</child>
+		<child>3553</child>
+		<child>3554</child>
+		<child>3555</child>
+		<child>3556</child>
+		<child>3557</child>
+		<child>3558</child>
+		<child>3559</child>
+		<child>3560</child>
+		<child>3561</child>
+		<child>3562</child>
+		<child>3564</child>
+		<child>3565</child>
+		<child>3566</child>
+		<child>3567</child>
+		<child>3568</child>
+		<child>3569</child>
+		<child>3570</child>
+		<child>3571</child>
+		<child>3572</child>
+		<child>3573</child>
+		<child>3574</child>
+		<child>3575</child>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3552" range="11,11,204,14" title="Sell logo" fcolor="103" font="1">
+		<style wsVisible="" ssHCenter="" ssVCenter=""/><!-- 叫賣標語 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3553" range="216,11,90,14" title="Seller" fcolor="103" font="1">
+		<style wsVisible="" ssHCenter="" ssVCenter=""/><!-- 賣家 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3554" range="307,11,65,14" title="Coordinates" fcolor="103" font="1">
+		<style wsVisible="" ssHCenter="" ssVCenter=""/><!-- 座標 -->
+	</window>
+	<window class="WND_CLASS_LIST" id="3555" range="10,29,363,383" cols="3" rows="24" gapx="0" gapy="1" tpos="1,1" bcolor="102" fcolor="105" font="1">
+		<style wsVisible="" lsVCenter="" lsCheck="" lsSCheck=""/><!-- 叫賣LIST -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3556" range="203,422,26,18" icon="3516">
+		<style wsVisible=""/><!-- 密語 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3557" range="234,422,26,18" icon="3519">
+		<style wsVisible=""/><!-- 寄信 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3558" range="273,424,24,14" title="Page" fcolor="103" font="1">
+		<style wsVisible="" ssHCenter="" ssVCenter=""/><!-- 頁數 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3559" range="298,424,14,14" icon="3043">
+		<style wsVisible=""/><!-- ← -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3560" range="313,424,50,14" title="1" fcolor="105" font="1">
+		<style wsVisible="" ssHCenter="" ssVCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3561" range="364,424,14,14" icon="3044">
+		<style wsVisible=""/><!-- → -->
+	</window>
+	<window class="WND_CLASS_LIST" id="3562" range="387,4,390,417" cols="2" rows="11" gapx="2" gapy="2" tpos="1,1">
+		<style wsVisible="" lsVScroll="" lsCheck="" lsSCheck=""/><!-- 販賣頁LIST -->
+		<child>3563</child>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="3563" range="393,-3,9,419" uicon="131" dicon="132" ticon="133" urange="0,0,9,10" drange="0,411,9,10" trange="0,10,9,401" thumbmin="8">
+		<style wsVisible="" csVScroll="" csSimple=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3564" range="476,450,50,14" title="0" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter="" ssRight=""/><!-- 金錢 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3565" range="554,449,58,14">
+		<style wsVisible="" ssVCenter="" ssRight=""/><!-- 負重 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3566" range="626,449,24,14" title="Qty." fcolor="103" font="1">
+		<style wsVisible="" ssVCenter=""/><!-- 數量 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3567" range="652,449,14,14" icon="3043">
+		<style wsVisible=""/><!-- ← -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3568" range="667,449,50,14" title="0" fcolor="105" font="1">
+		<style wsVisible="" ssHCenter="" ssVCenter=""/><!-- 數量 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3569" range="718,449,14,14" icon="3044">
+		<style wsVisible=""/><!-- → -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3570" range="757,447,26,18" icon="1154">
+		<style wsVisible=""/><!-- 確定 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3571" range="662,426,45,12" icon="3520" check="3521" appdata="0">
+		<style wsVisible="" bsRadio="" bsRadioBegin=""/>
+		<OnCommand>OnADTrade_Player_BuyType</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3573" range="676,425,24,14" title="Vend" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter=""/><!-- 販賣 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3572" range="710,426,45,12" icon="3520" check="3521" appdata="1">
+		<style wsVisible="" bsRadio="" bsRadioEnd=""/>
+		<OnCommand>OnADTrade_Player_BuyType</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3574" range="725,425,24,14" title="Pur." fcolor="103" font="1">
+		<style wsVisible="" ssVCenter=""/><!-- 收購 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3575" range="757,422,26,18" icon="3529">
+		<style wsVisible=""/><!-- 查詢 -->
+		<OnCommand>OnADTrade_Player_Search</OnCommand>
+	</window>
+	<!-- 廣告刊登物品選項列表 -->
+	<window class="WND_CLASS_BASE" id="3581" range="554,30,51,436" puzzle1="1081" puzzle2="1082" puzzle3="1083" puzzle4="1084" puzzle5="1085" puzzle6="1086" puzzle7="1087" puzzle8="1088" puzzle9="1089">
+		<style wsVisible="" wsPuzzle="" wsAutoClose="" wsPopup=""/>
+		<child>3582</child>
+	</window>
+	<window class="WND_CLASS_LIST" id="3582" range="2,2,45,436" cols="1" rows="33" gapx="2" gapy="1" tpos="0,0" fcolor="2331" font="1">
+		<style wsVisible="" lsVScroll="" lsHCenter=""/>
+		<OnCommand>OnADTrade_SelectItemType</OnCommand>
+	</window>
+	<!-- 廣告刊登等級選項列表 -->
+	<window class="WND_CLASS_BASE" id="3586" range="678,30,58,146" puzzle1="1081" puzzle2="1082" puzzle3="1083" puzzle4="1084" puzzle5="1085" puzzle6="1086" puzzle7="1087" puzzle8="1088" puzzle9="1089">
+		<style wsVisible="" wsPuzzle="" wsAutoClose="" wsPopup=""/>
+		<child>3587</child>
+	</window>
+	<window class="WND_CLASS_LIST" id="3587" range="2,2,52,146" cols="1" rows="10" gapx="2" gapy="1" tpos="0,0" fcolor="2331" font="1">
+		<style wsVisible="" lsVScroll="" lsHCenter=""/>
+		<OnCommand>OnADTrade_SelectLV</OnCommand>
+	</window>
+	<icon id="3511" dir="\wnd01\" normal="w030_01" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<icon id="3512" dir="\wnd01\" normal="w030_04" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<icon id="3551" dir="\wnd01\" normal="w030_02" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<icon id="3552" dir="\wnd01\" normal="w030_03" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<icon id="3516" dir="\wnd01\" normal="btn086_n" focus="btn086_f" down="btn086_d" disable="normal"/><!-- 密語按鈕 -->
+	<icon id="3519" dir="\wnd01\" normal="btn116_n" focus="btn116_f" down="btn116_d" disable="normal"/><!-- 寄信按鈕 -->
+	<icon id="3522" dir="\wnd01\" normal="btn077_n" focus="btn077_f" down="btn077_d" disable="normal"/><!-- 下拉選項按鈕 -->
+	<icon id="3529" dir="\wnd01\" normal="btn117_n" focus="btn117_f" down="btn117_d" disable="normal"/><!-- 查詢按鈕 -->
+	<icon id="3520" dir="\wnd01\" normal="btn110_n" focus="normal" down="normal" disable="normal"/>
+	<icon id="3521" dir="\wnd01\" normal="btn110_f" focus="normal" down="normal" disable="normal"/>
+	<!-- NPC買賣 -->
+	<window class="WND_CLASS_DLG_1" range="300,100,213,298" id="3601" title="Shop" fcolor="104" font="1">
+		<style wsVisible="" wsMoveable=""/>
+		<child>3602</child>
+		<child>3603</child>
+		<child>3604</child>
+		<child>3605</child>
+		<OnClose>OnNPCSaleClose</OnClose>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3602" range="8,231,32,16" icon="3085" title="Buy" fcolor="103" font="1">
+		<style wsVisible="" bsHCenter="" bsVCenter=""/><!-- 買進切頁 -->
+		<OnCommand>OnNPCSale_ChaPage_Buy</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3603" range="46,231,32,16" icon="3084" title="Sell" fcolor="103" font="1">
+		<style wsVisible="" bsHCenter="" bsVCenter=""/><!-- 賣出切頁 -->
+		<OnCommand>OnNPCSale_ChaPage_Sale</OnCommand>
+	</window>
+	<!-- NPC買賣(買進頁) -->
+	<window class="WND_CLASS_BASE" range="0,0,205,274" id="3604" icon="3601">
+		<style wsVisible=""/>
+		<child>3611</child>
+		<child>3613</child>
+		<child>3614</child>
+		<child>3615</child>
+		<child>3616</child>
+		<child>3617</child>
+		<child>3618</child>
+		<child>3619</child>
+		<child>3621</child>
+		<child>3622</child>
+		<child>3623</child>
+	</window>
+	<window class="WND_CLASS_SALELIST" id="3611" range="2,2,192,188" cols="1" rows="5" gapx="0" gapy="2" fcolor="103" font="3" bcolor="3082" tooltip="10041">
+		<style wsVisible="" lsVScroll="" lsCheck="" lsSCheck=""/><!-- 買進頁LIST -->
+		<child>3612</child>
+		<OnCommand>OnSetBuyValue</OnCommand>
+		<OnCommandEx>OnNPCSaleBuyEx</OnCommandEx>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="3612" range="193,-1,9,188" uicon="131" dicon="132" ticon="133" urange="0,0,9,10" drange="0,180,9,10" trange="0,10,9,170" thumbmin="8">
+		<style wsVisible="" csVScroll="" csSimple=""/>
+	</window>
+	<window class="WND_CLASS_ITEMBUTTON" id="3613" fcolor="103" range="2,193,36,36" font="3" tpos="0,26" tooltip="10041">
+		<style wsVisible="" ssRight=""/><!-- 反悔物品 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3614" range="42,196,155,12" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter=""/><!-- 物品名稱 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3615" range="42,214,128,12" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter=""/><!-- 物品價格 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3616" range="173,211,26,18" icon="3616" tooltip="10040" tooltext="Pull back">
+		<style wsVisible=""/><!-- 反悔按鈕 -->
+		<OnCommand>OnRegretBuy</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3617" range="92,234,24,14" title="Qty." fcolor="103" font="1">
+		<style wsVisible="" ssVCenter=""/><!-- 數量 -->
+	</window>
+	<window class="WND_CLASS_EDIT" id="3618" range="133,234,50,14" icon="3048" fcolor="105" font="1" tpos="1, 1" limit="7" appdata="3619">
+		<style wsVisible="" esNumber="" esHCenter=""/>
+		<OnEditChange>OnNPCSaleBuyEdit</OnEditChange>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="3619" range="117,234,1,1" uicon="3618" dicon="3620" urange="0,0,14,14" drange="68,0,14,14" appdata="3618">
+		<style wsVisible="" csHScroll="" csSimple=""/>
+		<OnScroll>OnNPCSaleBuyScroll</OnScroll>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3621" range="18,253,50,14" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter="" ssRight=""/><!-- 金錢 -->
+	</window>
+	<window class="WND_CLASS_PROGRESS" range="104,253,58,14" id="3622" picon="3035" font="1" fcolor="103">
+		<style wsVisible="" psHorizontal="" psShowPos=""/><!-- 負重 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3623" range="173,253,26,18" icon="1154" tooltip="10040" tooltext="Buy">
+		<style wsVisible=""/><!-- 確定 -->
+		<OnCommand>OnNPCSaleBuy</OnCommand>
+	</window>
+	<icon id="3616" dir="\game\02\" normal="btn068_n" focus="btn068_f" down="btn068_d" disable="btn068_b"/>
+	<!-- NPC買賣(賣出頁) -->
+	<window class="WND_CLASS_BASE" range="0,0,205,274" id="3605" icon="3602">
+		<child>3631</child>
+		<child>3633</child>
+		<child>3634</child>
+		<child>3635</child>
+		<child>3636</child>
+		<child>3637</child>
+		<child>3638</child>
+		<child>3639</child>
+		<child>3641</child>
+		<child>3642</child>
+		<child>3643</child>
+	</window>
+	<window class="WND_CLASS_SALELIST" id="3631" range="2,2,192,188" cols="1" rows="5" gapx="0" gapy="2" fcolor="103" font="3" bcolor="3082" tooltip="10041">
+		<style wsVisible="" lsVScroll="" lsCheck="" lsSCheck=""/><!-- 賣出頁LIST -->
+		<child>3632</child>
+		<OnCommand>OnSetSellValue</OnCommand>
+		<OnCommandEx>OnNPCSaleSellEx</OnCommandEx>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="3632" range="193,-1,9,188" uicon="131" dicon="132" ticon="133" urange="0,0,9,10" drange="0,180,9,10" trange="0,10,9,170" thumbmin="8">
+		<style wsVisible="" csVScroll="" csSimple=""/>
+	</window>
+	<window class="WND_CLASS_ITEMBUTTON" id="3633" fcolor="103" range="2,193,36,36" font="3" tpos="0,26" tooltip="10041">
+		<style wsVisible="" ssRight=""/><!-- 反悔物品 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3634" range="42,196,155,12" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter=""/><!-- 物品名稱 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3635" range="42,214,128,12" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter=""/><!-- 物品價格 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3636" range="173,211,26,18" icon="3616" tooltip="10040" tooltext="Pull back">
+		<style wsVisible=""/><!-- 反悔按鈕 -->
+		<OnCommand>OnRegretSell</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3637" range="92,234,24,14" title="Qty." fcolor="103" font="1">
+		<style wsVisible="" ssVCenter=""/><!-- 數量 -->
+	</window>
+	<window class="WND_CLASS_EDIT" id="3638" range="133,234,50,14" icon="3048" fcolor="105" font="1" tpos="1, 1" limit="7" appdata="3639">
+		<style wsVisible="" esNumber="" esHCenter=""/>
+		<OnEditChange>OnNPCSaleSellEdit</OnEditChange>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="3639" range="117,234,1,1" uicon="3618" dicon="3620" urange="0,0,14,14" drange="68,0,14,14" appdata="3638">
+		<style wsVisible="" csHScroll="" csSimple=""/>
+		<OnScroll>OnNPCSaleSellScroll</OnScroll>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3641" range="18,253,50,14" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter="" ssRight=""/><!-- 金錢 -->
+	</window>
+	<window class="WND_CLASS_PROGRESS" range="104,253,58,14" id="3642" picon="3035" font="1" fcolor="103">
+		<style wsVisible="" psHorizontal="" psShowPos=""/><!-- 負重 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3643" range="173,253,26,18" icon="1154" tooltip="10040" tooltext="Sell">
+		<style wsVisible=""/><!-- 確定 -->
+		<OnCommand>OnNPCSaleSell</OnCommand>
+	</window>
+	<icon id="3601" dir="\wnd01\" normal="w029_01" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<icon id="3602" dir="\wnd01\" normal="w029_04" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<icon id="3618" dir="\wnd01\" normal="btn090_n" focus="btn090_f" down="btn090_d" disable="btn090_b"/><!-- < -->
+	<icon id="3620" dir="\wnd01\" normal="btn091_n" focus="btn091_f" down="btn091_d" disable="btn091_b"/><!-- > -->
+	<!-- 擺攤頭上訊息按鈕 一般 -->
+	<window class="WND_CLASS_BASE" id="3648" range="0,0,119,28" icon="3648" fcolor="103" font="1">
+		<style wsVisible=""/>
+		<child>3649</child>
+		<child>3650</child>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="3649" range="20,2,96,24" fcolor="103" font="1" lines="2" words="16">
+		<style wsVisible=""/><!-- 訊息 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3650" range="0,5,18,18" icon="3650">
+		<style wsVisible=""/><!-- 按鈕 -->
+		<OnCommand>OnSaleTrade</OnCommand>
+	</window>
+	<!-- 擺攤頭上訊息按鈕 普卡 -->
+	<window class="WND_CLASS_BASE" id="3776" range="0,0,119,28" icon="3648" fcolor="103" font="1">
+		<style wsVisible=""/>
+		<child>3777</child>
+		<child>3778</child>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="3777" range="20,2,96,24" fcolor="103" font="1" lines="2" words="16">
+		<style wsVisible=""/><!-- 訊息 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3778" range="-8,1,26,26" icon="3778">
+		<style wsVisible=""/><!-- 按鈕 -->
+		<OnCommand>OnSaleTrade</OnCommand>
+	</window>
+	<!-- 擺攤頭上訊息按鈕 銀卡 -->
+	<window class="WND_CLASS_BASE" id="3779" range="0,0,120,30" icon="3779" fcolor="103" font="1">
+		<style wsVisible=""/>
+		<child>3780</child>
+		<child>3781</child>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="3780" range="20,2,96,24" fcolor="105" font="1" lines="2" words="16">
+		<style wsVisible=""/><!-- 訊息 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3781" range="-15,0,30,30" icon="3781">
+		<style wsVisible=""/><!-- 按鈕 -->
+		<OnCommand>OnSaleTrade</OnCommand>
+	</window>
+	<!-- 擺攤頭上訊息按鈕 金卡 -->
+	<window class="WND_CLASS_BASE" id="3782" range="0,0,120,42" icon="3782" fcolor="103" font="1">
+		<style wsVisible=""/>
+		<child>3783</child>
+		<child>3784</child>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="3783" range="20,3,96,36" fcolor="105" font="1" lines="3" words="16">
+		<style wsVisible=""/><!-- 訊息 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3784" range="-15,6,30,30" icon="3784">
+		<style wsVisible=""/><!-- 按鈕 -->
+		<OnCommand>OnSaleTrade</OnCommand>
+	</window>
+	<icon id="3648" dir="\wnd01\" normal="w031_11" focus="normal" down="normal" disable="normal"><!-- 底圖 -->
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<icon id="3650" dir="\wnd01\" normal="btn118_n" focus="btn118_f" down="btn118_d" disable="normal"/><!-- 按鈕 -->
+	<icon id="3778" dir="\wnd01\" normal="btn198_n" focus="btn198_f" down="btn198_d" disable="normal"/><!-- 按鈕 普 -->
+	<icon id="3779" dir="\wnd01\" normal="w075_02" focus="normal" down="normal" disable="normal"/><!-- 底圖 -->
+	<icon id="3781" dir="\wnd01\" normal="btn196_n" focus="btn196_f" down="btn196_d" disable="normal"/><!-- 按鈕 銀 -->
+	<icon id="3782" dir="\wnd01\" normal="w075_01" focus="normal" down="normal" disable="normal"/><!-- 底圖 -->
+	<icon id="3784" dir="\wnd01\" normal="btn197_n" focus="btn197_f" down="btn197_d" disable="normal"/><!-- 按鈕 金 -->
+	<!-- 叫賣介面 金卡-->
+	<window class="WND_CLASS_BASE" id="3785" range="0,0,150,82" puzzle1="1081" puzzle2="1082" puzzle3="1083" puzzle4="1084" puzzle5="1085" puzzle6="1086" puzzle7="1087" puzzle8="1088" puzzle9="1089">
+		<style wsVisible="" wsPuzzle="" wsMoveable="" wsAutoClose="" wsPopup=""/>
+		<child>3092</child>
+		<child>3786</child>
+		<child>3787</child>
+		<child>3788</child>
+	</window>
+	<window class="WND_CLASS_MEDIT" id="3786" range="40,8,102,42" icon="3786" fcolor="105" font="1" tpos="1, 1" lines="3" words="16">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3787" range="45,56,26,18" icon="1154">
+		<style wsVisible=""/><!-- √ -->
+		<OnCommand>OnSaleWords_Ok</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3788" range="79,56,26,18" icon="1155">
+		<style wsVisible=""/><!-- ╳ -->
+		<OnCommand>OnSale_Cancel</OnCommand>
+	</window>
+	<icon id="3786" dir="\wnd01\" normal="w024_04" focus="normal" down="normal" disable="normal"/><!-- 文字輸入(3行) -->
+	<!-- 玩家擺攤買賣(買方) -->
+	<window class="WND_CLASS_DLG_1" range="300,100,213,298" id="3651" title="Player sets a stall" fcolor="104" font="1">
+		<style wsVisible="" wsMoveable=""/>
+		<child>3663</child>
+		<child>3664</child>
+		<child>3665</child>
+		<child>3666</child>
+		<child>3667</child>
+		<child>3652</child>
+		<child>3653</child>
+		<child>3654</child>
+		<child>3655</child>
+		<OnClose>OnSaleCloseTrade</OnClose>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3652" range="8,231,32,16" icon="3085" title="Vend" fcolor="103" font="1">
+		<style wsVisible="" bsHCenter="" bsVCenter=""/><!-- 販賣切頁 -->
+		<OnCommand>OnPlayerSale_ChaPage_Buy</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3653" range="46,231,32,16" icon="3084" title="Buy" fcolor="103" font="1">
+		<style wsVisible="" bsHCenter="" bsVCenter=""/><!-- 收購切頁 -->
+		<OnCommand>OnPlayerSale_ChaPage_Sale</OnCommand>
+	</window>
+	<!-- 玩家擺攤買賣_買方(販賣頁) -->
+	<window class="WND_CLASS_BASE" range="0,0,1,1" id="3654" icon="3651">
+		<style wsVisible=""/>
+		<child>3661</child>
+		<child>3668</child>
+	</window>
+	<window class="WND_CLASS_SALELIST" id="3661" range="2,2,192,188" cols="1" rows="5" gapx="0" gapy="2" fcolor="103" font="3" bcolor="3082" tooltip="10041">
+		<style wsVisible="" lsVScroll="" lsCheck="" lsSCheck=""/><!-- 販賣LIST -->
+		<child>3662</child>
+		<OnCommand>OnSaleNum</OnCommand>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="3662" range="193,-1,9,227" uicon="131" dicon="132" ticon="133" urange="0,0,9,10" drange="0,219,9,10" trange="0,10,9,209" thumbmin="8">
+		<style wsVisible="" csVScroll="" csSimple=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3663" range="92,234,24,14" title="Qty." fcolor="103" font="1">
+		<style wsVisible="" ssVCenter=""/><!-- 數量 -->
+	</window>
+	<window class="WND_CLASS_EDIT" id="3664" range="133,234,50,14" icon="3048" fcolor="105" font="1" tpos="1, 1" limit="7" appdata="3665">
+		<style wsVisible="" esNumber="" esHCenter=""/>
+		<OnEditChange>OnSaleTradeEditChange</OnEditChange>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="3665" range="117,234,1,1" uicon="3618" dicon="3620" urange="0,0,14,14" drange="68,0,14,14" appdata="3664">
+		<style wsVisible="" csHScroll="" csSimple=""/>
+		<OnScroll>OnSale_TradeScroll</OnScroll>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3666" range="18,253,50,14" title="0" fcolor="105" font="1">
+		<style wsVisible="" ssVCenter="" ssRight=""/><!-- 金錢 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3667" range="101,252,58,14">
+		<style wsVisible="" ssVCenter="" ssRight=""/><!-- 負重 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3668" range="173,253,26,18" icon="1154">
+		<style wsVisible=""/><!-- 確定 買入-->
+		<OnCommand>OnSaleTradeBuy</OnCommand>
+	</window>
+	<!-- 玩家擺攤買賣_買方(收購頁) -->
+	<window class="WND_CLASS_BASE" range="0,0,1,1" id="3655" icon="3652">
+		<child>3671</child>
+		<child>3679</child>
+	</window>
+	<window class="WND_CLASS_SALELIST" id="3671" range="2,2,192,188" cols="1" rows="5" gapx="0" gapy="2" fcolor="103" font="3" bcolor="3082" tooltip="10041">
+		<style wsVisible="" lsVScroll="" lsCheck="" lsSCheck=""/><!-- 販賣LIST -->
+		<child>3672</child>
+		<OnCommand>OnSaleNum</OnCommand>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="3672" range="193,-1,9,227" uicon="131" dicon="132" ticon="133" urange="0,0,9,10" drange="0,219,9,10" trange="0,10,9,209" thumbmin="8">
+		<style wsVisible="" csVScroll="" csSimple=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3679" range="173,253,26,18" icon="1154">
+		<style wsVisible=""/><!-- 確定 賣出-->
+		<OnCommand>OnSaleTradeSell</OnCommand>
+	</window>
+	<icon id="3651" dir="\wnd01\" normal="w029_02" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<icon id="3652" dir="\wnd01\" normal="w029_03" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<!-- 物品-數量 -->
+	<window class="WND_CLASS_BASE" range="0,0,150,52" id="3701" puzzle1="1181" puzzle2="1182" puzzle3="1183" puzzle4="1184" puzzle5="1185" puzzle6="1186" puzzle7="1187" puzzle8="1188" puzzle9="1189">
+		<style wsVisible="" wsPuzzle="" wsPopup="" wsAutoClose="" wsMoveable=""/>
+		<child>3702</child>
+		<child>3704</child>
+		<child>3705</child>
+		<child>3706</child>
+		<child>3707</child>
+	</window>
+	<!-- 數量 -->
+	<window class="WND_CLASS_STATIC" id="3702" range="11,8,1,1" title="Qty." fcolor="103" font="1">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_EDIT" id="3704" range="63,7,50,14" icon="3048" title="0" fcolor="105" font="1" tpos="1, 1" limit="7">
+		<style wsVisible="" esNumber="" esHCenter=""/>
+		<OnEditChange>OnEditChangeNumber</OnEditChange>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="3705" range="47,7,1,1" uicon="3618" dicon="3620" urange="0,0,14,14" drange="68,0,14,14" appdata="3713">
+		<style wsVisible="" csHScroll="" csSimple=""/>
+		<OnScroll>OnScrollNumber</OnScroll>
+	</window>
+	<!-- √ -->
+	<window class="WND_CLASS_BUTTON" id="3706" range="45,26,26,18" icon="1154">
+		<style wsVisible=""/>
+		<OnCommand>OnSplitItem</OnCommand>
+	</window>
+	<!-- ╳ -->
+	<window class="WND_CLASS_BUTTON" id="3707" range="79,26,26,18" icon="1155">
+		<style wsVisible=""/>
+		<OnCommand>OnCancel</OnCommand>
+	</window>
+	<!-- 物品-擺攤 販賣 單價 -->
+	<window class="WND_CLASS_BASE" range="0,0,150,52" id="3711" puzzle1="1181" puzzle2="1182" puzzle3="1183" puzzle4="1184" puzzle5="1185" puzzle6="1186" puzzle7="1187" puzzle8="1188" puzzle9="1189">
+		<style wsVisible="" wsPopup="" wsAutoClose="" wsPuzzle=""/>
+		<child>3712</child>
+		<child>3713</child>
+		<child>3714</child>
+		<child>3715</child>
+		<child>3716</child>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3712" range="14,8,1,1" title="Price" fcolor="103" font="1">
+		<style wsVisible=""/><!-- 單價 -->
+	</window>
+	<window class="WND_CLASS_EDIT" id="3713" range="63,7,50,14" icon="3048" fcolor="105" font="1" tpos="1, 1" limit="8" appdata="3714">
+		<style wsVisible="" esNumber="" esHCenter=""/>
+		<OnEditChange>OnSaleEditChange</OnEditChange>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="3714" range="47,7,1,1" uicon="3618" dicon="3620" urange="0,0,14,14" drange="68,0,14,14" appdata="3713">
+		<style wsVisible="" csHScroll="" csSimple=""/>
+		<OnScroll>OnSale_Scroll</OnScroll>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3715" range="45,26,26,18" icon="1154">
+		<style wsVisible=""/><!-- √ -->
+		<OnCommand>OnSaleSell_Single_OK</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3716" range="79,26,26,18" icon="1155">
+		<style wsVisible=""/><!-- ╳ -->
+		<OnCommand>OnSale_Cancel</OnCommand>
+	</window>
+	<!-- 物品-擺攤 收購 單價 -->
+	<window class="WND_CLASS_BASE" range="0,0,150,52" id="3771" puzzle1="1181" puzzle2="1182" puzzle3="1183" puzzle4="1184" puzzle5="1185" puzzle6="1186" puzzle7="1187" puzzle8="1188" puzzle9="1189">
+		<style wsVisible="" wsPopup="" wsAutoClose="" wsPuzzle=""/>
+		<child>3712</child>
+		<child>3713</child>
+		<child>3714</child>
+		<child>3772</child>
+		<child>3716</child>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3772" range="45,26,26,18" icon="1154">
+		<style wsVisible=""/><!-- √ -->
+		<OnCommand>OnSaleBuy_Single_OK</OnCommand>
+	</window>
+	<!-- 物品-擺攤 販賣 單價與數量 -->
+	<window class="WND_CLASS_BASE" range="0,0,150,84" id="3721" puzzle1="1181" puzzle2="1182" puzzle3="1183" puzzle4="1184" puzzle5="1185" puzzle6="1186" puzzle7="1187" puzzle8="1188" puzzle9="1189">
+		<style wsVisible="" wsPopup="" wsAutoClose="" wsPuzzle=""/>
+		<child>3722</child>
+		<child>3723</child>
+		<child>3724</child>
+		<child>3725</child>
+		<child>3726</child>
+		<child>3727</child>
+		<child>3728</child>
+		<child>3729</child>
+		<child>3730</child>
+		<child>3731</child>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3722" range="11,8,1,1" title="Price" fcolor="103" font="1">
+		<style wsVisible=""/><!-- 單價 -->
+	</window>
+	<window class="WND_CLASS_EDIT" id="3723" range="63,7,50,14" icon="3048" fcolor="105" font="1" tpos="1, 1" limit="8" appdata="3724">
+		<style wsVisible="" esNumber="" esHCenter=""/>
+		<OnEditChange>OnSaleEditChange</OnEditChange>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="3724" range="47,7,1,1" uicon="3618" dicon="3620" urange="0,0,14,14" drange="68,0,14,14" appdata="3723">
+		<style wsVisible="" csHScroll="" csSimple=""/>
+		<OnScroll>OnSale_Scroll</OnScroll>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3725" range="11,24,1,1" title="Qty." fcolor="103" font="1">
+		<style wsVisible=""/><!-- 數量 -->
+	</window>
+	<window class="WND_CLASS_EDIT" id="3726" range="63,23,50,14" icon="3048" fcolor="105" font="1" tpos="1, 1" limit="3" appdata="3727">
+		<style wsVisible="" esNumber="" esHCenter=""/>
+		<OnEditChange>OnSaleEditChange</OnEditChange>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="3727" range="47,23,1,1" uicon="3618" dicon="3620" urange="0,0,14,14" drange="68,0,14,14" appdata="3726">
+		<style wsVisible="" csHScroll="" csSimple=""/>
+		<OnScroll>OnSale_Scroll</OnScroll>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3728" range="11,40,1,1" title="Total" fcolor="103" font="1">
+		<style wsVisible=""/><!-- 總額 -->
+	</window>
+	<window class="WND_CLASS_STATIC" id="3729" range="47,39,75,1" fcolor="105" font="1" icon="3731" tpos="1,1">
+		<style wsVisible="" ssHCenter=""/><!-- 總額 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3730" range="45,58,26,18" icon="1154">
+		<style wsVisible=""/><!-- √ -->
+		<OnCommand>OnSaleSell_Multiple_OK</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3731" range="79,58,26,18" icon="1155">
+		<style wsVisible=""/><!-- ╳ -->
+		<OnCommand>OnSale_Cancel</OnCommand>
+	</window>
+	<icon id="3731" dir="\wnd01\" normal="w026_16" focus="normal" down="normal" disable="normal"/><!-- 白色條 -->
+	<!-- 物品-擺攤 收購 單價與數量 -->
+	<window class="WND_CLASS_BASE" range="0,0,150,84" id="3773" puzzle1="1181" puzzle2="1182" puzzle3="1183" puzzle4="1184" puzzle5="1185" puzzle6="1186" puzzle7="1187" puzzle8="1188" puzzle9="1189">
+		<style wsVisible="" wsPopup="" wsAutoClose="" wsPuzzle=""/>
+		<child>3722</child>
+		<child>3723</child>
+		<child>3724</child>
+		<child>3725</child>
+		<child>3726</child>
+		<child>3727</child>
+		<child>3728</child>
+		<child>3729</child>
+		<child>3774</child>
+		<child>3731</child>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3774" range="45,58,26,18" icon="1154">
+		<style wsVisible=""/><!-- √ -->
+		<OnCommand>OnSaleBuy_Multiple_OK</OnCommand>
+	</window>
+	<!-- 物品-擺攤刊登確認 -->
+	<window class="WND_CLASS_BASE" range="0,0,150,116" id="3741" puzzle1="1181" puzzle2="1182" puzzle3="1183" puzzle4="1184" puzzle5="1185" puzzle6="1186" puzzle7="1187" puzzle8="1188" puzzle9="1189">
+		<style wsVisible="" wsMoveable="" wsPuzzle="" wsPopup="" wsAutoClose=""/>
+		<child>3742</child>
+		<child>3743</child>
+		<child>3744</child>
+		<child>3745</child>
+		<child>3746</child>
+		<child>3747</child>
+		<child>3748</child>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="3742" range="8,8,132,42" title="Paying for advertisements can let a buyer purchase your item directly from &quot;Businessman&quot;" fcolor="103" font="1" lines="3" words="22">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3743" range="8,56,117,12" icon="3520" check="3521" appdata="0">
+		<style wsVisible="" bsRadio="" bsRadioBegin=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3744" range="23,55,102,14" title="Pay 100 for advertisement" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter=""/><!-- 販賣 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3745" range="8,71,123,12" icon="3520" check="3521" appdata="1">
+		<style wsVisible="" bsRadio="" bsRadioEnd=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3746" range="23,70,108,14" title="Set a stall directly without advertisement" fcolor="103" font="1">
+		<style wsVisible="" ssVCenter=""/><!-- 收購 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3747" range="45,90,26,18" icon="1154">
+		<style wsVisible=""/><!-- √ -->
+		<OnCommand>OnStartSale_OK</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3748" range="79,90,26,18" icon="1155">
+		<style wsVisible=""/><!-- ╳ -->
+		<OnCommand>OnStartSale_Cancel</OnCommand>
+	</window>
+	<!-- 物品-收攤確認 -->
+	<window class="WND_CLASS_BASE" range="0,0,200,52" id="3751" puzzle1="1181" puzzle2="1182" puzzle3="1183" puzzle4="1184" puzzle5="1185" puzzle6="1186" puzzle7="1187" puzzle8="1188" puzzle9="1189">
+		<style wsVisible="" wsMoveable="" wsPuzzle="" wsPopup="" wsAutoClose=""/>
+		<child>3752</child>
+		<child>3753</child>
+		<child>3754</child>
+	</window>
+	<window class="WND_CLASS_STATIC" id="3752" range="22,8,1,1" title="Confirm to close the stall?" fcolor="103" font="1">
+		<style wsVisible=""/><!-- 收購 -->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3753" range="70,26,26,18" icon="1154">
+		<style wsVisible=""/><!-- √ -->
+		<OnCommand>OnCloseSale_OK</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="3754" range="105,26,26,18" icon="1155">
+		<style wsVisible=""/><!-- ╳ -->
+		<OnCommand>OnCloseSale_Cancel</OnCommand>
+	</window>
+	<!-- 背包的格子 -->
+	<window id="3801" range="2,2,36,36" derive="3101"/>
+	<window id="3802" range="40,2,36,36" derive="3101"/>
+	<window id="3803" range="78,2,36,36" derive="3101"/>
+	<window id="3804" range="116,2,36,36" derive="3101"/>
+	<window id="3805" range="154,2,36,36" derive="3101"/>
+	<window id="3806" range="2,40,36,36" derive="3101"/>
+	<window id="3807" range="40,40,36,36" derive="3101"/>
+	<window id="3808" range="78,40,36,36" derive="3101"/>
+	<window id="3809" range="116,40,36,36" derive="3101"/>
+	<window id="3810" range="154,40,36,36" derive="3101"/>
+	<window id="3811" range="2,78,36,36" derive="3101"/>
+	<window id="3812" range="40,78,36,36" derive="3101"/>
+	<window id="3813" range="78,78,36,36" derive="3101"/>
+	<window id="3814" range="116,78,36,36" derive="3101"/>
+	<window id="3815" range="154,78,36,36" derive="3101"/>
+	<window id="3816" range="2,116,36,36" derive="3101"/>
+	<window id="3817" range="40,116,36,36" derive="3101"/>
+	<window id="3818" range="78,116,36,36" derive="3101"/>
+	<window id="3819" range="116,116,36,36" derive="3101"/>
+	<window id="3820" range="154,116,36,36" derive="3101"/>
+	<window id="3821" range="2,154,36,36" derive="3101"/>
+	<window id="3822" range="40,154,36,36" derive="3101"/>
+	<window id="3823" range="78,154,36,36" derive="3101"/>
+	<window id="3824" range="116,154,36,36" derive="3101"/>
+	<window id="3825" range="154,154,36,36" derive="3101"/>
+	<window id="3826" range="2,192,36,36" derive="3101"/>
+	<window id="3827" range="40,192,36,36" derive="3101"/>
+	<window id="3828" range="78,192,36,36" derive="3101"/>
+	<window id="3829" range="116,192,36,36" derive="3101"/>
+	<window id="3830" range="154,192,36,36" derive="3101"/>
+	<window id="3831" range="2,230,36,36" derive="3101"/>
+	<window id="3832" range="40,230,36,36" derive="3101"/>
+	<window id="3833" range="78,230,36,36" derive="3101"/>
+	<window id="3834" range="116,230,36,36" derive="3101"/>
+	<window id="3835" range="154,230,36,36" derive="3101"/>
+	<window id="3836" range="2,268,36,36" derive="3101"/>
+	<window id="3837" range="40,268,36,36" derive="3101"/>
+	<window id="3838" range="78,268,36,36" derive="3101"/>
+	<window id="3839" range="116,268,36,36" derive="3101"/>
+	<window id="3840" range="154,268,36,36" derive="3101"/>
+	<window id="3841" range="2,306,36,36" derive="3101"/>
+	<window id="3842" range="40,306,36,36" derive="3101"/>
+	<window id="3843" range="78,306,36,36" derive="3101"/>
+	<window id="3844" range="116,306,36,36" derive="3101"/>
+	<window id="3845" range="154,306,36,36" derive="3101"/>
+	<window id="3846" range="2,344,36,36" derive="3101"/>
+	<window id="3847" range="40,344,36,36" derive="3101"/>
+	<window id="3848" range="78,344,36,36" derive="3101"/>
+	<window id="3849" range="116,344,36,36" derive="3101"/>
+	<window id="3850" range="154,344,36,36" derive="3101"/>
+	<window class="WND_CLASS_DLG_1" id="2001" range="490,20,162,268" title="Gear" fcolor="104" font="1" icon="2001">
+		<style wsVisible="" wsMoveable=""/>
+		<child>2002</child>
+		<child>2003</child>
+		<child>2004</child>
+		<child>2005</child>
+	</window>
+	<!-- 裝備介面 -->
+	<window class="WND_CLASS_BASE" id="2002" range="0,0,1,1" icon="2011">
+		<style wsVisible=""/>
+		<child>2012</child>
+		<child>2013</child>
+		<child>2014</child>
+		<child>2015</child>
+		<child>3901</child>
+		<child>3902</child>
+		<child>3903</child>
+		<child>3904</child>
+		<child>3905</child>
+		<child>3906</child>
+		<child>3907</child>
+		<child>3908</child>
+		<child>3909</child>
+		<child>3910</child>
+		<child>3911</child>
+		<child>3912</child>
+		<child>3913</child>
+	</window>
+	<!-- 紙娃娃介面 -->
+	<window class="WND_CLASS_BASE" id="2003" range="0,0,1,1" icon="2003">
+		<child>2016</child>
+		<child>2017</child>
+		<child>2018</child>
+		<child>2019</child>
+		<child>2020</child>
+		<child>2021</child>
+		<child>2022</child>
+		<child>2023</child>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2004" range="7,223,47,16" title="Gear" fcolor="103" font="1" icon="2319" check="2320" appdata="2004" tpos="3,2">
+		<style wsVisible="" bsCheck=""/><!-- 裝備 -->
+		<OnCommand>OnEquipChangePage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2005" range="58,223,47,16" title="PD" fcolor="103" font="1" icon="2319" check="2320" appdata="2005" tpos="3,2">
+		<style wsVisible="" bsCheck=""/><!-- 妝扮 -->
+		<OnCommand>OnEquipChangePage</OnCommand>
+	</window>
+	<!-- 裝備介面 -->
+	<window class="WND_CLASS_DLG_1" id="2011" range="490,20,162,247" title="Gear" fcolor="104" font="1" icon="2011">
+		<style wsVisible="" wsMoveable=""/>
+		<child>2012</child>
+		<child>2013</child>
+		<child>2014</child>
+		<child>2015</child>
+		<child>3901</child>
+		<child>3902</child>
+		<child>3903</child>
+		<child>3904</child>
+		<child>3905</child>
+		<child>3906</child>
+		<child>3907</child>
+		<child>3908</child>
+		<child>3909</child>
+		<child>3910</child>
+		<child>3911</child>
+		<child>3912</child>
+	</window>
+	<!-- 切換武器set -->
+	<window class="WND_CLASS_BUTTON" id="2012" range="11,102,17,17" icon="2012" check="2013" tooltip="10040" tooltext="Switch [Alt+~]">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>OnCheckButtonOne</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2013" range="28,102,17,17" icon="2014" check="2015" tooltip="10040" tooltext="Switch [Alt+~]">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>OnCheckButtonTwo</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2014" range="110,102,17,17" icon="2012" check="2013" tooltip="10040" tooltext="Switch [Alt+~]">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>OnCheckButtonOne</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2015" range="127,102,17,17" icon="2014" check="2015" tooltip="10040" tooltext="Switch [Alt+~]">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>OnCheckButtonTwo</OnCommand>
+	</window>
+	<icon id="2001" dir="\wnd01\" normal="w010_3" focus="normal" down="normal" disable="normal"/>
+	<icon id="2003" dir="\wnd01\" normal="w010_2" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<icon id="2011" dir="\wnd01\" normal="w010_1" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<icon id="2012" dir="\wnd01\" normal="btn039_n" focus="btn039_f" down="btn039_f" disable="normal"/>
+	<icon id="2013" dir="\wnd01\" normal="btn039_d" focus="normal" down="normal" disable="normal"/>
+	<icon id="2014" dir="\wnd01\" normal="btn040_n" focus="btn040_f" down="btn040_f" disable="normal"/>
+	<icon id="2015" dir="\wnd01\" normal="btn040_d" focus="normal" down="normal" disable="normal"/>
+	<!-- 裝備按鈕的樣版 -->
+	<template class="WND_CLASS_ITEMBUTTON" id="3102" tooltip="10041" tooldelay="5" fcolor="103" font="3" tpos="0,26">
+		<style wsVisible="" wsDrag="" wsDrop="" ssRight=""/>
+		<OnDrag>OnDragCharItem</OnDrag>
+		<OnDrop>OnDropCharItem</OnDrop>
+		<OnCommandEx>OnUseCharItem</OnCommandEx>
+	</template>
+	<!-- 頭部 -->
+	<window id="3901" range="59,10,36,36" derive="3102"/>
+	<!-- 身體 -->
+	<window id="3902" range="10,23,36,36" derive="3102"/>
+	<!-- 主手1 -->
+	<window id="3903" range="10,62,36,36" derive="3102"/>
+	<!-- 副手1 -->
+	<window id="3904" range="108,62,36,36" derive="3102"/>
+	<!-- 手套 -->
+	<window id="3905" range="10,123,36,36" derive="3102"/>
+	<!-- 腳部 -->
+	<window id="3906" range="108,123,36,36" derive="3102"/>
+	<!-- 背部 -->
+	<window id="3907" range="108,23,36,36" derive="3102"/>
+	<!-- 飾品1 -->
+	<window id="3908" range="10,162,36,36" derive="3102"/>
+	<!-- 飾品2 -->
+	<window id="3909" range="108,162,36,36" derive="3102"/>
+	<!-- 寵物 -->
+	<window id="3910" range="59,177,36,36" derive="3102"/>
+	<!-- 主手2 -->
+	<window id="3911" range="10,62,36,36" derive="3102">
+		<style wsDrag="" wsDrop="" ssRight=""/>
+	</window>
+	<!-- 副手2 -->
+	<window id="3912" range="108,62,36,36" derive="3102">
+		<style wsDrag="" wsDrop="" ssRight=""/>
+	</window>
+	<!-- 徽章 -->
+	<window id="3913" range="59,93,36,36" derive="3102"/>
+	<!-- 頭部 -->
+	<window id="2016" range="59,10,36,36" derive="3102"/>
+	<!-- 身體 -->
+	<window id="2017" range="10,46,36,36" derive="3102"/>
+	<!-- 主手1 -->
+	<window id="2018" range="10,93,36,36" derive="3102"/>
+	<!-- 副手1 -->
+	<window id="2019" range="108,93,36,36" derive="3102"/>
+	<!-- 手套 -->
+	<window id="2020" range="10,140,36,36" derive="3102"/>
+	<!-- 腳部 -->
+	<window id="2021" range="108,140,36,36" derive="3102"/>
+	<!-- 背部 -->
+	<window id="2022" range="108,46,36,36" derive="3102"/>
+	<!-- 寵物 -->
+	<window id="2023" range="59,177,36,36" derive="3102"/>
+	<!-- 倉庫金錢數量視窗 -->
+	<window class="WND_CLASS_BASE" range="0,0,160,52" id="2880" puzzle1="1181" puzzle2="1182" puzzle3="1183" puzzle4="1184" puzzle5="1185" puzzle6="1186" puzzle7="1187" puzzle8="1188" puzzle9="1189">
+		<style wsVisible="" wsPopup="" wsAutoClose="" wsPuzzle=""/>
+		<child>2881</child>
+		<child>2882</child>
+		<child>2883</child>
+		<child>2884</child>
+		<child>2885</child>
+	</window>
+	<window class="WND_CLASS_STATIC" id="2881" range="3,8,1,1" title="Sum" fcolor="103" font="1">
+		<style wsVisible=""/><!-- 單價 -->
+	</window>
+	<window class="WND_CLASS_EDIT" id="2882" range="83,7,50,14" icon="3048" fcolor="105" font="1" tpos="1, 1" limit="8">
+		<style wsVisible="" esNumber="" esHCenter=""/>
+		<OnEditChange>OnEditMoneyNumber</OnEditChange>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="2883" range="67,7,1,1" uicon="3618" dicon="3620" urange="0,0,14,14" drange="68,0,14,14">
+		<style wsVisible="" csHScroll="" csSimple=""/>
+		<OnScroll>OnScrollMoneyNumber</OnScroll>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2884" range="45,26,26,18" icon="1154">
+		<style wsVisible=""/>
+		<OnCommand>OnSplitMoney</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2885" range="79,26,26,18" icon="1155">
+		<style wsVisible=""/>
+		<OnCommand>OnCancelSplitMoney</OnCommand>
+	</window>
+	<!-- 倉庫 -->
+	<window class="WND_CLASS_DLG_1" range="450,50,200,262" id="2100" title="Warehouse" fcolor="104" font="1" icon="2100">
+		<style wsVisible="" wsMoveable=""/>
+		<OnClose>OnCloseBank</OnClose>
+		<child>2101</child>
+		<child>2102</child>
+		<child>2103</child>
+		<child>2104</child>
+		<child>2105</child>
+		<child>2106</child>
+		<child>2107</child>
+		<child>2108</child>
+		<child>2109</child>
+		<child>2110</child>
+		<child>2111</child>
+		<child>2112</child>
+		<child>2113</child>
+		<child>2114</child>
+		<child>2115</child>
+		<child>2116</child>
+		<child>2117</child>
+		<child>2118</child>
+		<child>2119</child>
+		<child>2120</child>
+		<child>2121</child>
+		<child>2122</child>
+		<child>2123</child>
+		<child>2124</child>
+		<child>2125</child>
+		<child>2261</child>
+		<child>2262</child>
+		<child>2263</child>
+		<child>2264</child>
+		<child>2265</child>
+		<child>2266</child>
+		<child>2267</child>
+		<child>2268</child>
+		<child>2269</child>
+	</window>
+	<icon id="2100" dir="\wnd01\" normal="w043_01" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<icon id="2101" dir="\wnd01\" normal="w043_04" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<!-- 倉庫金錢數量 -->
+	<window class="WND_CLASS_STATIC" range="25,195,60,14" id="2261" title="0" fcolor="105" font="1">
+		<style wsVisible="" ssVCenter="" ssRight=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2262" range="6,195,17,17" icon="3036" tooltip="10040" tooltext="Take out from warehouse">
+		<style wsVisible=""/>
+		<OnCommand>OnShowSplitMoneyWnd</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2263" range="6,217,26,18" icon="1157" tooltip="10040" tooltext="Drag the item here to delete">
+		<style wsVisible="" wsDrop=""/>
+		<OnDrop>OnDestroyItem</OnDrop>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2264" range="98,196,26,18" icon="2264" title="1" fcolor="103" font="1" tooltip="10040" tooltext="Coffer 1" appdata="1" tpos="13,3">
+		<style wsVisible=""/>
+		<OnCommand>OnOpenBankBag</OnCommand>
+	</window>
+	<icon id="2264" dir="\wnd01\" normal="btn143_n" focus="btn143_f" down="btn143_d" disable="btn143_b"/>
+	<window class="WND_CLASS_BUTTON" id="2265" range="129,196,26,18" icon="2264" title="2" fcolor="103" font="1" tooltip="10040" tooltext="Coffer 2" appdata="2" tpos="13,3">
+		<style wsVisible=""/>
+		<OnCommand>OnOpenBankBag</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2266" range="160,196,26,18" icon="2264" title="3" fcolor="103" font="1" tooltip="10040" tooltext="Coffer 3" appdata="3" tpos="13,3">
+		<style wsVisible=""/>
+		<OnCommand>OnOpenBankBag</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2267" range="98,217,26,18" icon="2264" title="4" fcolor="103" font="1" tooltip="10040" tooltext="Coffer 4" appdata="4" tpos="13,3">
+		<style wsVisible=""/>
+		<OnCommand>OnOpenBankBag</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2268" range="129,217,26,18" icon="2264" title="5" fcolor="103" font="1" tooltip="10040" tooltext="Coffer 5" appdata="5" tpos="13,3">
+		<style wsVisible=""/>
+		<OnCommand>OnOpenBankBag</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2269" range="160,217,26,18" icon="2264" title="6" fcolor="103" font="1" tooltip="10040" tooltext="Coffer 6" appdata="6" tpos="13,3">
+		<style wsVisible=""/>
+		<OnCommand>OnOpenBankBag</OnCommand>
+	</window>
+	<!-- 倉庫道具按鈕的樣版 -->
+	<template class="WND_CLASS_ITEMBUTTON" id="2101" tooltip="10041" tooldelay="5" fcolor="103" font="3" tpos="0,26">
+		<style wsVisible="" wsDrag="" wsDrop="" bsRight=""/>
+		<OnDrag>OnDragBankItem</OnDrag>
+		<OnDrop>OnDropBankItem</OnDrop>
+		<OnCommandEx>OnUseBankItem</OnCommandEx>
+	</template>
+	<!-- 保險箱不可使用底圖 -->
+	<icon id="2276" dir="\wnd01\" normal="w043_03" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<!-- 保險箱可使用底圖 -->
+	<icon id="2277" dir="\wnd01\" normal="w043_02" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<!-- 社團保險箱不可使用底圖 -->
+	<icon id="2278" dir="\wnd01\" normal="w043_06" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<!-- 社團保險箱可使用底圖 -->
+	<icon id="2279" dir="\wnd01\" normal="w043_05" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<!-- 妝扮卡片包包 -->
+	<window class="WND_CLASS_DLG_1" range="0,0,200,241" id="2270" title="妝扮／卡片隨身包" fcolor="104" font="1" icon="2270">
+		<style wsVisible="" wsMoveable=""/>
+		<OnClose>OnCloseDollCardBag</OnClose>
+		<child>2101</child>
+		<child>2102</child>
+		<child>2103</child>
+		<child>2104</child>
+		<child>2105</child>
+		<child>2106</child>
+		<child>2107</child>
+		<child>2108</child>
+		<child>2109</child>
+		<child>2110</child>
+		<child>2111</child>
+		<child>2112</child>
+		<child>2113</child>
+		<child>2114</child>
+		<child>2115</child>
+		<child>2116</child>
+		<child>2117</child>
+		<child>2118</child>
+		<child>2119</child>
+		<child>2120</child>
+		<child>2121</child>
+		<child>2122</child>
+		<child>2123</child>
+		<child>2124</child>
+		<child>2125</child>
+		<child>2271</child>
+		<child>2272</child>
+		<child>2273</child>
+	</window>
+	<icon id="2270" dir="\wnd01\" normal="w091_01" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<!-- 翻頁 -->
+	<window class="WND_CLASS_STATIC" id="2271" range="122,200,48,12" title="1 / 4" fcolor="105" font="1">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2272" range="106,198,14,14" icon="2569" style="wsVisible" appdata="-1">
+		<OnCommand>OnChangeDollBankPage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2273" range="172,198,14,14" icon="2571" style="wsVisible" appdata="1">
+		<OnCommand>OnChangeDollBankPage</OnCommand>
+	</window>
+	<!-- 保險箱一 -->
+	<window class="WND_CLASS_DLG_1" range="0,260,200,165" id="2276" title="Coffer 1" fcolor="104" font="1" icon="2276">
+		<style wsVisible="" wsMoveable=""/>
+		<child>2126</child>
+		<child>2127</child>
+		<child>2128</child>
+		<child>2129</child>
+		<child>2130</child>
+		<child>2131</child>
+		<child>2132</child>
+		<child>2133</child>
+		<child>2134</child>
+		<child>2135</child>
+		<child>2136</child>
+		<child>2137</child>
+		<child>2138</child>
+		<child>2139</child>
+		<child>2140</child>
+		<child>2277</child>
+		<child>2278</child>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2277" range="154,119,32,18" icon="2821" tooltip="10040" fcolor="103" font="1" title="Hire" tooltext="Coffer key is needed for hire" appdata="0">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+		<OnCommand>OnShowRentBank</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="2278" range="10,119,140,20" fcolor="103" font="1" appdata="0">
+		<style wsVisible="" ssVCenter=""/>
+		<OnUpdate>OnUpdateBankBag</OnUpdate>
+	</window>
+	<!-- 保險箱二 -->
+	<window class="WND_CLASS_DLG_1" range="0,427,200,165" id="2279" title="Coffer 2" fcolor="104" font="1" icon="2276">
+		<style wsVisible="" wsMoveable=""/>
+		<child>2141</child>
+		<child>2142</child>
+		<child>2143</child>
+		<child>2144</child>
+		<child>2145</child>
+		<child>2146</child>
+		<child>2147</child>
+		<child>2148</child>
+		<child>2149</child>
+		<child>2150</child>
+		<child>2151</child>
+		<child>2152</child>
+		<child>2153</child>
+		<child>2154</child>
+		<child>2155</child>
+		<child>2280</child>
+		<child>2281</child>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2280" range="154,119,32,18" icon="2821" tooltip="10040" fcolor="103" font="1" title="Hire" tooltext="Coffer key is needed for hire" appdata="1">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+		<OnCommand>OnShowRentBank</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="2281" range="10,119,140,20" fcolor="103" font="1" appdata="1">
+		<style wsVisible="" ssVCenter=""/>
+		<OnUpdate>OnUpdateBankBag</OnUpdate>
+	</window>
+	<!-- 保險箱三 -->
+	<window class="WND_CLASS_DLG_1" range="202,0,200,165" id="2282" title="Coffer 3" fcolor="104" font="1" icon="2276">
+		<style wsVisible="" wsMoveable=""/>
+		<child>2156</child>
+		<child>2157</child>
+		<child>2158</child>
+		<child>2159</child>
+		<child>2160</child>
+		<child>2161</child>
+		<child>2162</child>
+		<child>2163</child>
+		<child>2164</child>
+		<child>2165</child>
+		<child>2166</child>
+		<child>2167</child>
+		<child>2168</child>
+		<child>2169</child>
+		<child>2170</child>
+		<child>2283</child>
+		<child>2284</child>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2283" range="154,119,32,18" icon="2821" tooltip="10040" fcolor="103" font="1" title="Hire" tooltext="Hire coffer prompt" appdata="2">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+		<OnCommand>OnShowRentBank</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="2284" range="10,119,140,20" fcolor="103" font="1" appdata="2">
+		<style wsVisible="" ssVCenter=""/>
+		<OnUpdate>OnUpdateBankBag</OnUpdate>
+	</window>
+	<!-- 保險箱四 -->
+	<window class="WND_CLASS_DLG_1" range="202,167,200,165" id="2285" title="Coffer 4" fcolor="104" font="1" icon="2276">
+		<style wsVisible="" wsMoveable=""/>
+		<child>2171</child>
+		<child>2172</child>
+		<child>2173</child>
+		<child>2174</child>
+		<child>2175</child>
+		<child>2176</child>
+		<child>2177</child>
+		<child>2178</child>
+		<child>2179</child>
+		<child>2180</child>
+		<child>2181</child>
+		<child>2182</child>
+		<child>2183</child>
+		<child>2184</child>
+		<child>2185</child>
+		<child>2286</child>
+		<child>2287</child>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2286" range="154,119,32,18" icon="2821" tooltip="10040" fcolor="103" font="1" title="Hire" tooltext="Coffer key is needed for hire" appdata="3">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+		<OnCommand>OnShowRentBank</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="2287" range="10,119,140,20" fcolor="103" font="1" appdata="3">
+		<style wsVisible="" ssVCenter=""/>
+		<OnUpdate>OnUpdateBankBag</OnUpdate>
+	</window>
+	<!-- 保險箱五 -->
+	<window class="WND_CLASS_DLG_1" range="202,334,200,165" id="2288" title="Coffer 5" fcolor="104" font="1" icon="2276">
+		<style wsVisible="" wsMoveable=""/>
+		<child>2186</child>
+		<child>2187</child>
+		<child>2188</child>
+		<child>2189</child>
+		<child>2190</child>
+		<child>2191</child>
+		<child>2192</child>
+		<child>2193</child>
+		<child>2194</child>
+		<child>2195</child>
+		<child>2196</child>
+		<child>2197</child>
+		<child>2198</child>
+		<child>2199</child>
+		<child>2200</child>
+		<child>2289</child>
+		<child>2290</child>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2289" range="154,119,32,18" icon="2821" tooltip="10040" fcolor="103" font="1" title="Hire" tooltext="Coffer key is needed for hire" appdata="4">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+		<OnCommand>OnShowRentBank</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="2290" range="10,119,140,20" fcolor="103" font="1" appdata="4">
+		<style wsVisible="" ssVCenter=""/>
+		<OnUpdate>OnUpdateBankBag</OnUpdate>
+	</window>
+	<!-- 保險箱六 -->
+	<window class="WND_CLASS_DLG_1" range="202,501,200,165" id="2291" title="Coffer 6" fcolor="104" font="1" icon="2276">
+		<style wsVisible="" wsMoveable=""/>
+		<child>2201</child>
+		<child>2202</child>
+		<child>2203</child>
+		<child>2204</child>
+		<child>2205</child>
+		<child>2206</child>
+		<child>2207</child>
+		<child>2208</child>
+		<child>2209</child>
+		<child>2210</child>
+		<child>2211</child>
+		<child>2212</child>
+		<child>2213</child>
+		<child>2214</child>
+		<child>2215</child>
+		<child>2292</child>
+		<child>2293</child>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2292" range="154,119,32,18" icon="2821" tooltip="10040" fcolor="103" font="1" title="Hire" tooltext="Coffer key is needed for hire" appdata="5">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+		<OnCommand>OnShowRentBank</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="2293" range="10,119,140,20" fcolor="103" font="1" appdata="5">
+		<style wsVisible="" ssVCenter=""/>
+		<OnUpdate>OnUpdateBankBag</OnUpdate>
+	</window>
+	<!-- 保險箱七 -->
+	<window class="WND_CLASS_DLG_1" range="404,0,200,165" id="2294" title="Coffer 7" fcolor="104" font="1" icon="2276">
+		<style wsVisible="" wsMoveable=""/>
+		<child>2216</child>
+		<child>2217</child>
+		<child>2218</child>
+		<child>2219</child>
+		<child>2220</child>
+		<child>2221</child>
+		<child>2222</child>
+		<child>2223</child>
+		<child>2224</child>
+		<child>2225</child>
+		<child>2226</child>
+		<child>2227</child>
+		<child>2228</child>
+		<child>2229</child>
+		<child>2230</child>
+		<child>2295</child>
+		<child>2296</child>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2295" range="154,119,32,18" icon="2821" tooltip="10040" fcolor="103" font="1" title="Hire" tooltext="Coffer key is needed for hire" appdata="6">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+		<OnCommand>OnShowRentBank</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="2296" range="10,119,140,20" fcolor="103" font="1" appdata="6">
+		<style wsVisible="" ssVCenter=""/>
+		<OnUpdate>OnUpdateBankBag</OnUpdate>
+	</window>
+	<!-- 保險箱八 -->
+	<window class="WND_CLASS_DLG_1" range="404,167,200,165" id="2297" title="Coffer 8" fcolor="104" font="1" icon="2276">
+		<style wsVisible="" wsMoveable=""/>
+		<child>2231</child>
+		<child>2232</child>
+		<child>2233</child>
+		<child>2234</child>
+		<child>2235</child>
+		<child>2236</child>
+		<child>2237</child>
+		<child>2238</child>
+		<child>2239</child>
+		<child>2240</child>
+		<child>2241</child>
+		<child>2242</child>
+		<child>2243</child>
+		<child>2244</child>
+		<child>2245</child>
+		<child>2298</child>
+		<child>2299</child>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2298" range="154,119,32,18" icon="2821" tooltip="10040" fcolor="103" font="1" title="Hire" tooltext="Coffer key is needed for hire" appdata="7">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+		<OnCommand>OnShowRentBank</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="2299" range="10,119,140,20" fcolor="103" font="1" appdata="7">
+		<style wsVisible="" ssVCenter=""/>
+		<OnUpdate>OnUpdateBankBag</OnUpdate>
+	</window>
+	<!--妝扮道具格子-->
+	<window id="1901" range="2,2,36,36" derive="2101"/>
+	<window id="1902" range="40,2,36,36" derive="2101"/>
+	<window id="1903" range="78,2,36,36" derive="2101"/>
+	<window id="1904" range="116,2,36,36" derive="2101"/>
+	<window id="1905" range="154,2,36,36" derive="2101"/>
+	<window id="1906" range="192,2,36,36" derive="2101"/>
+	<window id="1907" range="230,2,36,36" derive="2101"/>
+	<window id="1908" range="268,2,36,36" derive="2101"/>
+	<window id="1909" range="306,2,36,36" derive="2101"/>
+	<window id="1910" range="344,2,36,36" derive="2101"/>
+	<window id="1911" range="2,40,36,36" derive="2101"/>
+	<window id="1912" range="40,40,36,36" derive="2101"/>
+	<window id="1913" range="78,40,36,36" derive="2101"/>
+	<window id="1914" range="116,40,36,36" derive="2101"/>
+	<window id="1915" range="154,40,36,36" derive="2101"/>
+	<window id="1916" range="192,40,36,36" derive="2101"/>
+	<window id="1917" range="230,40,36,36" derive="2101"/>
+	<window id="1918" range="268,40,36,36" derive="2101"/>
+	<window id="1919" range="306,40,36,36" derive="2101"/>
+	<window id="1920" range="344,40,36,36" derive="2101"/>
+	<window id="1921" range="2,78,36,36" derive="2101"/>
+	<window id="1922" range="40,78,36,36" derive="2101"/>
+	<window id="1923" range="78,78,36,36" derive="2101"/>
+	<window id="1924" range="116,78,36,36" derive="2101"/>
+	<window id="1925" range="154,78,36,36" derive="2101"/>
+	<window id="1926" range="192,78,36,36" derive="2101"/>
+	<window id="1927" range="230,78,36,36" derive="2101"/>
+	<window id="1928" range="268,78,36,36" derive="2101"/>
+	<window id="1929" range="306,78,36,36" derive="2101"/>
+	<window id="1930" range="344,78,36,36" derive="2101"/>
+	<window id="1931" range="2,116,36,36" derive="2101"/>
+	<window id="1932" range="40,116,36,36" derive="2101"/>
+	<window id="1933" range="78,116,36,36" derive="2101"/>
+	<window id="1934" range="116,116,36,36" derive="2101"/>
+	<window id="1935" range="154,116,36,36" derive="2101"/>
+	<window id="1936" range="192,116,36,36" derive="2101"/>
+	<window id="1937" range="230,116,36,36" derive="2101"/>
+	<window id="1938" range="268,116,36,36" derive="2101"/>
+	<window id="1939" range="306,116,36,36" derive="2101"/>
+	<window id="1940" range="344,116,36,36" derive="2101"/>
+	<window id="1941" range="2,154,36,36" derive="2101"/>
+	<window id="1942" range="40,154,36,36" derive="2101"/>
+	<window id="1943" range="78,154,36,36" derive="2101"/>
+	<window id="1944" range="116,154,36,36" derive="2101"/>
+	<window id="1945" range="154,154,36,36" derive="2101"/>
+	<window id="1946" range="192,154,36,36" derive="2101"/>
+	<window id="1947" range="230,154,36,36" derive="2101"/>
+	<window id="1948" range="268,154,36,36" derive="2101"/>
+	<window id="1949" range="306,154,36,36" derive="2101"/>
+	<window id="1950" range="344,154,36,36" derive="2101"/>
+	<window id="1951" range="2,192,36,36" derive="2101"/>
+	<window id="1952" range="40,192,36,36" derive="2101"/>
+	<window id="1953" range="78,192,36,36" derive="2101"/>
+	<window id="1954" range="116,192,36,36" derive="2101"/>
+	<window id="1955" range="154,192,36,36" derive="2101"/>
+	<window id="1956" range="192,192,36,36" derive="2101"/>
+	<window id="1957" range="230,192,36,36" derive="2101"/>
+	<window id="1958" range="268,192,36,36" derive="2101"/>
+	<window id="1959" range="306,192,36,36" derive="2101"/>
+	<window id="1960" range="344,192,36,36" derive="2101"/>
+	<window id="1961" range="2,230,36,36" derive="2101"/>
+	<window id="1962" range="40,230,36,36" derive="2101"/>
+	<window id="1963" range="78,230,36,36" derive="2101"/>
+	<window id="1964" range="116,230,36,36" derive="2101"/>
+	<window id="1965" range="154,230,36,36" derive="2101"/>
+	<window id="1966" range="192,230,36,36" derive="2101"/>
+	<window id="1967" range="230,230,36,36" derive="2101"/>
+	<window id="1968" range="268,230,36,36" derive="2101"/>
+	<window id="1969" range="306,230,36,36" derive="2101"/>
+	<window id="1970" range="344,230,36,36" derive="2101"/>
+	<window id="1971" range="2,268,36,36" derive="2101"/>
+	<window id="1972" range="40,268,36,36" derive="2101"/>
+	<window id="1973" range="78,268,36,36" derive="2101"/>
+	<window id="1974" range="116,268,36,36" derive="2101"/>
+	<window id="1975" range="154,268,36,36" derive="2101"/>
+	<window id="1976" range="192,268,36,36" derive="2101"/>
+	<window id="1977" range="230,268,36,36" derive="2101"/>
+	<window id="1978" range="268,268,36,36" derive="2101"/>
+	<window id="1979" range="306,268,36,36" derive="2101"/>
+	<window id="1980" range="344,268,36,36" derive="2101"/>
+	<window id="1981" range="2,306,36,36" derive="2101"/>
+	<window id="1982" range="40,306,36,36" derive="2101"/>
+	<window id="1983" range="78,306,36,36" derive="2101"/>
+	<window id="1984" range="116,306,36,36" derive="2101"/>
+	<window id="1985" range="154,306,36,36" derive="2101"/>
+	<window id="1986" range="192,306,36,36" derive="2101"/>
+	<window id="1987" range="230,306,36,36" derive="2101"/>
+	<window id="1988" range="268,306,36,36" derive="2101"/>
+	<window id="1989" range="306,306,36,36" derive="2101"/>
+	<window id="1990" range="344,306,36,36" derive="2101"/>
+	<window id="1991" range="2,344,36,36" derive="2101"/>
+	<window id="1992" range="40,344,36,36" derive="2101"/>
+	<window id="1993" range="78,344,36,36" derive="2101"/>
+	<window id="1994" range="116,344,36,36" derive="2101"/>
+	<window id="1995" range="154,344,36,36" derive="2101"/>
+	<window id="1996" range="192,344,36,36" derive="2101"/>
+	<window id="1997" range="230,344,36,36" derive="2101"/>
+	<window id="1998" range="268,344,36,36" derive="2101"/>
+	<window id="1999" range="306,344,36,36" derive="2101"/>
+	<window id="2000" range="344,344,36,36" derive="2101"/>
+	<!-- 倉庫道具 -->
+	<window id="2101" range="2,2,36,36" derive="2101"/>
+	<window id="2102" range="40,2,36,36" derive="2101"/>
+	<window id="2103" range="78,2,36,36" derive="2101"/>
+	<window id="2104" range="116,2,36,36" derive="2101"/>
+	<window id="2105" range="154,2,36,36" derive="2101"/>
+	<window id="2106" range="2,40,36,36" derive="2101"/>
+	<window id="2107" range="40,40,36,36" derive="2101"/>
+	<window id="2108" range="78,40,36,36" derive="2101"/>
+	<window id="2109" range="116,40,36,36" derive="2101"/>
+	<window id="2110" range="154,40,36,36" derive="2101"/>
+	<window id="2111" range="2,78,36,36" derive="2101"/>
+	<window id="2112" range="40,78,36,36" derive="2101"/>
+	<window id="2113" range="78,78,36,36" derive="2101"/>
+	<window id="2114" range="116,78,36,36" derive="2101"/>
+	<window id="2115" range="154,78,36,36" derive="2101"/>
+	<window id="2116" range="2,116,36,36" derive="2101"/>
+	<window id="2117" range="40,116,36,36" derive="2101"/>
+	<window id="2118" range="78,116,36,36" derive="2101"/>
+	<window id="2119" range="116,116,36,36" derive="2101"/>
+	<window id="2120" range="154,116,36,36" derive="2101"/>
+	<window id="2121" range="2,154,36,36" derive="2101"/>
+	<window id="2122" range="40,154,36,36" derive="2101"/>
+	<window id="2123" range="78,154,36,36" derive="2101"/>
+	<window id="2124" range="116,154,36,36" derive="2101"/>
+	<window id="2125" range="154,154,36,36" derive="2101"/>
+	<!-- 保險箱一道具 -->
+	<window id="2126" range="2,2,36,36" derive="2101"/>
+	<window id="2127" range="40,2,36,36" derive="2101"/>
+	<window id="2128" range="78,2,36,36" derive="2101"/>
+	<window id="2129" range="116,2,36,36" derive="2101"/>
+	<window id="2130" range="154,2,36,36" derive="2101"/>
+	<window id="2131" range="2,40,36,36" derive="2101"/>
+	<window id="2132" range="40,40,36,36" derive="2101"/>
+	<window id="2133" range="78,40,36,36" derive="2101"/>
+	<window id="2134" range="116,40,36,36" derive="2101"/>
+	<window id="2135" range="154,40,36,36" derive="2101"/>
+	<window id="2136" range="2,78,36,36" derive="2101"/>
+	<window id="2137" range="40,78,36,36" derive="2101"/>
+	<window id="2138" range="78,78,36,36" derive="2101"/>
+	<window id="2139" range="116,78,36,36" derive="2101"/>
+	<window id="2140" range="154,78,36,36" derive="2101"/>
+	<!-- 保險箱二道具 -->
+	<window id="2141" range="2,2,36,36" derive="2101"/>
+	<window id="2142" range="40,2,36,36" derive="2101"/>
+	<window id="2143" range="78,2,36,36" derive="2101"/>
+	<window id="2144" range="116,2,36,36" derive="2101"/>
+	<window id="2145" range="154,2,36,36" derive="2101"/>
+	<window id="2146" range="2,40,36,36" derive="2101"/>
+	<window id="2147" range="40,40,36,36" derive="2101"/>
+	<window id="2148" range="78,40,36,36" derive="2101"/>
+	<window id="2149" range="116,40,36,36" derive="2101"/>
+	<window id="2150" range="154,40,36,36" derive="2101"/>
+	<window id="2151" range="2,78,36,36" derive="2101"/>
+	<window id="2152" range="40,78,36,36" derive="2101"/>
+	<window id="2153" range="78,78,36,36" derive="2101"/>
+	<window id="2154" range="116,78,36,36" derive="2101"/>
+	<window id="2155" range="154,78,36,36" derive="2101"/>
+	<!-- 保險箱三道具 -->
+	<window id="2156" range="2,2,36,36" derive="2101"/>
+	<window id="2157" range="40,2,36,36" derive="2101"/>
+	<window id="2158" range="78,2,36,36" derive="2101"/>
+	<window id="2159" range="116,2,36,36" derive="2101"/>
+	<window id="2160" range="154,2,36,36" derive="2101"/>
+	<window id="2161" range="2,40,36,36" derive="2101"/>
+	<window id="2162" range="40,40,36,36" derive="2101"/>
+	<window id="2163" range="78,40,36,36" derive="2101"/>
+	<window id="2164" range="116,40,36,36" derive="2101"/>
+	<window id="2165" range="154,40,36,36" derive="2101"/>
+	<window id="2166" range="2,78,36,36" derive="2101"/>
+	<window id="2167" range="40,78,36,36" derive="2101"/>
+	<window id="2168" range="78,78,36,36" derive="2101"/>
+	<window id="2169" range="116,78,36,36" derive="2101"/>
+	<window id="2170" range="154,78,36,36" derive="2101"/>
+	<!-- 保險箱四道具 -->
+	<window id="2171" range="2,2,36,36" derive="2101"/>
+	<window id="2172" range="40,2,36,36" derive="2101"/>
+	<window id="2173" range="78,2,36,36" derive="2101"/>
+	<window id="2174" range="116,2,36,36" derive="2101"/>
+	<window id="2175" range="154,2,36,36" derive="2101"/>
+	<window id="2176" range="2,40,36,36" derive="2101"/>
+	<window id="2177" range="40,40,36,36" derive="2101"/>
+	<window id="2178" range="78,40,36,36" derive="2101"/>
+	<window id="2179" range="116,40,36,36" derive="2101"/>
+	<window id="2180" range="154,40,36,36" derive="2101"/>
+	<window id="2181" range="2,78,36,36" derive="2101"/>
+	<window id="2182" range="40,78,36,36" derive="2101"/>
+	<window id="2183" range="78,78,36,36" derive="2101"/>
+	<window id="2184" range="116,78,36,36" derive="2101"/>
+	<window id="2185" range="154,78,36,36" derive="2101"/>
+	<!-- 保險箱五道具 -->
+	<window id="2186" range="2,2,36,36" derive="2101"/>
+	<window id="2187" range="40,2,36,36" derive="2101"/>
+	<window id="2188" range="78,2,36,36" derive="2101"/>
+	<window id="2189" range="116,2,36,36" derive="2101"/>
+	<window id="2190" range="154,2,36,36" derive="2101"/>
+	<window id="2191" range="2,40,36,36" derive="2101"/>
+	<window id="2192" range="40,40,36,36" derive="2101"/>
+	<window id="2193" range="78,40,36,36" derive="2101"/>
+	<window id="2194" range="116,40,36,36" derive="2101"/>
+	<window id="2195" range="154,40,36,36" derive="2101"/>
+	<window id="2196" range="2,78,36,36" derive="2101"/>
+	<window id="2197" range="40,78,36,36" derive="2101"/>
+	<window id="2198" range="78,78,36,36" derive="2101"/>
+	<window id="2199" range="116,78,36,36" derive="2101"/>
+	<window id="2200" range="154,78,36,36" derive="2101"/>
+	<!-- 保險箱六道具 -->
+	<window id="2201" range="2,2,36,36" derive="2101"/>
+	<window id="2202" range="40,2,36,36" derive="2101"/>
+	<window id="2203" range="78,2,36,36" derive="2101"/>
+	<window id="2204" range="116,2,36,36" derive="2101"/>
+	<window id="2205" range="154,2,36,36" derive="2101"/>
+	<window id="2206" range="2,40,36,36" derive="2101"/>
+	<window id="2207" range="40,40,36,36" derive="2101"/>
+	<window id="2208" range="78,40,36,36" derive="2101"/>
+	<window id="2209" range="116,40,36,36" derive="2101"/>
+	<window id="2210" range="154,40,36,36" derive="2101"/>
+	<window id="2211" range="2,78,36,36" derive="2101"/>
+	<window id="2212" range="40,78,36,36" derive="2101"/>
+	<window id="2213" range="78,78,36,36" derive="2101"/>
+	<window id="2214" range="116,78,36,36" derive="2101"/>
+	<window id="2215" range="154,78,36,36" derive="2101"/>
+	<!-- 保險箱七道具 -->
+	<window id="2216" range="2,2,36,36" derive="2101"/>
+	<window id="2217" range="40,2,36,36" derive="2101"/>
+	<window id="2218" range="78,2,36,36" derive="2101"/>
+	<window id="2219" range="116,2,36,36" derive="2101"/>
+	<window id="2220" range="154,2,36,36" derive="2101"/>
+	<window id="2221" range="2,40,36,36" derive="2101"/>
+	<window id="2222" range="40,40,36,36" derive="2101"/>
+	<window id="2223" range="78,40,36,36" derive="2101"/>
+	<window id="2224" range="116,40,36,36" derive="2101"/>
+	<window id="2225" range="154,40,36,36" derive="2101"/>
+	<window id="2226" range="2,78,36,36" derive="2101"/>
+	<window id="2227" range="40,78,36,36" derive="2101"/>
+	<window id="2228" range="78,78,36,36" derive="2101"/>
+	<window id="2229" range="116,78,36,36" derive="2101"/>
+	<window id="2230" range="154,78,36,36" derive="2101"/>
+	<!-- 保險箱八道具 -->
+	<window id="2231" range="2,2,36,36" derive="2101"/>
+	<window id="2232" range="40,2,36,36" derive="2101"/>
+	<window id="2233" range="78,2,36,36" derive="2101"/>
+	<window id="2234" range="116,2,36,36" derive="2101"/>
+	<window id="2235" range="154,2,36,36" derive="2101"/>
+	<window id="2236" range="2,40,36,36" derive="2101"/>
+	<window id="2237" range="40,40,36,36" derive="2101"/>
+	<window id="2238" range="78,40,36,36" derive="2101"/>
+	<window id="2239" range="116,40,36,36" derive="2101"/>
+	<window id="2240" range="154,40,36,36" derive="2101"/>
+	<window id="2241" range="2,78,36,36" derive="2101"/>
+	<window id="2242" range="40,78,36,36" derive="2101"/>
+	<window id="2243" range="78,78,36,36" derive="2101"/>
+	<window id="2244" range="116,78,36,36" derive="2101"/>
+	<window id="2245" range="154,78,36,36" derive="2101"/>
+	<!-- 保險箱九道具 -->
+	<window id="2246" range="2,2,36,36" derive="2101"/>
+	<window id="2247" range="40,2,36,36" derive="2101"/>
+	<window id="2248" range="78,2,36,36" derive="2101"/>
+	<window id="2249" range="116,2,36,36" derive="2101"/>
+	<window id="2250" range="154,2,36,36" derive="2101"/>
+	<window id="2251" range="2,40,36,36" derive="2101"/>
+	<window id="2252" range="40,40,36,36" derive="2101"/>
+	<window id="2253" range="78,40,36,36" derive="2101"/>
+	<window id="2254" range="116,40,36,36" derive="2101"/>
+	<window id="2255" range="154,40,36,36" derive="2101"/>
+	<window id="2256" range="2,78,36,36" derive="2101"/>
+	<window id="2257" range="40,78,36,36" derive="2101"/>
+	<window id="2258" range="78,78,36,36" derive="2101"/>
+	<window id="2259" range="116,78,36,36" derive="2101"/>
+	<window id="2260" range="154,78,36,36" derive="2101"/>
+	<!--天使守護精靈:自動組隊-->
+	<window class="WND_CLASS_BASE" range="0,0,370,435" id="2401" fcolor="104" font="1" icon="2401">
+		<style wsVisible="" wsMoveable=""/>
+		<child>2402</child>
+		<child>2403</child>
+		<child>2404</child>
+		<child>2405</child>
+		<child>2406</child>
+		<child>2407</child>
+		<child>2408</child>
+		<child>2409</child>
+		<child>2410</child>
+		<child>2411</child>
+		<child>2413</child>
+		<child>2415</child>
+		<child>2416</child>
+		<child>2417</child>
+		<child>2418</child>
+		<child>2419</child>
+		<child>2421</child>
+		<child>2422</child>
+		<child>2423</child>
+		<child>2424</child>
+		<child>2426</child>
+		<child>2427</child>
+		<child>2455</child>
+		<child>2456</child>
+		<child>2457</child>
+		<child>2458</child>
+		<child>2459</child>
+		<child>2460</child>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2402" range="7,10,14,14" title="自動邀請組隊" font="1" fcolor="103" tpos="16,3" check="2383">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>OnCheckAutoInvite</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="2403" range="99,12,50,14" icon="3048" font="1" fcolor="3">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2404" range="149,12,14,14" icon="3522">
+		<style wsVisible=""/>
+		<OnCommand>OnChooseInviteExp</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2405" range="7,28,14,14" title="自動接受組隊" font="1" fcolor="103" tpos="16,3" check="2383">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>OnCheckAutoAccept</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="2406" range="99,30,50,14" icon="3048" font="1" fcolor="3">
+		<style wsVisible="" ssVCenter="" ssHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2407" range="149,30,14,14" icon="3522">
+		<style wsVisible=""/>
+		<OnCommand>OnChooseAcceptExp</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2408" range="7,61,14,14" title="使用組隊名單" font="1" fcolor="103" tpos="16,3" check="2383">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>OnCheckAutoGroup</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="2409" range="68,94,1,1" fcolor="103" font="1" title="組隊名單">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="2410" range="268,94,1,1" fcolor="103" font="1" title="好友名單">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_LIST" id="2411" range="46,123,78,68" workrange="4,4,73,60" cols="1" rows="4" gapx="0" gapy="0" tpos="1,0" fcolor="103" bcolor="3082" font="1">
+		<style wsVisible="" lsVScroll="" lsCheck="" lsVCenter="" lsSCheck=""/>
+		<child>2412</child>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="2412" range="79,0,9,65" uicon="131" dicon="132" ticon="133" urange="0,2,9,10" drange="0,55,9,10" trange="0,12,9,45" thumbmin="8">
+		<style wsVisible="" csVScroll="" csSimple=""/>
+	</window>
+	<window class="WND_CLASS_LIST" id="2413" range="246,123,78,68" workrange="4,4,73,60" cols="1" rows="4" gapx="0" gapy="0" tpos="1,0" fcolor="103" bcolor="3082" font="1">
+		<style wsVisible="" lsVScroll="" lsCheck="" lsVCenter="" lsSCheck=""/>
+		<child>2414</child>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="2414" range="79,0,9,65" uicon="131" dicon="132" ticon="133" urange="0,2,9,10" drange="0,55,9,10" trange="0,12,9,45" thumbmin="8">
+		<style wsVisible="" csVScroll="" csSimple=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2415" range="188,140,26,18" icon="2323" tooltip="10040" tooltext="左移">
+		<style wsVisible=""/>
+		<OnCommand>OnAddGroupList</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2416" range="188,162,26,18" icon="10007" tooltip="10040" tooltext="刪除">
+		<style wsVisible=""/>
+		<OnCommand>OnDelGroupList</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="2417" range="13,209,1,1" title="名稱" fcolor="103" font="1">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_EDIT" id="2418" range="38,207,78,14" fcolor="3" font="1" tpos="1,0" limit="12">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2419" range="132,205,43,18" icon="3231" title="加 入" fcolor="103" font="1">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+		<OnCommand>OnAddGroupName</OnCommand>
+	</window>
+	<!--<window class="WND_CLASS_BUTTON" id="2420" range="204,146,43,18" icon="3231" title="更 新" fcolor="103" font="1">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+		<OnCommand>OnRefreshRobotFriendList</OnCommand>
+	</window>-->
+	<window class="WND_CLASS_BUTTON" id="2421" range="25,268,14,14" title="跟隨" font="1" fcolor="103" icon="12055" tpos="16,3" check="2383">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>OnCheckAutoFollow</OnCommand>
+	</window>
+	<window class="WND_CLASS_EDIT" id="2422" range="69,270,78,14" fcolor="3" font="1" tpos="1,0" limit="12">
+		<style wsVisible=""/>
+		<OnEditChange>OnRobotFollowName</OnEditChange>
+	</window>
+	<window class="WND_CLASS_STATIC" id="2423" range="66,300,1,1" fcolor="103" font="1" title="周圍列表">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_LIST" id="2424" range="46,316,78,68" workrange="4,4,73,60" cols="1" rows="4" gapx="0" gapy="0" tpos="1,0" fcolor="103" bcolor="3082" font="1">
+		<style wsVisible="" lsVScroll="" lsCheck="" lsSCheck=""/>
+		<child>2425</child>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="2425" range="79,0,9,60" uicon="131" dicon="132" ticon="133" urange="0,2,9,10" drange="0,55,9,10" trange="0,12,9,42" thumbmin="8">
+		<style wsVisible="" csVScroll="" csSimple=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2426" range="46,389,43,18" icon="3231" title="加 入" fcolor="103" font="1">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+		<OnCommand>OnAddFollowName</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2427" range="95,389,43,18" icon="3231" title="更 新" fcolor="103" font="1">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+		<OnCommand>OnRefreshRobotNearPlayer</OnCommand>
+	</window>
+	<window class="WND_CLASS_BASE" id="2428" range="99,27,50,36" puzzle1="1181" puzzle2="1182" puzzle3="1183" puzzle4="1184" puzzle5="1185" puzzle6="1186" puzzle7="1187" puzzle8="1188" puzzle9="1189">
+		<style wsVisible="" wsPuzzle="" wsPopup="" wsAutoClose=""/>
+		<child>2429</child>
+	</window>
+	<window class="WND_CLASS_LIST" id="2429" range="0,5,50,28" cols="1" rows="2" gapx="0" gapy="2" tpos="0,0" fcolor="2331" font="1">
+		<style wsVisible="" lsVCenter="" lsHCenter="" lsVScroll=""/>
+		<OnCommand>OnSelectInviteExp</OnCommand>
+	</window>
+	<window class="WND_CLASS_BASE" id="2430" range="99,45,50,36" puzzle1="1181" puzzle2="1182" puzzle3="1183" puzzle4="1184" puzzle5="1185" puzzle6="1186" puzzle7="1187" puzzle8="1188" puzzle9="1189">
+		<style wsVisible="" wsPuzzle="" wsPopup="" wsAutoClose=""/>
+		<child>2431</child>
+	</window>
+	<window class="WND_CLASS_LIST" id="2431" range="0,5,50,28" cols="1" rows="2" gapx="0" gapy="2" fcolor="2331" font="1">
+		<style wsVisible="" lsVCenter="" lsHCenter="" lsVScroll=""/>
+		<OnCommand>OnSelectAcceptExp</OnCommand>
+	</window>
+	<icon id="2401" dir="\wnd01\" normal="w089_01" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<!-- 防沉迷 -->
+	<window class="WND_CLASS_BASE" id="2451" range="600,125,360,33" bcolor="2451">
+		<style wsVisible="" wsMoveable=""/>
+		<child>2452</child>
+		<child>2453</child>
+	</window>
+	<window class="WND_CLASS_STATIC" id="2452" range="4,4,1,1" fcolor="1" font="1" title="累積上線時間：">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="2453" range="4,18,1,1" fcolor="1" font="1" title="累積下線時間：">
+		<style wsVisible=""/>
+	</window>
+	<!-- 守護精靈隊友補血-->
+	<icon id="2454" dir="\wnd01\" normal="w089_08" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<window class="WND_CLASS_BASE" range="0,0,370,435" id="2454" fcolor="104" font="1" icon="2454">
+		<style wsVisible="" wsMoveable=""/>
+		<child>2455</child>
+		<child>2456</child>
+		<child>2457</child>
+		<child>2458</child>
+		<child>2459</child>
+		<child>2460</child>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2455" range="245,268,14,14" title="自動施法幫隊友補HP" font="1" fcolor="103" icon="12055" tpos="16,3" check="2383" appdata="4009">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>OnCheckAutoSupportButton</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="2460" range="262,286,1,1" fcolor="1" font="1" title="當HP低於      %">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_EDIT" id="2456" range="315,285,24,12" fcolor="3" font="1" tpos="1, 1" limit="3" appdata="4010">
+		<style wsVisible="" esNumber="" esHCenter="" esVCenter=""/>
+		<OnEditChange>OnEditAutoSupportPercentage</OnEditChange>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="2457" range="262,299,14,14" title="只幫跟隨對象補血" font="1" fcolor="103" icon="12055" tpos="16,3" check="2383" appdata="4011" tooltext="必須是隊友才有效">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>OnCheckAutoSupportButton</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="2458" range="260,322,1,1" fcolor="1" font="1" title="補HP法術">
+		<style wsVisible=""/>
+	</window>
+	<!-- 補血技能放置button -->
+	<window class="WND_CLASS_BUTTON" id="2459" range="266,339,36,36" tooltip="10042" tooldelay="5">
+		<style wsVisible="" wsDrop="" bsRight=""/>
+		<OnDrop>OnDropAutoSupportSkill</OnDrop>
+		<OnCommandEx>OnRClickAutoSupportSkill</OnCommandEx>
+	</window>
+	<color id="2451" normal="50,50,50,50" focus="50,50,50,50" down="50,50,50,50" disable="50,50,50,50"/>
+</root>

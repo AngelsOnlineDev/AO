@@ -1,0 +1,1819 @@
+<?xml version="1.0"?>
+<root>
+	<INCLUDE file="setting\wnddef.xml"/>
+	<!--	12001			測試鈕
+
+
+			12002 - 12010	系統主頁(0)物件
+			12011 - 12030	聲音頁面(1)物件
+			12031 - 12080	顯示頁面(2)物件
+			12081 - 12120	介面頁面(3)物件
+			12121 - 12126	換角色.離開.之確定視窗
+
+			12127 - 12128	黃色系統訊息
+			12129 & 12249	設定密碼
+			12130 - 12220	技能介面
+
+			12221 - 12224	系統設定確認取消
+			12225 - 12228	系統選擇配色底
+
+			12229			顯示教學提示
+
+			12230 - 12244	小遊戲 wnd02.xml
+			12250 - 12255	圖騰血條
+
+			12301 - 12319	藏寶圖
+
+			12330 - 12399	特殊藏寶圖
+
+			12400 - 12454	商城
+			12501 - 12551	商城置物籃
+
+			12560 -	12580	送禮
+			12600			商城啟動按鈕 wnd01.xml
+			12601 - 		商城試衣間
+
+
+			12700 -	12716	PVP圖騰
+			12730 - 12735	PVP防禦工事
+
+	-->
+	<!-- Open 測試按鈕 -->
+	<window class="WND_CLASS_BUTTON" id="12001" range="600,400,50,17" fcolor="103" font="0" icon="12006" title="Open setting">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+		<OnCommand>OnCommandSystem</OnCommand>
+	</window>
+	<!-- 第 1 個視窗(0) -->
+	<window class="WND_CLASS_DLG_1" id="12002" range="300,100,257,367" fcolor="104" title="System" font="1">
+		<style wsVisible="" wsMoveable=""/>
+		<OnClose>OnSysChangeCancel_X</OnClose>
+		<child>12003</child>
+		<child>12004</child>
+		<child>12005</child>
+		<child>12006</child>
+		<child>12007</child>
+		<child>12008</child>
+		<child>12009</child>
+		<child>12010</child>
+		<child>12011</child>
+		<child>12031</child>
+		<child>12081</child>
+	</window>
+	<icon id="12011" dir="\wnd01\" normal="w050_01" focus="normal" down="normal" disable="normal">
+		<!-- 底圖1 -->
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<icon id="12031" dir="\wnd01\" normal="w050_02" focus="normal" down="normal" disable="normal">
+		<!-- 底圖2 -->
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<icon id="12081" dir="\wnd01\" normal="w050_03" focus="normal" down="normal" disable="normal">
+		<!-- 底圖3 -->
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<icon id="12003" dir="\wnd01\" normal="btn120_n" focus="btn120_f" down="btn120_d" disable="normal"/>
+	<!-- 翻頁按鈕 -->
+	<icon id="12004" dir="\wnd01\" normal="btn120_d" focus="normal" down="normal" disable="normal"/>
+	<!-- 翻頁按鈕(固定) -->
+	<icon id="12006" dir="\wnd01\" normal="btn111_n" focus="btn111_f" down="btn111_d" disable="normal"/>
+	<!-- 原始設定按鈕 -->
+	<icon id="12007" dir="\wnd01\" normal="btn152_n" focus="btn152_f" down="btn152_d" disable="btn152_b"/>
+	<!-- 更換角色按鈕 -->
+	<icon id="12008" dir="\wnd01\" normal="btn153_n" focus="btn153_f" down="btn153_d" disable="normal"/>
+	<!-- 離開遊戲按鈕 -->
+	<!-- 換頁按鈕 -->
+	<window class="WND_CLASS_BUTTON" id="12003" appdata="12011" range="8,299,50,17" fcolor="101" font="1" icon="12003" check="12004" title="Sound">
+		<style wsVisible="" bsVCenter="" bsHCenter="" bsRadio="" bsRadioBegin=""/>
+		<OnCommand>Setting_ChangePage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12004" appdata="12031" range="71,299,50,17" fcolor="101" font="1" icon="12003" check="12004" title="Display">
+		<style wsVisible="" bsVCenter="" bsHCenter="" bsRadio=""/>
+		<OnCommand>Setting_ChangePage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12005" appdata="12081" range="134,299,50,17" fcolor="101" font="1" icon="12003" check="12004" title="Set ITF">
+		<style wsVisible="" bsVCenter="" bsHCenter="" bsRadio="" bsRadioEnd=""/>
+		<OnCommand>Setting_ChangePage</OnCommand>
+	</window>
+	<!-- 原始設定 -->
+	<window class="WND_CLASS_BUTTON" id="12006" range="189,274,55,18" fcolor="101" font="1" icon="12006" title="Default">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+		<OnCommand>RestoreSetting</OnCommand>
+	</window>
+	<!-- 更換角色 -->
+	<window class="WND_CLASS_BUTTON" id="12007" range="6,322,26,18" fcolor="101" font="1" icon="12007" tooltip="10040" tooltext="Change character">
+		<style wsVisible=""/>
+		<OnCommand>PopChangeCharWnd</OnCommand>
+	</window>
+	<!-- 登出遊戲 -->
+	<window class="WND_CLASS_BUTTON" id="12008" range="37,322,26,18" fcolor="101" font="1" icon="12008" tooltip="10040" tooltext="Logout">
+		<style wsVisible=""/>
+		<OnCommand>PopQuitWnd</OnCommand>
+	</window>
+	<!-- 主確定 -->
+	<window class="WND_CLASS_BUTTON" id="12009" range="186,322,26,18" fcolor="101" font="1" icon="1072" tooltip="10040" tooltext="Confirm">
+		<style wsVisible=""/>
+		<OnCommand>OnSysChangeOK</OnCommand>
+	</window>
+	<!-- 主取消 -->
+	<window class="WND_CLASS_BUTTON" id="12010" range="217,322,26,18" fcolor="101" font="1" icon="1073" tooltip="10040" tooltext="Cancel">
+		<style wsVisible=""/>
+		<OnCommand>OnSysChangeCancel</OnCommand>
+	</window>
+	<!--  更改交易密碼 -->
+	<icon id="12129" dir="\wnd01\" normal="btn193_n" focus="btn193_f" down="btn193_d" disable="btn193_b"/>
+	<window class="WND_CLASS_BUTTON" id="12129" range="68,322,26,18" icon="12129" fcolor="101" font="1" tooltip="10040">
+		<style wsVisible=""/>
+		<OnCommand>OnChangeSafeVerifyPwd</OnCommand>
+	</window>
+	<!--  刪除交易密碼 -->
+	<icon id="12249" dir="\wnd01\" normal="btn194_n" focus="btn194_f" down="btn194_d" disable="btn194_b"/>
+	<window class="WND_CLASS_BUTTON" id="12249" range="99,322,26,18" icon="12249" fcolor="101" font="1" tooltip="10040" tooltext="Delete trade code">
+		<style wsVisible=""/>
+		<OnCommand>OnDeleteSafeVerifyPwd</OnCommand>
+	</window>
+	<!-- 聲音設定頁(1) -->
+	<window class="WND_CLASS_BASE" id="12011" range="0,0,249,343" icon="12011">
+		<style wsVisible=""/>
+		<!--捲軸-->
+		<child>12018</child>
+		<child>12019</child>
+		<child>12020</child>
+		<!-- 純文字 -->
+		<child>12012</child>
+		<child>12013</child>
+		<child>12014</child>
+		<child>12015</child>
+		<child>12016</child>
+		<child>12017</child>
+		<!-- Check Btn -->
+		<child>12021</child>
+		<child>12022</child>
+		<child>12023</child>
+	</window>
+	<!-- 純文字 -->
+	<window class="WND_CLASS_STATIC" id="12012" range="10,10,1,1" fcolor="103" font="1" title="Music Volume">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12013" range="10,33,1,1" fcolor="103" font="1" title="Sound Effect">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12014" range="10,57,1,1" fcolor="103" font="1" title="NPC Voice">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12015" range="93,10,1,1" fcolor="103" font="1" title=" -                    +">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12016" range="93,33,1,1" fcolor="103" font="1" title=" -                    +">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12017" range="93,57,1,1" fcolor="103" font="1" title=" -                    +">
+		<style wsVisible=""/>
+	</window>
+	<!-- 捲軸圖片 -->
+	<icon id="12018" dir="\wnd01\" normal="w003_03" focus="normal" down="normal" disable="normal"/>
+	<!-- 音量調整條 -->
+	<window class="WND_CLASS_SCROLLBAR" id="12018" range="109,10,111,13" ticon="12018" trange="0,0,111,13">
+		<style wsVisible="" csHScroll="" csSimple=""/>
+		<OnScroll>Change_Music_Volume</OnScroll>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="12019" range="109,32,111,13" ticon="12018" trange="0,0,111,13">
+		<style wsVisible="" csHScroll="" csSimple=""/>
+		<OnScroll>Change_Sound_Volume</OnScroll>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="12020" range="109,55,111,13" ticon="12018" trange="0,0,111,13">
+		<style wsVisible="" csHScroll="" csSimple=""/>
+		<OnScroll>Change_Voice_Volume</OnScroll>
+	</window>
+	<!-- Check 角色音效 -->
+	<window class="WND_CLASS_BUTTON" id="12021" range="9,82,92,12" icon="0" check="2383" fcolor="103" font="1" title="Open Character Sound F/X" tpos="24,3">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>SaveState_CheckButton</OnCommand>
+	</window>
+	<!-- Check 怪物音效 -->
+	<window class="WND_CLASS_BUTTON" id="12022" range="9,100,96,12" icon="0" check="2383" fcolor="103" font="1" title="Open Monster Sound F/X" tpos="24,3">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>SaveState_CheckButton</OnCommand>
+	</window>
+	<!-- Check 情緒符號音效 -->
+	<window class="WND_CLASS_BUTTON" id="12023" range="9,119,120,12" icon="0" check="2383" fcolor="103" font="1" title="Open Emote Sound F/X" tpos="24,3">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>SaveState_CheckButton</OnCommand>
+	</window>
+	<!-- 顯示設定頁(2) -->
+	<window class="WND_CLASS_BASE" id="12031" range="0,0,249,343" icon="12031">
+		<style wsVisible=""/>
+		<child>12032</child>
+		<child>12034</child>
+		<child>12036</child>
+		<child>12037</child>
+		<child>12038</child>
+		<child>12039</child>
+		<child>12040</child>
+		<child>12041</child>
+		<child>12042</child>
+		<child>12043</child>
+		<child>12044</child>
+		<child>12045</child>
+		<child>12063</child>
+		<child>12064</child>
+		<child>12065</child>
+		<child>12046</child>
+		<child>12047</child>
+		<child>12048</child>
+		<child>12049</child>
+		<child>12050</child>
+		<child>12051</child>
+		<child>12052</child>
+		<child>12053</child>
+		<child>12054</child>
+		<child>12055</child>
+		<child>12066</child>
+		<child>12067</child>
+		<child>12068</child>
+		<child>12069</child>
+	</window>
+	<!-- 純文字 -->
+	<window class="WND_CLASS_STATIC" id="12032" range="10,11,1,1" fcolor="103" font="1" title="Rslt.">
+		<style wsVisible=""/>
+	</window>
+	<!-- 解析度按鈕 -->
+	<icon pos="80,1" id="12034" dir="\wnd01\" normal="btn077_n" focus="btn077_f" down="btn077_d" disable="normal"/>
+	<window class="WND_CLASS_BUTTON" id="12034" range="50,9,94,15" icon="12034" fcolor="105" font="1" title="800 X 600" tpos="5,2">
+		<style wsVisible=""/>
+		<OnCommand>PopListDown</OnCommand>
+	</window>
+	<!-- 解析度選單 -->
+	<color id="12035" normal="220,245,230" focus="normal" down="normal" disable="normal"/>
+	<window class="WND_CLASS_LIST" id="12035" range="50,25,77,50" cols="1" rows="3" gapx="1" gapy="1" fcolor="107" font="1" bcolor="12035" tpos="1,1">
+		<style wsVisible="" lsReport="" wsAutoClose="" wsPopup=""/>
+		<OnCommand>ChangeWndSize</OnCommand>
+	</window>
+	<!-- Check視窗化 -->
+	<window class="WND_CLASS_BUTTON" id="12036" range="156,9,52,12" icon="0" check="2383" fcolor="103" font="1" title="Window" tpos="16,2">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>SaveState_CheckButton</OnCommand>
+	</window>
+	<!-- 純文字 -->
+	<window class="WND_CLASS_STATIC" id="12037" range="11,54,1,1" fcolor="103" font="1" title="Weather">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12038" range="11,72,1,1" fcolor="103" font="1" title="Shadow">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12039" range="11,90,1,1" fcolor="103" font="1" title="Stalls">
+		<style wsVisible=""/>
+	</window>
+	<!-- 天氣變化 開關按鈕  -->
+	<window class="WND_CLASS_BUTTON" id="12040" appdata="12040" range="77,54,39,12" tpos="15,0" icon="0" check="296" fcolor="103" font="1" title="Open">
+		<style wsVisible="" bsRadio="" bsRadioBegin=""/>
+		<OnCommand>SaveState_RadioButton</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12041" appdata="12041" range="137,54,39,12" tpos="15,0" icon="0" check="296" fcolor="103" font="1" title="Close">
+		<style wsVisible="" bsRadio="" bsRadioEnd=""/>
+		<OnCommand>SaveState_RadioButton</OnCommand>
+	</window>
+	<!-- 影子顯示 開關按鈕  -->
+	<window class="WND_CLASS_BUTTON" id="12042" appdata="12042" range="77,72,39,12" tpos="15,0" icon="0" check="296" fcolor="103" font="1" title="Open">
+		<style wsVisible="" bsRadio="" bsRadioBegin=""/>
+		<OnCommand>SaveState_RadioButton</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12043" appdata="12043" range="137,72,39,12" tpos="15,0" icon="0" check="296" fcolor="103" font="1" title="Close">
+		<style wsVisible="" bsRadio="" bsRadioEnd=""/>
+		<OnCommand>SaveState_RadioButton</OnCommand>
+	</window>
+	<!-- 攤販顯示 開關按鈕  -->
+	<window class="WND_CLASS_BUTTON" id="12044" appdata="12044" range="77,90,39,12" tpos="15,0" icon="0" check="296" fcolor="103" font="1" title="Open">
+		<style wsVisible="" bsRadio="" bsRadioBegin=""/>
+		<OnCommand>SaveState_RadioButton</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12045" appdata="12045" range="137,90,39,12" tpos="15,0" icon="0" check="296" fcolor="103" font="1" title="Close">
+		<style wsVisible="" bsRadio="" bsRadioEnd=""/>
+		<OnCommand>SaveState_RadioButton</OnCommand>
+	</window>
+	<!-- 純文字 -->
+	<window class="WND_CLASS_STATIC" id="12046" range="38,111,1,1" fcolor="103" font="1" title="Paper Doll">
+		<style wsVisible=""/>
+	</window>
+	<!-- 紙娃娃效果 radio按鈕  -->
+	<window class="WND_CLASS_BUTTON" id="12047" appdata="12047" range="13,128,64,12" icon="0" check="296" tpos="16,0" fcolor="103" font="1" title="Display All">
+		<style wsVisible="" bsRadio="" bsRadioBegin=""/>
+		<OnCommand>SaveState_RadioButton</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12048" appdata="12048" range="13,144,76,12" icon="0" check="296" tpos="15,0" fcolor="103" font="1" title="Display oneself">
+		<style wsVisible="" bsRadio=""/>
+		<OnCommand>SaveState_RadioButton</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12049" appdata="12049" range="13,160,64,12" icon="0" check="296" tpos="15,0" fcolor="103" font="1" title="Close All">
+		<style wsVisible="" bsRadio="" bsRadioEnd=""/>
+		<OnCommand>SaveState_RadioButton</OnCommand>
+	</window>
+	<!-- 不顯示頭部裝備 Check -->
+	<window class="WND_CLASS_BUTTON" id="12050" range="27,175,100,12" icon="0" check="2383" tpos="15,2" fcolor="103" font="1" title="No Headgear">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>SaveState_CheckButton</OnCommand>
+	</window>
+	<!-- 純文字 -->
+	<window class="WND_CLASS_STATIC" id="12051" range="165,111,1,1" fcolor="103" font="1" title="Skill">
+		<style wsVisible=""/>
+	</window>
+	<!-- 技能效果 radio按鈕  -->
+	<window class="WND_CLASS_BUTTON" id="12052" appdata="12052" range="143,128,64,12" icon="0" check="296" tpos="16,0" fcolor="103" font="1" title="Display All">
+		<style wsVisible="" bsRadio="" bsRadioBegin=""/>
+		<OnCommand>SaveState_RadioButton</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12053" appdata="12053" range="143,144,76,12" icon="0" check="296" tpos="15,0" fcolor="103" font="1" title="Display oneself">
+		<style wsVisible="" bsRadio=""/>
+		<OnCommand>SaveState_RadioButton</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12054" appdata="12054" range="143,160,64,12" icon="0" check="296" tpos="15,0" fcolor="103" font="1" title="Close All">
+		<style wsVisible="" bsRadio="" bsRadioEnd=""/>
+		<OnCommand>SaveState_RadioButton</OnCommand>
+	</window>
+	<!-- 地震效果 -->
+	<icon id="12055" dir="\wnd01\" normal="w050_10" focus="normal" down="normal" disable="normal"/>
+	<window class="WND_CLASS_BUTTON" id="12055" range="157,175,100,12" icon="12055" check="2383" tpos="15,2" fcolor="103" font="1" title="Earthquake">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>SaveState_CheckButton</OnCommand>
+	</window>
+	<!-- 共用取消鈕 -->
+	<window class="WND_CLASS_BUTTON" id="12058" range="79,30,26,18" icon="10007">
+		<style wsVisible=""/>
+		<OnCommand>OnCancel</OnCommand>
+	</window>
+	<!-- 透明視窗 純文字 -->
+	<window class="WND_CLASS_STATIC" id="12063" range="11,36,1,1" fcolor="103" font="1" title="ClearWnd">
+		<style wsVisible=""/>
+	</window>
+	<!-- 透明視窗 開關按鈕  -->
+	<window class="WND_CLASS_BUTTON" id="12064" appdata="12064" range="77,36,39,12" tpos="15,0" icon="0" check="296" fcolor="103" font="1" title="Open">
+		<style wsVisible="" bsRadio="" bsRadioBegin=""/>
+		<OnCommand>SaveState_RadioButton</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12065" appdata="12065" range="137,36,39,12" tpos="15,0" icon="0" check="296" fcolor="103" font="1" title="Close">
+		<style wsVisible="" bsRadio="" bsRadioEnd=""/>
+		<OnCommand>SaveState_RadioButton</OnCommand>
+	</window>
+	<!-- 即時訊息 純文字 -->
+	<window class="WND_CLASS_STATIC" id="12066" range="33,202,1,1" fcolor="103" font="1" title="System Prompt">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12067" range="12,217,100,12" icon="0" check="2383" tpos="18,2" fcolor="103" font="1" title="Item Prompt">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>SaveState_CheckButton</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12068" range="12,233,100,12" icon="0" check="2383" tpos="18,2" fcolor="103" font="1" title="Character Exp">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>SaveState_CheckButton</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12069" range="12,249,100,12" icon="0" check="2383" tpos="18,2" fcolor="103" font="1" title="Skill Exp Prompt">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>SaveState_CheckButton</OnCommand>
+	</window>
+	<!-- 介面設定頁(3) -->
+	<window class="WND_CLASS_BASE" id="12081" range="0,0,249,343" icon="12081">
+		<style wsVisible=""/>
+		<child>12225</child>
+		<child>12226</child>
+		<child>12227</child>
+		<child>12228</child>
+		<child>12082</child>
+		<child>12083</child>
+		<child>12084</child>
+		<child>12085</child>
+		<child>12086</child>
+		<child>12087</child>
+		<child>12088</child>
+		<child>12089</child>
+		<child>12090</child>
+		<child>12091</child>
+		<child>12092</child>
+		<child>12093</child>
+		<child>12094</child>
+		<child>12095</child>
+		<child>12103</child>
+		<child>12096</child>
+		<child>12097</child>
+		<child>12098</child>
+		<child>12099</child>
+		<child>12100</child>
+		<child>12101</child>
+		<child>12102</child>
+		<!--child>12229</child-->
+	</window>
+	<!-- 純文字 -->
+	<window class="WND_CLASS_STATIC" id="12082" range="60,10,1,1" fcolor="103" font="1" title="Char Info">
+		<style wsVisible=""/>
+	</window>
+	<!-- 永久顯示 Check -->
+	<window class="WND_CLASS_BUTTON" id="12083" range="123,8,66,12" icon="0" check="2383" tpos="17,2" fcolor="103" font="1" title="Display">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>SaveState_CheckButton</OnCommand>
+	</window>
+	<!-- 純文字 -->
+	<window class="WND_CLASS_STATIC" id="12084" range="17,27,1,1" fcolor="103" font="1" title="Image Info">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12085" range="120,27,1,1" fcolor="103" font="1" title="Word Info">
+		<style wsVisible=""/>
+	</window>
+	<!-- 圖像資訊 radio按鈕  -->
+	<window class="WND_CLASS_BUTTON" id="12086" appdata="12086" range="17,43,52,12" icon="0" check="296" tpos="16,0" fcolor="103" font="1" title="No Image">
+		<style wsVisible="" bsRadio="" bsRadioBegin=""/>
+		<OnCommand>SaveState_RadioButton</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12087" appdata="12087" range="17,58,62,12" icon="0" check="296" tpos="14,0" fcolor="103" font="1" title="Char Portrait">
+		<style wsVisible="" bsRadio=""/>
+		<OnCommand>SaveState_RadioButton</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12088" appdata="12088" range="17,73,63,12" icon="0" check="296" tpos="15,0" fcolor="103" font="1" title="League Badge">
+		<style wsVisible="" bsRadio="" bsRadioEnd=""/>
+		<OnCommand>SaveState_RadioButton</OnCommand>
+	</window>
+	<!-- 純文字 -->
+	<!-- 文字資訊 radio按鈕  -->
+	<window class="WND_CLASS_BUTTON" id="12089" appdata="12089" range="120,43,39,12" icon="0" check="296" tpos="15,0" fcolor="103" font="1" title="Name">
+		<style wsVisible="" bsRadio="" bsRadioBegin=""/>
+		<OnCommand>SaveState_RadioButton</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12090" appdata="12090" range="120,58,69,12" icon="0" check="296" tpos="15,0" fcolor="103" font="1" title="Name+Title">
+		<style wsVisible="" bsRadio=""/>
+		<OnCommand>SaveState_RadioButton</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12091" appdata="12091" range="120,73,99,12" icon="0" check="296" tpos="15,0" fcolor="103" font="1" title="Name+Title+League">
+		<style wsVisible="" bsRadio="" bsRadioEnd=""/>
+		<OnCommand>SaveState_RadioButton</OnCommand>
+	</window>
+	<!-- 拒絕 Check -->
+	<window class="WND_CLASS_BUTTON" id="12092" range="10,102,65,12" icon="0" check="2383" tpos="17,2" fcolor="103" font="1" title="No Trade">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>SaveState_CheckButton</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12093" range="91,102,65,12" icon="0" check="2383" tpos="17,2" fcolor="103" font="1" title="No Friend">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>SaveState_CheckButton</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12094" range="173,102,65,12" icon="0" check="2383" tpos="17,2" fcolor="103" font="1" title="No Team">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>SaveState_CheckButton</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12095" range="10,120,65,12" icon="0" check="2383" tpos="17,2" fcolor="103" font="1" title="No Recruit">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>SaveState_CheckButton</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12103" range="91,120,65,12" icon="0" check="2383" tpos="17,2" fcolor="103" font="1" title="No games">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>SaveState_CheckButton</OnCommand>
+	</window>
+	<!-- 顯示教學提示 -->
+	<!--window class="WND_CLASS_BUTTON" id="12229" range="10,148,100,12" icon="0" check="2383" tpos="15,2" fcolor="103" font="1" title="顯示教學提示"-->
+	<!--style wsVisible="" bsCheck="" /-->
+	<!--OnCommand>SaveState_CheckButton</OnCommand-->
+	<!--/window-->
+	<!-- 純文字 -->
+	<window class="WND_CLASS_STATIC" id="12096" range="11,176,1,1" fcolor="103" font="1" title="Window Color">
+		<style wsVisible=""/>
+	</window>
+	<!-- 介面配色 - 原色方塊 -->
+	<icon id="12225" dir="\wnd01\" normal="w050_06" focus="normal" down="normal" disable="normal"/>
+	<!-- 面板顏色01 -->
+	<icon id="12226" dir="\wnd01\" normal="w050_07" focus="normal" down="normal" disable="normal"/>
+	<!-- 面板顏色02 -->
+	<icon id="12227" dir="\wnd01\" normal="w050_08" focus="normal" down="normal" disable="normal"/>
+	<!-- 面板顏色03 -->
+	<icon id="12228" dir="\wnd01\" normal="w050_09" focus="normal" down="normal" disable="normal"/>
+	<!-- 面板顏色04 -->
+	<window class="WND_CLASS_BASE" id="12225" range="15,196,1,1" icon="12225">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_BASE" id="12226" range="41,196,1,1" icon="12226">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_BASE" id="12227" range="93,196,1,1" icon="12227">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_BASE" id="12228" range="67,196,1,1" icon="12228">
+		<style wsVisible=""/>
+	</window>
+	<!-- 介面顏色 radio按鈕  -->
+	<icon id="12097" dir="\wnd01\" normal="w050_04" focus="normal" down="normal" disable="normal"/>
+	<window class="WND_CLASS_BUTTON" id="12097" appdata="12097" range="11,192,24,24" icon="0" check="12097">
+		<style wsVisible="" bsRadio="" bsRadioBegin=""/>
+		<OnCommand>SaveState_RadioButton</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12098" appdata="12098" range="37,192,24,24" icon="0" check="12097">
+		<style wsVisible="" bsRadio=""/>
+		<OnCommand>SaveState_RadioButton</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12099" appdata="12099" range="63,192,24,24" icon="0" check="12097">
+		<style wsVisible="" bsRadio=""/>
+		<OnCommand>SaveState_RadioButton</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12100" appdata="12100" range="89,192,24,24" icon="0" check="12097">
+		<style wsVisible="" bsRadio="" bsRadioEnd=""/>
+		<OnCommand>SaveState_RadioButton</OnCommand>
+	</window>
+	<!-- 純文字 -->
+	<window class="WND_CLASS_STATIC" id="12101" range="11,228,1,1" fcolor="103" font="1" title="Default Window Position">
+		<style wsVisible=""/>
+	</window>
+	<!-- 預設介面配置 -->
+	<icon id="12102" dir="\wnd01\" normal="btn142_n" focus="btn142_f" down="btn142_d" disable="normal"/>
+	<window class="WND_CLASS_BUTTON" id="12102" range="11,244,32,18" fcolor="103" font="0" icon="12102" title="Set">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+		<OnCommand>Reset_WndSetting</OnCommand>
+	</window>
+	<!--登出遊戲確認 -->
+	<window class="WND_CLASS_BASE" id="12121" range="50,100,150,56" puzzle1="10021" puzzle2="10022" puzzle3="10023" puzzle4="10024" puzzle5="10025" puzzle6="10026" puzzle7="10027" puzzle8="10028" puzzle9="10029">
+		<style wsVisible="" wsPuzzle="" wsAutoClose="" wsPopup=""/>
+		<child>12122</child>
+		<child>12123</child>
+		<child>12058</child>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12122" range="30,8,1,1" font="1" fcolor="103" title="Want to logout?">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12123" range="40,30,26,18" icon="10006">
+		<style wsVisible=""/>
+		<OnCommand>OnSysQuitGame</OnCommand>
+	</window>
+	<!-- 更換角色確認 -->
+	<window class="WND_CLASS_BASE" id="12124" range="50,100,160,56" puzzle1="10021" puzzle2="10022" puzzle3="10023" puzzle4="10024" puzzle5="10025" puzzle6="10026" puzzle7="10027" puzzle8="10028" puzzle9="10029">
+		<style wsVisible="" wsPuzzle="" wsAutoClose="" wsPopup=""/>
+		<child>12125</child>
+		<child>12126</child>
+		<child>12058</child>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12125" range="19,8,1,1" font="1" fcolor="103" title="Change the character?">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12126" range="40,30,26,18" icon="10006">
+		<style wsVisible=""/>
+		<OnCommand>OnSysChangeCharGame</OnCommand>
+	</window>
+	<!-- 取消變更確認 -->
+	<window class="WND_CLASS_BASE" id="12221" range="50,100,140,56" puzzle1="10021" puzzle2="10022" puzzle3="10023" puzzle4="10024" puzzle5="10025" puzzle6="10026" puzzle7="10027" puzzle8="10028" puzzle9="10029">
+		<style wsVisible="" wsPuzzle="" wsAutoClose="" wsPopup=""/>
+		<child>12222</child>
+		<child>12223</child>
+		<child>12224</child>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12222" range="30,8,1,1" font="1" fcolor="103" title="Save changes?">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12223" range="40,30,26,18" icon="10006">
+		<style wsVisible=""/>
+		<OnCommand>OnSysChangeOK</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12224" range="80,30,26,18" icon="10007">
+		<style wsVisible=""/>
+		<OnCommand>OnSysCancelNoSave</OnCommand>
+	</window>
+	<!-- 掉寶訊息 -->
+	<color id="12127" normal="190,140,90" focus="normal" down="normal" disable="normal"/>
+	<color id="12128" normal="255,255,130" focus="normal" down="normal" disable="normal"/>
+	<window class="WND_CLASS_EXPGOLDSTATIC" id="12127" range="30,350,1,60" fcolor="12127" font="1" title=" " lines="4">
+		<style wsVisible=""/>
+		<child>12128</child>
+	</window>
+	<!-- 掉寶訊息 -->
+	<window class="WND_CLASS_EXPGOLDSTATIC" id="12128" range="0,0,1,60" fcolor="12128" font="1" title=" " lines="4" tpos="-1, -1">
+		<style wsVisible=""/>
+	</window>
+	<!-- 技能介面 -->
+	<window class="WND_CLASS_DLG_1" id="12130" title="Skill" range="500,100,257,355" fcolor="104">
+		<style wsVisible="" wsMoveable=""/>
+		<child>12131</child>
+		<child>12132</child>
+		<child>12133</child>
+		<child>12134</child>
+		<OnClose>OnCloseSkillWnd</OnClose>
+	</window>
+	<!-- 換頁按鈕 -->
+	<window class="WND_CLASS_BUTTON" id="12131" range="8,310,50,17" fcolor="101" font="1" icon="12003" check="12004" title="Gear">
+		<style wsVisible="" bsVCenter="" bsHCenter="" bsRadio="" bsRadioBegin=""/>
+		<OnCommand>OnChangeSkillPage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12132" range="71,310,50,17" fcolor="101" font="1" icon="12003" check="12004" title="Unload">
+		<style wsVisible="" bsVCenter="" bsHCenter="" bsRadio=""/>
+		<OnCommand>OnChangeSkillPage</OnCommand>
+	</window>
+	<!-- 技能介面(目前裝備的技能) -->
+	<window class="WND_CLASS_BASE" id="12133" range="0,0,1,1" icon="12133" style="wsVisible">
+		<child>12135</child>
+		<child>12136</child>
+		<child>12137</child>
+		<child>12138</child>
+		<child>12139</child>
+		<child>12140</child>
+		<child>12141</child>
+		<child>12142</child>
+		<child>12143</child>
+		<child>12144</child>
+		<child>12145</child>
+		<child>12146</child>
+		<child>12147</child>
+		<child>12172</child>
+	</window>
+	<icon id="12133" dir="\wnd01\" normal="w059_02" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<icon id="12134" dir="\wnd01\" normal="w059_06" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<!--  裝備的技能1 -->
+	<window class="WND_CLASS_BUTTON" id="12135" range="4,27,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChangeSkills</OnCommand>
+	</window>
+	<!--  裝備的技能2 -->
+	<window class="WND_CLASS_BUTTON" id="12136" range="45,27,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChangeSkills</OnCommand>
+	</window>
+	<!--  裝備的技能3 -->
+	<window class="WND_CLASS_BUTTON" id="12137" range="86,27,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChangeSkills</OnCommand>
+	</window>
+	<!--  裝備的技能4 -->
+	<window class="WND_CLASS_BUTTON" id="12138" range="127,27,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChangeSkills</OnCommand>
+	</window>
+	<!--  裝備的技能5 -->
+	<window class="WND_CLASS_BUTTON" id="12139" range="168,27,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChangeSkills</OnCommand>
+	</window>
+	<!--  裝備的技能6  -->
+	<window class="WND_CLASS_BUTTON" id="12140" range="209,27,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChangeSkills</OnCommand>
+	</window>
+	<!-- 技能經驗條 -->
+	<window class="WND_CLASS_PROGRESS" id="12141" range="125,7,99,11" picon="330" font="1" fcolor="103">
+		<style wsVisible="" psHorizontal="" psShowPercent=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12142" range="25,7,1,1" title="Skill" fcolor="103" font="1" style="wsVisible"/>
+	<window class="WND_CLASS_STATIC" id="12143" range="90,7,1,1" title="LV" fcolor="103" font="1" style="wsVisible"/>
+	<window class="WND_CLASS_STATIC" id="12144" range="106,7,1,1" title="0" fcolor="103" font="1" style="wsVisible"/>
+	<!--  翻頁  -->
+	<window class="WND_CLASS_STATIC" id="12145" range="179,232,1,1" title="3 / 4" fcolor="105" font="1" style="wsVisible"/>
+	<window class="WND_CLASS_BUTTON" id="12146" range="154,230,14,14" icon="2569" style="wsVisible">
+		<OnCommand>OnChangeMagicPage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12147" range="222,230,14,14" icon="2571" style="wsVisible">
+		<OnCommand>OnChangeMagicPage</OnCommand>
+	</window>
+	<!-- 技能介面(卸下的技能) -->
+	<window class="WND_CLASS_BASE" id="12134" range="0,0,1,1" icon="12135" style="wsVisible">
+		<child>12148</child>
+		<child>12149</child>
+		<child>12150</child>
+		<child>12151</child>
+		<child>12152</child>
+		<child>12153</child>
+		<child>12154</child>
+		<child>12155</child>
+		<child>12156</child>
+		<child>12157</child>
+		<child>12158</child>
+		<child>12159</child>
+		<child>12160</child>
+		<child>12161</child>
+		<child>12162</child>
+		<child>12163</child>
+		<child>12164</child>
+		<child>12165</child>
+		<child>12166</child>
+		<child>12167</child>
+		<child>12168</child>
+		<child>12169</child>
+		<child>12170</child>
+		<child>12171</child>
+		<child>12173</child>
+	</window>
+	<icon id="12135" dir="\wnd01\" normal="w059_01" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<icon id="12136" dir="\wnd01\" normal="w059_05" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<icon id="12137" dir="\wnd01\" normal="w059_07" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<icon id="12138" dir="\wnd01\" normal="w059_08" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<icon id="12148" dir="\wnd01\" normal="btn095_n" focus="btn095_f" down="normal" disable="normal"/>
+	<icon id="12149" dir="\wnd01\" normal="btn095_d" focus="normal" down="normal" disable="normal"/>
+	<!--  技能分類 魔法類 -->
+	<window class="WND_CLASS_BUTTON" id="12148" range="6,4,43,18" font="1" fcolor="103" title="Mana" icon="12148" check="12149">
+		<style wsVisible="" bsVCenter="" bsHCenter="" bsRadio="" bsRadioBegin=""/>
+		<OnCommand>OnChangeUneqType</OnCommand>
+	</window>
+	<!--  技能分類 戰鬥類 -->
+	<window class="WND_CLASS_BUTTON" id="12149" range="53,4,43,18" font="1" fcolor="103" title="Combat" icon="12148" check="12149">
+		<style wsVisible="" bsVCenter="" bsHCenter="" bsRadio=""/>
+		<OnCommand>OnChangeUneqType</OnCommand>
+	</window>
+	<!--  技能分類 投射類 -->
+	<window class="WND_CLASS_BUTTON" id="12150" range="100,4,43,18" font="1" fcolor="103" title="Shoot" icon="12148" check="12149">
+		<style wsVisible="" bsVCenter="" bsHCenter="" bsRadio=""/>
+		<OnCommand>OnChangeUneqType</OnCommand>
+	</window>
+	<!--  技能分類 開採類 -->
+	<window class="WND_CLASS_BUTTON" id="12151" range="147,4,43,18" font="1" fcolor="103" title="Mining" icon="12148" check="12149">
+		<style wsVisible="" bsVCenter="" bsHCenter="" bsRadio=""/>
+		<OnCommand>OnChangeUneqType</OnCommand>
+	</window>
+	<!--  技能分類 製造類 -->
+	<window class="WND_CLASS_BUTTON" id="12152" range="194,4,43,18" font="1" fcolor="103" title="Craft" icon="12148" check="12149">
+		<style wsVisible="" bsVCenter="" bsHCenter="" bsRadio=""/>
+		<OnCommand>OnChangeUneqType</OnCommand>
+	</window>
+	<!--  卸下的技能 1 -->
+	<window class="WND_CLASS_BUTTON" id="12153" range="4,49,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChangeUneqSkills</OnCommand>
+	</window>
+	<!--  卸下的技能 2 -->
+	<window class="WND_CLASS_BUTTON" id="12154" range="45,49,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChangeUneqSkills</OnCommand>
+	</window>
+	<!--  卸下的技能 3 -->
+	<window class="WND_CLASS_BUTTON" id="12155" range="86,49,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChangeUneqSkills</OnCommand>
+	</window>
+	<!--  卸下的技能 4 -->
+	<window class="WND_CLASS_BUTTON" id="12156" range="127,49,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChangeUneqSkills</OnCommand>
+	</window>
+	<!--  卸下的技能 5 -->
+	<window class="WND_CLASS_BUTTON" id="12157" range="168,49,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChangeUneqSkills</OnCommand>
+	</window>
+	<!--  卸下的技能 6  -->
+	<window class="WND_CLASS_BUTTON" id="12158" range="209,49,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChangeUneqSkills</OnCommand>
+	</window>
+	<!--  卸下的技能 7 -->
+	<window class="WND_CLASS_BUTTON" id="12159" range="4,91,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChangeUneqSkills</OnCommand>
+	</window>
+	<!--  卸下的技能 8 -->
+	<window class="WND_CLASS_BUTTON" id="12160" range="45,91,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChangeUneqSkills</OnCommand>
+	</window>
+	<!--  卸下的技能 9 -->
+	<window class="WND_CLASS_BUTTON" id="12161" range="86,91,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChangeUneqSkills</OnCommand>
+	</window>
+	<!--  卸下的技能10 -->
+	<window class="WND_CLASS_BUTTON" id="12162" range="127,91,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChangeUneqSkills</OnCommand>
+	</window>
+	<!--  卸下的技能11 -->
+	<window class="WND_CLASS_BUTTON" id="12163" range="168,91,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChangeUneqSkills</OnCommand>
+	</window>
+	<!--  卸下的技能12  -->
+	<window class="WND_CLASS_BUTTON" id="12164" range="209,91,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChangeUneqSkills</OnCommand>
+	</window>
+	<!-- 技能經驗條 -->
+	<window class="WND_CLASS_PROGRESS" id="12165" range="125,29,99,11" picon="330" font="1" fcolor="103">
+		<style wsVisible="" psHorizontal="" psShowPercent=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12166" range="25,29,1,1" title="Skill" fcolor="103" font="1" style="wsVisible"/>
+	<window class="WND_CLASS_STATIC" id="12167" range="90,29,1,1" title="LV" fcolor="103" font="1" style="wsVisible"/>
+	<window class="WND_CLASS_STATIC" id="12168" range="106,29,1,1" title="0" fcolor="103" font="1" style="wsVisible"/>
+	<!-- 翻頁 -->
+	<window class="WND_CLASS_STATIC" id="12169" range="179,295,1,1" title="3 / 4" fcolor="105" font="1" style="wsVisible"/>
+	<window class="WND_CLASS_BUTTON" id="12170" range="154,293,14,14" icon="2569" style="wsVisible">
+		<OnCommand>OnChangeMagicPage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12171" range="222,293,14,14" icon="2571" style="wsVisible">
+		<OnCommand>OnChangeMagicPage</OnCommand>
+	</window>
+	<!-- 裝備技能 法術列表 -->
+	<window class="WND_CLASS_LIST" id="12172" range="8,77,226,150" cols="6" rows="4" gapx="6" gapy="3" fcolor="102" font="1" tooltip="10041" tooldelay="5">
+		<style wsVisible="" lsVScroll="" wsDrag=""/>
+		<OnDrag>OnDragSkillMagic</OnDrag>
+		<OnCommandEx>OnUseSkillsMagic</OnCommandEx>
+	</window>
+	<!-- 卸下的技能 法術列表 -->
+	<window class="WND_CLASS_LIST" id="12173" range="8,140,226,150" cols="6" rows="4" gapx="6" gapy="3" fcolor="102" font="1" tooltip="10041" tooldelay="5">
+		<style wsVisible="" lsVScroll="" wsDrag=""/>
+	</window>
+	<!-- 技能更換介面 -->
+	<window class="WND_CLASS_DLG_1" id="12180" title="Change Skill" range="500,100,277,334" fcolor="104">
+		<style wsVisible="" wsMoveable=""/>
+		<child>12181</child>
+	</window>
+	<!-- 技能更換介面 -->
+	<window class="WND_CLASS_BASE" id="12181" range="0,0,1,1" icon="12181" style="wsVisible">
+		<child>12182</child>
+		<child>12183</child>
+		<child>12184</child>
+		<child>12185</child>
+		<child>12186</child>
+		<child>12187</child>
+		<child>12188</child>
+		<child>12189</child>
+		<child>12190</child>
+		<child>12191</child>
+		<child>12192</child>
+		<child>12193</child>
+		<child>12194</child>
+		<child>12195</child>
+		<child>12196</child>
+		<child>12197</child>
+		<child>12198</child>
+		<child>12199</child>
+		<child>12200</child>
+		<child>12201</child>
+		<child>12202</child>
+		<child>12203</child>
+		<child>12204</child>
+		<child>12205</child>
+		<child>12206</child>
+		<child>12207</child>
+		<child>12208</child>
+		<child>12209</child>
+		<child>12210</child>
+		<child>12211</child>
+		<child>12212</child>
+		<child>12213</child>
+		<child>12214</child>
+		<child>12215</child>
+		<child>12216</child>
+	</window>
+	<icon id="12181" dir="\wnd01\" normal="w059_03" focus="normal" down="normal" disable="normal">
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<!-- 確定按鈕 -->
+	<window class="WND_CLASS_BUTTON" id="12182" range="205,291,26,18" icon="10006">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+		<OnCommand>PopChangeSkillsAsking</OnCommand>
+	</window>
+	<!-- 取消按鈕 -->
+	<window class="WND_CLASS_BUTTON" id="12183" range="236,291,26,18" icon="10007">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+		<OnCommand>OnCancelChangeSkills</OnCommand>
+	</window>
+	<!-- 技能經驗條 -->
+	<window class="WND_CLASS_PROGRESS" id="12184" range="135,32,99,11" picon="330" font="1" fcolor="103">
+		<style wsVisible="" psHorizontal="" psShowPercent=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12185" range="35,32,1,1" title="Skill" fcolor="103" font="1" style="wsVisible"/>
+	<window class="WND_CLASS_STATIC" id="12186" range="104,32,1,1" title="LV" fcolor="103" font="1" style="wsVisible"/>
+	<window class="WND_CLASS_STATIC" id="12187" range="120,32,1,1" title="0" fcolor="103" font="1" style="wsVisible"/>
+	<!--  裝備的技能1 -->
+	<window class="WND_CLASS_BUTTON" id="12188" range="14,52,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChooseOldSkills</OnCommand>
+	</window>
+	<!--  裝備的技能2 -->
+	<window class="WND_CLASS_BUTTON" id="12189" range="55,52,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChooseOldSkills</OnCommand>
+	</window>
+	<!--  裝備的技能3 -->
+	<window class="WND_CLASS_BUTTON" id="12190" range="96,52,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChooseOldSkills</OnCommand>
+	</window>
+	<!--  裝備的技能4 -->
+	<window class="WND_CLASS_BUTTON" id="12191" range="137,52,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChooseOldSkills</OnCommand>
+	</window>
+	<!--  裝備的技能5 -->
+	<window class="WND_CLASS_BUTTON" id="12192" range="178,52,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChooseOldSkills</OnCommand>
+	</window>
+	<!--  裝備的技能6  -->
+	<window class="WND_CLASS_BUTTON" id="12193" range="219,52,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChooseOldSkills</OnCommand>
+	</window>
+	<!--  技能分類 魔法類 -->
+	<window class="WND_CLASS_BUTTON" id="12194" range="16,140,43,18" font="1" fcolor="103" title="Mana" icon="12148" check="12149">
+		<style wsVisible="" bsVCenter="" bsHCenter="" bsRadio="" bsRadioBegin=""/>
+		<OnCommand>OnChangeUneqChangeType</OnCommand>
+	</window>
+	<!--  技能分類 戰鬥類 -->
+	<window class="WND_CLASS_BUTTON" id="12195" range="63,140,43,18" font="1" fcolor="103" title="Combat" icon="12148" check="12149">
+		<style wsVisible="" bsVCenter="" bsHCenter="" bsRadio=""/>
+		<OnCommand>OnChangeUneqChangeType</OnCommand>
+	</window>
+	<!--  技能分類 投射類 -->
+	<window class="WND_CLASS_BUTTON" id="12196" range="110,140,43,18" font="1" fcolor="103" title="Shoot" icon="12148" check="12149">
+		<style wsVisible="" bsVCenter="" bsHCenter="" bsRadio=""/>
+		<OnCommand>OnChangeUneqChangeType</OnCommand>
+	</window>
+	<!--  技能分類 開採類 -->
+	<window class="WND_CLASS_BUTTON" id="12197" range="157,140,43,18" font="1" fcolor="103" title="Mining" icon="12148" check="12149">
+		<style wsVisible="" bsVCenter="" bsHCenter="" bsRadio=""/>
+		<OnCommand>OnChangeUneqChangeType</OnCommand>
+	</window>
+	<!--  技能分類 製造類 -->
+	<window class="WND_CLASS_BUTTON" id="12198" range="204,140,43,18" font="1" fcolor="103" title="Craft" icon="12148" check="12149">
+		<style wsVisible="" bsVCenter="" bsHCenter="" bsRadio=""/>
+		<OnCommand>OnChangeUneqChangeType</OnCommand>
+	</window>
+	<!-- 技能經驗條 -->
+	<window class="WND_CLASS_PROGRESS" id="12199" range="135,165,99,11" picon="330" font="1" fcolor="103">
+		<style wsVisible="" psHorizontal="" psShowPercent=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12200" range="35,165,1,1" title="Skill" fcolor="103" font="1" style="wsVisible"/>
+	<window class="WND_CLASS_STATIC" id="12201" range="104,165,1,1" title="LV" fcolor="103" font="1" style="wsVisible"/>
+	<window class="WND_CLASS_STATIC" id="12202" range="120,165,1,1" title="0" fcolor="103" font="1" style="wsVisible"/>
+	<!--  卸下的技能 1 -->
+	<window class="WND_CLASS_BUTTON" id="12203" range="21,184,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChooseNewSkills</OnCommand>
+	</window>
+	<!--  卸下的技能 2 -->
+	<window class="WND_CLASS_BUTTON" id="12204" range="59,184,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChooseNewSkills</OnCommand>
+	</window>
+	<!--  卸下的技能 3 -->
+	<window class="WND_CLASS_BUTTON" id="12205" range="97,184,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChooseNewSkills</OnCommand>
+	</window>
+	<!--  卸下的技能 4 -->
+	<window class="WND_CLASS_BUTTON" id="12206" range="135,184,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChooseNewSkills</OnCommand>
+	</window>
+	<!--  卸下的技能 5 -->
+	<window class="WND_CLASS_BUTTON" id="12207" range="173,184,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChooseNewSkills</OnCommand>
+	</window>
+	<!--  卸下的技能 6  -->
+	<window class="WND_CLASS_BUTTON" id="12208" range="211,184,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChooseNewSkills</OnCommand>
+	</window>
+	<!--  卸下的技能 7 -->
+	<window class="WND_CLASS_BUTTON" id="12209" range="21,222,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChooseNewSkills</OnCommand>
+	</window>
+	<!--  卸下的技能 8 -->
+	<window class="WND_CLASS_BUTTON" id="12210" range="59,222,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChooseNewSkills</OnCommand>
+	</window>
+	<!--  卸下的技能 9 -->
+	<window class="WND_CLASS_BUTTON" id="12211" range="97,222,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChooseNewSkills</OnCommand>
+	</window>
+	<!--  卸下的技能10 -->
+	<window class="WND_CLASS_BUTTON" id="12212" range="135,222,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChooseNewSkills</OnCommand>
+	</window>
+	<!--  卸下的技能11 -->
+	<window class="WND_CLASS_BUTTON" id="12213" range="173,222,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChooseNewSkills</OnCommand>
+	</window>
+	<!--  卸下的技能12  -->
+	<window class="WND_CLASS_BUTTON" id="12214" range="211,222,36,36" style="wsVisible" tooltip="10041">
+		<OnCommand>OnChooseNewSkills</OnCommand>
+	</window>
+	<!-- Title -->
+	<window class="WND_CLASS_STATIC" id="12215" range="81,8,1,1" title="Sel skill to unlearn" fcolor="103" font="1" style="wsVisible"/>
+	<window class="WND_CLASS_STATIC" id="12216" range="81,119,1,1" title="Sel skill to learn" fcolor="103" font="1" style="wsVisible"/>
+	<!-- 更換技能確認 -->
+	<window class="WND_CLASS_BASE" id="12217" range="50,100,180,110" puzzle1="10021" puzzle2="10022" puzzle3="10023" puzzle4="10024" puzzle5="10025" puzzle6="10026" puzzle7="10027" puzzle8="10028" puzzle9="10029">
+		<style wsVisible="" wsPuzzle="" wsAutoClose="" wsPopup=""/>
+		<child>12218</child>
+		<child>12219</child>
+		<child>12220</child>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="12218" range="16,10,150,60" font="1" fcolor="103" lines="4" words="24" style="wsVisible" title="Are you sure you want to change the skill at the cost of one Seal Stone? Once you confirm, you are unable to go back.">
+		<style wsVisible=""/>
+	</window>
+	<!-- 確定鈕 -->
+	<window class="WND_CLASS_BUTTON" id="12219" range="50,80,26,18" icon="10006">
+		<style wsVisible=""/>
+		<OnCommand>OnChangeSkillsOk</OnCommand>
+	</window>
+	<!-- 取消鈕 -->
+	<window class="WND_CLASS_BUTTON" id="12220" range="100,80,26,18" icon="10007">
+		<style wsVisible=""/>
+		<OnCommand>OnCancel</OnCommand>
+	</window>
+	<!-- 圖騰資訊血條 -->
+	<window class="WND_CLASS_BASE" id="12250" range="100,80,117,24" icon="12250">
+		<style wsVisible=""/>
+		<child>12251</child>
+		<child>12252</child>
+		<child>12253</child>
+		<child>12254</child>
+		<child>12255</child>
+	</window>
+	<icon id="12250" dir="\wnd01\" normal="w064_05" focus="normal" down="normal" disable="normal"/>
+	<!--  圖騰社團名字 -->
+	<window class="WND_CLASS_BUTTON" id="12251" range="5,4,107,12" fcolor="512" font="1">
+		<style wsVisible="" ssHCenter=""/>
+	</window>
+	<!--  圖騰陣營ICON -->
+	<window class="WND_CLASS_BASE" id="12252" range="-10,-20,38,35" icon="512">
+		<style wsVisible="" wsTransparent=""/>
+	</window>
+	<icon id="12253" dir="\wnd01\" normal="w052_12" focus="normal" down="normal" disable="normal"/>
+	<!--  圖騰血條 -->
+	<window class="WND_CLASS_PROGRESS" id="12253" range="25,19,84,5" picon="12253" font="1" fcolor="103">
+		<style wsVisible="" psHorizontal=""/>
+	</window>
+	<icon id="12254" dir="\wnd01\" normal="w052_13" focus="normal" down="normal" disable="normal"/>
+	<!--  圖騰經驗條 -->
+	<window class="WND_CLASS_PROGRESS" id="12254" range="25,25,84,5" picon="12254" font="1" fcolor="103">
+		<style wsVisible="" psHorizontal=""/>
+	</window>
+	<!--  圖騰等級 -->
+	<window class="WND_CLASS_BUTTON" id="12255" range="8,20,10,10" fcolor="512" font="1" title="Level">
+		<style wsVisible="" ssHCenter=""/>
+	</window>
+	<!-- 天使商城 -->
+	<icon id="12441" dir="\wnd01\" normal="btn095_n" focus="btn095_f" down="btn095_d" disable="btn095_b"/>
+	<icon id="12442" dir="\wnd01\" normal="btn178_n" focus="btn178_f" down="btn178_d" disable="btn178_b"/>
+	<icon id="12607" dir="\wnd01\" normal="btn090_n" focus="btn090_f" down="btn090_d" disable="btn090_b"/>
+	<icon id="12608" dir="\wnd01\" normal="btn091_n" focus="btn091_f" down="btn091_d" disable="btn091_b"/>
+	<window class="WND_CLASS_DLG_1" id="12400" range="10,10,767,405" fcolor="104" title="Item Mall" font="1">
+		<style wsVisible="" wsMoveable=""/>
+		<child>12411</child>
+		<child>12412</child>
+		<child>12413</child>
+		<child>12414</child>
+		<child>12415</child>
+		<child>12416</child>
+		<child>12417</child>
+		<child>12418</child>
+		<child>12419</child>
+		<child>12420</child>
+		<child>12431</child>
+		<child>12432</child>
+		<child>12433</child>
+		<child>12434</child>
+		<child>12435</child>
+		<child>12436</child>
+		<child>12437</child>
+		<child>12441</child>
+		<child>12442</child>
+		<child>12443</child>
+		<child>12451</child>
+		<child>12452</child>
+		<child>12453</child>
+		<child>12454</child>
+		<child>12501</child>
+		<child>12541</child>
+		<child>12601</child>
+		<child>12402</child>
+		<child>12403</child>
+		<child>12401</child>
+		<OnClose>OnMallClose</OnClose>
+	</window>
+	<icon id="12401" dir="\wnd01\" normal="w070_01" focus="normal" down="normal" disable="normal">
+		<!-- 底圖 -->
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<icon id="12402" dir="\wnd01\" normal="w070_02" focus="normal" down="normal" disable="normal">
+		<!-- 商品架 -->
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<icon id="12403" dir="\wnd01\" normal="w070_03" focus="normal" down="normal" disable="normal">
+		<!-- 說明 -->
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<!-- 底 -->
+	<window class="WND_CLASS_BASE" id="12401" range="0,0,759,381" icon="12401">
+		<style wsVisible=""/>
+	</window>
+	<!-- 商品架 -->
+	<window class="WND_CLASS_BASE" id="12402" range="0,0,759,381" icon="12402">
+		<style wsVisible=""/>
+		<child>12404</child>
+	</window>
+	<window class="WND_CLASS_MALLLIST" id="12404" range="12,46,530,302" cols="2" rows="8" gapx="2" gapy="2" fcolor="512" font="1" bcolor="3082" tooltip="10041">
+		<style wsVisible="" lsVScroll="" lsVCenter="" lsHCenter="" lsCheck="" lsSCheck=""/>
+		<child>12405</child>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="12405" range="531,-2,9,309" uicon="131" dicon="132" ticon="133" urange="0,0,9,10" drange="0,300,9,10" trange="0,10,9,290">
+		<style wsVisible="" csVScroll="" csSimple=""/>
+	</window>
+	<!-- 說明 -->
+	<window class="WND_CLASS_BASE" id="12403" range="0,0,609,381" icon="12403">
+		<style wsVisible=""/>
+		<child>12406</child>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="12406" range="14,33,609,331" workrange="1,1,595,315" font="1" fcolor="103" lines="24" words="89" title="/c#00F7FF[Angel Gold introduction] /c*\n 1. The items in the Item Mall should be traded with [/c#EEFF33Angel Gold/c*]. \n 2. Players can charge on official site [/c#EEFF33http://ao.igg.com/c*] and then change the charged points to [/c#EEFF33Angel Gold/c*]. \n 3. Angel Gold cannot be /c#EEFF33traded/c* or /c#EEFF33transfered/c* to other accounts. \n/c#00F7FF[Operation of the Mall Interface]/c*\n 1. Click the /c#EEFF33Mall Icon/c*. \n 2. Items are classified into weapons, armor, functions, special, PD, potions, robot mounts and pets/c*.\n 3. One kind of item can be traded every time.\n 4. /c#00F7FFPurchase:/c* Click [/c#EEFF33Buy/c*] button after selecting the items, then confirm it at a cost of a certain amount of Angel Gold. The purchased item(s) will be placed in [/c#EEFF33Store Cabinet/c*].\n 5. /c#00F7FFPresent:/c* Click the [/c#EEFF33Gift/c*] button after selecting items and enter the presentee's name.\n 6. /c#00F7FFJoin my favorite/c*: Click [/c#EEFF33Add Favorite/c*] button, and the system will record it on your favorites page.\n 7. On [Favorites] page, you can purchase, present or delete.\n 8. You can remove the items from the [/c#EEFF33Store Cabinet/c*] and place them in your backpack. Make sure you have enough /c#EEFF33Loading/c* and /c#EEFF33Space/c*.\n 9. Players cannot return any items in their backpack to the store cabinet.\n10. 10 items at most can be displayed in the store cabinet once. Those left in the Cabinet will be displayed only after the previous ones are drawn out.">
+		<style wsVisible=""/>
+		<child>12407</child>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="12407" range="532,-2,9,320" uicon="131" dicon="132" ticon="133" urange="0,0,9,10" drange="0,310,9,10" trange="0,10,9,300" thumbmin="8">
+		<style wsVisible="" csVScroll="" csSimple=""/>
+	</window>
+	<!-- 裝扮類(試衣間) -->
+	<icon id="12601" dir="\wnd01\" normal="w070_06" focus="normal" down="normal" disable="normal">
+		<!-- 說明 -->
+		<attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>
+	</icon>
+	<window class="WND_CLASS_BASE" id="12601" range="0,0,759,381" icon="12601">
+		<style wsVisible=""/>
+		<child>12602</child>
+		<child>12604</child>
+		<child>12605</child>
+		<child>12606</child>
+		<child>12607</child>
+		<child>12608</child>
+		<child>12610</child>
+	</window>
+	<window class="WND_CLASS_MALLLIST" id="12602" range="12,46,265,302" cols="1" rows="8" gapx="2" gapy="2" fcolor="512" font="3" bcolor="3082" tooltip="10041">
+		<style wsVisible="" lsVScroll="" lsVCenter="" lsHCenter="" lsCheck="" lsSCheck=""/>
+		<child>12603</child>
+		<OnCommand>OnMallFittingList</OnCommand>
+	</window>
+	<window class="WND_CLASS_SCROLLBAR" id="12603" range="265,-2,9,309" uicon="131" dicon="132" ticon="133" urange="0,0,9,10" drange="0,300,9,10" trange="0,10,9,290">
+		<style wsVisible="" csVScroll="" csSimple=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12604" range="293,46,1,1" fcolor="512" font="1" title="Fitting Room">
+		<style wsVisible=""/>
+	</window>
+	<color id="12605" normal="255,255,255" focus="255,255,255" down="255,255,255" disable="128,128,128"/>
+	<window class="WND_CLASS_BUTTON" id="12605" range="451,327,43,18" icon="12441" fcolor="12605" font="1" title="Try" tpos="0,3">
+		<style wsVisible="" ssHCenter=""/>
+		<OnCommand>OnMallFitting</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12606" range="499,327,43,18" icon="12441" fcolor="512" font="1" title="Reset" tpos="0,3">
+		<style wsVisible="" ssHCenter=""/>
+		<OnCommand>OnResetMallFitting</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12607" range="384,301,14,14" icon="12607">
+		<style wsVisible="" ssHCenter=""/>
+		<OnCommand>OnTurnMallFitting_1</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12608" range="440,301,14,14" icon="12608">
+		<style wsVisible="" ssHCenter=""/>
+		<OnCommand>OnTurnMallFitting_2</OnCommand>
+	</window>
+	<!-- 展示區 -->
+	<window class="WND_CLASS_CUSTOM" id="12610" range="289,60,263,289">
+		<style wsVisible=""/>
+	</window>
+	<!--  第一層按鈕 -->
+	<icon id="12411" dir="\wnd01\" normal="btn111_n" focus="btn111_f" down="btn111_d" disable="normal"/>
+	<icon id="12412" dir="\wnd01\" normal="btn111_d" focus="normal" down="normal" disable="normal"/>
+	<window class="WND_CLASS_BUTTON" id="12411" range="12,5,55,18" icon="12411" check="12412" fcolor="512" font="1" title="Function" tpos="0,3" appdata="0">
+		<style wsVisible="" bsVCenter="" bsHCenter="" bsRadio="" bsRadioBegin=""/>
+		<OnCommand>MallChangeMainPage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12412" range="72,5,55,18" icon="12411" check="12412" fcolor="512" font="1" title="Special" tpos="0,3" appdata="1">
+		<style wsVisible="" bsVCenter="" bsHCenter="" bsRadio=""/>
+		<OnCommand>MallChangeMainPage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12413" range="132,5,55,18" icon="12411" check="12412" fcolor="512" font="1" title="Potion" tpos="0,3" appdata="2">
+		<style wsVisible="" bsVCenter="" bsHCenter="" bsRadio=""/>
+		<OnCommand>MallChangeMainPage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12414" range="192,5,55,18" icon="12411" check="12412" fcolor="512" font="1" title="Robot" tpos="0,3" appdata="3">
+		<style wsVisible="" bsVCenter="" bsHCenter="" bsRadio=""/>
+		<OnCommand>MallChangeMainPage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12415" range="252,5,55,18" icon="12411" check="12412" fcolor="512" font="1" title="PD" tpos="0,3" appdata="4">
+		<style wsVisible="" bsVCenter="" bsHCenter="" bsRadio=""/>
+		<OnCommand>MallChangeMainPage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12416" range="312,5,55,18" icon="12411" check="12412" fcolor="512" font="1" title="Pet" tpos="0,3" appdata="5">
+		<style wsVisible="" bsVCenter="" bsHCenter="" bsRadio=""/>
+		<OnCommand>MallChangeMainPage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12417" range="372,5,55,18" icon="12411" check="12412" fcolor="512" font="1" title="Weapon" tpos="0,3" appdata="6">
+		<style wsVisible="" bsVCenter="" bsHCenter="" bsRadio=""/>
+		<OnCommand>MallChangeMainPage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12418" range="432,5,55,18" icon="12411" check="12412" fcolor="512" font="1" title="Armor" tpos="0,3" appdata="7">
+		<style wsVisible="" bsVCenter="" bsHCenter="" bsRadio=""/>
+		<OnCommand>MallChangeMainPage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12419" range="492,5,55,18" icon="12411" check="12412" fcolor="512" font="1" title="Intro" tpos="0,3" appdata="8">
+		<style wsVisible="" bsVCenter="" bsHCenter="" bsRadio=""/>
+		<OnCommand>MallChangeMainPage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12420" range="552,5,55,18" icon="12411" check="12412" fcolor="512" font="1" title="Favorite" tpos="0,3" appdata="9">
+		<style wsVisible="" bsVCenter="" bsHCenter="" bsRadio="" bsRadioEnd=""/>
+		<OnCommand>MallChangeMainPage</OnCommand>
+	</window>
+	<!-- 第二層按鈕 -->
+	<window class="WND_CLASS_BUTTON" id="12431" range="20,26,55,18" icon="12411" check="12412" fcolor="512" font="1" title="" tpos="0,3" appdata="0">
+		<style wsVisible="" ssHCenter="" bsRadio="" bsRadioBegin=""/>
+		<OnCommand>MallChangeSubPage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12432" range="80,26,55,18" icon="12411" check="12412" fcolor="512" font="1" title="" tpos="0,3" appdata="1">
+		<style wsVisible="" ssHCenter="" bsRadio=""/>
+		<OnCommand>MallChangeSubPage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12433" range="140,26,55,18" icon="12411" check="12412" fcolor="512" font="1" title="" tpos="0,3" appdata="2">
+		<style wsVisible="" ssHCenter="" bsRadio=""/>
+		<OnCommand>MallChangeSubPage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12434" range="200,26,55,18" icon="12411" check="12412" fcolor="512" font="1" title="" tpos="0,3" appdata="3">
+		<style wsVisible="" ssHCenter="" bsRadio=""/>
+		<OnCommand>MallChangeSubPage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12435" range="260,26,55,18" icon="12411" check="12412" fcolor="512" font="1" title="" tpos="0,3" appdata="4">
+		<style wsVisible="" ssHCenter="" bsRadio=""/>
+		<OnCommand>MallChangeSubPage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12436" range="320,26,55,18" icon="12411" check="12412" fcolor="512" font="1" title="" tpos="0,3" appdata="5">
+		<style wsVisible="" ssHCenter="" bsRadio="" bsRadioEnd=""/>
+		<OnCommand>MallChangeSubPage</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12437" range="500,26,43,18" icon="12441" fcolor="512" font="1" title="Delete" tpos="0,3">
+		<style wsVisible="" ssHCenter=""/>
+		<OnCommand>OnMalldelMyFavorites</OnCommand>
+	</window>
+	<!-- 下方按鈕 -->
+	<window class="WND_CLASS_BUTTON" id="12441" range="372,358,43,18" icon="12441" fcolor="512" font="1" title="Buy" tpos="0,3">
+		<style wsVisible="" ssHCenter=""/>
+		<OnCommand>MallBuyCheck</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12442" range="418,358,43,18" icon="12441" fcolor="512" font="1" title="Gift" tpos="0,3">
+		<style wsVisible="" ssHCenter=""/>
+		<OnCommand>OnMallGiveCheck</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12443" range="464,358,81,18" icon="12442" fcolor="512" font="1" title="Add Favorite" tpos="0,3">
+		<style wsVisible="" ssHCenter=""/>
+		<OnCommand>OnMallAddMyFavorites</OnCommand>
+	</window>
+	<!-- 文字 -->
+	<window class="WND_CLASS_STATIC" id="12451" range="163,361,1,1" fcolor="512" font="1" title="Angel Gold">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12452" range="566,34,1,1" fcolor="512" font="1" title="Current prop">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12453" range="566,282,1,1" fcolor="512" font="1" title="Store Cabinet">
+		<style wsVisible=""/>
+	</window>
+	<!-- 金幣 -->
+	<window class="WND_CLASS_STATIC" id="12454" range="237,361,58,12" fcolor="512" font="1" title="0">
+		<style wsVisible="" ssVCenter="" ssRight=""/>
+	</window>
+	<!-- 物品欄 -->
+	<window class="WND_CLASS_BASE" id="12501" range="561,49,192,211">
+		<style wsVisible="" wsMoveable=""/>
+		<child>12502</child>
+		<child>12503</child>
+		<child>12504</child>
+		<child>12505</child>
+		<child>12506</child>
+		<child>12507</child>
+		<child>12508</child>
+		<child>12509</child>
+		<child>12510</child>
+		<child>12511</child>
+		<child>12512</child>
+		<child>12513</child>
+		<child>12514</child>
+		<child>12515</child>
+		<child>12516</child>
+		<child>12517</child>
+		<child>12518</child>
+		<child>12519</child>
+		<child>12520</child>
+		<child>12521</child>
+		<child>12522</child>
+		<child>12523</child>
+		<child>12524</child>
+		<child>12525</child>
+		<child>12526</child>
+		<child>12527</child>
+	</window>
+	<!-- 道具按鈕的樣版 -->
+	<template class="WND_CLASS_ITEMBUTTON" id="12502" tooltip="10041" tooldelay="5" fcolor="103" font="3" tpos="0,26">
+		<style wsVisible="" wsDrag="" wsDrop="" bsRight=""/>
+		<!--OnDrag>OnDragCharItem</OnDrag-->
+		<OnDrop>OnDropMallBagItem</OnDrop>
+		<!--OnCommandEx>OnUseCharItem</OnCommandEx-->
+	</template>
+	<window id="12502" range="2,2,36,36" derive="12502"/>
+	<window id="12503" range="40,2,36,36" derive="12502"/>
+	<window id="12504" range="78,2,36,36" derive="12502"/>
+	<window id="12505" range="116,2,36,36" derive="12502"/>
+	<window id="12506" range="154,2,36,36" derive="12502"/>
+	<window id="12507" range="2,40,36,36" derive="12502"/>
+	<window id="12508" range="40,40,36,36" derive="12502"/>
+	<window id="12509" range="78,40,36,36" derive="12502"/>
+	<window id="12510" range="116,40,36,36" derive="12502"/>
+	<window id="12511" range="154,40,36,36" derive="12502"/>
+	<window id="12512" range="2,78,36,36" derive="12502"/>
+	<window id="12513" range="40,78,36,36" derive="12502"/>
+	<window id="12514" range="78,78,36,36" derive="12502"/>
+	<window id="12515" range="116,78,36,36" derive="12502"/>
+	<window id="12516" range="154,78,36,36" derive="12502"/>
+	<window id="12517" range="2,116,36,36" derive="12502"/>
+	<window id="12518" range="40,116,36,36" derive="12502"/>
+	<window id="12519" range="78,116,36,36" derive="12502"/>
+	<window id="12520" range="116,116,36,36" derive="12502"/>
+	<window id="12521" range="154,116,36,36" derive="12502"/>
+	<window id="12522" range="2,154,36,36" derive="12502"/>
+	<window id="12523" range="40,154,36,36" derive="12502"/>
+	<window id="12524" range="78,154,36,36" derive="12502"/>
+	<window id="12525" range="116,154,36,36" derive="12502"/>
+	<window id="12526" range="154,154,36,36" derive="12502"/>
+	<!-- 負重 -->
+	<window class="WND_CLASS_PROGRESS" id="12527" range="132,195,57,12" picon="12527" font="1" fcolor="103" tooltip="10041">
+		<style wsVisible="" psHorizontal="" psShowPos=""/>
+	</window>
+	<icon id="12527" dir="\wnd01\" normal="w032_01" focus="normal" down="normal" disable="normal"/>
+	<!-- 購買確認 -->
+	<window class="WND_CLASS_BASE" id="12530" range="-48,-56,140,56" puzzle1="10021" puzzle2="10022" puzzle3="10023" puzzle4="10024" puzzle5="10025" puzzle6="10026" puzzle7="10027" puzzle8="10028" puzzle9="10029">
+		<style wsVisible="" wsPuzzle="" wsPopup=""/>
+		<child>12531</child>
+		<child>12532</child>
+		<child>12533</child>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12531" range="15,8,1,1" font="1" fcolor="103" title="Are you sure you want to buy this item?">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12532" range="30,30,26,18" icon="10006">
+		<style wsVisible=""/>
+		<OnCommand>MallBuy</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12533" range="80,30,26,18" icon="10007">
+		<style wsVisible=""/>
+		<OnCommand>OnCancel</OnCommand>
+	</window>
+	<!-- 功能尚未開放 -->
+	<window class="WND_CLASS_BASE" id="12534" range="-48,-56,140,56" puzzle1="10021" puzzle2="10022" puzzle3="10023" puzzle4="10024" puzzle5="10025" puzzle6="10026" puzzle7="10027" puzzle8="10028" puzzle9="10029">
+		<style wsVisible="" wsPuzzle="" wsAutoClose="" wsPopup=""/>
+		<child>12535</child>
+		<child>12536</child>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12535" range="26,8,1,1" font="1" fcolor="103" title="This function is not available">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12536" range="55,30,26,18" icon="10006">
+		<style wsVisible=""/>
+		<OnCommand>OnCancel</OnCommand>
+	</window>
+	<!-- 請先點選一樣商品 -->
+	<window class="WND_CLASS_BASE" id="12537" range="-48,-56,150,56" puzzle1="10021" puzzle2="10022" puzzle3="10023" puzzle4="10024" puzzle5="10025" puzzle6="10026" puzzle7="10027" puzzle8="10028" puzzle9="10029">
+		<style wsVisible="" wsPuzzle="" wsAutoClose="" wsPopup=""/>
+		<child>12538</child>
+		<child>12539</child>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12538" range="26,8,1,1" font="1" fcolor="103" title="Please click one item first.">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12539" range="60,30,26,18" icon="10006">
+		<style wsVisible=""/>
+		<OnCommand>OnCancel</OnCommand>
+	</window>
+	<!-- 商城置物欄 -->
+	<window class="WND_CLASS_BASE" id="12541" range="561,297,192,78">
+		<style wsVisible="" wsMoveable=""/>
+		<child>12542</child>
+		<child>12543</child>
+		<child>12544</child>
+		<child>12545</child>
+		<child>12546</child>
+		<child>12547</child>
+		<child>12548</child>
+		<child>12549</child>
+		<child>12550</child>
+		<child>12551</child>
+	</window>
+	<!-- 商城置物欄按鈕樣版 -->
+	<template class="WND_CLASS_ITEMBUTTON" id="12542" tooltip="10041" tooldelay="5" fcolor="103" font="3" tpos="0,26">
+		<style wsVisible="" wsDrag="" wsDrop="" bsRight=""/>
+		<OnDrag>OnDragMallBagItem</OnDrag>
+		<!--OnDrop>OnDropCharItem</OnDrop-->
+		<OnCommandEx>OnGetMallBagItem</OnCommandEx>
+	</template>
+	<window id="12542" range="2,2,36,36" derive="12542"/>
+	<window id="12543" range="40,2,36,36" derive="12542"/>
+	<window id="12544" range="78,2,36,36" derive="12542"/>
+	<window id="12545" range="116,2,36,36" derive="12542"/>
+	<window id="12546" range="154,2,36,36" derive="12542"/>
+	<window id="12547" range="2,40,36,36" derive="12542"/>
+	<window id="12548" range="40,40,36,36" derive="12542"/>
+	<window id="12549" range="78,40,36,36" derive="12542"/>
+	<window id="12550" range="116,40,36,36" derive="12542"/>
+	<window id="12551" range="154,40,36,36" derive="12542"/>
+	<!-- 輸入送禮對象 -->
+	<window class="WND_CLASS_BASE" id="12560" range="-58,-95,160,95" puzzle1="10021" puzzle2="10022" puzzle3="10023" puzzle4="10024" puzzle5="10025" puzzle6="10026" puzzle7="10027" puzzle8="10028" puzzle9="10029">
+		<style wsVisible="" wsPuzzle="" wsPopup=""/>
+		<child>12561</child>
+		<child>12562</child>
+		<child>12563</child>
+		<child>12564</child>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12561" range="20,17,1,1" font="1" fcolor="103" title="Please enter the presentee's name">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_EDIT" id="12562" range="40,37,120,14" workrange="2,0,120,14" limit="12" fcolor="105" font="1" tpos="1, 1" icon="2353">
+		<style wsVisible="" esCanPaste=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12563" range="40,64,26,18" icon="10006">
+		<style wsVisible=""/>
+		<OnCommand>OnMallGiveCheckAgain</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12564" range="90,64,26,18" icon="10007">
+		<style wsVisible=""/>
+		<OnCommand>OnCancel</OnCommand>
+	</window>
+	<!-- 送禮確認 -->
+	<window class="WND_CLASS_BASE" id="12565" range="-78,-112,200,112" puzzle1="10021" puzzle2="10022" puzzle3="10023" puzzle4="10024" puzzle5="10025" puzzle6="10026" puzzle7="10027" puzzle8="10028" puzzle9="10029">
+		<style wsVisible="" wsPuzzle="" wsPopup=""/>
+		<child>12566</child>
+		<child>12567</child>
+		<child>12568</child>
+	</window>
+	<window class="WND_CLASS_MSTATIC" id="12566" range="20,14,1,54" font="1" fcolor="103" lines="3" words="28" title="Are you sure you want to give \n/c#FFFF66[＊＊＊＊＊＊＊＊＊＊＊＊]/c*\n to /c#FF99FF player's name ＊＊/c*?">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12567" range="60,78,26,18" icon="10006">
+		<style wsVisible=""/>
+		<OnCommand>OnMallGive</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12568" range="110,78,26,18" icon="10007">
+		<style wsVisible=""/>
+		<OnCommand>OnCancel</OnCommand>
+	</window>
+	<!-- 查無此人 -->
+	<window class="WND_CLASS_BASE" id="12569" range="-48,-56,140,56" puzzle1="10021" puzzle2="10022" puzzle3="10023" puzzle4="10024" puzzle5="10025" puzzle6="10026" puzzle7="10027" puzzle8="10028" puzzle9="10029">
+		<style wsVisible="" wsPuzzle="" wsAutoClose="" wsPopup=""/>
+		<child>12570</child>
+		<child>12571</child>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12570" range="26,8,1,1" font="1" fcolor="103" title="This player doesn't exist.">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12571" range="55,30,26,18" icon="10006">
+		<style wsVisible=""/>
+		<OnCommand>OnCancel</OnCommand>
+	</window>
+	<!-- 送禮成功 -->
+	<window class="WND_CLASS_BASE" id="12572" range="-48,-56,140,56" puzzle1="10021" puzzle2="10022" puzzle3="10023" puzzle4="10024" puzzle5="10025" puzzle6="10026" puzzle7="10027" puzzle8="10028" puzzle9="10029">
+		<style wsVisible="" wsPuzzle="" wsAutoClose="" wsPopup=""/>
+		<child>12573</child>
+		<child>12574</child>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12573" range="26,8,1,1" font="1" fcolor="103" title="Present is successful.">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12574" range="55,30,26,18" icon="10006">
+		<style wsVisible=""/>
+		<OnCommand>OnCancel</OnCommand>
+	</window>
+	<!-- 新增我的最愛 -->
+	<window class="WND_CLASS_BASE" id="12575" range="-48,-56,150,56" puzzle1="10021" puzzle2="10022" puzzle3="10023" puzzle4="10024" puzzle5="10025" puzzle6="10026" puzzle7="10027" puzzle8="10028" puzzle9="10029">
+		<style wsVisible="" wsPuzzle="" wsAutoClose="" wsPopup=""/>
+		<child>12576</child>
+		<child>12577</child>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12576" range="26,8,1,1" font="1" fcolor="103" title="Add to my favorites">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12577" range="60,30,26,18" icon="10006">
+		<style wsVisible=""/>
+		<OnCommand>OnCancel</OnCommand>
+	</window>
+	<!-- 我的最愛已經有了 -->
+	<window class="WND_CLASS_BASE" id="12578" range="-48,-60,150,60" puzzle1="10021" puzzle2="10022" puzzle3="10023" puzzle4="10024" puzzle5="10025" puzzle6="10026" puzzle7="10027" puzzle8="10028" puzzle9="10029">
+		<style wsVisible="" wsPuzzle="" wsAutoClose="" wsPopup=""/>
+		<child>12579</child>
+		<child>12580</child>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12579" range="6,10,1,1" font="1" fcolor="103" title="My favorites has it.">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12580" range="60,32,26,18" icon="10006">
+		<style wsVisible=""/>
+		<OnCommand>OnCancel</OnCommand>
+	</window>
+	<!-- 圖騰資訊 -->
+	<icon id="12700" dir="\wnd01\" normal="w017_2" focus="normal" down="normal" disable="normal"/>
+	<window class="WND_CLASS_BASE" id="12700" range="485,451,315,149" icon="12700">
+		<style wsVisible="" wsPopup=""/>
+		<child>12701</child>
+		<child>12702</child>
+		<child>12703</child>
+		<child>12704</child>
+		<child>12705</child>
+		<child>12706</child>
+		<child>12707</child>
+		<child>12708</child>
+		<child>12709</child>
+		<child>12710</child>
+		<!--<child>12711</child>-->
+		<child>12712</child>
+		<child>12713</child>
+		<child>12714</child>
+		<child>12715</child>
+		<child>12716</child>
+		<!--<child>12717</child>-->
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12701" range="20,105,109,15" fcolor="108" font="1" title="Offer resource">
+		<style wsVisible=""/>
+		<OnCommand>OnTotemInvestWnd</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12702" range="20,120,43,15" fcolor="108" font="1" title="AFK">
+		<style wsVisible=""/>
+		<OnCommand>OnCancel</OnCommand>
+	</window>
+	<color id="12703" normal="255,255,0" focus="normal" down="normal" disable="normal"/>
+	<window class="WND_CLASS_STATIC" id="12703" range="20,20,1,1" font="1" fcolor="103" title="Totem Level:">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12704" range="90,20,1,1" font="1" fcolor="12703" title="05/05">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12705" range="170,35,1,1" font="1" fcolor="103" title="League">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12706" range="220,35,1,1" font="1" fcolor="12703" title="A guild with six words">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12707" range="20,35,1,1" font="1" fcolor="103" title="Fortification:">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12708" range="105,35,1,1" font="1" fcolor="12703" title="00/10">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12709" range="170,20,1,1" font="1" fcolor="103" title="Upgrade need">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12710" range="250,20,1,1" font="1" fcolor="12703" title="10000000">
+		<style wsVisible=""/>
+	</window>
+	<!--<window class="WND_CLASS_MSTATIC" id="12711" range="20,50,255,30" font="1" fcolor="103" lines="2" words="46" title="這座圖騰已經達到最高等級，無法再藉由投資物資來提升等級。現在要摧毀這座圖騰是非常困難的事情。">
+		<style wsVisible="" />
+	</window> -->
+	<window class="WND_CLASS_STATIC" id="12712" range="20,50,1,1" font="1" fcolor="103" title="Totem protection:">
+		<style wsVisible=""/>
+	</window>
+	<icon id="12713" dir="\wnd01\" normal="btn196_f" focus="normal" down="normal" disable="normal"/>
+	<window class="WND_CLASS_BUTTON" id="12713" range="20,65,36,36" icon="12713" tooltip="10041" tooldelay="5" tooltext="Change character" style="wsVisible"/>
+	<window class="WND_CLASS_BUTTON" id="12714" range="60,65,36,36" icon="12713" tooltip="10041" tooldelay="5" tooltext="Change character" style="wsVisible"/>
+	<window class="WND_CLASS_BUTTON" id="12715" range="100,65,36,36" icon="12713" tooltip="10041" tooldelay="5" tooltext="Change character" style="wsVisible"/>
+	<window class="WND_CLASS_BUTTON" id="12716" range="140,65,36,36" icon="12713" tooltip="10041" tooldelay="5" tooltext="Change character" style="wsVisible"/>
+	<window class="WND_CLASS_BUTTON" id="12717" range="20,90,49,15" fcolor="108" font="1" title="Set a renascence place">
+		<style wsVisible=""/>
+		<OnCommand>OnTotemSetRebornPoint</OnCommand>
+	</window>
+	<!-- 防禦工事資訊 -->
+	<window class="WND_CLASS_BASE" id="12730" range="485,451,315,149" icon="12700">
+		<style wsVisible="" wsPopup=""/>
+		<child>12731</child>
+		<child>12732</child>
+		<child>12733</child>
+		<child>12734</child>
+		<child>12735</child>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12731" range="20,95,140,15" fcolor="108" font="1" title="Remove fortification">
+		<style wsVisible=""/>
+		<OnCommand>OnPickUpTower</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12732" range="20,110,46,15" fcolor="108" font="1" title="AFK">
+		<style wsVisible=""/>
+		<OnCommand>OnCancel</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12733" range="20,30,1,1" font="1" fcolor="103" title="Fortification">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12734" range="20,45,1,1" font="1" fcolor="103" title="You have no right to set fortification">
+		<style wsVisible=""/>`
+	</window>
+	<window class="WND_CLASS_STATIC" id="12735" range="20,45,1,1" font="1" fcolor="103" title="You can set fortification">
+		<style wsVisible=""/>
+	</window>
+	<icon id="12753" dir="\wnd01\" normal="w084_01" focus="normal" down="normal" disable="normal"/>
+	<icon id="12754" dir="\wnd01\" normal="w083_10" focus="normal" down="normal" disable="normal"/>
+	<icon id="12755" dir="\wnd01\" normal="w083_01" focus="normal" down="normal" disable="normal"/>
+	<icon id="12756" dir="\wnd01\" normal="w083_02" focus="normal" down="normal" disable="normal"/>
+	<icon id="12757" dir="\wnd01\" normal="w083_03" focus="normal" down="normal" disable="normal"/>
+	<icon id="12758" dir="\wnd01\" normal="w083_04" focus="normal" down="normal" disable="normal"/>
+	<icon id="12759" dir="\wnd01\" normal="w083_05" focus="normal" down="normal" disable="normal"/>
+	<icon id="12760" dir="\wnd01\" normal="w083_06" focus="normal" down="normal" disable="normal"/>
+	<icon id="12761" dir="\wnd01\" normal="w083_07" focus="normal" down="normal" disable="normal"/>
+	<icon id="12762" dir="\wnd01\" normal="w083_08" focus="normal" down="normal" disable="normal"/>
+	<icon id="12763" dir="\wnd01\" normal="w083_09" focus="normal" down="normal" disable="normal"/>
+	<icon id="12764" dir="\wnd01\" normal="w082_10" focus="normal" down="normal" disable="normal"/>
+	<icon id="12765" dir="\wnd01\" normal="w082_01" focus="normal" down="normal" disable="normal"/>
+	<icon id="12766" dir="\wnd01\" normal="w082_02" focus="normal" down="normal" disable="normal"/>
+	<icon id="12767" dir="\wnd01\" normal="w082_03" focus="normal" down="normal" disable="normal"/>
+	<icon id="12768" dir="\wnd01\" normal="w082_04" focus="normal" down="normal" disable="normal"/>
+	<icon id="12769" dir="\wnd01\" normal="w082_05" focus="normal" down="normal" disable="normal"/>
+	<icon id="12770" dir="\wnd01\" normal="w082_06" focus="normal" down="normal" disable="normal"/>
+	<icon id="12771" dir="\wnd01\" normal="w082_07" focus="normal" down="normal" disable="normal"/>
+	<icon id="12772" dir="\wnd01\" normal="w082_08" focus="normal" down="normal" disable="normal"/>
+	<icon id="12773" dir="\wnd01\" normal="w082_09" focus="normal" down="normal" disable="normal"/>
+	<!-- 單場擊殺 榮譽顯示 -->
+	<window class="WND_CLASS_BASE" id="12750" range="100,125,147,73">
+		<style wsVisible="" wsMoveable=""/>
+		<child>12751</child>
+		<child>12753</child>
+		<child>12754</child>
+		<child>12755</child>
+		<child>12756</child>
+		<child>12757</child>
+		<child>12758</child>
+		<child>12759</child>
+		<child>12760</child>
+		<child>12761</child>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12751" icon="10001" check="183" range="130,0,14,14" tooltip="10040" tooldelay="5" tooltext="Lock">
+		<style wsVisible="" bsCheck=""/>
+		<OnCommand>OnLockQuestShortcut</OnCommand>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12753" range="92,20,1,1" icon="12753" font="1" fcolor="103">
+		<style wsVisible=""/>
+	</window>
+	<!-- 殺人數字 -->
+	<window class="WND_CLASS_STATIC" id="12754" range="0,9,1,1" icon="12758" font="1" fcolor="103">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12755" range="29,9,1,1" icon="12758" font="1" fcolor="103">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12756" range="59,9,1,1" icon="12758" font="1" fcolor="103">
+		<style wsVisible=""/>
+	</window>
+	<!-- 功勳數字 -->
+	<window class="WND_CLASS_STATIC" id="12757" range="94,58,1,1" icon="12773" font="1" fcolor="103">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12758" range="107,58,1,1" icon="12773" font="1" fcolor="103">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12759" range="121,58,1,1" icon="12773" font="1" fcolor="103">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12760" range="135,58,1,1" icon="12773" font="1" fcolor="103">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12761" range="81,58,1,1" icon="12773" font="1" fcolor="103">
+		<style wsVisible=""/>
+	</window>
+	<icon id="12800" dir="\wnd01\" normal="w085_01" focus="normal" down="normal" disable="normal">
+    <attrib ICON_ATTRIB_THEME="" ICON_ATTRIB_FAST=""/>	  
+	</icon>
+	<!-- 排行榜 -->
+	<window class="WND_CLASS_DLG_1" id="12790" range="500,100,477,377" title="Rankings" fcolor="104" font="1">
+		<style wsVisible="" wsMoveable=""/>
+		<child>12800</child>
+		<child>12799</child>
+		<child>12798</child>
+	</window>
+	<!--社團-->
+	<window class="WND_CLASS_BASE" id="12798" range="0,0,477,377" icon="12800" fcolor="104" font="1" appdata="2">
+		<style wsMoveable=""/>
+		<child>12801</child>
+		<child>12802</child>
+		<child>12803</child>
+		<child>12804</child>
+		<child>12805</child>
+		<child>12807</child>
+		<child>12808</child>
+		<child>12809</child>
+		<child>12810</child>
+		<child>12811</child>
+		<child>12812</child>
+		<child>12813</child>
+		<child>12814</child>
+		<child>12815</child>
+		<child>12816</child>
+		<child>12817</child>
+		<child>12818</child>
+		<child>12822</child>
+		<child>12820</child>
+		<child>12824</child>
+	</window>
+	<!--圖騰戰-->
+	<window class="WND_CLASS_BASE" id="12799" range="0,0,477,377" icon="12800" fcolor="104" font="1" appdata="3">
+		<style wsMoveable=""/>
+		<child>12801</child>
+		<child>12807</child>
+		<child>12808</child>
+		<child>12809</child>
+		<child>12810</child>
+		<child>12811</child>
+		<child>12812</child>
+		<child>12813</child>
+		<child>12814</child>
+		<child>12815</child>
+		<child>12816</child>
+		<child>12817</child>
+		<child>12818</child>
+		<child>12819</child>
+		<child>12823</child>
+		<child>12824</child>
+	</window>
+	<!--個人-->
+	<window class="WND_CLASS_BASE" id="12800" range="0,0,477,377" icon="12800" fcolor="104" font="1" appdata="1">
+		<style wsVisible="" wsMoveable=""/>
+		<child>12801</child>
+		<child>12802</child>
+		<child>12803</child>
+		<child>12804</child>
+		<child>12805</child>
+		<child>12807</child>
+		<child>12808</child>
+		<child>12809</child>
+		<child>12810</child>
+		<child>12811</child>
+		<child>12812</child>
+		<child>12813</child>
+		<child>12814</child>
+		<child>12815</child>
+		<child>12816</child>
+		<child>12817</child>
+		<child>12821</child>
+		<child>12819</child>
+		<child>12820</child>
+		<child>12824</child>
+	</window>
+	<icon id="12801" dir="\wnd01\" normal="btn212_n" focus="btn212_f" down="normal" disable="normal"/>
+	<icon id="12802" dir="\wnd01\" normal="btn212_d" focus="normal" down="normal" disable="normal"/>
+	<window class="WND_CLASS_BUTTON" id="12801" icon="12801" check="12802" range="6,3,53,18" tooltip="10040" tooldelay="5" tooltext="All servers" fcolor="103" font="0" title="All" tpos="3,3" appdata="4">
+		<style wsVisible="" bsRadio="" bsRadioBegin="" bsVCenter="" bsHCenter=""/>
+		<OnCommand>OnChangeHPSelectAlign</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12802" icon="12801" check="12802" range="64,3,53,18" tooltip="10040" tooldelay="5" tooltext="Aurora" fcolor="103" font="0" title="Aurora" tpos="3,3" appdata="0">
+		<style wsVisible="" bsRadio="" bsVCenter="" bsHCenter=""/>
+		<OnCommand>OnChangeHPSelectAlign</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12803" icon="12801" check="12802" range="122,3,53,18" tooltip="10040" tooldelay="5" tooltext="Beasts" fcolor="103" font="0" title="Beasts" tpos="3,3" appdata="1">
+		<style wsVisible="" bsRadio="" bsVCenter="" bsHCenter=""/>
+		<OnCommand>OnChangeHPSelectAlign</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12804" icon="12801" check="12802" range="180,3,53,18" tooltip="10040" tooldelay="5" tooltext="Steel" fcolor="103" font="0" title="Steel" tpos="3,3" appdata="2">
+		<style wsVisible="" bsRadio="" bsVCenter="" bsHCenter=""/>
+		<OnCommand>OnChangeHPSelectAlign</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12805" icon="12801" check="12802" range="238,3,53,18" tooltip="10040" tooldelay="5" tooltext="Shadow" fcolor="103" font="0" title="Shadow" tpos="3,3" appdata="3">
+		<style wsVisible="" bsRadio="" bsRadioEnd="" bsVCenter="" bsHCenter=""/>
+		<OnCommand>OnChangeHPSelectAlign</OnCommand>
+	</window>
+	<window class="WND_CLASS_LIST" id="12806" range="357,24,92,117" cols="1" rows="9" gapx="0" gapy="1" fcolor="107" font="1" bcolor="12035">
+		<style wsVisible="" lsReport="" wsAutoClose="" wsPopup=""/>
+		<OnCommand>OnChangeHPTypeList</OnCommand>
+	</window>
+	<icon id="12807" dir="\wnd01\" normal="btn077_n" focus="btn077_f" down="btn077_d" disable="normal"/>
+	<window class="WND_CLASS_STATIC" id="12807" range="360,4,92,14" title="ABCDEFG" font="1" fcolor="105">
+		<style wsVisible=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12808" icon="12807" range="451,3,54,14">
+		<style wsVisible=""/>
+		<OnCommand>OnHitParadePopList</OnCommand>
+	</window>
+	<icon id="12809" dir="\wnd01\" normal="btn212_n" focus="normal" down="normal" disable="normal"/>
+	<window class="WND_CLASS_BUTTON" id="12809" icon="12809" range="11,28,55,18" fcolor="103" font="0" title="Place" tpos="3,3">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<icon id="12810" dir="\wnd01\" normal="btn213_n" focus="normal" down="normal" disable="normal"/>
+	<window class="WND_CLASS_BUTTON" id="12810" icon="12810" range="72,28,91,18" fcolor="103" font="0" title="Name" tpos="3,3">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12811" icon="12809" range="169,28,55,18" fcolor="103" font="0" title="Level" tpos="3,3">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12812" icon="12809" range="230,28,55,18" fcolor="103" font="0" title="Status" tpos="3,3">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12813" icon="12809" range="291,28,55,18" fcolor="103" font="0" title="Faction" tpos="3,3">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<icon id="12814" dir="\wnd01\" normal="btn214_n" focus="normal" down="normal" disable="normal"/>
+	<window class="WND_CLASS_BUTTON" id="12814" icon="12814" range="352,28,105,18" fcolor="103" font="0" title="Number" tpos="3,3">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_STATIC" id="12815" range="396,313,48,12" title="1/5" font="1" fcolor="105">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<icon id="12816" dir="\wnd01\" normal="btn090_n" focus="btn090_f" down="btn090_d" disable="normal"/>
+	<window class="WND_CLASS_BUTTON" id="12816" icon="12816" range="379,312,14,14" appdata="0">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+		<OnCommand>OnHPChangePage</OnCommand>
+	</window>
+	<icon id="12817" dir="\wnd01\" normal="btn091_n" focus="btn091_f" down="btn091_d" disable="normal"/>
+	<window class="WND_CLASS_BUTTON" id="12817" icon="12817" range="447,312,14,14" appdata="1">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+		<OnCommand>OnHPChangePage</OnCommand>
+	</window>
+	<icon id="12818" dir="\wnd01\" normal="btn211_n" focus="btn211_f" down="btn211_d" disable="normal"/>
+	<icon id="12819" dir="\wnd01\" normal="btn211_d" focus="normal" down="normal" disable="normal"/>
+	<window class="WND_CLASS_BUTTON" id="12818" icon="12818" range="7,332,76,17" fcolor="103" font="0" title="Personal" tpos="3,3">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+		<OnCommand>OnHitParadeChangePage1</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12819" icon="12818" range="85,332,76,17" fcolor="103" font="0" title="League" tpos="3,3">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+		<OnCommand>OnHitParadeChangePage2</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12820" icon="12818" range="163,332,76,17" fcolor="103" font="0" title="Totem" tpos="3,3">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+		<OnCommand>OnHitParadeChangePage3</OnCommand>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12821" icon="12819" range="7,332,76,17" fcolor="103" font="0" title="Personal" tpos="3,3">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12822" icon="12819" range="85,332,76,17" fcolor="103" font="0" title="League" tpos="3,3">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_BUTTON" id="12823" icon="12819" range="163,332,76,17" fcolor="103" font="0" title="Totem" tpos="3,3">
+		<style wsVisible="" bsVCenter="" bsHCenter=""/>
+	</window>
+	<window class="WND_CLASS_HITPARADELIST" id="12824" range="10,48,449,260" cols="1" rows="20" gapx="0" gapy="1" fcolor="103" font="1">
+		<style wsVisible="" lsVScroll=""/>
+	</window>
+</root>

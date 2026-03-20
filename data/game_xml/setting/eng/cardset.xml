@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+	<cardset 編號="16" 圖號="1" 套卡名稱="Nightmare Cardset" 獎賞方式="全部" 兌換獎賞1="4780" 數量1="20" 卡片1="61" 卡片2="62" 卡片3="63" 卡片4="64" 卡片5="65" 套卡說明="When you enter the Nightmare Cave, you not only have to defeat the Nightmare Lord, but also your own nightmares!"/>
+	<cardset 編號="17" 圖號="1" 套卡名稱="Artisan Cardset" 獎賞方式="全部" 兌換獎賞1="6023" 數量1="1" 卡片1="66" 卡片2="67" 卡片3="68" 卡片4="69" 卡片5="70" 套卡說明="For an Artisan, like him, reputation means everything!  Please would you assist the Gravity Technician?"/>
+	<cardset 編號="18" 圖號="1" 套卡名稱="Power Cardset" 獎賞方式="全部" 兌換獎賞1="3121" 數量1="1" 卡片1="71" 卡片2="72" 卡片3="73" 卡片4="74" 卡片5="75" 套卡說明="For those who want to improve their weapons the stiletto gavel can make a common weapon sharper."/>
+	<cardset 編號="19" 圖號="1" 套卡名稱="Flora Cardset" 獎賞方式="擇一" 兌換獎賞1="6020" 數量1="1" 兌換獎賞2="6021" 數量2="1" 兌換獎賞3="6022" 數量3="1" 卡片1="76" 卡片2="77" 卡片3="78" 卡片4="79" 卡片5="80" 卡片6="81" 套卡說明="Flora dreams of leaving Puqi Island one day, can you help her?"/>
+	<cardset 編號="20" 圖號="1" 套卡名稱="Flame Cardset" 獎賞方式="擇一" 兌換獎賞1="6024" 數量1="1" 兌換獎賞2="6025" 數量2="1" 卡片1="82" 卡片2="83" 卡片3="84" 卡片4="85" 卡片5="86" 卡片6="87" 套卡說明="Burn! Flame! Fire will never hurt me, please refer to me as the Flame Resistance Master!"/>
+	<cardset 編號="21" 圖號="1" 套卡名稱="Aurora Cardset" 獎賞方式="全部" 兌換獎賞1="6026" 數量1="1" 卡片1="74" 卡片2="88" 卡片3="89" 卡片4="90" 卡片5="91" 套卡說明="The long-cherished wish of Holy Light"/>
+	<cardset 編號="22" 圖號="1" 套卡名稱="Beast Cardset" 獎賞方式="全部" 兌換獎賞1="6028" 數量1="1" 卡片1="72" 卡片2="92" 卡片3="93" 卡片4="94" 卡片5="95" 套卡說明="Beautiful singing of the Beast Lord"/>
+	<cardset 編號="23" 圖號="1" 套卡名稱="Peace Cardset" 獎賞方式="擇一" 兌換獎賞1="6029" 數量1="1" 兌換獎賞2="6031" 數量2="1" 卡片1="73" 卡片2="96" 卡片3="97" 卡片4="98" 卡片5="99" 套卡說明="Peace of Lasting Night"/>
+	<cardset 編號="24" 圖號="1" 套卡名稱="Iron Cardset" 獎賞方式="全部" 兌換獎賞1="6030" 數量1="1" 卡片1="71" 卡片2="100" 卡片3="101" 卡片4="102" 卡片5="103" 套卡說明="Strong and rigid like Iron and Steel"/>
+	<cardset 編號="25" 圖號="1" 套卡名稱="Craftsman Cardset" 獎賞方式="擇一" 兌換獎賞1="6019" 數量1="1" 兌換獎賞2="4781" 數量2="1" 卡片1="104" 卡片2="105" 卡片3="106" 卡片4="107" 卡片5="108" 套卡說明="Are you the legendary Craftsman? Maybe you are qualified to acquire the [Craftsman Soul], please follow Andsen Road to find out."/>
+	<cardset 編號="26" 圖號="1" 套卡名稱="Renascence Cardset" 獎賞方式="全部" 兌換獎賞1="4028" 數量1="1" 兌換獎賞2="5014" 數量2="1" 兌換獎賞3="5988" 數量3="1" 卡片1="109" 卡片2="110" 卡片3="111" 卡片4="112" 卡片5="113" 套卡說明="You must own the Renascence Skill."/>
+	<cardset 編號="27" 圖號="1" 套卡名稱="Earthquake Cardset" 獎賞方式="全部" 兌換獎賞1="4034" 數量1="1" 兌換獎賞2="5014" 數量2="1" 兌換獎賞3="5989" 數量3="1" 卡片1="109" 卡片2="114" 卡片3="115" 卡片4="116" 卡片5="117" 套卡說明="You must own the Super Eruption Skill"/>
+	<cardset 編號="28" 圖號="1" 套卡名稱="Storm Cardset" 獎賞方式="全部" 兌換獎賞1="4040" 數量1="1" 兌換獎賞2="5014" 數量2="1" 兌換獎賞3="5990" 數量3="1" 卡片1="118" 卡片2="119" 卡片3="120" 卡片4="121" 卡片5="122" 套卡說明="You must own the Fast Attack Skill."/>
+	<cardset 編號="29" 圖號="1" 套卡名稱="Arc Cardset" 獎賞方式="全部" 兌換獎賞1="4046" 數量1="1" 兌換獎賞2="5014" 數量2="1" 兌換獎賞3="5991" 數量3="1" 卡片1="118" 卡片2="123" 卡片3="124" 卡片4="125" 卡片5="126" 套卡說明="You must own the Perfect Arc."/>
+	<cardset 編號="30" 圖號="1" 套卡名稱="Wisdom Cardset" 獎賞方式="全部" 兌換獎賞1="4054" 數量1="1" 兌換獎賞2="5014" 數量2="1" 兌換獎賞3="5992" 數量3="1" 卡片1="118" 卡片2="127" 卡片3="128" 卡片4="129" 卡片5="130" 套卡說明="You must own the Sentiment of the Sage."/>
+	<cardset 編號="31" 圖號="1" 套卡名稱="Primary Craftsman Cardset" 獎賞方式="全部" 兌換獎賞1="6018" 數量1="1" 卡片1="131" 卡片2="132" 卡片3="133" 卡片4="134" 卡片5="135" 卡片6="136" 卡片7="137" 套卡說明="Completing this cardset is the first step to becoming a craftsman. You must also own a Super Weapon."/>
+	<cardset 編號="32" 圖號="1" 套卡名稱="Defense Cardset" 獎賞方式="全部" 兌換獎賞1="4133" 數量1="1" 卡片1="109" 卡片2="138" 卡片3="139" 卡片4="140" 卡片5="141" 套卡說明="You must pass certain tests before your defense will be strengthened."/>
+	<cardset 編號="33" 圖號="1" 套卡名稱="Mystery Cardset" 獎賞方式="全部" 兌換獎賞1="4501" 數量1="1" 卡片1="142" 卡片2="143" 卡片3="144" 卡片4="145" 卡片5="146" 套卡說明="Do you wish to fly like Superman cloaked in mystery?"/>
+	<cardset 編號="34" 圖號="1" 套卡名稱="Curse Cardset" 獎賞方式="全部" 兌換獎賞1="4141" 數量1="1" 卡片1="142" 卡片2="147" 卡片3="148" 卡片4="149" 卡片5="150" 套卡說明="The Angel who wishes to own the Super Loading Power will surely be cursed by the Poison Kid."/>
+	<cardset 編號="35" 圖號="1" 套卡名稱="Nobility Cardset" 獎賞方式="全部" 兌換獎賞1="4493" 數量1="1" 卡片1="151" 卡片2="152" 卡片3="153" 卡片4="154" 卡片5="155" 套卡說明="This noble ring makes you appear more elegant."/>
+	<cardset 編號="36" 圖號="1" 套卡名稱="Wish Cardset" 獎賞方式="擇一" 兌換獎賞1="6080" 數量1="1" 兌換獎賞2="6081" 數量2="1" 兌換獎賞3="6082" 數量3="1" 卡片1="156" 卡片2="157" 卡片3="158" 卡片4="159" 套卡說明="Complete the little girl's wish, she will give you a special gift!"/>
+	<cardset 編號="37" 圖號="1" 套卡名稱="Beach Cardset" 獎賞方式="全部" 兌換獎賞1="6083" 數量1="1" 卡片1="160" 卡片2="161" 卡片3="162" 卡片4="163" 套卡說明="The old man on the dock will give you a new title after he identifies you."/>
+	<cardset 編號="38" 圖號="1" 套卡名稱="Belief Cardset" 獎賞方式="擇一" 兌換獎賞1="6084" 數量1="1" 兌換獎賞2="6085" 數量2="1" 兌換獎賞3="6086" 數量3="1" 卡片1="164" 卡片2="165" 卡片3="166" 卡片4="167" 套卡說明="Although we come from different worlds, we can rely on each other with courage and sincerity."/>
+	<cardset 編號="39" 圖號="1" 套卡名稱="Coral Cardset" 獎賞方式="擇一" 兌換獎賞1="6087" 數量1="1" 兌換獎賞2="6088" 數量2="1" 卡片1="168" 卡片2="169" 卡片3="170" 卡片4="171" 套卡說明="Are you willing to protect the fair and special creature?"/>
+	<cardset 編號="40" 圖號="1" 套卡名稱="Impurity Cardset" 獎賞方式="擇一" 兌換獎賞1="3788" 數量1="1" 兌換獎賞2="3789" 數量2="1" 卡片1="172" 卡片2="173" 卡片3="174" 卡片4="175" 卡片5="176" 套卡說明="People must try to repair the damage that we have done to the Sea."/>
+	<cardset 編號="41" 圖號="1" 套卡名稱="Art Cardset" 獎賞方式="擇一" 兌換獎賞1="6089" 數量1="1" 兌換獎賞2="6090" 數量2="1" 卡片1="177" 卡片2="178" 卡片3="179" 卡片4="180" 卡片5="181" 套卡說明="Please help Teny to spread her art in the the Garden of Eden."/>
+	<ALIAS id="編號" pic_id="圖號" name="套卡名稱" rewardtype="獎賞方式" reward1="兌換獎賞1" amount1="數量1" reward2="兌換獎賞2" amount2="數量2" reward3="兌換獎賞3" amount3="數量3" card1="卡片1" card2="卡片2" card3="卡片3" card4="卡片4" card5="卡片5" card6="卡片6" card7="卡片7" card="卡片8" card9="卡片9" card10="卡片10" card11="卡片11" card12="卡片12" explain="套卡說明"/>
+	<DEFINE 全部="0" 擇一="1"/>
+</root>
