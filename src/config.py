@@ -12,6 +12,9 @@ import os
 
 # Network
 HOST = os.environ.get("AO_HOST", "127.0.0.1")
+# Address sent in redirect packet (what the client connects to for world server).
+# Defaults to HOST, but set separately if listening on 0.0.0.0.
+REDIRECT_HOST = os.environ.get("AO_REDIRECT_HOST", HOST)
 LOGIN_PORT = int(os.environ.get("AO_LOGIN_PORT", "16768"))
 WORLD_PORT = int(os.environ.get("AO_WORLD_PORT", "27901"))
 FILE_PORT = int(os.environ.get("AO_FILE_PORT", "21238"))

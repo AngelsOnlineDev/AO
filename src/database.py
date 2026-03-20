@@ -128,6 +128,18 @@ def _create_tables(conn: sqlite3.Connection):
             msg_order INTEGER
         );
     """)
+
+    # Add player stat columns (idempotent — ignore if already exist)
+    for col, default in [
+        ('hp', 294), ('hp_max', 294),
+        ('mp', 280), ('mp_max', 280),
+        ('gold', 500),
+    ]:
+        try:
+            conn.execute(f"ALTER TABLE players ADD COLUMN {col} INTEGER DEFAULT {default}")
+        except sqlite3.OperationalError:
+            pass  # Column already exists
+
     conn.commit()
 
 
@@ -176,6 +188,16 @@ def update_player_map(entity_id: int, map_id: int, x: int, y: int):
     conn.execute(
         "UPDATE players SET map_id = ?, pos_x = ?, pos_y = ? WHERE entity_id = ?",
         (map_id, x, y, entity_id)
+    )
+    conn.commit()
+
+
+def update_player_stats(entity_id: int, hp: int, mp: int):
+    """Update the player's current HP and MP."""
+    conn = get_connection()
+    conn.execute(
+        "UPDATE players SET hp = ?, mp = ? WHERE entity_id = ?",
+        (hp, mp, entity_id)
     )
     conn.commit()
 

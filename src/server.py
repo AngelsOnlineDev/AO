@@ -46,7 +46,7 @@ async def main():
     login_server = LoginServer(
         host=config.HOST,
         port=config.LOGIN_PORT,
-        world_host=config.HOST,
+        world_host=config.REDIRECT_HOST,
         world_port=config.WORLD_PORT,
     )
 

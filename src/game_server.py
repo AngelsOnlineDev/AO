@@ -30,6 +30,17 @@ log = logging.getLogger("login_server")
 
 _lzo = LZOCompressor()
 
+import database
+
+# Pending session tokens: maps 4-byte token -> entity_id
+# Populated by login server, consumed by world server
+_pending_sessions: dict[bytes, int] = {}
+
+
+def consume_session(token: bytes) -> int | None:
+    """Pop and return the entity_id for a session token, or None."""
+    return _pending_sessions.pop(token, None)
+
 
 # ============================================================================
 # Login Response Builder
@@ -274,7 +285,15 @@ class LoginServer:
 
         log.info(f"[{addr}] Login: username='{username}'")
 
-        # --- Phase 3: Send Login Response ---
+        # --- Phase 3: Look up or create player, send Login Response ---
+        player = database.get_player_by_name(username)
+        if player is None:
+            import random
+            entity_id = random.randint(0x10000000, 0x7FFFFFFF)
+            player = database.get_or_create_player(
+                entity_id=entity_id, name=username)
+        player_entity_id = player['entity_id']
+
         login_resp = build_login_response(
             motd=config.LOGIN_MOTD,
             display_name="Player",
@@ -292,7 +311,7 @@ class LoginServer:
                      f"{pin_payload[:32].hex(' ')}")
 
         # --- Phase 5: Send Redirect ---
-        redirect_payload = self._build_redirect()
+        redirect_payload = self._build_redirect(player_entity_id)
         redirect_packet = builder.build_packet(redirect_payload)
         writer.write(redirect_packet)
         await writer.drain()
@@ -362,7 +381,7 @@ class LoginServer:
 
         return username
 
-    def _build_redirect(self) -> bytes:
+    def _build_redirect(self, entity_id: int = 0) -> bytes:
         """Build the redirect payload pointing to our game world server.
 
         Fixed-layout struct (confirmed from pcap byte analysis):
@@ -378,6 +397,8 @@ class LoginServer:
             Offset 27-31: trailing zeros
         """
         session_token = os.urandom(4)
+        if entity_id:
+            _pending_sessions[session_token] = entity_id
 
         # IP field: 16 bytes fixed, null-terminated + zero-padded
         ip_encoded = self.world_host.encode('ascii') + b'\x00'
