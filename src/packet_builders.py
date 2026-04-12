@@ -520,6 +520,215 @@ def build_player_spawn(data: bytes) -> bytes:
     return struct.pack('<H', 0x0001) + data
 
 
+def build_remote_player_spawn_000E(
+    entity_id: int,
+    tile_x: int,
+    tile_y: int,
+    sprite_id: int = 999,
+    direction: int = 0,
+) -> bytes:
+    """Build a 0x000E ENTITY_SPAWN sub-message.
+
+    Parsed by client sub_5EF410. Creates an entity via sub_5B85D0 which
+    passes data[34..37] as the sprite/template ID to sub_568DD0 →
+    sub_75F3F0 (entity template lookup). Unlike sub_5E97F0 (opcode
+    0x0001), this handler has no UI side effects and no state checks
+    — it's safe to send mid-game to already-initialized clients.
+
+    Using `sprite_id=999` creates the same entity template type that
+    sub_5E97F0 uses internally for remote players (via sub_5B8430 →
+    hardcoded type 999 for char-select preview model). This avoids
+    the "char-select context required" limitation of 0x0001 while
+    keeping the player model.
+
+    Layout (47 bytes, size derived from sub_5EF410 field reads):
+      [0-1]    opcode 0x000E
+      [2-5]    entity_id LE32
+      [6-9]    flags LE32
+      [10-13]  tile_x LE32
+      [14-17]  tile_y LE32
+      [35]     direction byte (<< 21 → facing)
+      [36-39]  sprite_id LE32 (template for sub_75F3F0)
+      [40-41]  WORD → model+506
+      [42-43]  WORD → model+508
+      [44]     byte → sub_564FE0
+      [45]     byte trailing
+    """
+    buf = bytearray(47)
+    struct.pack_into('<H', buf, 0, 0x000E)
+    struct.pack_into('<I', buf, 2, entity_id)
+    # data[4] flags (leave 0)
+    struct.pack_into('<I', buf, 10, tile_x)
+    struct.pack_into('<I', buf, 14, tile_y)
+    buf[35] = direction & 0xFF
+    struct.pack_into('<I', buf, 36, sprite_id)
+    # Leave offsets 40..46 zero
+    return bytes(buf)
+
+
+def build_remote_player_spawn_0008(
+    entity_id: int,
+    tile_x: int,
+    tile_y: int,
+    player_name: str,
+    appearance: tuple = (0, 0, 0, 0, 0),
+    class_id: int = 0,
+    level: int = 1,
+    direction: int = 0,
+) -> bytes:
+    """Build a 0x0008 NPC_SPAWN sub-message in PLAYER mode.
+
+    Parsed by client sub_5EBBF0. When the WORD at data[45] is 6269 or
+    6270 (male/female player sprite IDs), the client routes the extra
+    appearance/equipment block at data[63] through sub_5EC200, which
+    populates the entity's appearance bytes (model+576..+580) and
+    equipment slots. This is the packet the real server uses for
+    "remote player enters view" mid-game, NOT opcode 0x0001 (which is
+    a login-only self-init handler that relies on char-select state
+    that's discarded once the world loop starts).
+
+    Layout (112 bytes total):
+      [0-1]    opcode 0x0008
+      [2-5]    entity_id LE32
+      [6-9]    flags → model+480 (0 is fine)
+      [10-13]  tile_x LE32
+      [14-17]  tile_y LE32
+      [18-33]  character name (16 bytes null-padded)
+      [35]     direction byte (v18+35 << 21 → facing)
+      [36-39]  LE32 passed to sub_5B85D0 as type pattern
+      [40]     class/faction byte → model+744
+      [42-45]  level LE32 → model+588
+      [46]     byte → model+592
+      [47-48]  WORD = 6269 (male) or 6270 (female) → model+484
+               THIS is the flag that makes the client treat the entity
+               as a player and parse the appendix.
+      [49-50]  WORD → model+506
+      [51-52]  WORD → model+508
+      [53-54]  WORD → model+752
+      [55-58]  LE32 → model+996
+      [59-62]  LE32 → sub_4B94A0
+      [63]     byte → sub_4B94E0
+      [65..]   appearance/equipment block (appendix), parsed by sub_5EC200:
+        [65]   appearance byte 1 → model+576
+        [66]   appearance byte 5 → model+580 (note reordering)
+        [67]   appearance byte 4 → model+579
+        [68]   appearance byte 3 → model+578
+        [69]   appearance byte 2 → model+577
+        [70-101] 8 × LE32 equipment/skill slot IDs
+        [102-105] LE32 slot 13
+        [106-109] LE32 slot 14
+        [110-111] WORD → model+520 (anim/stage)
+    """
+    buf = bytearray(112)
+    struct.pack_into('<H', buf, 0, 0x0008)
+    struct.pack_into('<I', buf, 2, entity_id)
+    # data[4] flags → model+480 (leave 0)
+    struct.pack_into('<I', buf, 10, tile_x)
+    struct.pack_into('<I', buf, 14, tile_y)
+    # Name (16 bytes null-padded) at data[16]
+    name_bytes = player_name.encode('ascii', errors='replace')[:16]
+    buf[18:18 + len(name_bytes)] = name_bytes
+    # Direction at data[33]
+    buf[35] = direction & 0xFF
+    # data[34..37] is the MODEL TEMPLATE ID passed to sub_568DD0 via
+    # sub_5B85D0. For players this must be 6269 (male) or 6270 (female)
+    # — the player model template IDs. Using a bogus value (0 or an NPC
+    # ID) makes sub_75F3F0 return NULL and the entity is never created.
+    struct.pack_into('<I', buf, 36, 6269)
+    # Class at data[38]
+    buf[40] = class_id & 0xFF
+    # Level LE32 at data[40..43]
+    struct.pack_into('<I', buf, 42, level)
+    # data[45] player marker WORD → same value tells sub_5EBBF0 this
+    # is a player and to parse the appendix at data[63] via sub_5EC200
+    struct.pack_into('<H', buf, 47, 6269)
+    # Appearance block at data[63..] = buf[65..]
+    # sub_5EC200 reads in odd order: [0]=app1, [1]=app5, [2]=app4, [3]=app3, [4]=app2
+    buf[65] = appearance[0] & 0xFF  # app 1
+    buf[66] = appearance[4] & 0xFF  # app 5
+    buf[67] = appearance[3] & 0xFF  # app 4
+    buf[68] = appearance[2] & 0xFF  # app 3
+    buf[69] = appearance[1] & 0xFF  # app 2
+    # Equipment slots 0-7 at buf[70..101] (8 × LE32) — leave zero
+    # Slot 13 at buf[102..105], slot 14 at buf[106..109] — leave zero
+    # Anim WORD at buf[110..111] — leave zero
+    return bytes(buf)
+
+
+def build_remote_player_spawn(
+    entity_id: int,
+    tile_x: int,
+    tile_y: int,
+    player_name: str,
+    appearance: tuple = (0, 0, 0, 0, 0),
+    class_id: int = 0,
+    level: int = 1,
+    guild_name: str = "",
+    direction: int = 0,
+) -> bytes:
+    """Build a 0x0001 REMOTE_PLAYER_SPAWN sub-message.
+
+    Parsed by the client at sub_5E97F0 (slot 1 of the world dispatch
+    table set up in sub_5E5350). Used to make another player's model
+    appear in the local player's view.
+
+    Layout (140 bytes total, starts with opcode):
+      [0-1]    opcode 0x0001
+      [2-5]    entity_id (LE32) — sub_5B8430(eid, 0) creates/resets
+      [6-9]    model+480 (captured: 0x8D)
+      [10-13]  tile_x (LE32) — NB: TILE coordinates, not pixel. The
+               client multiplies by tile size internally via sub_5B86F0.
+      [14-17]  tile_y (LE32)
+      [18-33]  character name (16 bytes null-padded)
+      [35-49]  guild name (null-terminated string)
+      [52]     facing direction byte (<< 21 → bearing angle)
+      [53-56]  model+572 (LE32 flags)
+      [57]     appearance byte 1 → model+576
+      [58]     appearance byte 2 → model+577
+      [59]     appearance byte 3 → model+578
+      [60]     appearance byte 4 → model+579
+      [61]     appearance byte 5 → model+580
+      [62]     class_id → model+744
+      [63]     state byte → model+958 (7-11 trigger special handling)
+      [64-65]  WORD → model+752
+      [66-97]  8 × LE32 equipment slot IDs
+      [98-101] LE32 equip slot 13
+      [102-105]LE32 equip slot 14
+      [106-107]WORD extra
+      [108-111]LE32 equip slot 15
+      [112-114]state/buff bytes
+      [115]    guild tag length
+      [116-131]guild short tag string
+      [132-139]trailing appearance/buff data
+
+    Caller MUST pass position in tile coordinates. For pixel-based
+    positions from movement handlers, divide by 32 (tile size) first.
+    """
+    buf = bytearray(140)
+    struct.pack_into('<H', buf, 0, 0x0001)               # opcode
+    struct.pack_into('<I', buf, 2, entity_id)
+    struct.pack_into('<I', buf, 6, 0x8D)                 # model+480 (stable)
+    struct.pack_into('<I', buf, 10, tile_x)              # tile X
+    struct.pack_into('<I', buf, 14, tile_y)              # tile Y
+    # Name at offset 18 (16 bytes null-padded)
+    name_bytes = player_name.encode('ascii', errors='replace')[:16]
+    buf[18:18 + len(name_bytes)] = name_bytes
+    # Guild name at offset 35
+    if guild_name:
+        gn = guild_name.encode('ascii', errors='replace')[:14]
+        buf[35:35 + len(gn)] = gn
+    buf[52] = direction & 0xFF
+    # Appearance bytes 55-59 in profile → 57-61 here (+2 offset because
+    # sub_5E97F0 reads at a2+57 which is data[55])
+    for i in range(5):
+        buf[57 + i] = appearance[i] & 0xFF
+    buf[62] = class_id & 0xFF
+    # data[63] state byte — 0 = normal. Do NOT set to 7-11 or the client
+    # triggers mount/pet/buff special handling.
+    buf[63] = 0
+    return bytes(buf)
+
+
 # =============================================================================
 # Gameplay S->C builders — confirmed from relay captures (Desktop/captures/)
 # =============================================================================
@@ -719,20 +928,24 @@ def build_pet_status_tick(pet_entity_id: int, status: int = 1,
 
 def build_entity_move(entity_id: int, cur_x: int, cur_y: int,
                       dst_x: int, dst_y: int, speed: int = 50) -> bytes:
-    """Build a 26B 0x0018 ENTITY_MOVE sub-message.
+    """Build a 24B 0x0005 ENTITY_MOVE sub-message.
 
-    Sent when another entity (NPC, mob, player) moves.
-    Format (confirmed from pcap, matches movement_resp without 0x006D prefix):
-      [LE16 opcode=0x0018]
-      [LE16 sub_type=0x0005]
+    Sent when another entity (NPC, mob, player) moves. Parsed by client
+    sub_5EC7B0 (opcode 0x0005 handler in the world dispatch table).
+
+    Format (24 bytes total):
+      [LE16 opcode=0x0005]
       [LE32 entity_id]
       [LE32 cur_x]
       [LE32 cur_y]
       [LE32 dst_x]
       [LE32 dst_y]
-      [LE16 speed]     — NPC/mob speed (50 = half player speed)
+      [LE16 speed]
+
+    NB: earlier version used 0x0018 but that's the emote/animation
+    handler (sub_5F14D0). The real entity-move opcode is 0x0005.
     """
-    return struct.pack('<HHIIIIIH', 0x0018, 0x0005, entity_id,
+    return struct.pack('<HIIIIIH', 0x0005, entity_id,
                        cur_x, cur_y, dst_x, dst_y, speed)
 
 

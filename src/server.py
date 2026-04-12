@@ -18,6 +18,8 @@ from pathlib import Path
 from game_server import LoginServer
 from world_server import WorldServer
 from file_server import FileServer
+import patch_server
+import ftp_server
 import config
 import database
 import game_finder
@@ -71,14 +73,21 @@ async def main():
     log.info(f"Login Server:  {config.HOST}:{config.LOGIN_PORT}")
     log.info(f"World Server:  {config.HOST}:{config.WORLD_PORT}")
     log.info(f"File Server:   {config.HOST}:{config.FILE_PORT}")
+    log.info(f"Patch Server:  {config.HOST}:80 (needs admin — launches Start.exe)")
+    log.info(f"FTP Server:    {config.HOST}:21 (needs admin — Start.exe FTP check)")
     log.info("=" * 60)
     log.info("CLIENT SETUP: Set SERVER.XML ip/fip to %s", config.HOST)
+    log.info("START.EXE SETUP: Add to hosts file (as admin):")
+    log.info("  127.0.0.1 ao.igg.com")
+    log.info("  127.0.0.1 aoupdate1.iggcn.com")
     log.info("Waiting for client connections...")
 
     await asyncio.gather(
         login_server.start(),
         world_server.start(),
         file_server.start(),
+        patch_server.start(config.HOST, 80),
+        ftp_server.start(config.HOST, 21),
     )
 
 

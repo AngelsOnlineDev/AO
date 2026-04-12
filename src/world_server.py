@@ -41,6 +41,8 @@ import config
 import database
 from game_data import get_dialog_manager, get_map, get_npc_db, get_monster_db
 from handlers import movement, npc, combat, social, misc
+import presence
+from mob_state import MobRegistry
 
 log = logging.getLogger("world_server")
 
@@ -77,14 +79,35 @@ class WorldServer:
         self.port = port
         self.sessions: dict[str, dict] = {}  # addr -> session info
         self.tracker = PlayerTracker()
+        self.mobs = MobRegistry()
 
     async def start(self):
         server = await asyncio.start_server(
             self._handle_client, self.host, self.port
         )
         log.info(f"World server listening on {self.host}:{self.port}")
+        asyncio.create_task(self._mob_tick_loop())
         async with server:
             await server.serve_forever()
+
+    async def _mob_tick_loop(self):
+        """Periodic task that respawns dead mobs. Runs for the lifetime
+        of the world server (cancelled on shutdown).
+
+        For now this only resets in-memory HP; broadcasting a fresh
+        NPC_SPAWN to existing sessions is future work. New players
+        logging in will see the mob from init_pkt1 regardless.
+        """
+        while True:
+            try:
+                await asyncio.sleep(5.0)
+                respawned = self.mobs.tick_respawns()
+                if respawned:
+                    log.info(f"Mob tick: {len(respawned)} respawn(s)")
+            except asyncio.CancelledError:
+                return
+            except Exception:
+                log.exception("Error in mob tick loop")
 
     async def _handle_client(self, reader: asyncio.StreamReader,
                              writer: asyncio.StreamWriter):
@@ -110,11 +133,20 @@ class WorldServer:
         except Exception as e:
             log.exception(f"[{addr}] Error: {e}")
         finally:
-            if not writer.is_closing():
-                writer.close()
             session = self.sessions.pop(str(addr), None)
             if session:
+                # Tell everyone on the map the player is gone BEFORE we
+                # unregister from the tracker — otherwise get_zone_sessions
+                # won't have our entity to exclude. Pass exclude anyway
+                # for safety.
+                try:
+                    await presence.broadcast_despawn(session, self.tracker)
+                except Exception:
+                    log.debug(f"[{addr}] Despawn broadcast failed",
+                              exc_info=True)
                 self.tracker.unregister(session.get('entity_id', 0))
+            if not writer.is_closing():
+                writer.close()
             log.info(f"[{addr}] Session ended")
 
     async def _world_flow(self, reader: asyncio.StreamReader,
@@ -179,8 +211,14 @@ class WorldServer:
         pos_x = player["pos_x"]
         pos_y = player["pos_y"]
 
-        # Load player's current map
-        map_id = player["map_id"] if player["map_id"] else config.START_MAP_ID
+        # Load player's current map.
+        # NB: the init packet we actually send to the client is captured
+        # from map 129 (Hermit Wetland). Regardless of what the DB says,
+        # the player renders on that map — so we register them there with
+        # the tracker so multiplayer broadcasts land in the same zone.
+        # TODO: once we can generate init packets for arbitrary maps,
+        # honor player['map_id'] instead of hardcoding.
+        map_id = 129
         map_data = get_map(map_id)
         npc_db = get_npc_db()
         monster_db = get_monster_db()
@@ -208,6 +246,9 @@ class WorldServer:
             'entity_registry': entity_registry,
             'dialog_state': None,
             'player_quests': {},
+            # Cache the full player row so presence.py can read level/class
+            # without another DB hit on every spawn broadcast.
+            'player': player,
         }
 
         session = self.sessions[str(addr)]
@@ -245,32 +286,18 @@ class WorldServer:
         await writer.drain()
         log.info(f"[{addr}] Sent S->C ACK response ({len(ack_payload)}B)")
 
-        # --- Phase 3d: Send Skill Data ---
-        skill_pkt_data = build_skill_data()
-        if skill_pkt_data:
-            payload, compressed = skill_pkt_data
-            pkt = builder.build_packet(payload, compressed=compressed)
-            writer.write(pkt)
-            await writer.drain()
-            log.info(f"[{addr}] Sent skill data ({len(payload)} bytes, "
-                     f"compressed={compressed})")
-
-        # --- Phase 3e: Send Area Entity Packets ---
-        session = self.sessions[str(addr)]
-        area_pkts = get_area_packets(
-            map_data=session.get('map_data'),
-            npc_db=session.get('npc_db'),
-            monster_db=session.get('monster_db'),
-            entity_registry=session.get('entity_registry'),
-        )
-        for i, (payload, compressed) in enumerate(area_pkts):
-            pkt = builder.build_packet(payload, compressed=compressed)
-            writer.write(pkt)
-        if area_pkts:
-            await writer.drain()
-            log.info(f"[{addr}] Sent {len(area_pkts)} area entity packets")
+        # --- Phase 3c: Wait for client zone-ready signals ---
+        # Real server waits for C->S 0x015E and 0x0016 before area data.
+        # Skip skill data and area packets for now — just enter game loop.
+        # TODO: re-add after map loading is confirmed working
 
         log.info(f"[{addr}] World init complete, entering game loop")
+
+        # --- Phase 3d: Multiplayer presence ---
+        # Tell the new player about everyone already in the zone, then
+        # tell everyone already in the zone about the new player.
+        await presence.send_existing_players_to(session, self.tracker)
+        await presence.broadcast_spawn(session, self.tracker)
 
         # --- Phase 4: Game Loop ---
         keepalive_task = asyncio.create_task(

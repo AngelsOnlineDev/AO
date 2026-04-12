@@ -1,12 +1,16 @@
 """SQLite database for Angels Online private server.
 
-Stores player data, NPC definitions, entity spawns, and positions.
+Stores accounts, player characters, NPC definitions, entity spawns,
+and positions.
 
 Tables use a 'source' column to distinguish init-phase data from
 area-phase data. Area data also tracks which area packet and
 sub-message order it came from.
 """
 
+import hashlib
+import os
+import random
 import sqlite3
 from pathlib import Path
 
@@ -40,16 +44,26 @@ def close():
 def _create_tables(conn: sqlite3.Connection):
     """Create all tables if they don't exist."""
     conn.executescript("""
-        -- Player characters
+        -- Accounts
+        CREATE TABLE IF NOT EXISTS accounts (
+            id INTEGER PRIMARY KEY,
+            username TEXT UNIQUE NOT NULL,
+            password_hash TEXT NOT NULL,
+            salt TEXT NOT NULL,
+            created_at TEXT DEFAULT (datetime('now'))
+        );
+
+        -- Player characters (linked to accounts)
         CREATE TABLE IF NOT EXISTS players (
             id INTEGER PRIMARY KEY,
+            account_id INTEGER REFERENCES accounts(id),
             entity_id INTEGER UNIQUE NOT NULL,
             name TEXT NOT NULL,
             level INTEGER DEFAULT 1,
             class_id INTEGER DEFAULT 0,
             pos_x INTEGER DEFAULT 1040,
             pos_y INTEGER DEFAULT 720,
-            map_id INTEGER DEFAULT 0,
+            map_id INTEGER DEFAULT 3,
             party_name TEXT DEFAULT ''
         );
 
@@ -134,12 +148,117 @@ def _create_tables(conn: sqlite3.Connection):
         ('hp', 294), ('hp_max', 294),
         ('mp', 280), ('mp_max', 280),
         ('gold', 500),
+        # Appearance bytes sent by the client's CREATE packet (sub_4C0C50
+        # body[1..5]). These feed byte_958C4E..52 on the character-select
+        # screen; the same 5 bytes ALSO need to be patched into init_pkt1's
+        # 0x0002 profile sub-message once we locate them there.
+        ('app0', 0), ('app1', 0), ('app2', 0), ('app3', 0), ('app4', 0),
     ]:
         try:
             conn.execute(f"ALTER TABLE players ADD COLUMN {col} INTEGER DEFAULT {default}")
         except sqlite3.OperationalError:
             pass  # Column already exists
 
+    # Add account_id FK to players (idempotent for existing DBs)
+    try:
+        conn.execute("ALTER TABLE players ADD COLUMN account_id INTEGER REFERENCES accounts(id)")
+    except sqlite3.OperationalError:
+        pass
+
+    conn.commit()
+
+
+# ---------- Account queries ----------
+
+def _hash_password(password: str, salt: str) -> str:
+    """Hash a password with SHA-256 and a salt."""
+    return hashlib.sha256((salt + password).encode('utf-8')).hexdigest()
+
+
+def get_account(username: str) -> sqlite3.Row | None:
+    conn = get_connection()
+    return conn.execute(
+        "SELECT * FROM accounts WHERE username = ?", (username,)
+    ).fetchone()
+
+
+def create_account(username: str, password: str) -> sqlite3.Row:
+    """Create a new account. Returns the account row."""
+    conn = get_connection()
+    salt = os.urandom(16).hex()
+    pw_hash = _hash_password(password, salt)
+    conn.execute(
+        "INSERT INTO accounts (username, password_hash, salt) VALUES (?, ?, ?)",
+        (username, pw_hash, salt)
+    )
+    conn.commit()
+    return get_account(username)
+
+
+def verify_password(account: sqlite3.Row, password: str) -> bool:
+    """Check a password against an account's stored hash."""
+    return _hash_password(password, account['salt']) == account['password_hash']
+
+
+def get_characters_for_account(account_id: int) -> list[sqlite3.Row]:
+    """Get all characters belonging to an account."""
+    conn = get_connection()
+    return conn.execute(
+        "SELECT * FROM players WHERE account_id = ? ORDER BY id", (account_id,)
+    ).fetchall()
+
+
+def create_character(account_id: int, name: str, class_id: int = 0,
+                     appearance: tuple[int, int, int, int, int] = (0, 0, 0, 0, 0)
+                     ) -> sqlite3.Row:
+    """Create a new character for an account. Starts as Novice (class 0) by default.
+
+    `appearance` is the 5-byte appearance block sent by the client's CREATE
+    packet (body[1..5]). These bytes drive the 3D character model and the
+    character-select icon.
+
+    Returns the new player row.
+    """
+    conn = get_connection()
+    entity_id = random.randint(0x10000000, 0x7FFFFFFF)
+    # Ensure unique entity_id
+    while get_player(entity_id) is not None:
+        entity_id = random.randint(0x10000000, 0x7FFFFFFF)
+
+    conn.execute(
+        "INSERT INTO players (account_id, entity_id, name, class_id, "
+        "app0, app1, app2, app3, app4) "
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        (account_id, entity_id, name, class_id, *appearance)
+    )
+    conn.commit()
+    return get_player(entity_id)
+
+
+def update_player_class(entity_id: int, class_id: int):
+    """Update a player's class (e.g. after Census Angel selection)."""
+    conn = get_connection()
+    conn.execute(
+        "UPDATE players SET class_id = ? WHERE entity_id = ?",
+        (class_id, entity_id)
+    )
+    conn.commit()
+
+
+def rename_character(entity_id: int, new_name: str):
+    """Rename a player character."""
+    conn = get_connection()
+    conn.execute(
+        "UPDATE players SET name = ? WHERE entity_id = ?",
+        (new_name, entity_id)
+    )
+    conn.commit()
+
+
+def delete_character(entity_id: int):
+    """Delete a player character from the DB."""
+    conn = get_connection()
+    conn.execute("DELETE FROM players WHERE entity_id = ?", (entity_id,))
     conn.commit()
 
 

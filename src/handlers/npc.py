@@ -3,12 +3,36 @@
 import struct
 import logging
 
+import database
 from packet_builders import pack_sub
 from game_data import get_dialog_manager, get_quest_manager
 from dialog_manager import DialogAction, DialogState
 from handlers.movement import handle_zone_transfer, process_dialog_actions
 
 log = logging.getLogger('handlers.npc')
+
+# ---------------------------------------------------------------------------
+# Class selection data (Census Angel NPC, type 2006)
+# ---------------------------------------------------------------------------
+CLASS_INFO = {
+    1:  ('Priest',      'Healing and defensive spells. Cloth armor.'),
+    2:  ('Summoner',    'Curse and summoning spells. Cloth armor.'),
+    3:  ('Wizard',      'Chaos and destructive spells. Cloth armor.'),
+    4:  ('Magician',    'Earth spells, transformation magic. Cloth armor.'),
+    5:  ('Protector',   'Shield defense tank. Heavy armor.'),
+    6:  ('Warrior',     'Axe and hammer damage. Heavy armor.'),
+    7:  ('Swordsman',   'Sword skills, fast attacks. Heavy armor.'),
+    8:  ('Spearman',    'Spear piercing damage. Heavy armor.'),
+    9:  ('Archer',      'Bow and long-range attacks. Light armor.'),
+    10: ('Weaponsmith', 'Forges metal weapons. Light armor.'),
+    11: ('Armorsmith',  'Forges light and heavy armor. Light armor.'),
+    12: ('Tailor',      'Cloth armor and backpacks. Light armor.'),
+    13: ('Technician',  'Robot accessories, ornaments. Leather armor.'),
+    15: ('Chef',        'Cooking food buffs, fishing. Light armor.'),
+}
+
+# Census Angel dialog states per player
+_census_states: dict[int, str] = {}  # entity_id -> state ('menu'|'confirm_<N>')
 
 
 # ---------------------------------------------------------------------------
@@ -22,9 +46,7 @@ log = logging.getLogger('handlers.npc')
 NPC_BEHAVIORS: dict[int, dict] = {
     # Tutorial area NPCs (from seed init packets)
     2006: {
-        'type': 'quest_npc',
-        'quest_id': 100,  # "Registration at Angels' Tutor"
-        'dialog_id': 1,   # EVENT.XML node 1 (msg_id=10701, Census Angel tutorial)
+        'type': 'census_angel',
         'msg': "Welcome to Eden! I am the Census Angel. "
                "I can help you choose your class and begin your adventure.",
     },
@@ -93,6 +115,17 @@ async def handle_entity_action(server, writer, builder, session, payload, addr):
     if npc_type_id == 0:
         log.info(f"[{addr}] ENTITY_ACTION 0x{runtime_entity_id:08X}: "
                  f"not in entity_registry")
+        return
+
+    # --- If the target is a combat mob (monster.xml id < 1500), route
+    #     to the combat handler instead of the dialog flow. Players click
+    #     mobs to attack, not to chat.
+    monster_db = session.get('monster_db') or {}
+    if npc_type_id < 1500 and npc_type_id in monster_db:
+        from handlers.combat import handle_auto_attack
+        await handle_auto_attack(
+            server, writer, builder, session,
+            runtime_entity_id, npc_type_id, addr)
         return
 
     # --- Resolve NPC name ---
@@ -201,6 +234,10 @@ async def _handle_npc_behavior(server, writer, builder, session,
             await send_npc_chat(
                 writer, builder, session, npc_name, text, addr)
 
+    elif btype == 'census_angel':
+        await _handle_census_angel(
+            server, writer, builder, session, npc_name, addr)
+
     elif btype == 'quest_npc':
         quest_id = behavior.get('quest_id', 0)
         qm = get_quest_manager()
@@ -227,6 +264,118 @@ async def _handle_npc_behavior(server, writer, builder, session,
 
     else:
         log.warning(f"[{addr}] Unknown behavior type: {btype}")
+
+
+async def _handle_census_angel(server, writer, builder, session, npc_name, addr):
+    """Handle Census Angel interaction — class selection for Novice players."""
+    entity_id = session.get('entity_id', 0)
+
+    # Load current player from DB to check class
+    player = database.get_player(entity_id)
+    if player and player['class_id'] != 0:
+        # Already has a class
+        cls_name = CLASS_INFO.get(player['class_id'], (f"Class {player['class_id']}",))[0]
+        text = (f"You are already a {cls_name}! "
+                f"Go forth and explore the world of Eden.")
+        await send_npc_chat(writer, builder, session, npc_name, text, addr)
+        return
+
+    # Show class menu
+    state = _census_states.get(entity_id)
+
+    if state and state.startswith('confirm_'):
+        # They already got a confirm prompt — clicking NPC again resets to menu
+        pass
+
+    # Build the class list message
+    lines = ["I am the Census Angel. Choose your path!\n"]
+    lines.append("=== Combat Classes ===")
+    for cid in [5, 6, 7, 8, 9, 1, 2, 3, 4]:
+        name, desc = CLASS_INFO[cid]
+        lines.append(f"  [{cid}] {name} - {desc}")
+    lines.append("\n=== Crafting Classes ===")
+    for cid in [10, 11, 12, 13, 15]:
+        name, desc = CLASS_INFO[cid]
+        lines.append(f"  [{cid}] {name} - {desc}")
+    lines.append("\nWhisper me a number (1-13 or 15) to choose your class!")
+    lines.append("Example: type /whisper Census Angel 7")
+
+    _census_states[entity_id] = 'menu'
+    text = '\n'.join(lines)
+    await send_npc_chat(writer, builder, session, npc_name, text, addr)
+
+
+async def handle_census_chat(server, writer, builder, session, message, addr):
+    """Handle a whisper/chat to the Census Angel for class selection.
+
+    Called from the chat handler when a player whispers "Census Angel" or
+    sends a message while in census_angel menu state.
+
+    Returns True if the message was consumed by the Census Angel.
+    """
+    entity_id = session.get('entity_id', 0)
+    state = _census_states.get(entity_id)
+    if state is None:
+        return False
+
+    npc_name = "Census Angel"
+    msg = message.strip()
+
+    if state == 'menu':
+        # Expect a class number
+        try:
+            class_id = int(msg)
+        except ValueError:
+            await send_npc_chat(
+                writer, builder, session, npc_name,
+                "Please enter a class number (1-13 or 15).", addr)
+            return True
+
+        if class_id not in CLASS_INFO:
+            await send_npc_chat(
+                writer, builder, session, npc_name,
+                f"Invalid class number '{class_id}'. Choose 1-13 or 15.", addr)
+            return True
+
+        cls_name, cls_desc = CLASS_INFO[class_id]
+        _census_states[entity_id] = f'confirm_{class_id}'
+        await send_npc_chat(
+            writer, builder, session, npc_name,
+            f"You want to become a {cls_name}?\n{cls_desc}\n\n"
+            f"Type 'yes' to confirm or 'no' to go back.", addr)
+        return True
+
+    elif state.startswith('confirm_'):
+        class_id = int(state.split('_')[1])
+        cls_name = CLASS_INFO[class_id][0]
+
+        if msg.lower() in ('yes', 'y', 'confirm'):
+            # Apply class change in DB and refresh the session cache so
+            # presence broadcasts see the new class immediately.
+            database.update_player_class(entity_id, class_id)
+            session['player'] = database.get_player(entity_id)
+            _census_states.pop(entity_id, None)
+            log.info(f"[{addr}] Player 0x{entity_id:08X} chose class "
+                     f"{class_id} ({cls_name})")
+            await send_npc_chat(
+                writer, builder, session, npc_name,
+                f"Congratulations! You are now a {cls_name}! "
+                f"Your new abilities await. Relog to see your new stats "
+                f"and appearance.", addr)
+            return True
+        elif msg.lower() in ('no', 'n', 'cancel'):
+            _census_states[entity_id] = 'menu'
+            await send_npc_chat(
+                writer, builder, session, npc_name,
+                "No problem! Choose another class number (1-13 or 15).", addr)
+            return True
+        else:
+            await send_npc_chat(
+                writer, builder, session, npc_name,
+                f"Type 'yes' to become a {cls_name} or 'no' to pick again.", addr)
+            return True
+
+    return False
 
 
 async def handle_npc_dialog(server, writer, builder, session, payload, addr):

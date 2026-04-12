@@ -20,11 +20,19 @@ async def handle_movement(server, writer, builder, session, payload, addr):
 
     log.info(f"[{addr}] Movement raw ({len(payload)}b): {payload.hex(' ')}")
 
+    # Packet layout: [sub_len:2][opcode:2][from_x:2][from_y:2][?:1][?:2][to_x:2][to_y:2]
+    client_from_x = struct.unpack_from('<H', payload, 4)[0]
+    client_from_y = struct.unpack_from('<H', payload, 6)[0]
     client_dest_x = struct.unpack_from('<H', payload, 11)[0]
     client_dest_y = struct.unpack_from('<H', payload, 13)[0]
 
-    cur_x = session['pos_x']
-    cur_y = session['pos_y']
+    # Trust the client's reported position — the server's session position
+    # is initialized from defaults and may not match where the client thinks
+    # it is (the client uses the position from init_pkt1).
+    cur_x = client_from_x
+    cur_y = client_from_y
+    session['pos_x'] = cur_x
+    session['pos_y'] = cur_y
 
     dx = client_dest_x - cur_x
     dy = client_dest_y - cur_y
@@ -53,6 +61,12 @@ async def handle_movement(server, writer, builder, session, payload, addr):
     session['pos_x'] = dest_x
     session['pos_y'] = dest_y
     database.update_player_position(entity_id, dest_x, dest_y)
+
+    # Tell every other player in the zone that this player moved.
+    import presence
+    await presence.broadcast_movement(
+        session, server.tracker,
+        cur_x, cur_y, dest_x, dest_y, config.MOVE_SPEED)
 
 
 async def handle_zone_transfer(server, writer, builder, session,

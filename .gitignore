@@ -17,3 +17,26 @@ logs/
 # OS
 .DS_Store
 Thumbs.db
+
+# Claude Code local settings
+.claude/
+
+# Local runtime config (machine-specific paths)
+ao_config.ini
+
+# Runtime-curated state
+data/pending_names.txt
+
+# Proprietary game content (extracted from client; not ours to redistribute)
+data/game_xml/
+data/SERVER*.XML*
+
+# Patched client launcher (derived binary)
+Start_patched.exe
+
+# Working/scratch copies of captured seed packets
+tools/seed_data/*_old.hex
+tools/seed_data/*_raw.hex
+
+# Redundant zipped docs (the .md files are the source of truth)
+docs/AO_Docs.zip

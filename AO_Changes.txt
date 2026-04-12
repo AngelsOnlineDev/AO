@@ -1,0 +1,21 @@
+11:03 PM 3/25/2026
+Summary of Changes
+database.py — Account & Character Storage
+New accounts table: username, password_hash (SHA-256), salt, created_at
+account_id FK added to players table (with migration for existing DBs)
+New functions: create_account(), get_account(), verify_password(), get_characters_for_account(), create_character(), update_player_class()
+Characters get unique random entity_id, and support multiple characters per account
+game_server.py — Login Authentication
+_parse_login() now returns (username, password) — password is the hex of raw bytes after the 8-byte username field
+Account auto-registration: first login with a new username creates the account + a starter Novice character (class 0, level 1, 294 HP, 280 MP, 500 gold)
+Password verification: existing accounts must match the stored password hash
+Failed login: sends status=0 login response with error message
+Login response now sends real character data (name, level, class_id) from DB
+handlers/npc.py — Census Angel Class Selection
+NPC type 2006 (Census Angel) now offers class selection dialog via chat
+14 classes available: Priest, Summoner, Wizard, Magician, Protector, Warrior, Swordsman, Spearman, Archer, Weaponsmith, Armorsmith, Tailor, Technician, Chef
+Flow: click Census Angel -> see class list -> type a number in chat -> confirm with "yes"
+Only available to Novice (class 0) players; already-classed players get told their current class
+handlers/social.py — Chat Integration
+Chat messages are intercepted and routed to Census Angel handler when the player is in class selection flow
+Player name from session is now used in chat echo instead of hardcoded "Player"
