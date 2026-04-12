@@ -688,8 +688,11 @@ def build_remote_player_spawn(
       [59]     appearance byte 3 → model+578
       [60]     appearance byte 4 → model+579
       [61]     appearance byte 5 → model+580
-      [62]     class_id → model+744
-      [63]     state byte → model+958 (7-11 trigger special handling)
+      [62]     faction byte → model+744 (NOT class_id; capture=3=Steel for
+               Soualz — matches profile 0x0002 at offset 60. The real
+               class_id lives at profile offset 93, which 0x0001 does
+               NOT carry. Remote players render without job info.)
+      [63]     state byte → model+958 (7-11 trigger mount/pet/buff)
       [64-65]  WORD → model+752
       [66-97]  8 × LE32 equipment slot IDs
       [98-101] LE32 equip slot 13

@@ -211,28 +211,28 @@ def _patch_player_profile(data: bytearray, player):
         33+      string  guild name (null-terminated, ~15B)
         50       BYTE    → sub_4B1FF0(v << 21) — facing direction?
         51-54    LE32    ? → model+572
-        55       BYTE    appearance byte 1 → model+576
-        56       BYTE    appearance byte 2 → model+577
-        57       BYTE    appearance byte 3 → model+578
-        58       BYTE    appearance byte 4 → model+579
-        59       BYTE    appearance byte 5 → model+580
-        60       BYTE    class_id → model+744
-        61       BYTE    faction → model+958
+        55-59    5B      appearance bytes 1-5 → model+576..+580
+        60       BYTE    faction → model+744       ✅ (capture=3=Steel matches Soualz)
         62-63    WORD    → model+752
-        64       BYTE    → model+1206
+        64       BYTE    → model+1206              ❓ unknown semantic
         65-68    LE32    level → model+588
-        69-72    LE32    R.Atk
-        73-76    LE32    R.Atk (secondary)
-        77-80    LE32    L.Atk
-        81-84    LE32    L.Atk (secondary)
-        85-88    LE32    Dfs
-        89-92    LE32    Dfs (secondary)
+        69-92    6xLE32  stat block 1 → model+1208..+1228  ❓ capture holds 50087/49923/61582 —
+                         looks like XP/timers/counters, NOT attack/defense
+        93       BYTE    class_id → model+1232    ✅ (capture=1=Priest matches Soualz's job)
         102-105  LE32    HP_max → model+640
         106-109  LE32    HP → model+660
         110-113  LE32    MP_max → model+644
         114-117  LE32    MP → model+664
         118-119  WORD    stamina → model+648
         120-121  WORD    stamina_max → model+668
+        126-157  5xLE32  combat stats → model+1248.. block  ✅ empirically verified against
+                         Soualz capture (R.Atk=4553, L.Atk=4536, Dfs=4540,
+                         Spl.Atk=4065, Spl.Dfs=4036) at offsets 126,130,138,146,154
+
+    Known unknown: the "Job" text in the client still reads "Priest" even
+    after patching data[base+93]. Either Job is derived from a secondary
+    source (another sub-message, maybe 0x0042 char stats), or model+1232
+    is a display variant and the actual job byte is elsewhere.
     """
     from class_stats import compute_stats, class_name
 
@@ -273,11 +273,12 @@ def _patch_player_profile(data: bytearray, player):
     for i in range(5):
         data[base + 55 + i] = app[i]
 
-    # data[60] is faction (capture value 3 = Steel matches Soualz). Leave it.
-    # data[93] is our best guess for class_id (capture value 1 matches Soualz's
-    # Priest). This field is written by sub_5E9C90 to model+1232. Needs
-    # empirical verification — if Job still reads Priest after this patch,
-    # the class byte is elsewhere.
+    # data[60] is faction (model+744). Capture=3=Steel; leave it untouched
+    # until we track faction in the DB.
+    # data[93] is class_id (model+1232). Capture=1=Priest for Soualz confirmed
+    # against the decompile of sub_5E9C90 at a2+95. Known issue: the client's
+    # "Job" label still shows Priest after we patch this — the label likely
+    # reads from a secondary field we haven't located yet.
     data[base + 93] = class_id & 0xFF
 
     # Level (LE32 at 65-68)

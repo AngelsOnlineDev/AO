@@ -1,159 +1,116 @@
-# Architecture Overview
+# Architecture
 
-## Server Components
+## Processes
 
-The server is a single Python process running three async TCP servers via `asyncio`:
+One Python process, multiple async TCP servers started from [server.py](../src/server.py) via `asyncio.gather()`:
 
 ```
-server.py (entry point)
-    |
-    +-- LoginServer    (src/game_server.py)   port 16768
-    |     Handles login, authentication, account creation, redirect
-    |
-    +-- WorldServer    (src/world_server.py)  port 27901
-    |     Handles game world: init, movement, NPC, combat, chat
-    |
-    +-- FileServer     (src/file_server.py)   port 21238
-          Asset/file server (currently stub, TODO)
+server.py
+  ├─ LoginServer   (game_server.py)   :16768  auth, slot mgmt, redirect
+  ├─ WorldServer   (world_server.py)  :27901  gameplay
+  ├─ FileServer    (file_server.py)   :21238  avatar portraits (stub, no responses yet)
+  ├─ PatchServer   (patch_server.py)  :80     HTTP stub for Start.exe update check
+  └─ FtpServer     (ftp_server.py)    :21     FTP stub for Start.exe version check
 ```
 
-## Startup Sequence
+The Patch and FTP servers exist only so the original launcher finishes its update flow. They require admin/port-80 privileges; if you bypass the launcher, you can skip them.
 
-```python
-# server.py::main()
-1. game_finder.ensure_game_dir()     # Locate AO install (env/registry/GUI)
-2. config.GAME_DIR = game_dir        # Store for map loading
-3. LoginServer(host, port, ...)      # Create login server
-4. WorldServer(host, port)           # Create world server
-5. FileServer(host, port)            # Create file server
-6. database.init()                   # Initialize SQLite (WAL mode)
-7. asyncio.gather(                   # Run all three concurrently
-       login.start(),
-       world.start(),
-       file.start(),
-   )
-```
+## Startup sequence
 
-## Source File Map
+1. [game_finder.py](../src/game_finder.py) locates the AO install dir (saved in `ao_config.ini`, or prompted).
+2. [database.py](../src/database.py) opens `data/angels.db`, runs schema migrations, enables WAL mode.
+3. Each server's `.start()` opens its listener.
+4. `asyncio.gather(...)` runs them until shutdown.
 
-### Core Server
+## Module map
+
+### Core
 | File | Purpose |
-|------|---------|
-| `src/server.py` | Entry point, logging setup, starts all servers |
-| `src/config.py` | All configuration (network, game, paths) |
-| `src/game_server.py` | Login server + login response builder |
-| `src/world_server.py` | World server + game loop + opcode dispatch |
-| `src/file_server.py` | File server (stub) |
+|---|---|
+| [server.py](../src/server.py) | Entry point, logging, orchestration |
+| [config.py](../src/config.py) | All tunables + env var overrides |
+| [game_server.py](../src/game_server.py) | Login server loop, phase-4 slot ops, login response builder |
+| [world_server.py](../src/world_server.py) | World loop, opcode dispatch, session state, mob tick loop |
+| [file_server.py](../src/file_server.py) | Avatar portrait server (stub) |
+| [patch_server.py](../src/patch_server.py) | HTTP stub for `GET /patch.php` |
+| [ftp_server.py](../src/ftp_server.py) | FTP stub serving `version.ini` |
 
-### Protocol Layer
+### Protocol
 | File | Purpose |
-|------|---------|
-| `src/packet.py` | Header encode/decode, PacketBuilder, PacketFramer, PacketReader/Writer |
-| `src/crypto.py` | CryptXOR (S->C static key), CryptXORIV (C->S evolving key) |
-| `src/packet_builders.py` | All S->C packet builders (50+ opcodes), `pack_sub()`, `assemble_payload()` |
+|---|---|
+| [packet.py](../src/packet.py) | Header encode/decode, `PacketBuilder`, framer, reader |
+| [crypto.py](../src/crypto.py) | `CryptXOR` (S→C stateless) + `CryptXORIV` (C→S stateful) |
+| [packet_builders.py](../src/packet_builders.py) | All S→C builders; `pack_sub()`; sub-message framing |
 
-### Game Logic
+### Game logic
 | File | Purpose |
-|------|---------|
-| `src/handlers/movement.py` | Movement, zone transfer, dialog action processing |
-| `src/handlers/npc.py` | NPC interaction, dialog state machine, Census Angel, shops, gates |
-| `src/handlers/combat.py` | Target mob, use skill, stop action |
-| `src/handlers/social.py` | Chat, emotes, player details |
-| `src/handlers/misc.py` | Entity select, buy/sell, toggle sit/stand, zone ready |
+|---|---|
+| [handlers/movement.py](../src/handlers/movement.py) | `MOVEMENT_REQ`, zone transfer, dialog-action warps |
+| [handlers/npc.py](../src/handlers/npc.py) | NPC interact, dialog state, Census Angel, shop stubs |
+| [handlers/combat.py](../src/handlers/combat.py) | `USE_SKILL`, `TARGET_MOB`, auto-attack on mob click |
+| [handlers/social.py](../src/handlers/social.py) | Chat, emote, player detail request |
+| [handlers/misc.py](../src/handlers/misc.py) | Entity select, buy/sell stub, toggle sit/stand, zone ready |
+| [presence.py](../src/presence.py) | Multiplayer broadcast: spawn/despawn/movement to zone observers |
+| [class_stats.py](../src/class_stats.py) | Per-class base stats + level scaling |
+| [mob_state.py](../src/mob_state.py) | Mob HP registry + respawn timer |
 
-### Data Layer
+### Data
 | File | Purpose |
-|------|---------|
-| `src/database.py` | SQLite schema, account/character CRUD, position/stats updates |
-| `src/game_data.py` | Lazy-loaded singletons: DialogManager, NPC DB, Monster DB, Quest Manager |
-| `src/map_loader.py` | MPC map parsing from PAK archives, NPC/monster/event extraction |
-| `src/area_entity_data.py` | Seed hex file loading, entity registry, area packet generation |
-| `src/world_init_builder.py` | Dynamic init packet building with per-player patching |
-| `src/world_init_data.py` | Legacy static init packet loading (fallback) |
-| `src/player_tracker.py` | Zone-based player tracking for broadcasting |
-| `src/game_finder.py` | AO install directory detection (env, registry, GUI) |
+|---|---|
+| [database.py](../src/database.py) | SQLite schema, account/char CRUD, position/HP updates |
+| [game_data.py](../src/game_data.py) | Lazy singletons: NPC DB, monster DB, dialog manager, quest manager |
+| [map_loader.py](../src/map_loader.py) | Parses `.MPC` maps when PAK extraction is available |
+| [area_entity_data.py](../src/area_entity_data.py) | Seed hex loading, runtime entity registry |
+| [world_init_builder.py](../src/world_init_builder.py) | Per-player init packet patching |
+| [player_tracker.py](../src/player_tracker.py) | `entity_id → session` + `map_id → set[session]` index |
+| [dialog_manager.py](../src/dialog_manager.py) | `msg.xml` / `spmsg.xml` / `EVENT.XML` dialog graph |
 
-### Data Files
-| Path | Purpose |
-|------|---------|
-| `data/angels.db` | SQLite database (accounts, players, entities) |
-| `data/game_xml/` | Extracted XML (msg.xml, spmsg.xml, npc.xml, monster.xml, quest.xml) |
-| `data/game_xml/setting/EVENT.XML` | Global dialog definitions |
-| `tools/seed_data/` | Hex-encoded seed packets (init, area, skill data) |
-| `logs/server.log` | Server log output |
+## Session dict
 
-## Configuration (config.py)
-
-All settings can be overridden with environment variables:
-
-| Setting | Default | Env Var | Description |
-|---------|---------|---------|-------------|
-| `HOST` | `127.0.0.1` | `AO_HOST` | Listen address |
-| `REDIRECT_HOST` | Same as HOST | `AO_REDIRECT_HOST` | Address sent to client in redirect |
-| `LOGIN_PORT` | `16768` | `AO_LOGIN_PORT` | Login server port |
-| `WORLD_PORT` | `27901` | `AO_WORLD_PORT` | World server port |
-| `FILE_PORT` | `21238` | `AO_FILE_PORT` | File server port |
-| `KEEPALIVE_INTERVAL` | `1.0` | - | Seconds between keepalive packets |
-| `MOVE_SPEED` | `110` | - | Character movement speed (0x6E) |
-| `MAX_MOVE_STEP` | `200` | - | Max pixels per movement segment |
-| `START_MAP_ID` | `2` | - | Default map (Angel Lyceum / Eden) |
-| `DEFAULT_SPAWN` | `(1040, 720)` | - | Fallback spawn position |
-| `GAME_DIR` | `C:\Program Files (x86)\Angels Online` | `AO_GAME_DIR` | Game install dir |
-| `GAME_XML_DIR` | `data/game_xml/` | - | Extracted XML directory |
-
-## Session Lifecycle
-
-Each client connection creates a session dict stored in `WorldServer.sessions`:
+Each connected client gets a dict tracked in `WorldServer.sessions[addr]` and registered with the `PlayerTracker`:
 
 ```python
 session = {
-    # Network
-    'crypto': CryptXOR,            # S->C encryption
-    'crypto_recv': CryptXORIV,     # C->S decryption (evolving key)
-    'builder': PacketBuilder,      # Packet construction
-    'writer': StreamWriter,        # TCP socket
-
-    # Player Identity
-    'entity_id': int,              # 32-bit unique entity ID
-    'player_name': str,            # Character display name
-
-    # Position
-    'pos_x': int,                  # Current X (tile-pixels)
-    'pos_y': int,                  # Current Y (tile-pixels)
-    'map_id': int,                 # Current map/zone ID
-
-    # Game Data (loaded per-connection, should be cached)
-    'map_data': MapData | None,    # Map geometry + events
-    'npc_db': dict,                # NPC type definitions
-    'monster_db': dict,            # Monster definitions
-    'entity_registry': dict,       # runtime_entity_id -> npc_type_id
-
-    # State
-    'dialog_state': DialogState | None,  # Active NPC dialog
-    'player_quests': dict,               # Quest tracking
+    # net
+    'crypto':      CryptXOR,
+    'crypto_recv': CryptXORIV,
+    'builder':     PacketBuilder,
+    'writer':      StreamWriter,
+    # identity
+    'entity_id':   int,
+    'player_name': str,
+    'player':      sqlite3.Row,   # full DB row (class_id, app0..4, hp, ...)
+    # position
+    'pos_x':       int,           # pixels (tile * 32)
+    'pos_y':       int,
+    'map_id':      int,           # pinned to 129 right now — see world_server.py:221
+    # game data
+    'map_data':    MapData | None,
+    'npc_db':      dict,
+    'monster_db':  dict,
+    'entity_registry': dict,      # runtime_entity_id → npc_type_id
+    # state
+    'dialog_state':  DialogState | None,
+    'player_quests': dict,
 }
 ```
 
-## Multi-Player Support
+**Heads up**: [world_server.py:221](../src/world_server.py#L221) currently hardcodes `map_id = 129` regardless of what the DB says, because the captured seed packets are for map 129 and we don't yet generate init packets from scratch. Zone transfers still work at runtime but you can't *start* on another map.
 
-The `PlayerTracker` manages connected players by zone:
+## Multiplayer broadcast
 
-```python
-tracker = PlayerTracker()
-tracker.register(entity_id, map_id, session)    # On connect
-tracker.change_map(entity_id, new_map_id)        # On zone transfer
-tracker.unregister(entity_id)                    # On disconnect
+The `PlayerTracker` keeps a `map_id → set[session]` index. [presence.py](../src/presence.py) wraps it with the three things a gameplay event needs to broadcast:
 
-# Broadcasting to zone
-for session in tracker.get_zone_sessions(map_id, exclude_entity=sender):
-    send_packet(session, packet_data)
-```
+- `send_existing_players_to(new_session, tracker)` — on join, tell the newcomer about every player already on their map.
+- `broadcast_spawn(new_session, tracker)` — tell everyone already on the map about the newcomer.
+- `broadcast_movement(session, tracker, cur_x, cur_y, dst_x, dst_y, speed)` — relay the move response.
+- `broadcast_despawn(session, tracker)` — tell observers when someone leaves.
+
+See [04_WORLD_SERVER.md](04_WORLD_SERVER.md) for the dual-opcode detail (why spawn broadcasts send both `0x0001` and `0x000E`).
 
 ## Dependencies
 
-- **Python 3.10+** (type hints with `X | Y` syntax)
-- **lzallright** - LZO compression/decompression
-- **asyncio** - Async TCP servers
-- **sqlite3** - Database (stdlib)
-- **hashlib** - Password hashing (stdlib)
-- **struct** - Binary packing (stdlib)
+- Python 3.10+ (`X | Y` type hints)
+- `lzallright` — LZO for init packet decompression
+- `pyftpdlib` — stub FTP server
+- Everything else from stdlib (`asyncio`, `sqlite3`, `hashlib`, `struct`)

@@ -1,250 +1,189 @@
-# Protocol & Packet Format
+# Protocol & packet format
 
-## Wire Format Overview
+Everything in this file is ✅ **confirmed** unless a paragraph says otherwise. It's all been reverse-engineered from the client binary (`FUN_0081dbf0` et al.) and verified against live captures.
 
-Every packet on the wire follows this structure:
-
-```
-[6-byte obfuscated header][payload (optionally encrypted, optionally compressed)]
-```
-
-Total wire size = 6 + padded_payload_length
-
-## Packet Header (6 Bytes)
-
-The header is **XOR-obfuscated** (not encrypted). Each field depends on the payload length:
+## Wire format
 
 ```
-Byte 0-1 (LE16):  payload_length XOR 0x1357
-Byte 2-3 (LE16):  sequence_number XOR payload_length
-Byte 4:           flags XOR (payload_length & 0xFF)
-Byte 5:           checksum (single byte, NOT obfuscated)
+[ 6-byte obfuscated header ][ payload (optionally compressed, optionally encrypted) ]
 ```
 
-### Decoding
+`total_wire_size = 6 + padded_payload_length`
+
+## Header (6 bytes) ✅
+
+The header is **XOR-obfuscated**, not encrypted. Each field's deobfuscation uses the payload length as part of the key, which is a neat way to force the decoder to parse fields in order.
+
+```
+off  size  field        deobfuscation
+───  ────  ──────────   ─────────────────────────────────
+0-1  LE16  length       ^ 0x1357
+2-3  LE16  sequence     ^ length
+4    u8    flags        ^ (length & 0xFF)
+5    u8    checksum     plain (not obfuscated)
+```
 
 ```python
 HEADER_XOR = 0x1357
-
-raw_01 = LE16(header[0:2])
-raw_23 = LE16(header[2:4])
-
-payload_length = raw_01 ^ 0x1357
-sequence       = raw_23 ^ payload_length
-flags          = header[4] ^ (payload_length & 0xFF)
-checksum       = header[5]
-
-encrypted  = bool(flags & 0x01)   # Bit 0
-compressed = bool(flags & 0x80)   # Bit 7
+length   = LE16(hdr[0:2]) ^ 0x1357
+sequence = LE16(hdr[2:4]) ^ length
+flags    = hdr[4]         ^ (length & 0xFF)
+checksum = hdr[5]
 ```
 
-### Encoding
+Encoding is the same XOR pattern in reverse.
+
+### Flags ✅
+
+| Bit | Mask | Meaning |
+|---|---|---|
+| 0 | `0x01` | payload is encrypted |
+| 7 | `0x80` | payload is LZO-compressed |
+
+Other bits have never been observed set; treat them as reserved.
+
+### Padded length ✅
+
+If the encrypted flag is set, the payload is padded up to the next 16-byte boundary before encryption:
 
 ```python
-header[0:2] = LE16(payload_length ^ 0x1357)
-header[2:4] = LE16(sequence ^ payload_length)
-header[4]   = (flags ^ (payload_length & 0xFF)) & 0xFF
-header[5]   = checksum
+padded_length = ((length + 15) // 16) * 16 if encrypted else length
 ```
 
-### Padded Length
+The header carries the *unpadded* length. The padding bytes are whatever the XOR cipher emits for zero input — the receiver trims them by reading only `length` bytes post-decrypt.
 
-If the encrypted flag is set, the payload is padded to a 16-byte boundary:
+### Sequence numbers ✅
 
-```python
-if encrypted:
-    padded_length = ((payload_length + 15) // 16) * 16
-else:
-    padded_length = payload_length
-```
+- Range 1 … 0x7FFE. After 0x7FFE it wraps back to 1.
+- `0xFFFF` is reserved for the **Hello** handshake.
+- Server and client keep **independent** counters, one per direction.
+- Any packet we've observed with out-of-range sequence was a framing desync, not a valid packet.
 
-## Flags
+### Checksum ✅
 
-| Bit | Mask | Name | Meaning |
-|-----|------|------|---------|
-| 0 | 0x01 | `FLAG_ENCRYPTED` | Payload is XOR-encrypted |
-| 7 | 0x80 | `FLAG_COMPRESSED` | Payload is LZO-compressed |
-
-## Sequence Numbers
-
-- **Range**: 1 to 0x7FFE (32,766)
-- **Wrapping**: After 0x7FFE, wraps back to 1 (0x7FFF is never used normally)
-- **Special**: 0xFFFF = Hello/key exchange packet
-- **Increment**: Each sent packet increments the sequence by 1
-- **Per-direction**: Server and client maintain independent counters
-
-## Checksum Algorithm
-
-Computed on the **plaintext payload** (before encryption, after compression if applicable).
+Single byte. Computed on the plaintext *after* compression but *before* encryption:
 
 ```python
 def compute_checksum(payload: bytes, length: int) -> int:
-    val = 0xD31F                          # Initial seed
-
-    check_len = length & ~1               # Round down to even
+    val = 0xD31F
+    check_len = length & ~1          # round down to even
     for i in range(0, check_len, 2):
-        word = LE16(payload[i:i+2])
-        val ^= word
+        val ^= LE16(payload[i:i+2])
     val &= 0xFFFF
-
-    shift = val & 0xF                     # Rotate left by low nibble
-    if shift > 0:
+    shift = val & 0xF                # rotate left by low nibble
+    if shift:
         val = ((val << shift) | (val >> (16 - shift))) & 0xFFFF
-
-    return (val & 0xFF) ^ ((val >> 8) & 0xFF)  # XOR low and high bytes
+    return (val & 0xFF) ^ ((val >> 8) & 0xFF)
 ```
 
-Returns a single byte (0x00-0xFF). Reverse-engineered from client function `FUN_0081dbf0`.
+Ported from client `FUN_0081dbf0`.
 
-## Encryption
+## Crypto
 
-Two XOR cipher variants are used, one for each direction:
+Two cipher variants, one per direction. Both seed from the same 16-byte key received in the Hello packet.
 
-### CryptXOR (Server-to-Client)
+### CryptXOR — server → client ✅
 
-Static 16-byte repeating XOR cipher. Key does not change during the session.
+Stateless repeating-XOR against the 16-byte key. Never mutates. See [crypto.py](../src/crypto.py).
+
+### CryptXORIV — client → server ✅
+
+Stateful. After each decrypt, the key mutates by adding the **padded** payload length to each of the four 32-bit DWORDs in the key:
 
 ```python
-class CryptXOR:
-    def __init__(self, key: bytes):   # key = 16 bytes
-        self.key = key
-
-    def encrypt(self, data: bytes) -> bytes:
-        return bytes(data[i] ^ self.key[i % 16] for i in range(len(data)))
-
-    decrypt = encrypt   # XOR is symmetric
+def _update_key(self, padded_len: int):
+    for i in range(0, 16, 4):
+        dword = (LE32(self.key[i:i+4]) + padded_len) & 0xFFFFFFFF
+        self.key[i:i+4] = to_le32_bytes(dword)
 ```
 
-### CryptXORIV (Client-to-Server)
+**Gotcha**: you must track `padded_len`, not raw `length`, or the key diverges on the first encrypted packet. This cost us several hours during phase-4 implementation.
 
-Evolving 16-byte XOR cipher. After each packet, the key mutates by adding the padded payload length to each 32-bit DWORD of the key.
+## LZO compression ✅
+
+- Library: `lzallright` (Python binding).
+- Ordering: **compress, then encrypt**. Receiver reverses: decrypt, then decompress.
+- Checksum is computed on the *compressed* bytes (the thing that gets encrypted).
+- Used for large payloads: login response, world init packets 1–4.
+
+## Sub-message framing ✅
+
+Within a payload, multiple "sub-messages" are concatenated:
+
+```
+[LE16 sub_len_1][sub_1]  [LE16 sub_len_2][sub_2]  ...
+```
+
+Each sub-message starts with its own LE16 opcode:
+
+```
+sub = [LE16 opcode][opcode-specific body…]
+```
+
+Helpers in [packet_builders.py](../src/packet_builders.py):
 
 ```python
-class CryptXORIV:
-    def __init__(self, key: bytes):
-        self.key = bytearray(key)      # Mutable, evolves per packet
-
-    def decrypt(self, data: bytes) -> bytes:
-        result = bytes(data[i] ^ self.key[i % 16] for i in range(len(data)))
-        self._update_key(len(data))    # Evolve key AFTER decrypt
-        return result
-
-    def _update_key(self, padded_len: int):
-        """Add padded_len to each DWORD of the 16-byte key."""
-        for i in range(0, 16, 4):
-            dword = LE32(self.key[i:i+4])
-            dword = (dword + padded_len) & 0xFFFFFFFF
-            self.key[i:i+4] = LE32_bytes(dword)
+pack_sub(data)          # prepend LE16 length
+assemble_payload(subs)  # concat multiple with length prefixes
 ```
 
-### Key Exchange
+Single-sub packets still go through `pack_sub`. Don't hand-emit the prefix — we got burned by that when adding 0x0042.
 
-The XOR key is transmitted in the **Hello packet** (unencrypted):
+## TCP framing ✅
 
-```
-Hello payload (22 bytes):
-  Byte 0-1:  LE16 = 20 (remaining length)
-  Byte 2-3:  LE16 = 16 (key length)
-  Byte 4-5:  0x0000 (reserved)
-  Byte 6-21: 16-byte XOR key
-```
+[packet.py](../src/packet.py) `PacketFramer` reassembles stream fragments:
 
-Both server and client derive their crypto contexts from this same key:
-- **Server sends** (CryptXOR): static key, client decrypts with same key
-- **Client sends** (CryptXORIV): evolving key, server tracks evolution
+1. Accumulate bytes in a buffer.
+2. Once ≥ 6 bytes, deobfuscate the header to get `total_length = 6 + padded_payload_length`.
+3. Once the buffer has ≥ `total_length` bytes, cut the packet out and yield it.
+4. Loop.
 
-## LZO Compression
+**Resync guards**: a decoded `payload_length` of 0 or >65536 is treated as a desync — drop one byte and retry. This has never triggered in normal play; only during fuzzing.
 
-Large payloads (init packets, login responses) use LZO compression:
+## Hello packet (28 bytes) ✅
 
-- Library: `lzallright` (Python binding for LZO)
-- The `FLAG_COMPRESSED` (0x80) bit indicates compression
-- Compression is applied **before** encryption
-- Checksum is computed on the **compressed** payload (what gets encrypted)
-- The receiver must decrypt first, then decompress
-
-## Sub-Message Framing
-
-Within a payload, data is structured as concatenated sub-messages:
+The first packet on every fresh connection. Sent by server, unencrypted, sequence `0xFFFF`:
 
 ```
-[LE16 sub_len_1][sub_data_1][LE16 sub_len_2][sub_data_2]...
+Header (6B):  length=22, sequence=0xFFFF, flags=0, checksum=computed
+Payload (22B):
+  00-01  LE16 = 0x0014  (20, remaining length)
+  02-03  LE16 = 0x0010  (16, key length)
+  04-05  LE16 = 0x0000  (reserved)
+  06-21  16B           random XOR key
 ```
 
-Each sub-message starts with its opcode:
+Both sides seed their crypto contexts from the same 16-byte key.
+
+## Send / receive pipelines ✅
+
+### Send (S → C)
 
 ```
-sub_data = [LE16 opcode][opcode-specific fields...]
+1. Build plaintext payload (concatenated sub-messages)
+2. If compressing: LZO compress
+3. Compute checksum on compressed plaintext
+4. Set flags (0x01 encrypted, 0x80 compressed)
+5. Pad to 16-byte boundary (if encrypted)
+6. CryptXOR encrypt
+7. Build header (with XOR obfuscation)
+8. Send header + ciphertext
 ```
 
-Helper functions:
-
-```python
-def pack_sub(data: bytes) -> bytes:
-    """Wrap one sub-message with its length prefix."""
-    return struct.pack('<H', len(data)) + data
-
-def assemble_payload(sub_messages: list[bytes]) -> bytes:
-    """Concatenate multiple sub-messages with length prefixes."""
-    return b''.join(struct.pack('<H', len(m)) + m for m in sub_messages)
-```
-
-## TCP Framing (PacketFramer)
-
-The `PacketFramer` reassembles TCP stream fragments into complete packets:
-
-1. Accumulate received bytes in a buffer
-2. When buffer >= 6 bytes, decode header to get `total_length`
-3. If buffer >= total_length, extract complete packet
-4. Repeat until buffer is too short
-
-**Validation**:
-- `payload_length == 0`: Invalid, drop 1 byte and resync
-- `payload_length > 0x10000` (65536): Invalid, drop 1 byte and resync
-- These guards handle stream desynchronization
-
-## Hello Packet (28 Bytes)
-
-The first packet in every connection. Sent by server, unencrypted.
+### Receive (C → S)
 
 ```
-Header (6 bytes):
-  Sequence = 0xFFFF (special)
-  Flags = 0x00 (no encryption, no compression)
-
-Payload (22 bytes):
-  Offset 0-1:  LE16 = 0x0014 (20, remaining length)
-  Offset 2-3:  LE16 = 0x0010 (16, key length)
-  Offset 4-5:  LE16 = 0x0000 (reserved)
-  Offset 6-21: 16-byte XOR key (random, generated per session)
-
-Total wire: 28 bytes
+1. PacketFramer buffers bytes
+2. Deobfuscate header
+3. Read `padded_payload_length` bytes of ciphertext
+4. CryptXORIV decrypt (key evolves after this call!)
+5. Trim to `length` (drops pad)
+6. If compressed: LZO decompress
+7. Parse sub-messages
 ```
 
-## Complete Packet Processing Pipeline
+## Known unknowns
 
-### Sending (Server -> Client)
-
-```
-1. Build plaintext payload (sub-messages)
-2. If compressing: LZO compress the payload
-3. Compute checksum on (compressed) plaintext
-4. Set flags (encrypted=0x01, compressed=0x80)
-5. Pad payload to 16-byte boundary (if encrypting)
-6. Encrypt padded payload with CryptXOR
-7. Encode 6-byte header (XOR obfuscation)
-8. Send: header + encrypted_payload
-```
-
-### Receiving (Client -> Server)
-
-```
-1. Accumulate TCP bytes in PacketFramer buffer
-2. Decode 6-byte header (XOR deobfuscation)
-3. Wait for full packet (header.total_length bytes)
-4. Extract padded payload from after header
-5. Decrypt with CryptXORIV (key evolves after each call)
-6. Trim to actual payload_length (remove padding)
-7. If compressed: LZO decompress
-8. Parse sub-messages from payload
-```
+- ❌ **Some flags bits besides 0x01 / 0x80**. Never observed set. Could be reserved, could be optional features we've never hit.
+- ❌ **Why sequence 0x7FFF is skipped**. The client code avoids it but the reason isn't obvious from the decompile.
+- ❌ **Any non-CryptXOR cipher path**. The client has code we haven't exercised — Hello is always XOR, but there's a branch in `FUN_0081ec20` we haven't traced.

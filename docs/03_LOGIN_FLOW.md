@@ -1,156 +1,132 @@
-# Login Flow
+# Login flow
 
-## Overview
-
-```
-Phase 1:  S->C  Hello         (28 bytes, XOR key)
-Phase 2:  C->S  Login         (encrypted, username + password hash)
-Phase 3:  S->C  Login Response (encrypted + LZO compressed, MOTD + account data)
-Phase 4:  C->S  PIN/Session   (encrypted, 8 bytes, acknowledged but not parsed)
-Phase 5:  S->C  Redirect      (encrypted, 34 bytes, world server IP:port + token)
-```
-
-## Phase 1: Hello
-
-Server generates a random 16-byte XOR key and sends it unencrypted.
+The login server runs at `:16768`. Its whole job is to authenticate, let the user pick/create/delete a character, and then hand the client off to the world server with a session token.
 
 ```
-Payload (22 bytes):
-  [LE16 remaining_length = 20]
-  [LE16 key_length = 16]
-  [LE16 reserved = 0x0000]
-  [16B  XOR key]
-
-Header: sequence=0xFFFF, flags=0x00
-Total wire: 28 bytes
+Phase 1   S→C  Hello                    28B, XOR key
+Phase 2   C→S  Login                    ~77B, username + hash
+Phase 3   S→C  Login response           compressed: MOTD + slot list
+Phase 4   C→S  Slot ops (loop)          CREATE / DELETE / SELECT-preview / ENTER_WORLD
+Phase 5   S→C  Redirect                 world host:port + 4B session token
+          C    disconnect, reconnect to world
 ```
 
-After sending Hello, the server creates a `CryptXOR(key)` instance for all subsequent S->C encryption.
+## Phase 1 — Hello (S→C) ✅
 
-## Phase 2: Login (C->S)
-
-Client sends encrypted credentials.
+Server sends 28 unencrypted bytes:
 
 ```
-Payload structure:
-  [LE16 sub_msg_length]      # Length of sub-message data
-  [LE16 sub_type = 0x0002]   # Login sub-type
-  [8B   username]             # Null-padded ASCII (8 bytes fixed)
-  [var  password_hash]        # Remaining bytes = raw password hash
-
-Total observed: 93 bytes
+Header (6B):   length=22, sequence=0xFFFF, flags=0
+Payload (22B):
+  00-01  LE16  0x0014    remaining length (20)
+  02-03  LE16  0x0010    key length (16)
+  04-05  LE16  0x0000    reserved
+  06-21  16B             random XOR key (this seeds both CryptXOR and CryptXORIV)
 ```
 
-### Username Parsing
+## Phase 2 — Login request (C→S) ✅
 
-- Read 8 bytes, find first null byte, decode as ASCII
-- Example: `70 6C 61 79 65 72 00 00` = "player"
-
-### Password Handling
-
-- The client sends a binary hash (not plaintext)
-- Server stores it as hex string: `remaining_bytes.hex()`
-- On subsequent logins, the same hash is compared
-- New accounts are auto-registered with the provided hash
-
-## Phase 3: Login Response (S->C)
-
-LZO-compressed payload containing two sub-messages.
-
-### Sub-Message 1: MOTD (Opcode 0x000C)
+First encrypted packet. Single sub-message, opcode `0x0002`:
 
 ```
-[LE16 opcode = 0x000C]
-[LE32 flags = 0x69402978]
-[LE32 text_length]
-[text (ASCII) + null terminator]
+[LE16 sub_len][LE16 0x0002][8B username][var password_hash]
 ```
 
-The MOTD text uses `\n` for newlines. Displayed on the client login screen.
+- `username` is 8 bytes, null-terminated, ASCII.
+- `password_hash` is the remainder of the sub-message. The client hashes the typed password (the exact algo we haven't traced but it's deterministic per-typed-string). We just store whatever bytes arrive as a hex string and compare byte-for-byte on subsequent logins.
+- New usernames auto-register an account and a starter Novice character.
 
-### Sub-Message 2: Account Data (Opcode 0x0000)
+## Phase 3 — Login response (S→C) ✅
 
-654-byte template with player-specific fields patched in:
+LZO-compressed payload with two sub-messages.
 
-```
-Offset  Type    Field               Patched?
-0       LE16    opcode (0x0000)     No (always 0x0000)
-4       LE16    status              Yes (1=success, 0=fail)
-6       LE32    field               No (always 3)
-10-11   bytes   flags               No (0x05, 0x01)
-16      LE32    account_id          Yes
-36      LE32    entity_ref          No (0x0020A0C3)
-40-48   9B      display_name        Yes (null-padded)
-49      LE32    character_id        Yes (entity_id)
-53      LE32    field               No (154)
-57-60   4B      session_key         No (0x6009447E)
-61-70   10B     login_name          Yes (null-padded)
-86      LE32    level               Yes
-90      LE32    class_id            Yes
-114     LE32    hp_max              No (294)
-118     LE32    mp_max              No (280)
-122     LE32    stat                No (185)
-126     LE32    stat                No (154)
-455+    LE32x6  stats block         No
-479+    LE32x6  server_ids          No ([1, 5, 6, 7, 8, 34])
-```
-
-### Assembly
-
-```python
-payload = (
-    LE16(len(motd_sub)) + motd_sub +
-    LE16(len(acct_sub)) + acct_sub
-)
-compressed = lzo.compress(payload)
-packet = builder.build_packet(compressed, compressed=True)
-```
-
-### Failed Login
-
-On bad password, send the same structure but with `status=0` and a failure MOTD.
-
-## Phase 4: PIN/Session (C->S)
-
-Client sends 8 bytes. Currently logged but not parsed or validated.
+### 0x000C — MOTD
 
 ```
-Example: 66 00 11 00 08 03 00 00
+[LE16 0x000C][LE32 flags=0x69402978][LE32 text_len][text + NUL]
 ```
 
-This appears to be a PIN or session confirmation. The server proceeds regardless.
+Shown on the login screen. Supports `\n` for linebreaks.
 
-## Phase 5: Redirect (S->C)
+### 0x0000 — Account + slot list ✅
 
-Tells the client to connect to the world server.
+A 654-byte template (captured and replayed) with per-player fields patched in. Internally the client parses this via `sub_51B250` — we have the full decompile in our RE notes.
 
-### Session Token
+Top-level fields patched by [game_server.py](../src/game_server.py) `build_login_response`:
+
+| Offset | Type | Field |
+|---|---|---|
+| 4 | LE16 | status (1 = OK, 0 = failure) |
+| 16 | LE32 | account_id |
+| 40 | 9B | display_name |
+| 49 | LE32 | character_id (primary entity_id) |
+| 61 | 10B | login_name |
+| 86 | LE32 | level |
+| 90 | LE32 | class_id |
+
+Then a **slot block** of 147-byte per-slot structs (3 slots, slot struct layout documented in [game_server.py:98](../src/game_server.py#L98)). Each occupied slot carries the character's name, class, level, map id (currently pinned to 129), and 5 appearance bytes. Unoccupied slots are zeroed.
+
+❓ Some fields in the template are still replayed verbatim from the capture (e.g. the stats block at offset 455, the server-id array at offset 479). They've worked every time so we haven't needed to regenerate them, but we don't know what most of the bytes mean.
+
+### Failed login
+
+Same sub-messages, `status = 0`, and a failure MOTD string. Client disconnects.
+
+## Phase 4 — Slot ops (C→S, looped) ✅
+
+After the login response, the login server enters a **slot-op loop** that handles character creation, deletion, preview, and "enter world" commit. The loop runs until the client either disconnects or sends ENTER_WORLD.
+
+All sub-messages here are `[LE16 sub_len][LE16 opcode][body…]` and are encrypted with CryptXORIV (the evolving key). This tripped us up early on — the decrypt helper must track padded length, not plain length.
+
+| Opcode | Name | Client fn | Body |
+|---|---|---|---|
+| `0x0003` | **CREATE** | `sub_4C0C50` | `[slot:1][app0..4:5][name:16][extras:35]` |
+| `0x0004` | **DELETE** | `sub_4C4990` | `[slot:1][password_md5_hex:32]` |
+| `0x0005` | **SELECT-preview** | `sub_4C4AC0` | `[slot:1]` — UI ping, no action |
+| `0x0006` | **ENTER_WORLD** | `sub_4C4A20` | `[slot:1][flag:1][password_md5_hex:32]` |
+| `0x000B` | Avatar reg | — | related to file server upload; we just log and ignore |
+
+✅ All of these are reverse-engineered from the client decompile and empirically verified — CREATE and DELETE both work end-to-end against the real client.
+
+### CREATE response
+
+After CREATE, server sends a **slot-update sub-message** (opcode `0x0001`, 154 bytes) so the client's slot list reflects the new character. Without this the client hangs on the creation dialog.
+
+The 147-byte slot struct is built by `_fill_slot_struct` in [game_server.py:127](../src/game_server.py#L127). DELETE uses the same packet with a zeroed slot struct — that's how we signal "slot now empty" to the client (no dedicated DELETE ack opcode).
+
+### ENTER_WORLD — commit
+
+This is the packet that ends Phase 4. The body carries the slot the user picked plus the MD5 hex of the password they typed in the confirmation dialog. We don't currently verify the password here because the account was already authenticated in Phase 2 — ❓ this is probably safe on a private server but would need to change for anything multi-user.
+
+On receipt, the server returns the chosen character's `entity_id` and falls through to Phase 5.
+
+## Phase 5 — Redirect (S→C) ✅
+
+```
+[LE16 sub_len=32]
+  00-01  LE16  0x0004   redirect type
+  02-03  LE16  0x0000   pad
+  04-07  4B            session token (random, see below)
+  08     u8            0x01 flag
+  09-24  16B           world host as NUL-padded ASCII
+  25-26  LE16          world port
+  27-31  5B            zero pad
+```
+
+### Session token
 
 ```python
 session_token = os.urandom(4)
 _pending_sessions[session_token] = entity_id
 ```
 
-The 4-byte random token links the login to the world server connection. The world server calls `consume_session(token)` to retrieve the entity_id.
+4-byte random token. When the client reconnects to the world server, it sends this token in its auth packet; world server calls `consume_session(token)` to retrieve the `entity_id`.
 
-### Redirect Payload (34 bytes)
+Tokens are single-use and live in a process-local dict — if the login server restarts between redirect and world-auth, the session is lost. That's fine for a single-process setup.
 
-```
-[LE16 sub_length = 32]        Offset 0-1
+### Post-redirect wait
 
-Sub-data (32 bytes):
-  Offset 0-1:   LE16 type = 0x0004
-  Offset 2-3:   LE16 padding = 0x0000
-  Offset 4-7:   4B   session_token (random)
-  Offset 8:     1B   flag = 0x01
-  Offset 9-24:  16B  IP string (null-terminated, zero-padded)
-  Offset 25-26: LE16 port (world server)
-  Offset 27-31: 5B   trailing zeros
-```
-
-### Post-Redirect
-
-After sending the redirect, the login server waits for the client to close the connection (up to 30 seconds). This is critical — closing too early causes the client to abort the world server connection.
+The login server then waits for the client to close its side:
 
 ```python
 try:
@@ -159,56 +135,50 @@ except asyncio.TimeoutError:
     pass
 ```
 
-## Authentication Flow
+**Why**: if we close the socket too fast (e.g. `asyncio.sleep(1)`), the client races with its own redirect parsing and aborts. 30s gives it plenty of slack; the normal case returns in <100 ms when the client's `close()` arrives.
+
+## New account defaults
+
+| Field | Value | Source |
+|---|---|---|
+| level | 1 | |
+| class_id | 0 (Novice) | |
+| hp / hp_max | 294 / 294 | matches Soualz capture |
+| mp / mp_max | 280 / 280 | matches Soualz capture |
+| gold | 500 | |
+| pos_x / pos_y | 1040 / 720 | |
+| map_id | **0** (DB default) | see note ⬇ |
+| app0..4 | all 0 | |
+
+**Note on map_id**: the DB default is `0`, but [world_server.py:221](../src/world_server.py#L221) hardcodes `map_id = 129` at world-auth time regardless of what the DB says. The captured init packets are for map 129, so that's the only map we can "start" on right now. Persisted movement/zone transfers do respect the DB value for later sessions, but first-login always lands on 129. Fixing this needs a map loader — see [08_GAME_DATA.md](08_GAME_DATA.md).
+
+## Error handling
+
+| Error | Behavior |
+|---|---|
+| Client disconnect mid-login | caught, session cleaned up |
+| 30s no-data timeout | warning logged, socket closed |
+| Bad password hash | status=0 response, disconnect |
+| WinError 64 / 10053 / 10054 | treated as clean disconnect |
+| Any other exception | full traceback logged |
+
+## Timing observed from captures
 
 ```
-Client sends username + password_hash
-    |
-    v
-database.get_account(username)
-    |
-    +-- None (new account) --> create_account() + create_character()
-    |
-    +-- Found --> verify_password()
-                    |
-                    +-- Bad  --> send failure response, disconnect
-                    +-- Good --> get_characters_for_account()
-                                    |
-                                    +-- Empty --> create_character()
-                                    +-- Found --> use first character
+T+0.000   client connects
+T+0.001   S→C Hello (28B)
+T+0.030   C→S Login (~77B)
+T+0.045   S→C Login response (~278B compressed)
+T+5.000   C→S Phase-4 op (CREATE or SELECT-preview)
+   ...    Phase-4 loop continues until ENTER_WORLD
+T+0.003   S→C Redirect (38B total)
+T+1.000   client disconnects from login
+T+2.000   client connects to world
 ```
 
-### New Account Defaults
+## Known unknowns
 
-| Field | Value |
-|-------|-------|
-| Level | 1 |
-| Class | 0 (Novice) |
-| HP/HP Max | 294 |
-| MP/MP Max | 280 |
-| Gold | 500 |
-| Position | (1040, 720) |
-| Map | 0 (unset, defaults to 2 on world connect) |
-
-## Error Handling
-
-| Error | Handling |
-|-------|----------|
-| Client disconnect during login | Caught, session cleaned up |
-| Timeout (30s no data) | Warning logged, session closed |
-| Bad password | Failure response sent (status=0), disconnect |
-| Windows socket errors (64, 10053, 10054) | Treated as disconnect |
-| Any other exception | Logged with full traceback |
-
-## Timing (from captures)
-
-```
-T+0.000s  Client connects
-T+0.001s  S->C Hello (28 bytes)
-T+0.030s  C->S Login (~93 bytes)
-T+0.015s  S->C Login Response (~342 bytes)
-T+5.000s  C->S PIN/Session (8 bytes)
-T+0.003s  S->C Redirect (34 bytes)
-T+1.000s  Login session ends (client disconnects)
-T+2.000s  Client connects to world server
-```
+- ❓ **The password hash function.** We store and compare raw bytes; the client's hashing is deterministic but we haven't traced it. Don't try to generate hashes server-side — round-trip the client's bytes only.
+- ❌ **What ENTER_WORLD's password byte (`body[1]` account flag) actually gates.** The client sets it based on `byte_958A38`, which we don't use.
+- ❌ **Meaning of the stats and server-id blocks in the 0x0000 login-response template** (offsets 455, 479). They're replayed verbatim from the Soualz capture. Works fine — don't know why.
+- ❓ **The CREATE body's trailing 35 bytes** (`[22..56]`) are labeled "equipment/extras" but we haven't mapped the individual fields. The client only sends zeros for new characters so we've never needed to parse it.

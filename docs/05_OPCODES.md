@@ -1,429 +1,321 @@
-# Opcode Reference
+# Opcode reference
 
-All known opcodes with packet layouts and field byte offsets. Sizes listed are for the sub-message data (after the LE16 length prefix).
+Every opcode we've observed or implemented, grouped by direction and by role. Sizes are for the **sub-message body** (everything after the `[LE16 sub_len]` frame prefix, including the 2-byte opcode itself).
 
-## S->C Opcodes (Server to Client)
+Status markers:
+- ✅ confirmed against client decompile + empirical tests
+- ❓ partially understood — fields work in practice but some bytes are unmapped or guessed
+- ❌ opcode we see but have never decoded
 
-### 0x0001 — Player Spawn (134-182 bytes)
-Sent when a player appears in view. Contains entity_id, level, class, name, guild, appearance.
-
-### 0x0005 — Position Update (24 bytes)
-```
-Offset  Size  Field
-0       2B    opcode = 0x0005
-2       2B    entity_id_lo
-4       2B    entity_id_hi
-6       4B    x1 (LE32, current X)
-10      4B    y1 (LE32, current Y)
-14      4B    x2 (LE32, destination X)
-18      4B    y2 (LE32, destination Y)
-22      2B    speed (LE16, movement speed)
-```
-
-### 0x0007 — Entity Position Marker (7 bytes)
-```
-0       2B    opcode = 0x0007
-2       2B    entity_id_lo
-4       2B    entity_id_hi
-6       1B    flag
-```
-
-### 0x0008 — NPC Spawn (65 bytes)
-```
-0       2B    opcode = 0x0008
-2       2B    entity_id_lo
-4       2B    entity_id_hi
-6       4B    unk1 (LE32, 1=NPC 0=monster)
-10      4B    tile_x (LE32)
-14      4B    tile_y (LE32)
-18      13B   name (null-padded ASCII)
-31      34B   extra data:
-  NPC:
-    +4  = 0x05 (marker)
-    +5  = LE16 sprite_id
-    +11 = 0xC8 (marker)
-    +16 = LE16 npc_type_id
-  Monster:
-    +3  = 0x01
-    +5  = LE16 sprite_id
-    +9  = LE16(7)
-    +11 = 0x01
-    +15 = 0x04
-    +16 = LE16 monster_type_id
-    +18 = LE16(0x8008)
-```
-
-### 0x000B — Entity Status (13 bytes)
-```
-0       2B    opcode = 0x000B
-2       4B    entity_id (LE32)
-6       1B    status_a (1=alive, 7=damaged, 0=dead)
-7       1B    status_b (secondary)
-8       5B    zeros
-```
-
-### 0x000C — MOTD (variable)
-```
-0       2B    opcode = 0x000C
-2       4B    flags = 0x69402978
-6       4B    text_length (LE32)
-10      var   text (ASCII + null)
-```
-
-### 0x000D — Entity Action (15+ bytes, variable)
-```
-0       2B    opcode = 0x000D
-2       4B    entity_id (LE32)
-6       2B    action_type (LE16)
-8       4B    target_id (LE32)
-12      2B    data (LE16)
-```
-
-### 0x000E — Entity Spawn (45 bytes)
-```
-0       2B    opcode = 0x000E
-2       2B    entity_id_lo
-4       2B    entity_id_hi
-6       4B    unk1 (LE32)
-10      4B    pos_x (LE32)
-14      4B    pos_y (LE32)
-18      var   name_bytes
-var     var   tail_bytes
-```
-
-### 0x000F — Mob Spawn (46 bytes)
-Same layout as 0x000E but with 1 extra byte.
-
-### 0x0013 — Pet Status Tick (10 bytes)
-```
-0       2B    opcode = 0x0013
-2       4B    pet_entity_id (LE32)
-6       2B    status (LE16)
-8       2B    hp (LE16)
-```
-
-### 0x0014 — Flag/Mode (9 bytes)
-```
-0       2B    opcode = 0x0014
-2       4B    value (LE32)
-6       1B    mode
-7       1B    type_a
-8       1B    type_b
-```
-
-### 0x0015 — Server Timer (7 bytes)
-```
-0       2B    opcode = 0x0015
-2       1B    flag
-3       4B    minutes (LE32)
-```
-
-### 0x0018 — Entity Move (26 bytes)
-```
-0       2B    opcode = 0x0018
-2       2B    sub_type = 0x0005
-4       4B    entity_id (LE32)
-8       4B    cur_x (LE32)
-12      4B    cur_y (LE32)
-16      4B    dst_x (LE32)
-20      4B    dst_y (LE32)
-24      2B    speed (LE16)
-```
-
-### 0x0019 — Combat Action (27-53 bytes)
-```
-0       2B    opcode = 0x0019
-2       4B    source_entity (LE32)
-6       4B    target_entity (LE32)
-10      2B    action_type (LE16, 1=basic 2=skill 3=miss)
-12      2B    skill_id (LE16)
-14      4B    damage (LE32)
-18      2B    flags (LE16, crit=0x01 miss=0x02)
-20      5B    zeros
-```
-
-### 0x001B — Entity Despawn (14 bytes)
-```
-0       2B    opcode = 0x001B
-2       4B    entity_id (LE32)
-6       2B    flags (LE16)
-8       4B    area_id (LE32)
-12      2B    zeros
-```
-
-### 0x001D — Entity Setting (16 bytes)
-```
-0       2B    opcode = 0x001D
-2       2B    entity_id_lo
-4       2B    entity_id_hi
-6       2B    marker (LE16)
-8       2B    setting_id (LE16)
-10      2B    value_lo (LE16)
-12      2B    value (LE16)
-14      2B    value_hi (LE16)
-```
-
-### 0x001E — Chat Message (variable)
-```
-0       2B    opcode = 0x001E
-2       2B    chat_type (LE16, 0x0001=system 0x0017=player)
-4       4B    entity_id (LE32, sender)
-8       8B    sender_name (null-padded)
-16      4B    pos_x (LE32)
-20      4B    pos_y (LE32)
-24      1B    channel (0x01=system 0x00=normal)
-25      var   message (null-terminated, max 200 chars)
-```
-
-### 0x001E — Area Entity Reference (6 bytes)
-```
-0       2B    opcode = 0x001E
-2       4B    entity_ref (LE32)
-```
-Note: Same opcode as chat — context-dependent. This variant appears in init packets.
-
-### 0x001F — Player Title (variable)
-```
-0       2B    opcode = 0x001F
-2       4B    entity_id (LE32)
-6       2B    prefix "PT"
-8       var   name/title (null-terminated, max 24B)
-```
-
-### 0x0021 — Entity Anchor (24 bytes)
-```
-0       2B    opcode = 0x0021
-2       4B    index (LE32)
-6       4B    area_id (LE32, typically 0x0020A0C3)
-10      4B    map_id (LE32)
-14      6B    zeros
-20      4B    trailing data
-```
-
-### 0x0022 — Loot Announce (24 bytes)
-```
-0       2B    opcode = 0x0022
-2       4B    entity_id (LE32)
-6       4B    area_id (LE32)
-10      4B    loot_id (LE32)
-14      10B   zeros
-```
-
-### 0x0027, 0x003F, 0x0040 — Area Reference (10 bytes each)
-```
-0       2B    opcode
-2       4B    area_id (LE32, typically 0x0020A0C3)
-6       4B    zeros
-```
-
-### 0x0028 — Player Appears (85 bytes)
-Sent when another player enters view range. Fixed 85-byte format with name, entity_id, class, appearance, guild info.
-
-### 0x003A — Inspect Player Response (19 bytes)
-```
-0       2B    opcode = 0x003A
-2       10B   name (null-padded)
-12      2B    level (LE16)
-14      4B    entity_id (LE32)
-18      1B    flag
-```
-
-### 0x0042 — Character Stats (107 bytes)
-```
-0       2B    opcode = 0x0042
-2       4B    hp (LE32)
-6       4B    hp_max (LE32)
-10      4B    mp (LE32)
-14      4B    mp_max (LE32)
-18      89B   stats_tail (base stats, resistances, weight, etc.)
-```
-
-### 0x005B — Slot Table (218 bytes)
-24 slots, each 9 bytes: `[1B active][1B index][7B zeros]`
-
-### 0x005C — Empty (39 bytes)
-`[opcode][37B zeros]`
-
-### 0x005D — Timestamp (6 bytes)
-```
-0       2B    opcode = 0x005D
-2       4B    unix_timestamp (LE32)
-```
-
-### 0x0063 — Equip Result (8 bytes)
-```
-0       2B    opcode = 0x0063
-2       4B    result (LE32, 0=success)
-6       2B    slot (LE16)
-```
-
-### 0x006A — Buff Info (108-134 bytes)
-```
-0       2B    opcode = 0x006A
-2       4B    entity_id (LE32)
-6       2B    buff_count (LE16)
-8       N*10B buffs: [LE16 buff_id][LE32 duration_ms][LE32 caster_id]
-```
-
-### 0x006D — Movement Response Flag (2 bytes)
-Used as first sub-message in movement response, followed by 0x0005 position.
-```
-0       2B    opcode = 0x006D
-```
-
-### 0x0128 — World Chat (variable)
-```
-0       2B    opcode = 0x0128
-2       4B    source (LE32)
-6       1B    channel (0x0a=world 0x0b=shout 0x02=party)
-7       var   sender_name (null-terminated)
-var     var   message (null-terminated)
-```
-
-### 0x012A — Indexed Slot (23 bytes)
-```
-0       2B    opcode = 0x012A
-2       4B    index (LE32)
-6       17B   zeros
-```
-
-### 0x0142 — Toggle Flag (3 bytes)
-```
-0       2B    opcode = 0x0142
-2       1B    flag
-```
-
-### 0x0144 — Empty (8B), 0x0145 — Empty (4B), 0x0162 — Empty (10B), 0x0164 — Empty (19B), 0x017D — Empty (4B)
-Zero-filled constant packets sent during init.
-
-### 0x0149 — Currency (38 bytes)
-```
-0       2B    opcode = 0x0149
-2       4B    currency_type (LE32)
-6       4B    zeros
-10      4B    amount (LE32)
-14      20B   zeros
-34      1B    flag
-35      2B    tail (LE16)
-37      1B    zero
-```
-
-### 0x014A — Party Name (19 bytes)
-```
-0       2B    opcode = 0x014A
-2       12B   name (null-terminated)
-14      5B    event flags
-```
-
-### 0x0158 — Skill Slot (74 bytes)
-```
-0       2B    opcode = 0x0158
-2       72B   slot_data
-```
-34 instances sent during init (skill/hotbar data).
-
-### 0x0160 — Settings (27 bytes)
-```
-0       2B    opcode = 0x0160
-2       4B    flag (LE32)
-6       9B    zeros
-15      4B    val_a (LE32)
-19      4B    val_b (LE32)
-23      4B    val_c (LE32)
-```
-
-### 0x016F — Flags (20 bytes)
-```
-0       2B    opcode = 0x016F
-2       4B    type_id (LE32)
-6       1B    flag_a
-7       1B    flag_b
-8       3B    zeros
-11      1B    flag_c
-12      8B    zeros
-```
-
-### 0x0178 — Two-Value (10 bytes)
-`[opcode][LE32 value][LE32 trailing]`
-
-### 0x017A — Data (19 bytes)
-`[opcode][LE32 a][LE32 b][9B zeros]`
-
-### 0x0185 — Entity Reference (14 bytes)
-```
-0       2B    opcode = 0x0185
-2       4B    entity_id (LE32)
-6       8B    zeros
-```
-
-### 0x018A — Keepalive (10 or 14 bytes)
-```
-Tick (10B):
-  [opcode][LE32 type=4][LE32 data=0]
-
-Timer (14B):
-  [opcode][LE32 type=8][LE32 minute_count][LE32 zeros]
-```
-
-### 0x018E — Zone List (166 bytes)
-```
-0       2B    opcode = 0x018E
-2       4B    unk = 1 (LE32)
-6       160B  20 x (LE32 zone_id, LE32 zero)
-```
-
-### 0x018F — Three-Value (14 bytes)
-`[opcode][LE32 a][LE32 b][LE32 c]`
-
-### 0x0191 — Session Config (10 bytes)
-`[opcode][LE32 a][LE32 b]` (b=50, possibly tick interval)
+If an opcode isn't listed here, either we've never seen it or we log-and-ignore it.
 
 ---
 
-## C->S Opcodes (Client to Server)
+## S→C (server → client)
 
-All C->S payloads start with: `[LE16 counter][LE16 opcode]` (4 bytes), then opcode-specific data.
+### Character & player
 
-| Opcode | Name | Min Size | Fields After Header |
-|--------|------|----------|---------------------|
-| 0x0003 | ACK | 4B | (none) |
-| 0x0004 | MOVEMENT | 15B | `[7B unk][LE16 dest_x at +11][LE16 dest_y at +13]` |
-| 0x0005 | ENTITY_POS | 8B | `[LE32 entity_id]` |
-| 0x0006 | ENTITY_SELECT | 8B | `[LE32 target_entity_id at +4]` |
-| 0x0007 | ENTITY_POS_ACK | 4B | (silent) |
-| 0x0009 | STOP_ACTION | 4B | (clears dialog state) |
-| 0x000B | ENTITY_STATUS_ACK | 4B | (silent) |
-| 0x000D | ENTITY_ACTION | 8B | `[LE32 runtime_entity_id at +4]` |
-| 0x000E | ENTITY_SPAWN_ACK | 4B | (silent) |
-| 0x000F | TARGET_MOB | 8B | `[LE32 mob_id at +4]` |
-| 0x0012 | BUY_SELL | 8B | `[LE16 item_id at +4][LE16 quantity at +6]` |
-| 0x0016 | USE_SKILL | 9B | `[1B skill_id at +4][LE32 target_id at +5]` |
-| 0x0019 | ENTITY_ACTION_2 | 8B | Same handler as 0x000D |
-| 0x001A | PLAYER_DETAILS | 8B | `[LE32 target_entity_id at +4]` |
-| 0x002C | INSPECT_PLAYER | 8B | `[LE32 target_entity_id at +4]` |
-| 0x002E | CHAT_SEND | 5B | `[1B channel][var message (null-term)]` |
-| 0x0034 | CANCEL_ACTION | 4B | (clears dialog state) |
-| 0x003E | TOGGLE_ACTION | 5B | `[1B action_id at +4]` |
-| 0x0044 | NPC_DIALOG | 9B | `[4B unk][1B option_index at +8]` |
-| 0x0143 | ZONE_READY | 4B | (triggers keepalive tick response) |
-| 0x0150 | EMOTE | 6B | `[LE16 emote_id at +4]` |
-| 0x0152 | ANTI_AFK_TICK | 4B | (silent) |
-| 0x015E | PING | 5B | (silent) |
+#### `0x0001` — Player spawn (140B) ✅
+
+The rich player-spawn packet. Sent by our multiplayer presence broadcast. Client handler: `sub_5E97F0`.
+
+```
+00-01  LE16  opcode = 0x0001
+02-05  LE32  entity_id
+06-09  LE32  flags → model+480 (capture: 0x8D)
+10-13  LE32  tile_x
+14-17  LE32  tile_y
+18-33  16B   character name, NUL-padded
+35-49  15B   guild name, NUL-terminated
+52     u8    direction (<<21 = facing bearing)
+53-56  LE32  flags → model+572
+57-61  5B    appearance bytes 1-5 → model+576..+580
+62     u8    faction → model+744  (NOT class_id; see 09_RE)
+63     u8    state → model+958 (7-11 trigger mount/pet/buff)
+64-65  LE16  → model+752
+66-97  8×LE32  equipment slot IDs ❓
+98-101 LE32  equipment slot 13
+102-105 LE32 equipment slot 14
+106-107 LE16 extra count → callback
+108-111 LE32 equipment slot 15
+112-114 3B   state/buff bytes
+115    u8    guild short-tag length
+116-131 16B  guild short tag string
+132-139 8B   trailing appearance/buff data
+```
+
+**Note**: Offset 62 is **faction**, not class_id. Our current builder accepts a `class_id` parameter but writes it to the faction byte — see [09_REVERSE_ENGINEERING.md](09_REVERSE_ENGINEERING.md) for the investigation. The real class_id field is only in the 0x0002 profile (init packet), not in spawn packets.
+
+**Equipment slots**: `0x0001` carries 8 + 3 equipment IDs that drive the visible outfit. We currently send all zeros (no DB equipment table yet), which is why remote players appear as naked default models.
+
+#### `0x000E` — Entity spawn (47B) ✅
+
+A plain entity spawn. Client handler: `sub_5EF410`. No UI side effects, so it works mid-game on receivers that have already finished their init flow (unlike `0x0001` which bails when the client isn't in char-select state).
+
+```
+00-01  LE16  opcode = 0x000E
+02-05  LE32  entity_id
+06-09  LE32  flags
+10-13  LE32  tile_x
+14-17  LE32  tile_y
+35     u8    direction
+36-39  LE32  sprite_id (template, 999 = char-select player model)
+40-41  LE16  → model+506
+42-43  LE16  → model+508
+```
+
+Paired with `0x0001` in our presence broadcast so that both fresh-login and mid-game observers see new arrivals. See [04_WORLD_SERVER.md](04_WORLD_SERVER.md) for the dual-opcode story.
+
+#### `0x0005` — Entity move (24B) ✅
+
+Tells observers that an entity is walking from one position to another.
+
+```
+00-01  LE16  opcode = 0x0005
+02-05  LE32  entity_id
+06-09  LE32  cur_x
+10-13  LE32  cur_y
+14-17  LE32  dst_x
+18-21  LE32  dst_y
+22-23  LE16  speed
+```
+
+**Correction**: older docs called this 0x0018. That was wrong — 0x0018 is an emote/animation opcode. Entity move is 0x0005 (confirmed from `sub_5EC7B0`).
+
+#### `0x006D` — Move response marker (2B) ✅
+
+Single-opcode sub-message used as the **first** sub-message in a movement response. Pairs with an immediately-following `0x0005` to form the 30B move response:
+
+```
+sub1:  [LE16 sub_len=2][LE16 0x006D]
+sub2:  [LE16 sub_len=24][0x0005 entity_move layout…]
+```
+
+#### `0x001B` — Entity despawn (14B) ✅
+
+```
+00-01  LE16  opcode = 0x001B
+02-05  LE32  entity_id
+06-07  LE16  flags
+08-11  LE32  area_id
+12-13  2B    zeros
+```
+
+#### `0x0002` — Player profile ✅ (mostly — see note)
+
+Carried only in `init_pkt1`. This is the big "self" profile packet. Client handler: `sub_5E9C90`. Full byte layout is in [09_REVERSE_ENGINEERING.md](09_REVERSE_ENGINEERING.md); the short version:
+
+```
+00-01  LE16  opcode = 0x0002
+02-05  LE32  entity_id
+...
+16-31  16B   name
+60     u8    faction → model+744         (capture=3=Steel)
+64     u8    → model+1206 ❓
+65-68  LE32  level → model+588
+69-92  6×LE32 stat block 1 → model+1208..+1228 ❓ big values, likely XP/timers
+93     u8    class_id → model+1232       (capture=1=Priest)
+102-113 LE32×3 HP_max / HP / MP_max
+114-117 LE32  MP
+118-121 WORD×2 stamina / stamina_max
+126-157 5×LE32 combat stats (R.Atk/L.Atk/Dfs/Spl Atk/Spl Dfs) ✅ empirical
+...
+```
+
+### NPCs, monsters, entities (init-time spawns) ❓
+
+These come from the captured seed packets (`init_pkt1`, `area_pkt*`). Layouts are mostly verified by comparing bytes across captures; we don't always know what each field *means*, but we know what values to write to get the client to render something.
+
+| Op | Size | What | Status |
+|---|---|---|---|
+| `0x0007` | 7B | Entity position marker | ❓ |
+| `0x0008` | 65B | NPC spawn (name, pos, sprite, type) | ✅ layout, ❓ some extras |
+| `0x000F` | 46B | Monster spawn (same shape as 0x000E + 1B) | ❓ |
+| `0x0185` | 14B | Entity reference anchor | ❓ init-only |
+| `0x0021` | 24B | Entity anchor (map_id carrier) | ❓ init-only |
+| `0x005D` | 6B | Unix timestamp | ✅ |
+
+### Chat & dialog
+
+#### `0x001E` — Chat message / area entity ref ✅ (dual-use)
+
+**Important**: `0x001E` means two different things depending on sub_len and context.
+
+**Short form (6B)** — area entity reference, only seen inside init packets:
+```
+00-01  LE16  opcode = 0x001E
+02-05  LE32  entity_ref
+```
+
+**Long form (variable)** — chat/system message, used at runtime:
+```
+00-01  LE16  opcode = 0x001E
+02-03  LE16  chat_type (0x0001=system, 0x0017=player)
+04-07  LE32  sender_entity_id
+08-15  8B    sender_name (NUL-padded)
+16-19  LE32  pos_x
+20-23  LE32  pos_y
+24     u8    channel (0x01=system, 0x00=normal)
+25-..  var   message (NUL-terminated, max ~200 chars)
+```
+
+Our NPC-dialog workaround uses the long form with `chat_type=0x0001, channel=0x01` to get NPC speech into the chat bubble. ❓ The "real" NPC dialog opcode is unknown — our best guess was `0x002B` but we've never seen it actually work.
+
+#### `0x0128` — World/shout/party chat (variable) ❓
+
+```
+00-01  LE16  opcode = 0x0128
+02-05  LE32  source_entity_id
+06     u8    channel (0x0A=world, 0x0B=shout, 0x02=party)
+07-..  var   sender_name (NUL-terminated)
+..-..  var   message (NUL-terminated)
+```
+
+Implemented in `packet_builders.build_world_chat`. Not currently broadcast by our handlers — chat uses `0x001E` instead.
+
+### Combat
+
+#### `0x0019` — Combat action (27-53B) ❓
+
+```
+00-01  LE16  opcode = 0x0019
+02-05  LE32  source_entity
+06-09  LE32  target_entity
+10-11  LE16  action_type (1=basic, 2=skill, 3=miss)
+12-13  LE16  skill_id
+14-17  LE32  damage
+18-19  LE16  flags (crit=0x01, miss=0x02)
+20-24  5B    zeros
+```
+
+The client renders a hit animation + damage number when it receives this. ❌ HP bar updates don't use 0x0019 — we've been sending it for combat and HP displays don't move. The real HP-update opcode is still unidentified. See [09_REVERSE_ENGINEERING.md](09_REVERSE_ENGINEERING.md).
+
+#### `0x000B` — Entity status (13B) ❓
+
+```
+00-01  LE16  opcode = 0x000B
+02-05  LE32  entity_id
+06     u8    status_a (1=alive, 7=damaged, 0=dead)
+07     u8    status_b
+08-12  5B    zeros
+```
+
+### Stats & currency
+
+#### `0x0042` — Character stats (107B) ❓
+
+Core character-sheet packet. First 18 bytes are verified; the 89B tail is replayed from capture.
+
+```
+00-01  LE16  opcode = 0x0042
+02-05  LE32  hp
+06-09  LE32  hp_max
+10-13  LE32  mp
+14-17  LE32  mp_max
+18-106 89B   base stats / resistances / weight / etc. ❓ replayed from capture
+```
+
+#### `0x0149` — Currency (38B) ✅
+
+```
+00-01  LE16  opcode = 0x0149
+02-05  LE32  currency_type
+06-09  4B    zeros
+10-13  LE32  amount
+14-33  20B   zeros
+34     u8    flag
+35-36  LE16  tail
+37     u8    zero
+```
+
+### Keepalive & infrastructure
+
+#### `0x018A` — Keepalive (10B or 14B) ✅
+
+```
+Tick (10B, every 1s):  [0x018A][LE32 type=4][LE32 0]
+Timer (14B, every 60s): [0x018A][LE32 type=8][LE32 minute_count][LE32 0]
+```
+
+#### `0x000C` — MOTD (variable) ✅
+
+Login-response only.
+
+```
+00-01  LE16  opcode = 0x000C
+02-05  LE32  flags (0x69402978)
+06-09  LE32  text_length
+10-..  var   text (NUL-terminated)
+```
+
+### Settings / zoning / world config
+
+All of these ship from seed packets with fields replayed from capture. We know just enough to not break them:
+
+| Op | Size | Role | Status |
+|---|---|---|---|
+| `0x0013` | 10B | Pet status tick | ❓ |
+| `0x0014` | 9B | Flag / mode | ❓ |
+| `0x0015` | 7B | Server timer | ❓ |
+| `0x001D` | 16B | Entity setting (carries player eid in ACK response) | ❓ |
+| `0x001F` | variable | Player title ("PT" prefix) | ❓ |
+| `0x0022` | 24B | Loot announce | ❓ |
+| `0x0027` | 10B | Area ref | ❓ sent in ACK response |
+| `0x0028` | 85B | Player appears (older spawn variant) | ❓ |
+| `0x003A` | 19B | Inspect player response | ❓ |
+| `0x003F`, `0x0040` | 10B | Area refs | ❓ sent in ACK response |
+| `0x005B` | 218B | Slot table (24 × 9B) | ❓ init |
+| `0x005C` | 39B | Empty padding | ❓ |
+| `0x0063` | 8B | Equip result | ❓ |
+| `0x006A` | 108-134B | Buff info | ❓ |
+| `0x012A` | 23B | Indexed slot | ❓ |
+| `0x0142` | 3B | Toggle flag | ❓ |
+| `0x0144 / 0x0145 / 0x0162 / 0x0164 / 0x017D` | small | Zero-filled init constants | ❓ |
+| `0x014A` | 19B | Party name | ❓ |
+| `0x0158` | 74B | Skill slot (34× in init_pkt4) | ❓ |
+| `0x0160` | 27B | Settings block | ❓ |
+| `0x016F` | 20B | Flags | ❓ |
+| `0x0178` | 10B | Two-value | ❓ |
+| `0x017A` | 19B | Data | ❓ |
+| `0x018E` | 166B | Zone list (20 × 8B) | ❓ |
+| `0x018F` | 14B | Three-value | ❓ |
+| `0x0191` | 10B | Session config | ❓ |
 
 ---
 
-## Opcode Categories
+## C→S (client → server)
 
-### Init Sequence (S->C)
-0x0185, 0x0021, 0x005D, 0x0042, 0x0149, 0x001D, 0x0005, 0x0007, 0x0008, 0x000E, 0x000F, 0x005B, 0x005C, 0x0144, 0x0145, 0x0162, 0x0164, 0x017D, 0x0014, 0x001E, 0x0027, 0x003F, 0x0040, 0x012A, 0x0142, 0x0149, 0x014A, 0x0158, 0x0160, 0x016F, 0x0178, 0x017A, 0x018A, 0x018E, 0x018F, 0x0191
+Every C→S sub-message has `[LE16 sub_len][LE16 opcode][body…]`. Handler implementations live in [src/handlers/](../src/handlers/).
 
-### Gameplay (bidirectional)
-Movement: 0x0004 (C), 0x0005 (S), 0x006D+0x0005 (S response)
-Combat: 0x000F (C), 0x0016 (C), 0x0019 (S), 0x000B (S)
-NPC: 0x000D (C), 0x0044 (C), 0x001E (S chat), 0x002B (S dialog)
-Social: 0x002E (C), 0x001E (S), 0x0128 (S world chat), 0x0150 (C)
-Entity: 0x0008 (S spawn), 0x001B (S despawn), 0x0018 (S move), 0x0028 (S player appears)
+| Op | Name | Size | Body | Handler | Status |
+|---|---|---|---|---|---|
+| `0x0003` | ACK | 4B | — | inline in world loop | ✅ |
+| `0x0004` | MOVEMENT_REQ | 15B | `[7B from/flags][LE16 dst_x@+11][LE16 dst_y@+13]` | `movement.handle_movement` | ✅ |
+| `0x0005` | ENTITY_POS | 8B | `[LE32 entity_id]` | → `npc.handle_entity_action` | ✅ |
+| `0x0006` | ENTITY_SELECT | 8B | `[LE32 target@+4]` | `misc.handle_entity_select` | ✅ |
+| `0x0009` | STOP_ACTION | 4B | — | `combat.handle_stop_action` (clears dialog) | ✅ |
+| `0x000D` | ENTITY_ACTION | 8B | `[LE32 runtime_entity@+4]` | `npc.handle_entity_action` | ✅ |
+| `0x000F` | TARGET_MOB | 8B | `[LE32 mob_id@+4]` | `combat.handle_target_mob` | ✅ |
+| `0x0012` | BUY_SELL | 8B | `[LE16 item@+4][LE16 qty@+6]` | `misc.handle_buy_sell` (stub) | ❓ |
+| `0x0016` | USE_SKILL | 9B | `[u8 skill_id@+4][LE32 target@+5]` | `combat.handle_use_skill` | ✅ |
+| `0x0019` | ENTITY_ACTION_2 | 8B | same shape as `0x000D` | → `npc.handle_entity_action` | ✅ |
+| `0x001A` | REQUEST_PLAYER_DETAILS | 8B | `[LE32 target@+4]` | `social.handle_request_player_details` (log only) | ✅ |
+| `0x002C` | INSPECT_PLAYER | 8B | `[LE32 target@+4]` | not implemented | ❌ |
+| `0x002E` | CHAT_SEND | 5B+ | `[u8 channel][NUL-term text]` | `social.handle_chat_send` | ✅ |
+| `0x003E` | TOGGLE_ACTION | 5B | `[u8 action_id]` | `misc.handle_toggle_action` | ✅ |
+| `0x0044` | NPC_DIALOG | 9B | `[4B unk][u8 option_idx@+8]` | `npc.handle_npc_dialog` | ✅ |
+| `0x0143` | ZONE_READY | 4B | — | `misc.handle_zone_ready` | ✅ |
+| `0x0150` | EMOTE | 6B | `[LE16 emote_id]` | `social.handle_emote` (log only) | ✅ |
+| `0x0152` | ANTI_AFK_TICK | 4B | — | silent | ✅ |
+| `0x015E` | PING | 5B | — | silent | ✅ |
 
-### Keepalive
-0x018A (S, every 1s tick / every 60s timer)
-0x0003 (C->S ACK, S->C ACK response)
+### Removed from earlier docs
+
+- `0x0034` CANCEL_ACTION — **never existed**. Older docs claimed it as an alias for STOP_ACTION, but the dispatch table has no such opcode and the client doesn't send it. Dialog cancellation is just `0x0009` STOP_ACTION.
+
+### Known unknowns
+
+- ❌ **NPC dialog opcode (S→C)** — we fake it with `0x001E` chat. The real opcode hasn't been identified. Our earlier guess of `0x002B` never verified.
+- ❌ **HP-bar update opcode** — `0x0019` (combat action) renders damage numbers but doesn't move the target's health bar. We've been wrong about which opcode updates target HP at least twice now. Needs a targeted capture of live combat.
+- ❌ **The "3 area refs" in the ACK response** — `0x0027 / 0x003F / 0x0040` are needed for the client to proceed past world init but their field meanings are guessed.
+- ❌ **Equipment packets** — we have a stub `0x0063` equip result but we've never sent one and the client has no equipment to equip anyway. See [07_DATABASE.md](07_DATABASE.md) for the missing schema.

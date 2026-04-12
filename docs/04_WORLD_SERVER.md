@@ -1,261 +1,194 @@
-# World Server Flow
+# World server
 
-## Overview
-
-After the login server redirects the client, the world server handles all gameplay.
+Port `27901`. Everything that happens after the player commits to entering the game lives here. Source: [world_server.py](../src/world_server.py).
 
 ```
-Phase 1:   S->C  Hello (new XOR key)
-Phase 2:   C->S  Auth (session token) + optional ACK
-Phase 2b:  C->S  ACK (0x0003, if not bundled with auth)
-Phase 3:   S->C  Init packets (2 compressed packets)
-Phase 3b:  S->C  ACK response (64 bytes)
-Phase 3c:  S->C  Skill data (compressed)
-Phase 3d:  S->C  Area entity packets (NPCs, monsters)
-Phase 4:   Both  Game loop (keepalives + gameplay packets)
+Phase 1   S→C  Hello (new 16B XOR key)
+Phase 2   C→S  Auth (session token) — may bundle C→S ACK 0x0003
+Phase 3   S→C  Init packets 1 + 2 (compressed), then S→C ACK response
+Phase 4   C→S  C→S ACK (0x0003) if not bundled
+Phase 5   S→C  Skill data (compressed, init_pkt4)
+Phase 6   S→C  Area entity packets (NPCs, monsters)
+Phase 7   both Game loop: keepalives + bidirectional dispatch
 ```
 
-## Phase 1: Hello
+## Phase 1 — Hello ✅
 
-Same format as login server Hello. New random 16-byte key generated for this connection.
+Identical format to the login-server Hello (see [03_LOGIN_FLOW.md](03_LOGIN_FLOW.md)), just with a new random key. The session's `CryptXOR` (S→C, stateless) and `CryptXORIV` (C→S, evolving) are both seeded from this key.
 
-**Dual Crypto Contexts:**
-- `CryptXOR(key)` for S->C (server to client) — static key
-- `CryptXORIV(key)` for C->S (client to server) — evolving key
+## Phase 2 — Auth ✅
 
-## Phase 2: Auth
-
-Client sends auth packet containing the session token from the redirect.
+First encrypted packet. Sub-message opcode `0x0002`, containing the 4-byte session token from Phase 5 of the login flow:
 
 ```
-Auth payload (37 bytes observed):
-  [LE16 sub_length = 35]
-  [LE16 sub_type = 0x0002]
-  [... auth data ...]
-  [4B session_token]           # Last 4 bytes of payload
+[LE16 sub_len][LE16 0x0002][… 29B …][4B session_token]
 ```
 
-### Token Resolution
+The token is the last 4 bytes of the payload. Server calls [`consume_session(token)`](../src/game_server.py) (defined in the login server) to resolve it to an `entity_id`.
+
+❓ The 29 bytes between the opcode and the token are replayed-only; we don't know what they represent. Likely a client build hash or timestamp. Never varies in captures.
+
+If the client bundles auth + ACK into the same TCP segment, the server picks up both at once via `_receive_packets(..., timeout=5.0)`. Otherwise it waits for the ACK in Phase 4 separately.
+
+**Session map pin** ⚠: [world_server.py:221](../src/world_server.py#L221) currently does:
+```python
+map_id = 129  # TODO: honor player['map_id']
+```
+regardless of the DB's value. The captured init packets are for map 129 so we can only "start" there. Zone transfers at runtime still work.
+
+## Phase 3 — Init packets ✅
+
+Two LZO-compressed packets, built by [world_init_builder.py](../src/world_init_builder.py) from captured templates in `tools/seed_data/`.
+
+### init_pkt1 (~36 KB decompressed)
+
+Contains map geometry, entity anchors, timestamps, NPC spawns for the starting area, and the **player profile** (`0x0002` sub-message).
+
+Per-player patches:
+
+| Sub-op | Field | What we write |
+|---|---|---|
+| `0x0185` | `entity_id` (player) | session's entity_id |
+| `0x0021` | `map_id` | 129 (pinned) |
+| `0x005D` | `timestamp` | current Unix time |
+| `0x0002` | **player profile** | name, class, level, appearance, HP/MP, stats (see [world_init_builder.py:194](../src/world_init_builder.py#L194)) |
+
+See [09_REVERSE_ENGINEERING.md](09_REVERSE_ENGINEERING.md) for the full `0x0002` byte layout including the faction-vs-class-id saga.
+
+### init_pkt2 (~5 KB decompressed)
+
+Character sheet: HP/MP, currency, stamina.
+
+| Sub-op | Field |
+|---|---|
+| `0x0042` | hp, hp_max, mp, mp_max, stats |
+| `0x0149` | gold |
+
+### init_pkt4 (skills, ~2.5 KB decompressed)
+
+34 × `0x0158` skill slots. ❓ Currently replayed verbatim from the capture — per-player skill loadouts are not patched yet.
+
+## Phase 3b — S→C ACK response ✅
+
+Right after the init packets, the server sends a 64-byte payload with six sub-messages:
+
+```
+0x0142  toggle flag       3B   (x2)
+0x001D  entity setting    16B  (carries player entity_id)
+0x0027  area ref          10B
+0x0040  area ref          10B
+0x003F  area ref          10B
+```
+
+The client expects this before it starts sending gameplay packets. ❓ The three area-ref sub-messages look like "clear any cached area state for these IDs" pings; meanings of the individual `0x0027 / 0x003F / 0x0040` opcodes are not confirmed beyond "shut up the client".
+
+## Phase 6 — Area entity packets ✅
+
+NPC and monster spawns for the current map. Sourced by [area_entity_data.py](../src/area_entity_data.py):
+
+1. If a loaded `MapData` is present, spawns are regenerated dynamically from it.
+2. Otherwise fall back to the pre-captured `area_pkt01.hex`..`area_pkt17.hex` seeds.
+
+Each area packet is compressed and contains sub-messages:
+
+| Sub-op | Size | Meaning |
+|---|---|---|
+| `0x0008` | 65B | NPC spawn (name, position, sprite, type) |
+| `0x0007` | 7B | Entity position marker |
+| `0x000E` | 45B | Static entity spawn |
+| `0x000F` | 46B | Monster spawn |
+
+During loading, the server builds a **runtime entity registry** (`entity_id → npc_type_id`) so later clicks on an NPC can be resolved back to an xml definition. This registry is rebuilt from scratch on every zone transfer.
+
+## Phase 7 — Game loop ✅
+
+Two concurrent tasks:
+
+### Keepalive loop
 
 ```python
-from game_server import consume_session
-token = auth_payload[-4:]
-entity_id = consume_session(token)  # Pops from _pending_sessions
-
-if entity_id:
-    player = database.get_player(entity_id)
-else:
-    player = None
-
-# Fallback: use first player in DB (for debugging)
-if player is None:
-    player = db.execute("SELECT * FROM players LIMIT 1").fetchone()
-```
-
-### Bundled ACK
-
-The client often sends auth + ACK (0x0003) in the same TCP segment. The server checks for this:
-
-```python
-early_packets = await self._receive_packets(reader, framer, crypto_recv, addr, timeout=5.0)
-auth_payload = early_packets[0]
-for pkt in early_packets[1:]:
-    if opcode_at_offset_2(pkt) == 0x0003:
-        got_ack = True
-```
-
-## Phase 2b: Wait for ACK
-
-If the ACK wasn't bundled with auth, wait for it separately (30s timeout).
-
-```
-ACK packet (4+ bytes):
-  [LE16 sub_length]
-  [LE16 opcode = 0x0003]
-```
-
-## Game Data Loading
-
-After auth is accepted, the server loads game data for the player's zone:
-
-```python
-map_data = get_map(player['map_id'])              # Map from PAK files
-npc_db = get_npc_db()                              # 827 NPC definitions (npc.xml)
-monster_db = get_monster_db()                      # 1682 monster definitions (monster.xml)
-entity_registry = dict(get_seed_entity_registry()) # Entity ID -> NPC type mappings
-dialog_manager = get_dialog_manager()              # 42k strings, 24k dialog nodes
-```
-
-**Performance Note**: This loading takes ~7 seconds on slow machines. These should be cached at startup.
-
-## Phase 3: Init Packets
-
-Two large LZO-compressed packets containing the player's world state.
-
-### Init Packet 1 (init_pkt1.hex, ~36KB decompressed)
-
-Contains entity references, map anchors, timestamps, and entity settings. Per-player patches:
-
-| Opcode | Size | Patched Field |
-|--------|------|---------------|
-| 0x0185 | 14B | `entity_id` (player's entity) |
-| 0x0021 | 24B | `map_id` (player's current zone) |
-| 0x005D | 6B | `timestamp` (current Unix time) |
-
-### Init Packet 2 (init_pkt2.hex, ~5KB decompressed)
-
-Contains character stats and currency. Per-player patches:
-
-| Opcode | Size | Patched Field |
-|--------|------|---------------|
-| 0x0042 | 107B | `hp`, `hp_max`, `mp`, `mp_max` |
-| 0x0149 | 38B | `gold` (currency amount) |
-
-### Template Patching
-
-Templates are loaded once from `tools/seed_data/*.hex`, decompressed, then patched per-player using `_find_sub_message()` to locate opcodes within the sub-message stream.
-
-## Phase 3b: ACK Response (64 bytes)
-
-Sent in response to the client's ACK. Contains 6 sub-messages:
-
-```
-[LE16 len][0x0142 toggle_flag (3B)]     x2
-[LE16 len][0x001D entity_setting (16B)]  x1  (with player's entity_id)
-[LE16 len][0x0027 area_ref (10B)]        x1
-[LE16 len][0x0040 area_ref (10B)]        x1
-[LE16 len][0x003F area_ref (10B)]        x1
-```
-
-## Phase 3c: Skill Data
-
-34 skill slot sub-messages (opcode 0x0158, 74 bytes each), LZO-compressed.
-
-Loaded from `tools/seed_data/init_pkt4.hex`. Currently not per-player patched.
-
-## Phase 3d: Area Entity Packets
-
-NPC and monster spawn packets for the player's current zone.
-
-**Sources** (priority order):
-1. **Map-based**: If map PAK data is available, generate spawns from map entities
-2. **Seed data**: Fallback to pre-captured hex files (area_pkt01-17.hex)
-
-Each area packet contains sub-messages:
-- `0x0008` (65B) — NPC spawn (name, position, sprite, type)
-- `0x0007` (7B) — Entity position marker
-- `0x000E` (45B) — Static entity spawn
-- `0x000F` (46B) — Monster spawn
-
-## Phase 4: Game Loop
-
-Two concurrent tasks run after init:
-
-### Keepalive Loop
-
-```python
-while True:
-    tick_count += 1
+while connected:
     if tick_count % 60 == 0:
-        minute_count += 1
-        send(keepalive_timer(minute_count))  # 0x018A, 14 bytes
+        send(0x018A keepalive_timer 14B)   # every 60s
     else:
-        send(keepalive_tick())                # 0x018A, 10 bytes
+        send(0x018A keepalive_tick 10B)    # every 1s
+    tick_count += 1
     await asyncio.sleep(1.0)
 ```
 
-**Tick** (every 1s): `[0x018A][LE32 type=4][LE32 data=0]` (10 bytes)
-**Timer** (every 60s): `[0x018A][LE32 type=8][LE32 minute][LE32 0]` (14 bytes)
+If we skip keepalives for more than ~3s the client disconnects. Never had a case where it was sensitive to exact timing within that budget.
 
-### Packet Dispatch
+### Opcode dispatch
 
-The game loop reads packets and dispatches by opcode:
-
-```python
-while True:
-    data = await reader.read(65536)
-    packets = framer.feed(data)
-    for hdr, raw in packets:
-        payload = decrypt_and_trim(raw)
-        opcode = LE16(payload[2:4])
-
-        # Priority 1: ACK (inline)
-        if opcode == 0x0003:
-            send_ack_response(entity_id)
-
-        # Priority 2: Entity action opcodes
-        elif opcode in (0x0005, 0x0019):
-            await npc.handle_entity_action(...)
-
-        # Priority 3: Dispatch table
-        elif opcode in OPCODE_HANDLERS:
-            await OPCODE_HANDLERS[opcode](...)
-
-        # Priority 4: Silent/logging opcodes
-        else:
-            log_unknown_opcode(opcode, payload)
-```
-
-## Opcode Dispatch Table
+Single reader pulling packets via the `PacketFramer`; each payload's first sub-message opcode is looked up in `OPCODE_HANDLERS` (see [world_server.py:54](../src/world_server.py#L54)). The real dispatch table as of now:
 
 ```python
 OPCODE_HANDLERS = {
-    0x0004: movement.handle_movement,     # Walk/run
-    0x0006: misc.handle_entity_select,    # Click entity
-    0x0009: combat.handle_stop_action,    # Cancel action
-    0x000D: npc.handle_entity_action,     # Click NPC
-    0x000F: combat.handle_target_mob,     # Target monster
-    0x0012: misc.handle_buy_sell,         # Shop transaction
-    0x0016: combat.handle_use_skill,      # Cast skill
-    0x001A: social.handle_request_player_details,
-    0x002E: social.handle_chat_send,      # Chat message
-    0x003E: misc.handle_toggle_action,    # Sit/stand/meditate
-    0x0044: npc.handle_npc_dialog,        # Dialog option select
-    0x0143: misc.handle_zone_ready,       # Zone load complete
-    0x0150: social.handle_emote,          # Emote animation
+    0x0004: movement.handle_movement,              # MOVEMENT_REQ
+    0x0006: misc.handle_entity_select,             # ENTITY_SELECT
+    0x0009: combat.handle_stop_action,             # STOP_ACTION
+    0x000d: npc.handle_entity_action,              # ENTITY_ACTION (NPC click)
+    0x000f: combat.handle_target_mob,              # TARGET_MOB
+    0x0012: misc.handle_buy_sell,                  # BUY_SELL
+    0x0016: combat.handle_use_skill,               # USE_SKILL
+    0x001a: social.handle_request_player_details,  # REQUEST_PLAYER_DETAILS
+    0x002e: social.handle_chat_send,               # CHAT_SEND
+    0x003e: misc.handle_toggle_action,             # TOGGLE_ACTION
+    0x0044: npc.handle_npc_dialog,                 # NPC_DIALOG
+    0x0143: misc.handle_zone_ready,                # ZONE_READY
+    0x0150: social.handle_emote,                   # EMOTE
 }
 ```
 
-### Special Inline Opcodes
+Inline specials (handled outside the table):
 
-| Opcode | Handling |
-|--------|----------|
-| 0x0003 | ACK — send 64-byte ACK response |
-| 0x0005, 0x0019 | Entity action — route to `npc.handle_entity_action` with length check |
-| 0x0034 | Cancel action — clear dialog state |
+- `0x0003` → send S→C ACK response
+- `0x0005`, `0x0019` → forwarded to `npc.handle_entity_action` (they share payload shape with `0x000d`)
 
-### Silent Opcodes (logged, no response)
+Unknown opcodes just get `log.debug`'d; there's no fallback handler. A small allow-list of known no-ops (`0x0027`, `0x0101`, `0x0122`, `0x0127`, `0x012b`, `0x012d`, `0x0139`) is silenced to keep logs clean.
 
-| Opcode | Name |
-|--------|------|
-| 0x0007 | ENTITY_POS_ACK |
-| 0x000B | ENTITY_STATUS_ACK |
-| 0x000E | ENTITY_SPAWN_ACK |
-| 0x015E | PING |
-| 0x0152 | ANTI_AFK_TICK |
+## Multiplayer presence
 
-## Zone Transfer
+Three wire events get broadcast across sessions on the same `map_id`. All of this lives in [presence.py](../src/presence.py), wrapping the `PlayerTracker` so handlers don't iterate sessions themselves.
 
-When a player warps to another map (via NPC gate or dialog action):
+| Event | Triggered by | Packets sent to observers |
+|---|---|---|
+| Player joins zone | Phase 3 completes | `0x0001` + `0x000E` spawn (dual — see below) |
+| Player moves | [movement.handle_movement](../src/handlers/movement.py) after echoing MOVE_RESP to the mover | `0x0005` ENTITY_MOVE |
+| Player leaves | Session teardown, before `tracker.unregister` | `0x001B` ENTITY_DESPAWN |
+| Player enters a zone that already has others | Same as "joins" | The newcomer also receives spawn packets for every existing session, so they see everyone immediately |
 
-```python
-async def handle_zone_transfer(server, writer, builder, session,
-                                dest_map_id, spawn_point, addr):
-    1. Resolve spawn position from config.MAP_SPAWN_POINTS
-    2. Load new map: get_map(dest_map_id)
-    3. Load NPC/monster databases
-    4. Merge map's local dialogs
-    5. Create fresh entity_registry
-    6. Generate area packets for new zone
-    7. Send area packets to client
-    8. Send movement response (new position)
-    9. Update session state (map_id, pos, map_data, registry)
-    10. Persist to database
-```
+### Dual-opcode spawn ✅
 
-## Broadcasting
+On join, every spawn broadcast sends **two** sub-messages: `0x0001` **and** `0x000E`.
 
-The world server can broadcast packets to all players in a zone:
+- `0x0001` (client handler `sub_5E97F0`) has the rich layout — name, appearance bytes, guild, equipment slots — but it bails if the receiver isn't in a char-select / fresh-login state. It reliably lands on clients that haven't finished their init flow yet.
+- `0x000E` (client handler `sub_5EF410`) is a bare-bones spawn (entity id, tile position, sprite template 999). It works mid-game but carries no name or appearance.
+
+Sending both lets each receiver process whichever one its current state accepts; the unused opcode is ignored. This is how we get two already-in-world clients to see each other.
+
+**Current bug** ❌: `0x0001` carries 8 + 3 equipment slot IDs (offsets 66-97 and 98/102/108). We send all zeros because our DB has no `equipment` table yet, so remote players render in the default naked model regardless of what their owning client sees. Fix path: add an `equipment` table and populate these slots before calling `build_remote_player_spawn`. See `presence._spawn_subs` in [presence.py](../src/presence.py) for the call site.
+
+## Mob state
+
+[mob_state.py](../src/mob_state.py) holds a `MobRegistry`: one `Mob` per `entity_id` tracking current/max HP and a respawn deadline. Mobs are lazily registered the first time a player damages one (combat handler), not pre-populated from the map.
+
+The world server runs a `_mob_tick_loop` task ([world_server.py](../src/world_server.py#L89)) every 5s that calls `tracker.tick_respawns()` — any dead mob past its `RESPAWN_DELAY_SEC` (30s) has its HP restored. ❓ We don't yet broadcast a respawn packet, so clients that saw the death animation won't see the mob reappear until they zone out and back.
+
+## Zone transfer
+
+When an NPC dialog action warps the player ([movement.handle_zone_transfer](../src/handlers/movement.py)):
+
+1. Resolve target `(x, y)` from `config.MAP_SPAWN_POINTS[(dest_map_id, spawn_point)]`, falling back to `DEFAULT_SPAWN`.
+2. Load `MapData` for the destination map.
+3. Rebuild the runtime entity registry and regenerate area entity packets.
+4. Merge the destination map's local dialogs into the session's dialog manager.
+5. Send the area packets.
+6. Send a movement response at the new position so the client updates its world coords.
+7. Persist `map_id / pos_x / pos_y` to the DB via `update_player_map`.
+8. Presence broadcasts aren't currently re-run on zone-transfer — ❓ so other players on the new map don't see the arriving player until the next movement tick. Fix pending.
+
+## Broadcasting helper
 
 ```python
 async def broadcast_to_zone(self, map_id, payload, exclude_entity=0):
@@ -265,25 +198,27 @@ async def broadcast_to_zone(self, map_id, payload, exclude_entity=0):
         await session['writer'].drain()
 ```
 
-## Connection Cleanup
+Used by chat. Presence broadcasts use a lower-level path with `gather()` drains so one slow socket doesn't block the others.
 
-On disconnect (normal or error):
+## Cleanup + error handling
 
-```python
-finally:
-    writer.close()
-    session = self.sessions.pop(str(addr), None)
-    if session:
-        self.tracker.unregister(session.get('entity_id', 0))
-    log.info(f"[{addr}] Session ended")
-```
+On any disconnect the `finally` block:
 
-## Error Handling
+1. Calls `presence.broadcast_despawn` while the session is still in the tracker.
+2. `tracker.unregister(entity_id)` to remove from the zone index.
+3. Pops from `self.sessions`.
+4. Closes the writer.
 
-| Error | Handling |
-|-------|----------|
-| ConnectionReset/BrokenPipe | Info log, cleanup |
-| IncompleteReadError | Info log, cleanup |
-| Windows errors (64, 10053, 10054) | Treated as disconnect |
-| Other OSError | Full traceback logged |
-| Handler exceptions | Caught at top level, logged |
+| Error | Behavior |
+|---|---|
+| `ConnectionResetError`, `BrokenPipeError`, `IncompleteReadError` | info-level log, clean cleanup |
+| Windows 64 / 10053 / 10054 | treated as disconnect |
+| Anything else | full traceback |
+
+## Known unknowns
+
+- ❌ **The 29 mystery bytes of the auth packet.** Replayed verbatim; we don't know the layout.
+- ❌ **How the client expects a respawn announcement**. We don't send one — need to check what the real server sent after mob death.
+- ❓ **The `0x0027 / 0x003F / 0x0040 / 0x001D` area-ref sub-messages in the ACK response.** Needed for the client to proceed but the per-byte meaning is guessed.
+- ❌ **Walkability.** The server doesn't know which tiles are passable — movement is trusted from the client. Fix requires parsing map `.MPC` collision data from the PAK archives.
+- ❌ **Skill data per-player patching.** `init_pkt4` is replayed as-is; each player gets Soualz's skill loadout.

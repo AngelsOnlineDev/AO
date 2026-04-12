@@ -1,292 +1,255 @@
-# Game Handlers
+# Handlers
 
-All handlers share this signature:
+Handlers live under [src/handlers/](../src/handlers/) and share the same signature:
+
 ```python
-async def handler(server, writer, builder, session, payload, addr)
+async def handler(server, writer, builder, session, payload, addr):
+    ...
 ```
 
-## Movement (handlers/movement.py)
-
-### handle_movement (Opcode 0x0004)
-
-**C->S**: `[4B header][7B unk][LE16 dest_x at +11][LE16 dest_y at +13]`
-
-**Process**:
-1. Read destination from payload bytes 11-14
-2. Calculate distance from current position
-3. If distance > `MAX_MOVE_STEP` (200px), clamp to max step
-4. Build movement response
-5. Update session `pos_x`, `pos_y`
-6. Persist to database
-7. Broadcast to zone
-
-**S->C Response** (30 bytes framed):
-```
-[LE16 len=2] [LE16 0x006D]                                 # Move flag
-[LE16 len=24][LE16 0x0005][LE32 entity_id]                  # Position
-             [LE32 cur_x][LE32 cur_y]
-             [LE32 dst_x][LE32 dst_y]
-             [LE16 speed=110]
-```
-
-### handle_zone_transfer
-
-Called by NPC gates and dialog actions (action type 37).
-
-**Process**:
-1. Resolve spawn position from `config.MAP_SPAWN_POINTS[(map_id, point)]`
-2. Load new map data from PAK files
-3. Load NPC/monster databases
-4. Merge map-local dialogs into DialogManager
-5. Create fresh entity registry
-6. Generate and send area packets (NPC/monster spawns)
-7. Send movement response with new position
-8. Update session state and database
-
-### process_dialog_actions
-
-Checks if a dialog node has executable actions (e.g., zone warp).
-
-**Supported action types**:
-- **37**: Zone warp — `params[0]` = dest_map_id, `params[1]` = spawn_point
+They're wired into the world server via the `OPCODE_HANDLERS` dict in [world_server.py:54](../src/world_server.py#L54). This doc says what each handler actually *does* — not just its opcode.
 
 ---
 
-## NPC Interaction (handlers/npc.py)
+## movement.py
 
-### handle_entity_action (Opcode 0x000D)
+### `handle_movement` — C→S `0x0004` ✅
 
-**C->S**: `[4B header][LE32 runtime_entity_id at +4]`
+Payload: `[4B frame][7B unk][LE16 dst_x@+11][LE16 dst_y@+13]`. The client also fills in the "from" position at bytes 4 and 6 but we trust the *from* values the client reports.
 
-**NPC Resolution Flow**:
-```
-1. Store runtime_entity_id in session['last_npc_entity_id']
-2. Look up NPC type: entity_registry[runtime_entity_id] -> npc_type_id
-3. Look up NPC name: npc_db[npc_type_id] -> npc_info
-4. Check NPC_BEHAVIORS dict for hardcoded behaviors
-5. If no behavior, check map_data.npc_dialogs for dialog_id
-6. Start dialog or send chat message
-```
+Flow:
+1. Read `from_x/y` and `dst_x/y` from the packet.
+2. Snap current session position to `from_x/y` (the client's belief wins — our session state comes from replayed captures and doesn't always match).
+3. Clamp total step distance to `MAX_MOVE_STEP` (200 px). Larger moves get scaled to the 200-px ray toward the requested destination.
+4. Build a **30-byte move response** (the `0x006D + 0x0005` pair) and write it to the player's own socket.
+5. Persist new `pos_x/y` to the DB.
+6. Call `presence.broadcast_movement(...)` so every other player on the same `map_id` receives a `0x0005` update for this entity.
 
-### NPC Behaviors
+❌ **No collision check.** The server has no walkability data — a malicious client can walk through walls. Fix requires parsing `.MPC` collision layers, which is blocked on PAK extraction.
 
-Hardcoded behaviors for specific NPC type IDs:
+### `handle_zone_transfer`
 
-| NPC Type ID | Name | Behavior |
-|-------------|------|----------|
-| 2006 | Census Angel | Class selection dialog |
-| 2429 | BattlefieldAngel | Shop (shop_id=1) |
-| 8804 | Blessing Angel | Totem (message only) |
-| 1553 | House Pickets | Gate -> map 3 |
-| 1554 | Gaoler Angel | Gate -> map 3 |
-| 1938 | Dark City Tot | Totem |
-| 1940 | Breeze Totem | Totem |
+Called by dialog-action warps (action_type `37`) and NPC gates. Not dispatched from an opcode — triggered internally.
 
-**Behavior Types**:
-- `'gate'`: Instant zone transfer to `dest_map` with `spawn_point`
-- `'shop'`: Welcome message + shop open (TODO)
-- `'totem'`: System message
-- `'census_angel'`: Class selection state machine
-- `'dialog'`: Start specific dialog_id
-- `'quest_npc'`: Quest progression
+1. Resolve spawn position from `config.MAP_SPAWN_POINTS[(dest_map_id, spawn_point)]` → fall back to `DEFAULT_SPAWN` → fall back to map center if we have a `MapData`.
+2. Load `MapData(dest_map_id)` (from PAK if available, else empty).
+3. Merge the destination map's local dialogs into the dialog manager.
+4. Rebuild the runtime entity registry for the new zone.
+5. Generate and send area entity packets (NPC/mob spawns).
+6. Send a move response at the new position so the client relocates.
+7. Persist `map_id / pos_x / pos_y`.
 
-### Census Angel (Class Selection)
+❓ Presence is not re-broadcast on zone transfer — other players on the destination map don't see the arrival until the next movement tick.
 
-State machine per player entity:
+### `process_dialog_actions`
 
-```
-State 'menu':           Show class list, wait for number
-State 'confirm_<N>':    Player picked class N, ask yes/no
-```
+Checks a dialog node's `actions` list for executable actions:
 
-**Class Options**:
-| ID | Class | Category |
-|----|-------|----------|
-| 1 | Priest | Combat |
-| 2 | Summoner | Combat |
-| 3 | Wizard | Combat |
-| 4 | Magician | Combat |
-| 5 | Protector | Heavy |
-| 6 | Warrior | Heavy |
-| 7 | Swordsman | Heavy |
-| 8 | Spearman | Heavy |
-| 9 | Archer | Ranged |
-| 10 | Weaponsmith | Crafting |
-| 11 | Armorsmith | Crafting |
-| 12 | Tailor | Crafting |
-| 13 | Technician | Crafting |
-| 15 | Chef | Crafting |
+- **Action 37 (zone warp)** ✅: `params = [dest_map_id, spawn_point, flag?]` — calls `handle_zone_transfer`.
 
-Selection is done via chat messages intercepted by `handle_census_chat()`.
-
-### handle_npc_dialog (Opcode 0x0044)
-
-**C->S**: `[4B header][4B unk][1B option_index at +8]`
-
-**Process**:
-1. Get active dialog state from session
-2. Call `dm.select_option(state, option_index)` to advance
-3. If next state is None -> send dialog close, clear state
-4. If next state exists -> check for actions (warp, etc.), send dialog text
-
-### send_npc_chat
-
-Sends NPC speech as a chat message (workaround while real dialog opcode is unknown).
-
-```
-[LE16 0x001E][LE16 chat_type=0x0001][LE32 npc_entity_id]
-[8B npc_name][LE32 pos_x][LE32 pos_y][1B channel=0x01]
-[var message + null]
-```
+Any other action type is ignored. Dialog-driven quest/item granting isn't implemented.
 
 ---
 
-## Combat (handlers/combat.py)
+## npc.py
 
-### handle_stop_action (Opcode 0x0009)
-Clears dialog state. No response sent.
+### `handle_entity_action` — C→S `0x000D` ✅ (+ `0x0005`, `0x0019`)
 
-### handle_target_mob (Opcode 0x000F)
+Payload: `[4B frame][LE32 runtime_entity_id@+4]`. `0x0005` and `0x0019` reuse the same handler because their payload shape is identical and the client uses them for "clicked" on an entity in different contexts.
 
-**C->S**: `[4B header][LE32 mob_id at +4]`
+Flow:
+1. Resolve `runtime_entity_id → npc_type_id` via the session's `entity_registry`.
+2. Look up `npc_type_id` in `npc_db` (from `npc.xml`).
+3. If `npc_type_id < 1500`, it's a monster — route to `combat.handle_auto_attack` for a basic attack. **New routing — clicks on mice now actually damage them.**
+4. Otherwise check the `NPC_BEHAVIORS` dict for a hardcoded behavior. Seven entries right now:
 
-**Process**:
-1. Store `session['target_mob_id'] = mob_id`
-2. Send entity status response
+   | NPC type | Name | Behavior | Notes |
+   |---|---|---|---|
+   | 2006 | Census Angel | `census_angel` | starts class-selection state machine |
+   | 2429 | BattlefieldAngel | `shop` | sends welcome, shop UI is TODO |
+   | 8804 | Blessing Angel | `totem` | system message only |
+   | 1553 | House Pickets | `gate` → map 3 | ❓ destination spawn point is guessed |
+   | 1554 | Gaoler Angel | `gate` → map 3 | ❓ same |
+   | 1938 | Dark City Tot | `totem` | |
+   | 1940 | Breeze Totem | `totem` | |
 
-**S->C**: Entity Status (0x000B, 13 bytes) with status_a=1, status_b=1
+5. If there's no hardcoded behavior, look up `map_data.npc_dialogs[runtime_entity_id]` to start a dialog from `msg.xml`.
+6. Anything with no dialog and no behavior just gets a log line.
 
-### handle_use_skill (Opcode 0x0016)
+### Census Angel class-selection
 
-**C->S**: `[4B header][1B skill_id at +4][LE32 target_id at +5]`
+Per-player state stored in `npc._census_states[entity_id]`:
 
-**Process**:
-1. If target_id != 0, send combat action response
-2. Currently uses hardcoded damage=100
-
-**S->C**: Combat Action (0x0019, 27 bytes)
 ```
-[source_entity][target_entity][action_type=2][skill_id][damage=100][flags=0]
+state = 'menu'        → waiting for the player to type a class number in chat
+state = 'confirm_<N>' → we asked "do you want class N? (yes/no)", waiting for yes/no
 ```
+
+The chat handler intercepts player messages and routes them here via `handle_census_chat`. On confirmed selection:
+
+1. Update `players.class_id` in the DB.
+2. Re-read the player row into `session['player']`.
+3. Send a confirmation chat message.
+
+Only runs for Novices (class 0). Already-classed players get "you're already a `<class>`" and the state machine is not entered.
+
+Available classes come from `setting/eng/class.xml`:
+
+| ID | Name | Notes |
+|---|---|---|
+| 0 | Novice | default |
+| 1 | Priest | |
+| 2 | Summoner | |
+| 3 | Wizard | |
+| 4 | Magician | |
+| 5 | Protector | |
+| 6 | Warrior | |
+| 7 | Swordsman | |
+| 8 | Spearman | |
+| 9 | Archer | |
+| 10-15 | Weaponsmith / Armorsmith / Tailor / Technician / (skip 14) / Chef | crafting classes — Census Angel menu exposes these but [class_stats.py](../src/class_stats.py) has no stat table for them yet |
+
+### `handle_npc_dialog` — C→S `0x0044` ✅
+
+Payload: `[4B frame][4B unk][u8 option_idx@+8]`.
+
+1. Get `session['dialog_state']`.
+2. Call `dm.select_option(state, option_idx)` → next `DialogState` or `None`.
+3. If `None`, send a dialog-close message and clear state.
+4. Otherwise run `process_dialog_actions` on the new state (for warps); if the state survives, send the NPC speech and store it.
+
+### `send_npc_chat` — workaround ❌
+
+NPC speech is currently sent as a `0x001E` chat message with `chat_type=0x0001, channel=0x01` so it renders in the chat bubble. The **real** NPC-dialog opcode hasn't been identified — this is a hack that works well enough to advance dialogs, but the client doesn't render the proper dialog box with portrait and options. See [09_REVERSE_ENGINEERING.md](09_REVERSE_ENGINEERING.md).
 
 ---
 
-## Social (handlers/social.py)
+## combat.py
 
-### handle_chat_send (Opcode 0x002E)
+### `handle_stop_action` — C→S `0x0009` ✅
 
-**C->S**: `[4B header][1B channel][var message (null-terminated)]`
+Clears `session['dialog_state']`. No packet sent back. Also used as "cancel dialog" since there's no dedicated cancel opcode.
 
-**Process**:
-1. Parse channel byte and message text
-2. Check Census Angel interception (if player in class selection)
-3. Build chat message response
-4. Broadcast to zone
+### `handle_target_mob` — C→S `0x000F` ✅
 
-**S->C**: Chat Message (0x001E, variable)
+Payload: `[4B frame][LE32 mob_id@+4]`.
 
-### handle_emote (Opcode 0x0150)
+Stores `session['target_mob_id']` and sends back an entity status (`0x000B`) with the mob "alive, targeted" bytes. The client uses this to highlight the target.
 
-**C->S**: `[4B header][LE16 emote_id at +4]`
+### `handle_use_skill` — C→S `0x0016` ✅ (partial)
 
-Currently logging only, no response.
+Payload: `[4B frame][u8 skill_id@+4][LE32 target@+5]`.
 
-### handle_request_player_details (Opcode 0x001A)
+Shared damage logic lives in `_resolve_and_hit`, used by both skill casts and auto-attack:
 
-**C->S**: `[4B header][LE32 target_entity_id at +4]`
+1. If `target_id` is a mob in the seed registry → lazy-register it with `server.mobs` using the monster.xml HP pool.
+2. Compute damage via `_compute_damage(session)` — uses `class_stats` `ratk + sp_atk` scaled by a ±20% random roll.
+3. Apply damage to `server.mobs`.
+4. Send a `0x0019` combat action to the attacker (and broadcast to the zone, ❓ may double-animate).
+5. If the mob's HP hits 0 → death animation + mark for respawn (30s via `MobRegistry.RESPAWN_DELAY_SEC`).
 
-Currently logging only, no response.
+❌ **HP bar doesn't update**. `0x0019` renders the hit animation and damage number but doesn't move the target's health bar — the real HP update opcode is still unidentified. We've been wrong about which opcode it is at least twice.
 
----
+### `handle_auto_attack`
 
-## Miscellaneous (handlers/misc.py)
-
-### handle_entity_select (Opcode 0x0006)
-
-**C->S**: `[4B header][LE32 target_entity_id at +4]`
-
-Currently logging only.
-
-### handle_buy_sell (Opcode 0x0012)
-
-**C->S**: `[4B header][LE16 item_id at +4][LE16 quantity at +6]`
-
-Currently logging only.
-
-### handle_toggle_action (Opcode 0x003E)
-
-**C->S**: `[4B header][1B action_id at +4]`
-
-**S->C**: Entity Setting (0x001D, 16 bytes)
-```
-entity_id + marker=0x3501 + setting_id=0x074E + value=action_id
-```
-
-Broadcasts the sit/stand/meditate state to the zone.
-
-### handle_zone_ready (Opcode 0x0143)
-
-**C->S**: `[4B header]` (no payload)
-
-Client signals zone load complete. Server responds with a keepalive tick.
-
-**S->C**: Keepalive Tick (0x018A, 10 bytes)
+Entry point for `npc.handle_entity_action` when a monster is clicked. Same internal path as `_resolve_and_hit`, just without a skill_id.
 
 ---
 
-## Dialog System
+## social.py
 
-### Data Structures
+### `handle_chat_send` — C→S `0x002E` ✅
+
+Payload: `[4B frame][u8 channel][NUL-term text]`.
+
+1. Parse channel byte and text (stop at first NUL).
+2. First check: if the player has an active Census Angel state, route the text to `npc.handle_census_chat` and return.
+3. Otherwise build a `0x001E` chat sub-message.
+4. Echo to the sender (so their own message appears in their chat box).
+5. Broadcast to everyone else on the same map via `server.broadcast_to_zone`.
+
+### `handle_emote` — C→S `0x0150`
+
+Just logs the emote ID. ❓ We haven't figured out the S→C packet that plays an emote animation, so nothing visual happens.
+
+### `handle_request_player_details` — C→S `0x001A`
+
+Log only. ❓ The real server's response layout is unknown — we've seen the request but never captured the response.
+
+---
+
+## misc.py
+
+### `handle_entity_select` — C→S `0x0006`
+
+Log only. Fired when the client "soft-selects" an entity (hover/click without action). No response required.
+
+### `handle_buy_sell` — C→S `0x0012`
+
+Log only. Would normally be a shop transaction. No item/inventory system yet.
+
+### `handle_toggle_action` — C→S `0x003E` ✅
+
+Payload: `[4B frame][u8 action_id@+4]`. Sit / stand / meditate / mount toggle.
+
+Sends a `0x001D` entity-setting sub-message back with `entity_id + marker=0x3501 + setting_id=0x074E + value=action_id`. Broadcasts to the zone so other players see the animation.
+
+### `handle_zone_ready` — C→S `0x0143` ✅
+
+The client sends this once its zone has finished loading. We reply with a `0x018A` keepalive tick (the smallest valid response) so the client knows the server is still there.
+
+---
+
+## Dialog manager ([dialog_manager.py](../src/dialog_manager.py))
+
+Not a handler per se, but every NPC interaction goes through it.
+
+### Data shapes
 
 ```python
 DialogNode:
     dialog_id: int
-    msg_id: int          # Text ID from msg.xml
-    text: str            # Resolved display text
-    face: int            # Portrait sprite ID
+    msg_id: int                  # index into msg.xml
+    text: str                    # resolved, with color codes
+    face: int                    # portrait sprite
     options: list[DialogOption]
-    triggers: list[dict]
+    triggers: list[dict]         # ❓ unused
     unconditional_next: int
     actions: list[DialogAction]
 
 DialogOption:
     msg_id: int
     text: str
-    next_id: int         # 0 = close dialog
+    next_id: int                 # 0 = close dialog
 
 DialogAction:
-    action_type: int     # 25=start dialog, 37=zone warp
+    action_type: int             # 25 = start dialog, 37 = zone warp
     params: list[int]
 
-DialogState:
+DialogState:                     # lives in session['dialog_state']
     dialog_id: int
     node: DialogNode
     npc_entity_id: int
 ```
 
-### Dialog Flow
+### Text formatting
 
-```
-Player clicks NPC (0x000D)
-    -> Look up npc_type_id from entity_registry
-    -> Look up dialog_id from map_data.npc_dialogs
-    -> dm.start_dialog(dialog_id) -> DialogState
-    -> Check for immediate actions (warp)
-    -> Send NPC speech via chat message
-    -> Store state in session['dialog_state']
+Text strings in `msg.xml` use Angels Online color codes:
 
-Player selects option (0x0044)
-    -> dm.select_option(state, option_index) -> next DialogState
-    -> If closed: clear state
-    -> If new state: check actions, send speech, store state
-```
-
-### Text Formatting
-
-From msg.xml, text contains color codes:
-- `/c$N` — start color N (e.g., `/c$2` = green)
+- `/c$N` — start color N (`2` = green, etc.)
 - `/c*` — end color
-- `%N%` — parameter placeholder N
-- `\n` — newline
+- `%N%` — parameter placeholder
+- `\n` — line break
 
-Example: `"/c$2%1/c*, welcome to Eden!"` (player name in green)
+Example: `"/c$2%1/c*, welcome to Eden!"` renders with the player's name in green.
+
+---
+
+## What's not implemented
+
+- ❌ **Item / inventory system** — the client sends `0x0012 BUY_SELL` but we have no items table, so the handler just logs.
+- ❌ **Equipment** — no storage, no equip packet, no wear-it-on-the-model wiring.
+- ❌ **Party/guild opcodes** — `0x014A` party name is in the init packet but we don't handle party operations.
+- ❌ **Trade** — never touched.
+- ❌ **Quest progression** — the dialog manager parses `EVENT.XML` quest nodes but `handle_npc_dialog` only processes warps (action 37), not quest grants (actions 1, 2, 3, 25).
+- ❌ **Combat HP-bar update** — renders damage but target HP stays full.
