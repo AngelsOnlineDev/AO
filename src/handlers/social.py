@@ -5,6 +5,7 @@ import logging
 
 from packet_builders import build_chat_msg, pack_sub
 from handlers.npc import handle_census_chat
+from handlers.commands import handle_command
 
 log = logging.getLogger('handlers.social')
 
@@ -31,6 +32,11 @@ async def handle_chat_send(server, writer, builder, session, payload, addr):
     if message_text:
         log.info(f"[{addr}] Chat (ch={channel}): {message_text}")
 
+        # Slash command takes precedence over any other chat flow.
+        if await handle_command(
+                server, writer, builder, session, message_text, addr):
+            return
+
         # Check if player is in Census Angel class selection flow
         if await handle_census_chat(
                 server, writer, builder, session, message_text, addr):
@@ -47,6 +53,7 @@ async def handle_chat_send(server, writer, builder, session, payload, addr):
             chat_type=0x0001,
             channel=0x00,
         )
+        log.debug(f"chat echo sub={chat_sub.hex(' ')}")
         # Echo to sender, then broadcast to everyone else on the map.
         pkt_sender = builder.build_packet(pack_sub(chat_sub))
         writer.write(pkt_sender)

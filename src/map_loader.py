@@ -453,7 +453,16 @@ def load_monster_xml(game_xml_dir: Path) -> dict[int, dict]:
             hp = int(hp_str)
         except ValueError:
             hp = 100
-        result[mid] = {'name': name, 'sprite_id': sprite_id, 'level': level, 'hp': hp}
+        # 經驗價值 = XP reward on kill. Missing -> scale from level.
+        exp_str = elem.attrib.get('\u7d93\u9a57\u50f9\u503c', '')
+        try:
+            exp_value = int(exp_str) if exp_str else max(1, level * 5)
+        except ValueError:
+            exp_value = max(1, level * 5)
+        result[mid] = {
+            'name': name, 'sprite_id': sprite_id, 'level': level,
+            'hp': hp, 'exp_value': exp_value,
+        }
 
     log.info(f"Loaded {len(result)} monster definitions from monster.xml")
     return result

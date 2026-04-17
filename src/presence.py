@@ -72,6 +72,13 @@ def _spawn_subs(session: dict) -> list:
     )
     class_id = _p('class_id')
     level = _p('level', 1)
+    # Pull equipped items so remote players render in their gear,
+    # not the default naked model. Empty slots pass as 0.
+    try:
+        import database
+        equipment = tuple(database.get_equipment(eid))
+    except Exception:
+        equipment = (0,) * 11
     sub_0001 = build_remote_player_spawn(
         entity_id=eid,
         tile_x=tile_x,
@@ -80,6 +87,7 @@ def _spawn_subs(session: dict) -> list:
         appearance=appearance,
         class_id=class_id,
         level=level,
+        equipment=equipment,
     )
     sub_000E = build_remote_player_spawn_000E(
         entity_id=eid,

@@ -8,6 +8,18 @@ from packet_builders import build_setting_16, build_keepalive_tick, pack_sub
 log = logging.getLogger('handlers.misc')
 
 
+async def handle_heartbeat(server, writer, builder, session, payload, addr):
+    """Handle C->S 0x000F — anti-AFK / session heartbeat tick.
+
+    Client sends one every ~5s with a monotonic millisecond counter at
+    bytes 4-7. We previously misidentified this as TARGET_MOB. Swallow
+    silently except at debug level.
+    """
+    if len(payload) >= 8:
+        tick = struct.unpack_from('<I', payload, 4)[0]
+        log.debug(f"[{addr}] heartbeat tick={tick}")
+
+
 async def handle_entity_select(server, writer, builder, session, payload, addr):
     """Handle C->S 0x0006 ENTITY_SELECT."""
     if len(payload) >= 8:

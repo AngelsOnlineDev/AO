@@ -9,8 +9,10 @@ from packet_builders import (
     build_combat_action,
     build_entity_despawn,
     build_chat_msg,
+    build_char_stats,
     pack_sub,
 )
+import database
 
 log = logging.getLogger('handlers.combat')
 
@@ -22,20 +24,11 @@ async def handle_stop_action(server, writer, builder, session, payload, addr):
 
 
 async def handle_target_mob(server, writer, builder, session, payload, addr):
-    """Handle C->S 0x000F TARGET_MOB."""
-    if len(payload) < 8:
-        log.debug(f"[{addr}] C->S TARGET_MOB (too short)")
-        return
-
-    mob_id = struct.unpack_from('<I', payload, 4)[0]
-    log.info(f"[{addr}] C->S TARGET_MOB 0x{mob_id:08X}")
-
-    session['target_mob_id'] = mob_id
-
-    status_sub = build_entity_status(mob_id, status_a=1, status_b=1)
-    pkt = builder.build_packet(pack_sub(status_sub))
-    writer.write(pkt)
-    await writer.drain()
+    """Stub — real mob-click combat goes through 0x000D ENTITY_ACTION.
+    0x000F is re-routed to misc.handle_heartbeat in the dispatch table
+    since it turned out to be an anti-AFK tick, not a combat opcode.
+    """
+    return
 
 
 async def handle_use_skill(server, writer, builder, session, payload, addr):
@@ -119,16 +112,119 @@ async def _resolve_and_hit(server, writer, builder, session,
     )
 
     if died:
-        despawn_sub = build_entity_despawn(target_id)
-        despawn_payload = pack_sub(despawn_sub)
-        writer.write(builder.build_packet(despawn_payload))
-        await writer.drain()
-        await server.broadcast_to_zone(
-            session.get('map_id', 0), despawn_payload,
-            exclude_entity=entity_id,
+        # DIAGNOSTIC: skip the despawn packet entirely to test whether
+        # our 0x001B format is what's crashing the client ~1s post-kill.
+        # If crashes stop after this change, the despawn format is the
+        # issue and we need to RE it. Leaving the mob visible until
+        # server restart is ugly but better than a disconnect every kill.
+        #
+        # try:
+        #     despawn_sub = build_entity_despawn(target_id)
+        #     despawn_payload = pack_sub(despawn_sub)
+        #     writer.write(builder.build_packet(despawn_payload))
+        #     await writer.drain()
+        #     await server.broadcast_to_zone(
+        #         session.get('map_id', 0), despawn_payload,
+        #         exclude_entity=entity_id,
+        #     )
+        # except Exception:
+        #     log.exception(f"[{addr}] despawn failed")
+        try:
+            _announce_kill(writer, builder, session, mob)
+        except Exception:
+            log.exception(f"[{addr}] announce kill failed")
+        try:
+            _grant_kill_xp(
+                server, writer, builder, session, mob, type_id, addr)
+        except Exception:
+            log.exception(f"[{addr}] grant xp failed")
+        try:
+            await writer.drain()
+        except (ConnectionResetError, BrokenPipeError, OSError):
+            pass
+
+
+def _grant_kill_xp(server, writer, builder, session, mob, type_id, addr):
+    """Award XP from monster.xml's 經驗價值 field and trigger level-up if
+    the threshold is crossed. Replies with a chat line either way."""
+    monster_db = session.get('monster_db') or {}
+    mdef = monster_db.get(type_id) or {}
+    xp_value = mdef.get('exp_value') or mdef.get('xp') or 0
+    if xp_value <= 0:
+        # Fallback so kills still feel rewarding on mobs we haven't
+        # parsed XP for. Matches roughly what a low-level mob would give.
+        xp_value = 5
+    entity_id = session['entity_id']
+    player = database.get_player(entity_id)
+    if player is None:
+        return
+    old_xp = player['experience'] if 'experience' in player.keys() else 0
+    old_level = player['level'] if 'level' in player.keys() else 1
+    new_xp = old_xp + xp_value
+    database.update_player_full(entity_id, experience=new_xp)
+    new_level = database.level_for_xp(new_xp)
+    if new_level != old_level:
+        _level_up(session, entity_id, new_level)
+        _send_stats_resync(writer, builder, session)
+        _system_chat(writer, builder, session,
+                     f"+{xp_value} XP — LEVEL UP! {old_level} -> {new_level}")
+    else:
+        # Refresh session cache so subsequent damage calc uses updated XP.
+        session['player'] = database.get_player(entity_id)
+        _system_chat(writer, builder, session, f"+{xp_value} XP")
+
+
+def _level_up(session, entity_id, new_level):
+    """Recompute HP/MP/stats at a new level and write back to DB."""
+    from class_stats import compute_stats
+    player = database.get_player(entity_id)
+    class_id = player['class_id'] if player and 'class_id' in player.keys() else 0
+    stats = compute_stats(class_id, new_level)
+    database.update_player_full(
+        entity_id,
+        level=new_level,
+        hp_max=stats['hp_max'],
+        mp_max=stats['mp_max'],
+        hp=stats['hp_max'],
+        mp=stats['mp_max'],
+    )
+    session['player'] = database.get_player(entity_id)
+
+
+def _send_stats_resync(writer, builder, session):
+    """Fire-and-forget re-send of 0x0042 to refresh HP/MP bars and stats.
+    Uses captured init_pkt2 tail so R.Atk/Def/etc don't blank out."""
+    try:
+        from world_init_builder import get_char_stats_body
+        player = session.get('player')
+        if not player:
+            return
+        hp = player['hp']
+        hp_max = player['hp_max']
+        mp = player['mp']
+        mp_max = player['mp_max']
+        sub = get_char_stats_body(hp, hp_max, mp, mp_max)
+        writer.write(builder.build_packet(pack_sub(sub)))
+    except Exception:
+        log.debug("stats resync failed", exc_info=True)
+
+
+def _system_chat(writer, builder, session, text):
+    """Send a system chat line via the REAL chat opcode 0x0128. The old
+    build_chat_msg (0x001E) was a session counter, not chat display — it
+    silently ignored the message body and may have been contributing to
+    client crashes when fired rapidly post-kill."""
+    try:
+        from packet_builders import build_world_chat
+        sub = build_world_chat(
+            sender_entity_id=session.get('entity_id', 0),
+            sender_name=session.get('player_name', 'System'),
+            message=f"[System] {text}",
+            channel=0x0D,
         )
-        _announce_kill(writer, builder, session, mob)
-        await writer.drain()
+        writer.write(builder.build_packet(pack_sub(sub)))
+    except Exception:
+        log.debug("system chat failed", exc_info=True)
 
 
 def _compute_damage(session: dict) -> int:
@@ -153,14 +249,12 @@ def _compute_damage(session: dict) -> int:
 def _announce_kill(writer, builder, session, mob):
     """Send a chat-line announcement of a kill to the attacking player."""
     try:
-        msg = build_chat_msg(
-            sender_entity_id=0,
-            sender_name='System',
-            message=f"You killed {mob.name}!",
-            pos_x=session.get('pos_x', 0),
-            pos_y=session.get('pos_y', 0),
-            chat_type=0x0001,
-            channel=0x01,
+        from packet_builders import build_world_chat
+        msg = build_world_chat(
+            sender_entity_id=session.get('entity_id', 0),
+            sender_name=session.get('player_name', 'System'),
+            message=f"[System] You killed {mob.name}!",
+            channel=0x0D,
         )
         writer.write(builder.build_packet(pack_sub(msg)))
     except Exception:

@@ -77,6 +77,57 @@ def _find_sub_message(data: bytes, target_opcode: int,
     return -1
 
 
+def _scan_sub_message(data: bytes, target_opcode: int,
+                       target_size: int = 0) -> int:
+    """Like _find_sub_message but tolerates leading bytes that aren't a
+    valid sub-message frame. Walks the whole buffer looking for a
+    plausible sub_len followed by the target opcode.
+
+    Used for buffers where the 0x0042 we want isn't the first framed
+    sub-message (init_pkt2 has leading non-sub bytes we can't always
+    parse cleanly)."""
+    for pos in range(len(data) - 4):
+        sub_len = struct.unpack_from('<H', data, pos)[0]
+        if sub_len == 0 or sub_len > 500:
+            continue
+        if pos + 2 + sub_len > len(data):
+            continue
+        opcode = struct.unpack_from('<H', data, pos + 2)[0]
+        if opcode != target_opcode:
+            continue
+        if target_size and sub_len != target_size:
+            continue
+        return pos
+    return -1
+
+
+def get_char_stats_body(hp: int, hp_max: int, mp: int, mp_max: int) -> bytes:
+    """Return a 107-byte 0x0042 CHAR_STATS sub-message body with the given
+    HP/MP values and the rest of the tail copied verbatim from init_pkt2's
+    captured 0x0042 (Soualz's Priest L18 stats).
+
+    Keeping the captured tail means client-side stat displays (R.Atk, Dfs,
+    resistances, weight) won't zero out when we re-send to update HP. The
+    price: the displayed R.Atk will show Soualz's value after a level-up,
+    not the computed one. Server-side damage calc uses class_stats and
+    remains correct; only the client-side HUD numbers lag.
+
+    Callers should wrap the result with pack_sub() before handing to
+    PacketBuilder.
+    """
+    _load_templates()
+    if _pkt2_template is None:
+        # Last-ditch fallback: zeroed tail. Will blank the stat HUD but
+        # won't crash.
+        return struct.pack('<HIIII', 0x0042, hp, hp_max, mp, mp_max) + b'\x00' * 89
+    off = _scan_sub_message(_pkt2_template, 0x0042, 107)
+    if off < 0:
+        return struct.pack('<HIIII', 0x0042, hp, hp_max, mp, mp_max) + b'\x00' * 89
+    body_off = off + 4
+    tail = _pkt2_template[body_off + 16:body_off + 105]  # 89 bytes
+    return struct.pack('<HIIII', 0x0042, hp, hp_max, mp, mp_max) + tail
+
+
 def _patch_entity_ref(data: bytearray, entity_id: int):
     """Patch 0x0185 entity reference with player's entity_id."""
     off = _find_sub_message(data, 0x0185, 14)

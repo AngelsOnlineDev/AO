@@ -665,6 +665,7 @@ def build_remote_player_spawn(
     level: int = 1,
     guild_name: str = "",
     direction: int = 0,
+    equipment: tuple = (0,) * 11,
 ) -> bytes:
     """Build a 0x0001 REMOTE_PLAYER_SPAWN sub-message.
 
@@ -729,6 +730,15 @@ def build_remote_player_spawn(
     # data[63] state byte — 0 = normal. Do NOT set to 7-11 or the client
     # triggers mount/pet/buff special handling.
     buf[63] = 0
+    # Equipment slots — slots 0..7 at 66-97, slot 13 at 98, 14 at 102,
+    # 15 at 108. Each is LE32 of an item_id. sub_5E97F0 passes these
+    # through sub_4A4940 which drives the visible outfit.
+    eq = tuple(equipment) + (0,) * max(0, 11 - len(equipment))
+    for i in range(8):
+        struct.pack_into('<I', buf, 66 + 4 * i, eq[i] & 0xFFFFFFFF)
+    struct.pack_into('<I', buf, 98,  eq[8]  & 0xFFFFFFFF)
+    struct.pack_into('<I', buf, 102, eq[9]  & 0xFFFFFFFF)
+    struct.pack_into('<I', buf, 108, eq[10] & 0xFFFFFFFF)
     return bytes(buf)
 
 
@@ -1076,25 +1086,46 @@ def build_player_appears(area_id: int, entity_id: int,
 
 
 def build_world_chat(sender_entity_id: int, sender_name: str,
-                     message: str, channel: int = 0x0a) -> bytes:
-    """Build a 0x0128 WORLD_CHAT sub-message (S->C).
+                     message: str, channel: int = 0x00) -> bytes:
+    """Build a 0x0128 chat sub-message (S->C).
 
-    Broadcast world/shout chat message.
-    Format (from pcap analysis of 8 captured instances):
-      [LE16 opcode=0x0128]
-      [LE32 source_entity_or_channel]
-      [B channel]              — 0x0a=world, 0x0b=shout, 0x02=party
-      [var sender_name]        — null-terminated
-      [var padding/guild_data] — null-terminated or zero-padded to ~16B
-      [var message]            — null-terminated
+    THIS IS THE REAL CHAT DISPLAY OPCODE. Confirmed from client decompile
+    of sub_5F3B40 (slot for 0x0128 in the world dispatch table). The
+    previously-guessed 0x001E turned out to be a session counter, not
+    a chat render.
 
-    The name+guild field appears to be ~16 bytes total (name padded with
-    guild data to fill). Messages from different players confirm this pattern.
+    Layout (confirmed from sub_5F3B40):
+      [0-1]   LE16  opcode = 0x0128
+      [2-5]   LE32  source entity_id
+      [6]     u8    channel (see below)
+      [7-23]  17B   sender name (NUL-terminated, NUL-padded)
+      [24-]   var   message text (NUL-terminated)
+
+    Known channel values and their render paths (empirically verified):
+      0, 1        ✅ chat tab, no name prefix — general/system
+      2, 10       ❌ dropped (needs a secondary name at +7? — unverified)
+      11          ✅ chat tab WITH "name:" prefix + speech bubble over head
+      12          ❌ dropped (filter-gated?)
+      13          ✅ chat tab WITH "name:" prefix (world/guild variant)
+      15          ✅ chat tab WITH "name:" prefix
+      16          ✅ chat tab WITH "name:" prefix
+
+    Channels 11/13/15/16 consume the first byte of the message field at
+    offset 24 as a sub-category indicator — actual text starts at 25. We
+    prepend a NUL so the displayed message isn't missing its first char.
+
+    For server-side system messages, channel 0 is the simplest renderer.
     """
-    name_bytes = sender_name.encode('utf-8')[:15] + b'\x00'
-    # Pad name+guild field to 16 bytes total
-    name_field = (name_bytes + b'\x00' * 16)[:16]
-    msg_bytes = message.encode('utf-8')[:200] + b'\x00'
+    _PREFIX_CHANNELS = {0x0B, 0x0D, 0x0F, 0x10}
+    # Name field spans bytes 7..23 inclusive = 17 bytes. Message MUST
+    # start at offset 24 or the handler reads garbage for the channel.
+    name_bytes = sender_name.encode('utf-8')[:16] + b'\x00'
+    name_field = (name_bytes + b'\x00' * 17)[:17]
+    raw_msg = message.encode('utf-8')[:200]
+    # Channels that eat the first byte as a sub-category need a filler.
+    if channel in _PREFIX_CHANNELS:
+        raw_msg = b'\x00' + raw_msg
+    msg_bytes = raw_msg + b'\x00'
 
     return struct.pack('<HIB', 0x0128, sender_entity_id, channel) + \
            name_field + msg_bytes

@@ -26,6 +26,8 @@ from dataclasses import dataclass, field
 log = logging.getLogger('mob_state')
 
 RESPAWN_DELAY_SEC = 30.0  # time between death and respawn
+AGGRO_TIMEOUT_SEC = 8.0   # drop aggro if no damage from the target in this long
+AGGRO_ATTACK_INTERVAL_SEC = 2.0  # mob retaliates this often
 
 
 @dataclass
@@ -36,9 +38,14 @@ class Mob:
     level: int
     hp_max: int
     hp: int
+    # 平均攻擊 from monster.xml, defaulting to a floor so level-1 mice
+    # still sting when they retaliate.
+    base_attack: int = 3
     alive: bool = True
     death_time: float = 0.0   # timestamp of death, 0 if alive
     attacker_id: int = 0      # last player to hit us (for loot/exp)
+    aggro_last_hit: float = 0.0    # time of last damage from attacker
+    aggro_last_attack: float = 0.0 # last time we hit them back
 
 
 class MobRegistry:
@@ -58,6 +65,10 @@ class MobRegistry:
             return existing
         info = monster_db.get(type_id, {}) if monster_db else {}
         hp_max = int(info.get('hp', 100) or 100)
+        # 平均攻擊 isn't surfaced by the current XML loader but when it is
+        # we'll honor whichever key it uses. Fallback is level-scaled.
+        base_attack = int(info.get('avg_attack') or info.get('atk')
+                           or max(3, int(info.get('level', 1) or 1) * 2))
         mob = Mob(
             entity_id=entity_id,
             type_id=type_id,
@@ -65,6 +76,7 @@ class MobRegistry:
             level=int(info.get('level', 1) or 1),
             hp_max=hp_max,
             hp=hp_max,
+            base_attack=base_attack,
         )
         self._by_entity[entity_id] = mob
         return mob
@@ -86,6 +98,7 @@ class MobRegistry:
         mob.hp -= max(0, amount)
         if attacker_id:
             mob.attacker_id = attacker_id
+            mob.aggro_last_hit = time.time()
         if mob.hp <= 0:
             mob.hp = 0
             mob.alive = False
@@ -121,3 +134,28 @@ class MobRegistry:
 
     def alive_count(self) -> int:
         return sum(1 for m in self._by_entity.values() if m.alive)
+
+    def aggroed_mobs(self, now: float | None = None) -> list[Mob]:
+        """Return every mob with a live aggro lock that's due to swing.
+
+        A mob is 'live-aggro' if it's alive, has an attacker_id, and the
+        attacker dealt damage within AGGRO_TIMEOUT_SEC. Returned mobs
+        also satisfy the attack-cooldown (last swing older than
+        AGGRO_ATTACK_INTERVAL_SEC). Stale aggro is silently dropped.
+        """
+        if now is None:
+            now = time.time()
+        ready: list[Mob] = []
+        for mob in self._by_entity.values():
+            if not mob.alive or not mob.attacker_id:
+                continue
+            if now - mob.aggro_last_hit > AGGRO_TIMEOUT_SEC:
+                # Drop aggro so the mob stops chasing after fleeing players.
+                mob.attacker_id = 0
+                continue
+            if now - mob.aggro_last_attack >= AGGRO_ATTACK_INTERVAL_SEC:
+                ready.append(mob)
+        return ready
+
+    def mark_attacked(self, mob: Mob, now: float | None = None):
+        mob.aggro_last_attack = now if now is not None else time.time()

@@ -141,6 +141,27 @@ def _create_tables(conn: sqlite3.Connection):
             area_packet_num INTEGER,
             msg_order INTEGER
         );
+
+        -- Equipment currently worn by a player. slot_idx maps to the
+        -- 11 slots sent in the 0x0001 player-spawn packet (8 at offset
+        -- 66-97, plus slots 13/14/15 at offsets 98/102/108).
+        CREATE TABLE IF NOT EXISTS equipment (
+            id INTEGER PRIMARY KEY,
+            entity_id INTEGER NOT NULL,
+            slot_idx INTEGER NOT NULL,
+            item_id INTEGER NOT NULL DEFAULT 0,
+            UNIQUE(entity_id, slot_idx)
+        );
+
+        -- Player inventory (bag). item_id 0 = empty slot.
+        CREATE TABLE IF NOT EXISTS inventory (
+            id INTEGER PRIMARY KEY,
+            entity_id INTEGER NOT NULL,
+            slot_idx INTEGER NOT NULL,
+            item_id INTEGER NOT NULL DEFAULT 0,
+            quantity INTEGER NOT NULL DEFAULT 1,
+            UNIQUE(entity_id, slot_idx)
+        );
     """)
 
     # Add player stat columns (idempotent — ignore if already exist)
@@ -148,6 +169,7 @@ def _create_tables(conn: sqlite3.Connection):
         ('hp', 294), ('hp_max', 294),
         ('mp', 280), ('mp_max', 280),
         ('gold', 500),
+        ('experience', 0),
         # Appearance bytes sent by the client's CREATE packet (sub_4C0C50
         # body[1..5]). These feed byte_958C4E..52 on the character-select
         # screen; the same 5 bytes ALSO need to be patched into init_pkt1's
@@ -232,6 +254,7 @@ def create_character(account_id: int, name: str, class_id: int = 0,
         (account_id, entity_id, name, class_id, *appearance)
     )
     conn.commit()
+    seed_equipment(entity_id, class_id)
     return get_player(entity_id)
 
 
@@ -319,6 +342,165 @@ def update_player_stats(entity_id: int, hp: int, mp: int):
         (hp, mp, entity_id)
     )
     conn.commit()
+
+
+def update_player_full(entity_id: int, **fields):
+    """Update arbitrary columns on a player row. Keys must match schema."""
+    if not fields:
+        return
+    conn = get_connection()
+    cols = ", ".join(f"{k} = ?" for k in fields)
+    conn.execute(
+        f"UPDATE players SET {cols} WHERE entity_id = ?",
+        (*fields.values(), entity_id),
+    )
+    conn.commit()
+
+
+# ---------- Leveling ----------
+
+def xp_for_level(level: int) -> int:
+    """XP required to REACH (not advance past) the given level.
+
+    Level 1 requires 0. Curve is mild-quadratic so early mobs matter but
+    high levels still feel earned: level N needs ~50 * (N-1)^2 XP.
+    """
+    if level <= 1:
+        return 0
+    return 50 * (level - 1) * (level - 1)
+
+
+def level_for_xp(xp: int) -> int:
+    """Max level reachable with the given total XP (capped at 99)."""
+    for lvl in range(99, 0, -1):
+        if xp >= xp_for_level(lvl):
+            return lvl
+    return 1
+
+
+# ---------- Equipment & inventory ----------
+
+# Starter gear keyed by class_id. item_id values are placeholders that
+# point at entries in goods.xml once we load it. For now they're just
+# non-zero so remote player spawns carry *something* and don't render
+# as the all-zero naked template.
+#
+# Slot map (per 0x0001 spawn packet):
+#   0-7  main equipment slots (offsets 66-97)
+#   8    slot 13 at offset 98
+#   9    slot 14 at offset 102
+#   10   slot 15 at offset 108
+_STARTER_EQUIPMENT: dict[int, list[int]] = {
+    # Novice: cloth shirt+pants, minimal
+    0:  [101, 102, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    # Priest: robe + staff
+    1:  [110, 111, 0, 0, 112, 0, 0, 0, 0, 0, 0],
+    # Summoner: robe + wand
+    2:  [120, 121, 0, 0, 122, 0, 0, 0, 0, 0, 0],
+    # Wizard: robe + staff
+    3:  [130, 131, 0, 0, 132, 0, 0, 0, 0, 0, 0],
+    # Magician: robe + rod
+    4:  [140, 141, 0, 0, 142, 0, 0, 0, 0, 0, 0],
+    # Protector: heavy armor + shield + mace
+    5:  [150, 151, 0, 152, 153, 0, 0, 0, 0, 0, 0],
+    # Warrior: plate + axe
+    6:  [160, 161, 0, 0, 162, 0, 0, 0, 0, 0, 0],
+    # Swordsman: plate + sword
+    7:  [170, 171, 0, 0, 172, 0, 0, 0, 0, 0, 0],
+    # Spearman: plate + spear
+    8:  [180, 181, 0, 0, 182, 0, 0, 0, 0, 0, 0],
+    # Archer: leather + bow
+    9:  [190, 191, 0, 0, 192, 0, 0, 0, 0, 0, 0],
+}
+
+EQUIPMENT_SLOT_COUNT = 11
+INVENTORY_SLOT_COUNT = 40
+
+
+def seed_equipment(entity_id: int, class_id: int):
+    """Populate equipment slots with starter gear for the given class."""
+    conn = get_connection()
+    gear = _STARTER_EQUIPMENT.get(class_id, _STARTER_EQUIPMENT[0])
+    for slot_idx in range(EQUIPMENT_SLOT_COUNT):
+        item_id = gear[slot_idx] if slot_idx < len(gear) else 0
+        conn.execute(
+            "INSERT OR REPLACE INTO equipment (entity_id, slot_idx, item_id) "
+            "VALUES (?, ?, ?)",
+            (entity_id, slot_idx, item_id),
+        )
+    conn.commit()
+
+
+def get_equipment(entity_id: int) -> list[int]:
+    """Return the 11 equipment slot item_ids for a character. Missing rows
+    are treated as 0 (empty). Output length is always EQUIPMENT_SLOT_COUNT.
+    """
+    conn = get_connection()
+    rows = conn.execute(
+        "SELECT slot_idx, item_id FROM equipment WHERE entity_id = ?",
+        (entity_id,),
+    ).fetchall()
+    out = [0] * EQUIPMENT_SLOT_COUNT
+    for r in rows:
+        if 0 <= r['slot_idx'] < EQUIPMENT_SLOT_COUNT:
+            out[r['slot_idx']] = r['item_id']
+    return out
+
+
+def set_equipment_slot(entity_id: int, slot_idx: int, item_id: int):
+    conn = get_connection()
+    conn.execute(
+        "INSERT OR REPLACE INTO equipment (entity_id, slot_idx, item_id) "
+        "VALUES (?, ?, ?)",
+        (entity_id, slot_idx, item_id),
+    )
+    conn.commit()
+
+
+def get_inventory(entity_id: int) -> list[sqlite3.Row]:
+    conn = get_connection()
+    return conn.execute(
+        "SELECT slot_idx, item_id, quantity FROM inventory "
+        "WHERE entity_id = ? ORDER BY slot_idx",
+        (entity_id,),
+    ).fetchall()
+
+
+def add_to_inventory(entity_id: int, item_id: int, quantity: int = 1) -> int:
+    """Add `quantity` of `item_id` to the first available inventory slot
+    (merging with an existing stack of the same item_id if present).
+
+    Returns the slot_idx that was written, or -1 if inventory is full.
+    """
+    conn = get_connection()
+    # Merge with existing stack first
+    existing = conn.execute(
+        "SELECT slot_idx, quantity FROM inventory "
+        "WHERE entity_id = ? AND item_id = ? LIMIT 1",
+        (entity_id, item_id),
+    ).fetchone()
+    if existing is not None:
+        conn.execute(
+            "UPDATE inventory SET quantity = quantity + ? "
+            "WHERE entity_id = ? AND slot_idx = ?",
+            (quantity, entity_id, existing['slot_idx']),
+        )
+        conn.commit()
+        return existing['slot_idx']
+    # Otherwise find the first empty slot index not in use
+    used = {r['slot_idx'] for r in conn.execute(
+        "SELECT slot_idx FROM inventory WHERE entity_id = ?", (entity_id,)
+    ).fetchall()}
+    for slot in range(INVENTORY_SLOT_COUNT):
+        if slot not in used:
+            conn.execute(
+                "INSERT INTO inventory (entity_id, slot_idx, item_id, quantity) "
+                "VALUES (?, ?, ?, ?)",
+                (entity_id, slot, item_id, quantity),
+            )
+            conn.commit()
+            return slot
+    return -1
 
 
 # ---------- Settings queries ----------

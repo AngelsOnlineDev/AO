@@ -41,6 +41,7 @@ import config
 import database
 from game_data import get_dialog_manager, get_map, get_npc_db, get_monster_db
 from handlers import movement, npc, combat, social, misc
+from handlers import commands as cmd_handler
 import presence
 from mob_state import MobRegistry
 
@@ -52,11 +53,12 @@ log = logging.getLogger("world_server")
 # Each handler signature: async (server, writer, builder, session, payload, addr)
 # ---------------------------------------------------------------------------
 OPCODE_HANDLERS = {
+    0x0001: cmd_handler.handle_command_input,  # slash-command channel
     0x0004: movement.handle_movement,    # MOVEMENT_REQ
     0x0006: misc.handle_entity_select,   # ENTITY_SELECT
     0x0009: combat.handle_stop_action,   # STOP_ACTION
     0x000d: npc.handle_entity_action,    # ENTITY_ACTION
-    0x000f: combat.handle_target_mob,    # TARGET_MOB
+    0x000f: misc.handle_heartbeat,       # anti-AFK tick (was mis-labeled TARGET_MOB)
     0x0012: misc.handle_buy_sell,        # BUY_SELL
     0x0016: combat.handle_use_skill,     # USE_SKILL
     0x001a: social.handle_request_player_details,  # REQUEST_PLAYER_DETAILS
@@ -91,23 +93,103 @@ class WorldServer:
             await server.serve_forever()
 
     async def _mob_tick_loop(self):
-        """Periodic task that respawns dead mobs. Runs for the lifetime
-        of the world server (cancelled on shutdown).
+        """Periodic task: respawn dead mobs + let aggroed mobs retaliate.
 
-        For now this only resets in-memory HP; broadcasting a fresh
-        NPC_SPAWN to existing sessions is future work. New players
-        logging in will see the mob from init_pkt1 regardless.
+        Respawn only resets in-memory HP; broadcasting a fresh NPC_SPAWN
+        is future work. Retaliation sends 0x0019 COMBAT_ACTION from the
+        mob at its attacker and re-sends 0x0042 to refresh the attacker's
+        HP bar (workaround until the real HP-update opcode is identified).
         """
+        from packet_builders import build_combat_action, pack_sub
+        from world_init_builder import get_char_stats_body
+        import database
+
         while True:
             try:
-                await asyncio.sleep(5.0)
+                await asyncio.sleep(1.0)
                 respawned = self.mobs.tick_respawns()
                 if respawned:
                     log.info(f"Mob tick: {len(respawned)} respawn(s)")
+                for mob in self.mobs.aggroed_mobs():
+                    await self._mob_retaliate(
+                        mob, build_combat_action, get_char_stats_body,
+                        pack_sub, database)
             except asyncio.CancelledError:
                 return
             except Exception:
                 log.exception("Error in mob tick loop")
+
+    async def _mob_retaliate(self, mob, build_combat_action,
+                              get_char_stats_body, pack_sub, database):
+        """Have a single mob hit its attacker, update DB HP, resync stats."""
+        attacker_session = self.tracker.get_session(mob.attacker_id)
+        if attacker_session is None:
+            mob.attacker_id = 0
+            return
+        writer = attacker_session.get('writer')
+        builder = attacker_session.get('builder')
+        if writer is None or builder is None:
+            mob.attacker_id = 0
+            return
+
+        # Damage computation: mob base_attack with ±25% roll,
+        # server-floored to 1.
+        import random
+        damage = max(1, int(mob.base_attack * random.uniform(0.75, 1.25)))
+
+        player = attacker_session.get('player')
+        if player is not None:
+            try:
+                hp = int(player['hp']) if 'hp' in player.keys() else 0
+                hp_max = int(player['hp_max']) if 'hp_max' in player.keys() else 1
+                mp = int(player['mp']) if 'mp' in player.keys() else 0
+                mp_max = int(player['mp_max']) if 'mp_max' in player.keys() else 1
+            except (KeyError, IndexError):
+                hp, hp_max, mp, mp_max = 0, 1, 0, 1
+            new_hp = max(0, hp - damage)
+            database.update_player_stats(mob.attacker_id, new_hp, mp)
+            attacker_session['player'] = database.get_player(mob.attacker_id)
+            # 0x0019 COMBAT_ACTION: mob hits player
+            combat_sub = build_combat_action(
+                source_id=mob.entity_id,
+                target_id=mob.attacker_id,
+                skill_id=0,
+                damage=damage,
+                action_type=1,
+                flags=0,
+            )
+            try:
+                writer.write(builder.build_packet(pack_sub(combat_sub)))
+                # HP-bar workaround: re-send 0x0042 with the new HP.
+                # Use the real init_pkt2 tail so we don't blank out stats.
+                stats_sub = get_char_stats_body(new_hp, hp_max, mp, mp_max)
+                writer.write(builder.build_packet(pack_sub(stats_sub)))
+                await writer.drain()
+            except (ConnectionResetError, BrokenPipeError, OSError):
+                mob.attacker_id = 0
+                return
+            # If the player just died, drop aggro and broadcast a death
+            # chat line. Full corpse/respawn-player flow is TODO.
+            if new_hp == 0:
+                attacker_eid = attacker_session.get('entity_id', 0)
+                attacker_name = attacker_session.get('player_name', 'System')
+                mob.attacker_id = 0
+                try:
+                    from packet_builders import build_world_chat
+                    # Use 0x0128 channel 0x0D — the OLD build_chat_msg (0x001E)
+                    # was a session counter, not chat display.
+                    msg = build_world_chat(
+                        sender_entity_id=attacker_eid,
+                        sender_name=attacker_name,
+                        message=f"[System] You were killed by {mob.name}.",
+                        channel=0x0D,
+                    )
+                    writer.write(builder.build_packet(pack_sub(msg)))
+                    await writer.drain()
+                except (ConnectionResetError, BrokenPipeError, OSError):
+                    pass
+
+        self.mobs.mark_attacked(mob)
 
     async def _handle_client(self, reader: asyncio.StreamReader,
                              writer: asyncio.StreamWriter):
